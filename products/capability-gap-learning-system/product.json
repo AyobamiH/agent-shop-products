@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "capability-gap-learning-system",
+  "slug": "capability-gap-learning-system",
+  "name": "Capability-Gap Learning System",
+  "productType": "prompt",
+  "category": "agent-governance",
+  "summary": "Build a governed system that classifies why agent work is blocked, separates missing capability from missing permission, proposes the smallest justified improvement, validates it, and retries the original task without self-granting authority.",
+  "problem": "Agents can misclassify permission or configuration failures as missing capabilities and expand their own authority instead of stopping or improving safely.",
+  "coreOutcomes": [
+    "Boundary classification",
+    "Recurring-gap deduplication",
+    "Governed capability proposals",
+    "Separated implementation and activation",
+    "Retry of the original task after validated activation"
+  ],
+  "requirements": [
+    "Existing agent or task runtime",
+    "Durable task and checkpoint storage",
+    "Allowlisted tool or skill gateway",
+    "Explicit approval records",
+    "Registry for agents, skills, tools, plugins, workers, and policies",
+    "Structured task results with evidence",
+    "Test runner and synthetic fixtures",
+    "Retry path for the original blocked task"
+  ],
+  "boundaries": [
+    "Missing permission is not missing capability",
+    "Blocked agents cannot approve their own expansion",
+    "Implementation and activation are separate",
+    "Forbidden work remains forbidden"
+  ],
+  "tags": ["agent-governance", "capability-gaps", "permissions", "toolgate", "validation"],
+  "source": "PROMPT.md"
+}
