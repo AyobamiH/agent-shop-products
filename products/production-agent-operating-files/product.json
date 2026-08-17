@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "production-agent-operating-files",
+  "slug": "production-agent-operating-files",
+  "name": "Production Agent Operating Files",
+  "productType": "prompt",
+  "category": "agent-governance",
+  "summary": "Design and implement the complete operating-file pack and runtime contract for a specialised agent, aligning role, scope, policy, tools, memory, machine-enforced permissions, tests, runtime health, and operator evidence.",
+  "problem": "Agent behaviour files can describe permissions or capabilities that the actual runtime does not enforce, leaving documentation and execution authority out of sync.",
+  "coreOutcomes": [
+    "Bounded agent role and scope",
+    "Machine-readable manifest",
+    "Tool and permission enforcement",
+    "Durable memory boundaries",
+    "Runtime verification",
+    "Operator-facing status evidence"
+  ],
+  "requirements": [
+    "TypeScript or JavaScript agent runtime or repository",
+    "Task orchestrator or invocation entrypoint",
+    "Machine-readable agent manifest",
+    "Tool or skill gateway",
+    "Durable runtime state",
+    "Test runner",
+    "Bounded agent role",
+    "Explicit approval boundaries"
+  ],
+  "boundaries": [
+    "Markdown shapes behaviour but does not enforce permissions",
+    "Runtime evidence and executable enforcement outrank prose",
+    "Do not infer a running service from source presence",
+    "Contradictions between docs, config, and runtime must be reported"
+  ],
+  "tags": ["agent-operating-files", "governance", "tool-permissions", "runtime-contract", "memory"],
+  "source": "PROMPT.md"
+}
