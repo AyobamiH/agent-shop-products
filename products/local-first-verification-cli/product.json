@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "local-first-verification-cli",
+  "slug": "local-first-verification-cli",
+  "name": "Local-First Verification CLI",
+  "productType": "prompt",
+  "category": "developer-tooling",
+  "summary": "Build a stack-aware, read-only CLI that classifies verified facts, warnings, failures, skipped checks, and unverified production claims before developers trust AI-generated changes.",
+  "problem": "Static checks and local command success can be mistaken for production readiness, while skipped or unavailable evidence is often collapsed into false confidence.",
+  "coreOutcomes": [
+    "Safe project-boundary detection",
+    "Stack-aware probe selection",
+    "Read-only evidence collection",
+    "Explicit proof categories",
+    "Human and machine-readable reports",
+    "Next-safe-step recommendations"
+  ],
+  "requirements": [
+    "Node.js 20+ or equivalent CLI runtime",
+    "Repository with source/configuration/deployment metadata",
+    "Test runner",
+    "Safe subprocess execution layer",
+    "Optional explicit runtime/CI/provider inputs",
+    "Dedicated evidence output path when needed"
+  ],
+  "boundaries": [
+    "Read-only by design must be enforced",
+    "Skipped is not failed",
+    "Unverified is not safe",
+    "Configured is not running",
+    "CI is not production",
+    "Repository scan is not a security audit"
+  ],
+  "tags": ["cli", "verification", "read-only", "repository-audit", "evidence"],
+  "source": "PROMPT.md"
+}
