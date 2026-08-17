@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "deterministic-social-publication",
+  "slug": "deterministic-social-publication",
+  "name": "Deterministic Social Publication Pipeline",
+  "productType": "prompt",
+  "category": "publication-reliability",
+  "summary": "Build an auditable social publishing pipeline with immutable content specifications, durable slot ownership, one bounded provider write, official readback, reconciliation, and evidence-backed terminal states.",
+  "problem": "Schedulers and provider write responses can be mistaken for publication truth, while blind retries can create duplicate external effects.",
+  "coreOutcomes": [
+    "Deterministic selection and slot ownership",
+    "Immutable content specification",
+    "One bounded provider write",
+    "Official provider readback",
+    "Ambiguous-write reconciliation",
+    "Auditable terminal classifications"
+  ],
+  "requirements": [
+    "TypeScript or JavaScript service",
+    "Durable SQL storage",
+    "Official provider write and read APIs",
+    "Named publication opportunity scheduler",
+    "Explicit authority for live writes",
+    "Zero-write shadow mode",
+    "Platform constraints"
+  ],
+  "boundaries": [
+    "Official provider readback is publication truth",
+    "Ambiguous writes are not blindly retried",
+    "Content models do not choose product, campaign, account, connector, or approval",
+    "One scheduler owner controls a slot"
+  ],
+  "tags": ["social-publishing", "idempotency", "provider-readback", "reconciliation", "scheduling"],
+  "source": "PROMPT.md"
+}
