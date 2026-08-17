@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "graph-native-agent-system-migration",
+  "slug": "graph-native-agent-system-migration",
+  "name": "Graph-Native Agent System Migration",
+  "productType": "prompt",
+  "category": "agent-architecture",
+  "summary": "Migrate an existing automation or agent system from loosely connected jobs and schedulers into a durable graph runtime with checkpoints, explicit authority, idempotent effects, recovery, and provider-side verification.",
+  "problem": "Live systems built from loosely connected schedulers, queues, and conversational loops can duplicate side effects, lose state, or become unsafe during big-bang orchestration rewrites.",
+  "coreOutcomes": [
+    "Incremental graph migration",
+    "Durable run identity and checkpoints",
+    "Guarded state transitions",
+    "Idempotent external effects",
+    "Crash and restart recovery",
+    "Single authoritative owner during cutover"
+  ],
+  "requirements": [
+    "Existing TypeScript or JavaScript service",
+    "Durable SQL database",
+    "Test runner",
+    "Read-only live-runtime inspection",
+    "Zero-write or dry-run mode",
+    "Official provider readback"
+  ],
+  "boundaries": [
+    "Not a greenfield rewrite",
+    "Never allow two authoritative owners for the same external effect",
+    "Do not infer completion from graph code or compilation alone",
+    "Prefer existing runtime architecture unless a graph dependency already fits"
+  ],
+  "tags": ["agent-architecture", "migration", "graph-runtime", "idempotency", "cutover"],
+  "source": "PROMPT.md"
+}
