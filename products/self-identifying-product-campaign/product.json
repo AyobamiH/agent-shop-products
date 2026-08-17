@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "self-identifying-product-campaign",
+  "slug": "self-identifying-product-campaign",
+  "name": "Self-Identifying Product Campaign",
+  "productType": "prompt",
+  "category": "marketing-systems",
+  "summary": "Build evidence-backed campaigns that help the right audience recognise an observable current problem before presenting a relevant product, service, or diagnostic next step.",
+  "problem": "Marketing can become generic, manipulative, or feature-led when it assumes personal knowledge, invents outcomes, or pushes people through a hidden funnel.",
+  "coreOutcomes": [
+    "Product-truth definition",
+    "Observable audience-signal model",
+    "Evidence-backed claims",
+    "Useful insight before product connection",
+    "Optional next step and response qualification",
+    "Learning from real responses"
+  ],
+  "requirements": [
+    "Real product, service, or diagnostic offer",
+    "Defined audience and exclusions",
+    "Observable problem signals",
+    "Evidence for product claims",
+    "Useful non-pressure next step",
+    "Relevant audience channel",
+    "Attention/recognition/qualification distinction"
+  ],
+  "boundaries": [
+    "Do not invent customer results or guaranteed outcomes",
+    "Do not create fake urgency or superiority claims",
+    "Do not pretend to know the reader personally",
+    "Do not generate mass cold outreach",
+    "Content should remain useful if the reader never buys"
+  ],
+  "tags": ["marketing", "self-identification", "evidence", "campaigns", "product-positioning"],
+  "source": "PROMPT.md"
+}
