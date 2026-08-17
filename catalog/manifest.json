@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0.0",
+  "products": [
+    {"id": "autonomous-coding-workflow", "metadata": "products/autonomous-coding-workflow/product.json"},
+    {"id": "capability-gap-learning-system", "metadata": "products/capability-gap-learning-system/product.json"},
+    {"id": "continuous-business-operations-graph", "metadata": "products/continuous-business-operations-graph/product.json"},
+    {"id": "deterministic-social-publication", "metadata": "products/deterministic-social-publication/product.json"},
+    {"id": "evidence-first-live-diagnostic-repair", "metadata": "products/evidence-first-live-diagnostic-repair/product.json"},
+    {"id": "graph-native-agent-system-migration", "metadata": "products/graph-native-agent-system-migration/product.json"},
+    {"id": "local-first-verification-cli", "metadata": "products/local-first-verification-cli/product.json"},
+    {"id": "production-agent-operating-files", "metadata": "products/production-agent-operating-files/product.json"},
+    {"id": "read-only-production-reconnaissance", "metadata": "products/read-only-production-reconnaissance/product.json"},
+    {"id": "self-identifying-product-campaign", "metadata": "products/self-identifying-product-campaign/product.json"},
+    {"id": "signed-agent-action-receipts", "metadata": "products/signed-agent-action-receipts/product.json"}
+  ]
+}
