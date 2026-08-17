@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "autonomous-coding-workflow",
+  "slug": "autonomous-coding-workflow",
+  "name": "Autonomous Coding Workflow with a Work Ledger",
+  "productType": "prompt",
+  "category": "agent-workflows",
+  "summary": "Build a resumable coding-agent workflow that selects bounded work from repository evidence, persists decisions in a durable ledger, verifies work before completion, and stops at explicit approval boundaries.",
+  "problem": "Long-running coding agents can lose durable task state, repeat completed work, broaden scope, or claim completion without repository-owned evidence.",
+  "coreOutcomes": [
+    "Repository-owned work selection and state",
+    "Durable work ledger and resumability",
+    "Explicit permission and approval boundaries",
+    "Validation and evidence before completion",
+    "Duplicate-work prevention"
+  ],
+  "requirements": [
+    "Existing Git repository",
+    "Node.js 20+ or equivalent scripting runtime",
+    "Test runner and validation commands",
+    "Roadmap or backlog stored in the repository",
+    "Durable Markdown, JSON, or SQL work ledger",
+    "Explicit permissions for mutation and external actions",
+    "Git state inspection",
+    "Evidence-pack storage"
+  ],
+  "boundaries": [
+    "Not a general autonomous daemon",
+    "Chat history is not authoritative workflow state",
+    "Autonomy does not imply permission to deploy, push, publish, or expand scope"
+  ],
+  "tags": ["coding-agent", "work-ledger", "resumability", "verification", "approval-boundaries"],
+  "source": "PROMPT.md"
+}
