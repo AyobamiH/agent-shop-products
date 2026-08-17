@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "evidence-first-live-diagnostic-repair",
+  "slug": "evidence-first-live-diagnostic-repair",
+  "name": "Evidence-First Live Diagnostic and Repair",
+  "productType": "prompt",
+  "category": "production-reliability",
+  "summary": "Diagnose and repair external-write failures without duplicate side effects by ranking evidence, separating ambiguous outcomes, and requiring authoritative provider readback before success.",
+  "problem": "External API calls can return ambiguous or misleading local success while the provider-side effect is absent, duplicated, delayed, or unknown.",
+  "coreOutcomes": [
+    "Read-only failure reconnaissance",
+    "Provider-first evidence hierarchy",
+    "Explicit external-write outcome model",
+    "Idempotent and correlation-safe repair",
+    "Official readback before success"
+  ],
+  "requirements": [
+    "TypeScript or JavaScript service with external API writes",
+    "Durable transaction store",
+    "Official provider read/status/receipt APIs",
+    "Test runner",
+    "Local no-write execution path",
+    "Explicit authority for real diagnostic writes",
+    "Durable idempotency or correlation mechanism"
+  ],
+  "boundaries": [
+    "Successful local execution is not provider success",
+    "Ambiguous evidence remains unresolved",
+    "Live diagnostic writes must be explicitly authorised",
+    "Repair must not create duplicates"
+  ],
+  "tags": ["debugging", "external-writes", "provider-readback", "idempotency", "reconciliation"],
+  "source": "PROMPT.md"
+}
