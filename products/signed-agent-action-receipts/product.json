@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "signed-agent-action-receipts",
+  "slug": "signed-agent-action-receipts",
+  "name": "Signed Agent Action Receipts",
+  "productType": "prompt",
+  "category": "agent-security",
+  "summary": "Build an evidence-bound execution system where one bounded consequential action requires transaction-specific approval, executes exactly once, is independently verified, and produces an offline-verifiable signed receipt.",
+  "problem": "Consequential agent actions can blur proposal, approval, execution, verification, and proof into one trust boundary, making replay and false-success risks difficult to audit.",
+  "coreOutcomes": [
+    "Transaction-specific approval",
+    "Separated proposer, authority, executor, signer, and verifier",
+    "Exactly-once bounded mutation",
+    "Independent state verification",
+    "Signed receipt and offline verification",
+    "Deterministic interrupted-execution reconciliation"
+  ],
+  "requirements": [
+    "Node.js 22.5+ with ESM and strict TypeScript",
+    "Git and local filesystem",
+    "Durable SQL storage",
+    "Separate Ed25519 approval and receipt-signing keys",
+    "SHA-256 support",
+    "Disposable Git repository for demonstration",
+    "Child-process API"
+  ],
+  "boundaries": [
+    "Protect one bounded action first rather than claiming generic tool security",
+    "Approval and receipt-signing key material must remain separate",
+    "Executor claims are not sufficient verification",
+    "Development process separation is not an OS sandbox"
+  ],
+  "tags": ["agent-security", "receipts", "approval", "cryptographic-proof", "idempotency"],
+  "source": "PROMPT.md"
+}
