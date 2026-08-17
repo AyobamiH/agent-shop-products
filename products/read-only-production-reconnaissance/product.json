@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "read-only-production-reconnaissance",
+  "slug": "read-only-production-reconnaissance",
+  "name": "Read-Only Production System Reconnaissance",
+  "productType": "prompt",
+  "category": "production-operations",
+  "summary": "Map a live software system without mutating source, services, schedules, databases, credentials, providers, or runtime state, while reconciling documentation against observed runtime truth.",
+  "problem": "A confident but incorrect production inventory can be more dangerous than an incomplete one, especially when stale documentation is treated as authoritative.",
+  "coreOutcomes": [
+    "Zero-write production inventory",
+    "Process, socket, service, scheduler, repository, and datastore discovery",
+    "Secret-safe configuration shape discovery",
+    "Contradiction reconciliation",
+    "Evidence-backed risk and portability report"
+  ],
+  "requirements": [
+    "Read access to host/runtime",
+    "Read access to relevant repositories/configuration",
+    "Bounded shell inspection",
+    "Read-only service/process/socket/container/database queries",
+    "Secure report destination",
+    "Secret and private-data boundaries",
+    "Defined operator scope"
+  ],
+  "boundaries": [
+    "No repair, restart, reload, install, update, migrate, delete, publish, rotate, or reconcile",
+    "Runtime and provider evidence outrank documentation",
+    "Unavailable or unverified components cannot be reported healthy",
+    "Preserve contradictions rather than editing them away"
+  ],
+  "tags": ["reconnaissance", "production", "read-only", "runtime-truth", "inventory"],
+  "source": "PROMPT.md"
+}
