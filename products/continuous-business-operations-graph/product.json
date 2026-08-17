@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "continuous-business-operations-graph",
+  "slug": "continuous-business-operations-graph",
+  "name": "Continuous Autonomous Business Operations Graph",
+  "productType": "prompt",
+  "category": "agent-operations",
+  "summary": "Build a durable, change-aware business operating loop that discovers, prioritises, executes, verifies, and replans useful work without relying on a fresh user prompt after each task.",
+  "problem": "Repeatedly asking an LLM to keep going does not create durable autonomy, state ownership, recovery, duplicate prevention, or evidence-led continuation.",
+  "coreOutcomes": [
+    "Canonical mission and business registry",
+    "Evidence-backed candidate discovery",
+    "Business-value scoring",
+    "Explicit approval classes",
+    "Duplicate-cycle prevention",
+    "Restart recovery and verified continuation"
+  ],
+  "requirements": [
+    "TypeScript or JavaScript service with durable task or graph runtime",
+    "Durable SQL or equivalent state storage",
+    "Business registry",
+    "Allowlisted worker or task surface",
+    "Explicit approval records",
+    "Restart-aware scheduler",
+    "Structured verification evidence"
+  ],
+  "boundaries": [
+    "A cron job repeatedly calling an LLM is not sufficient",
+    "No blanket authority for consequential actions",
+    "Do not generate work from imagination when evidence is missing",
+    "Do not learn from unverified outcomes"
+  ],
+  "tags": ["business-operations", "durable-graph", "autonomy", "scheduling", "verification"],
+  "source": "PROMPT.md"
+}
