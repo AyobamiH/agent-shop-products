@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "1.0.0",
+  "canonicalRepository": "AyobamiH/agent-shop-products",
+  "products": [
+    {
+      "id": "autonomous-coding-workflow",
+      "canonical": {"path": "products/autonomous-coding-workflow/PROMPT.md", "blobSha": "5aca1626776b010f975c5f2aadf2ed2b286d7844"},
+      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/autonomous-coding-workflow", "path": "agents/autonomous-coding-workflow.md", "blobSha": "5aca1626776b010f975c5f2aadf2ed2b286d7844"}
+    },
+    {
+      "id": "capability-gap-learning-system",
+      "canonical": {"path": "products/capability-gap-learning-system/PROMPT.md", "blobSha": "11555870f4c72a4a76bb96475c7a50aa555f0206"},
+      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/capability-gap-learning-system", "path": "agents/capability-gap-learning-system.md", "blobSha": "11555870f4c72a4a76bb96475c7a50aa555f0206"}
+    },
+    {
+      "id": "continuous-business-operations-graph",
+      "canonical": {"path": "products/continuous-business-operations-graph/PROMPT.md", "blobSha": "a7c7fd9b37838a77804060a4357a888fef266340"},
+      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/continuous-business-operations-graph", "path": "agents/continuous-business-operations-graph.md", "blobSha": "a7c7fd9b37838a77804060a4357a888fef266340"}
+    },
+    {
+      "id": "deterministic-social-publication",
+      "canonical": {"path": "products/deterministic-social-publication/PROMPT.md", "blobSha": "e5492cea6cb5f1b6e53ebdd1a048b90c0435415a"},
+      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/deterministic-social-publication-pipeline", "path": "automation/deterministic-social-publication.md", "blobSha": "e5492cea6cb5f1b6e53ebdd1a048b90c0435415a"}
+    },
+    {
+      "id": "evidence-first-live-diagnostic-repair",
+      "canonical": {"path": "products/evidence-first-live-diagnostic-repair/PROMPT.md", "blobSha": "ce958f0045af1adf57d880fbe615c37a60996f30"},
+      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/evidence-first-live-diagnostic-repair", "path": "engineering/evidence-first-live-diagnostic-repair.md", "blobSha": "ce958f0045af1adf57d880fbe615c37a60996f30"}
+    },
+    {
+      "id": "graph-native-agent-system-migration",
+      "canonical": {"path": "products/graph-native-agent-system-migration/PROMPT.md", "blobSha": "562c2937deb2b8c790ee3d3ab9f0529b6618a656"},
+      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/graph-native-agent-system-migration", "path": "agents/graph-native-agent-system-migration.md", "blobSha": "562c2937deb2b8c790ee3d3ab9f0529b6618a656"}
+    },
+    {
+      "id": "local-first-verification-cli",
+      "canonical": {"path": "products/local-first-verification-cli/PROMPT.md", "blobSha": "d9f2746d59300d2d078fc79279d16cdd2068bbff"},
+      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/local-first-verification-cli", "path": "engineering/local-first-verification-cli.md", "blobSha": "d9f2746d59300d2d078fc79279d16cdd2068bbff"}
+    },
+    {
+      "id": "production-agent-operating-files",
+      "canonical": {"path": "products/production-agent-operating-files/PROMPT.md", "blobSha": "5b81d8601c3017c7a88d203da9e8feee29216752"},
+      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/production-agent-operating-files", "path": "agents/production-agent-operating-files.md", "blobSha": "5b81d8601c3017c7a88d203da9e8feee29216752"}
+    },
+    {
+      "id": "read-only-production-reconnaissance",
+      "canonical": {"path": "products/read-only-production-reconnaissance/PROMPT.md", "blobSha": "db60c9e7471a0769560e84e84e5ff245f57d6874"},
+      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/read-only-production-reconnaissance", "path": "engineering/read-only-production-reconnaissance.md", "blobSha": "db60c9e7471a0769560e84e84e5ff245f57d6874"}
+    },
+    {
+      "id": "self-identifying-product-campaign",
+      "canonical": {"path": "products/self-identifying-product-campaign/PROMPT.md", "blobSha": "279dfcfc7b0912f004cb3eed495b964d4b6746fa"},
+      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/self-identifying-product-campaign", "path": "marketing/self-identifying-product-campaign.md", "blobSha": "279dfcfc7b0912f004cb3eed495b964d4b6746fa"}
+    },
+    {
+      "id": "signed-agent-action-receipts",
+      "canonical": {"path": "products/signed-agent-action-receipts/PROMPT.md", "blobSha": "b821da740c9019f71ebbe9dd9599cce4669610d9"},
+      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/signed-agent-action-receipts", "path": "agents/signed-agent-action-receipts.md", "blobSha": "b821da740c9019f71ebbe9dd9599cce4669610d9"}
+    }
+  ]
+}
