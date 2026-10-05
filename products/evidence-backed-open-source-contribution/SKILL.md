@@ -97,7 +97,23 @@ When a related PR exists, determine whether it:
 - is abandoned;
 - was rejected for an architectural reason worth learning from.
 
-### 4. Synchronise the fork correctly
+### 4. Do architecture archaeology before choosing the fix
+
+Search prior and current pull requests for the same architectural layer, not only the issue number.
+
+Look for:
+
+- earlier fixes to the same build subsystem;
+- abandoned migrations;
+- open migrations that may supersede a narrow patch;
+- maintainer review comments explaining rejected dependency or API choices;
+- current repository invariants introduced after the original issue was filed.
+
+A closed or stale migration may still contain the most important design rationale.
+
+Do not copy an earlier implementation mechanically. Use its review history to understand which constraints the maintainers already discovered.
+
+### 5. Synchronise the fork correctly
 
 Use the current upstream branch as the contribution base.
 
@@ -116,7 +132,7 @@ Do not assume the fork's default branch is current.
 
 If the fork main is behind and contains no divergent work, fast-forward it before using fork-local PRs for validation.
 
-### 5. Reproduce before fixing
+### 6. Reproduce before fixing
 
 Create the smallest test or fixture that proves the reported failure.
 
@@ -130,7 +146,7 @@ The red state should be:
 
 Record command, exit status, and meaningful failure evidence.
 
-### 6. Solve at the shared or lowest correct layer
+### 7. Solve at the shared or lowest correct layer
 
 Map the call path before patching.
 
@@ -148,7 +164,7 @@ Prefer a one-layer invariant repair over caller-specific workarounds.
 
 Do not widen authority or behavior merely to make the test green.
 
-### 7. Preserve immutable red/green evidence
+### 8. Preserve immutable red/green evidence
 
 Use exact SHAs.
 
@@ -166,7 +182,7 @@ A cancelled workflow after a branch update is not red evidence.
 
 If CI cancels superseded runs automatically, pin the red commit to a separate reproduction branch or PR.
 
-### 8. Validate in repository-native layers
+### 9. Validate in repository-native layers
 
 Separate:
 
@@ -185,7 +201,7 @@ Do not collapse them into “tests pass”.
 
 When unrelated CI failures exist, compare them against base behavior before attributing them to the patch.
 
-### 9. Review the final diff as a maintainer
+### 10. Review the final diff as a maintainer
 
 Before upstream submission, inspect:
 
@@ -203,7 +219,7 @@ Before upstream submission, inspect:
 
 Ask whether every changed line is necessary to solve the issue.
 
-### 10. Prepare truthful release and PR metadata
+### 11. Prepare truthful release and PR metadata
 
 Use the project's required title format.
 
@@ -219,7 +235,9 @@ Explain:
 
 Never mark a checklist item complete if the evidence does not exist.
 
-### 11. Respect submission boundaries
+When one issue contains failures owned by multiple packages or subsystems, state exactly which portion the pull request repairs. Do not use an auto-closing claim for the whole issue unless the remaining reproduction is also eliminated.
+
+### 12. Respect submission boundaries
 
 If repository policy requires a human to open the PR, do not use an agent integration to bypass it.
 
