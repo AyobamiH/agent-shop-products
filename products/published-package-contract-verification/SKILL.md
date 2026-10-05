@@ -205,7 +205,52 @@ Do not assume that seeing the package name in source means the compiler is readi
 
 The acceptance boundary is the consumer-visible declaration file, not the spelling of the import.
 
-### 9. Verify the green state
+### 9. Prefer repository-native artifact invariants before network fixtures
+
+Before adding a consumer test that runs a fresh package-manager install, inspect the repository for an existing artifact or dependency validator that already owns the invariant.
+
+Prefer a deterministic built-artifact check when the defect can be expressed as:
+
+```text
+published declaration import
+  -> package name
+  -> declared runtime/peer dependency OR bundled private dependency
+```
+
+This keeps fast type/check lanes independent of registry availability and avoids duplicating package-policy logic.
+
+Use a packed or installed consumer test when the failure depends on package-manager behaviour, export resolution, file inclusion, or transitive installation semantics that a static artifact invariant cannot prove.
+
+### 10. Verify the exact pinned build-tool semantics
+
+When the fix depends on a bundler option, read the implementation for the exact pinned tool version rather than reasoning from a current documentation page or from another major version.
+
+Establish:
+
+- which dependency classes the tool marks external before resolution;
+- whether subpath imports are matched;
+- whether a boolean resolve mode differs from an explicit allowlist;
+- how peer and production dependencies are treated;
+- whether the option affects runtime output, declaration output, or both.
+
+Record those semantics before choosing a broad option such as "resolve all remaining declarations".
+
+### 11. Separate independent declaration failures
+
+One consumer compile can fail through several installed packages at once.
+
+Partition diagnostics by package and ownership layer before claiming completion. If a top-level package and one of its dependencies both publish broken declarations, repairing one does not prove the full consumer compile is clean.
+
+Use scoped language such as:
+
+```text
+addresses the Wrangler declaration leaks reported in #123
+dependency-side declaration errors remain tracked in #456
+```
+
+Do not use "Fixes #123" when the issue will still reproduce for an independent reason outside the patch's ownership boundary.
+
+### 12. Verify the green state
 
 Require:
 
