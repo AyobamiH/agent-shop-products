@@ -19,4 +19,4 @@ docs/           Product and catalogue governance
 AGENTS.md       Repository operating contract
 ```
 
-This repository currently contains public prompt products migrated from original AyobamiH-authored branches. Future premium-only payloads must not be added to this public repository without an explicit publication decision.
+This repository contains public prompt products migrated from original AyobamiH-authored branches and evidence-backed public skills created from demonstrated work. Future premium-only payloads must not be added to this public repository without an explicit publication decision.
