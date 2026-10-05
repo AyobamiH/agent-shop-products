@@ -10,11 +10,13 @@ Each product owns its payload and metadata locally:
 
 ```text
 products/<product-id>/
-  PROMPT.md
+  PROMPT.md or SKILL.md
   product.json
 ```
 
 `PROMPT.md` is the canonical product payload for a public prompt.
+
+`SKILL.md` is the canonical product payload for a public skill.
 
 `product.json` is the canonical editable discovery metadata for that product.
 
@@ -42,7 +44,7 @@ Allowed fields include:
 - `tags`
 - `source`
 
-`source` is relative to the product directory and currently resolves to `PROMPT.md` for prompt products.
+`source` is relative to the product directory. It resolves to `PROMPT.md` for prompt products and `SKILL.md` for skill products.
 
 ### `catalog/manifest.json`
 
