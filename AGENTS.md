@@ -25,7 +25,8 @@ Before changing this repository:
 
 ### Product source integrity
 
-- `products/<product-id>/PROMPT.md` is the canonical payload for a public prompt product unless a later decision changes that product's publication model.
+- `products/<product-id>/PROMPT.md` is the canonical payload for a public prompt product.
+- `products/<product-id>/SKILL.md` is the canonical payload for a public skill product.
 - `products/<product-id>/product.json` is the canonical editable discovery metadata for that product.
 - Do not silently rewrite migrated source while changing metadata.
 - Product-content edits and product-metadata edits must remain reviewable as distinct concerns.

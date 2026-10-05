@@ -57,3 +57,18 @@ Product payload, product metadata, source provenance, commerce state, and storef
 It must remain derivable from the individual product metadata records. New products must never be created only inside the aggregate file.
 
 When manual synchronisation becomes error-prone, replace it with a deterministic small-module compiler rather than adding more duplicated logic.
+
+## DEC-011 — Public skill payloads
+
+Evidence-backed agent skills may be published as first-class catalogue products when the owner explicitly approves their public release.
+
+A public skill uses:
+
+```text
+products/<product-id>/SKILL.md
+products/<product-id>/product.json
+```
+
+Its metadata uses `productType: "skill"` and `source: "SKILL.md"`.
+
+Public skills follow the same evidence, provenance, no-mock-data, stable-ID, and public-source-boundary rules as prompt products. A skill must be based on demonstrated reusable work; exploratory or interest-only material is not promoted into the canonical catalogue.

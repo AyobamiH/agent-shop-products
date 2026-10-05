@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "published-package-contract-verification",
+  "slug": "published-package-contract-verification",
+  "name": "Published Package Contract Verification",
+  "productType": "skill",
+  "category": "developer-tooling",
+  "summary": "Verify and repair the package users actually install by testing built exports, declaration graphs, dependency boundaries, and consumer compilation instead of trusting source-only checks.",
+  "problem": "A library can pass source typechecking and runtime builds while publishing declarations or exports that reference private workspace or dev-only dependencies unavailable to consumers.",
+  "coreOutcomes": [
+    "Consumer-style verification through built package exports",
+    "Separate runtime and declaration dependency-boundary analysis",
+    "Immutable red/green evidence on exact revisions",
+    "Declaration bundler repair at the generating layer",
+    "Regression coverage with skipLibCheck disabled",
+    "Release metadata tied to user-visible package fixes"
+  ],
+  "requirements": [
+    "Package or monorepo with a buildable public artifact",
+    "Published or build-time package metadata",
+    "TypeScript when declaration files are part of the public contract",
+    "Access to the package build and relevant validation commands",
+    "Ability to inspect generated artifacts without editing them directly"
+  ],
+  "boundaries": [
+    "Source typechecking is not sufficient package proof",
+    "skipLibCheck must not hide defects in the package's own declarations",
+    "Private build dependencies must not be promoted to runtime dependencies without architectural justification",
+    "Generated declaration files are inspected, not hand-edited",
+    "A green result is not accepted unless the regression was capable of failing on the pre-fix state"
+  ],
+  "tags": [
+    "package-contract",
+    "typescript",
+    "declarations",
+    "consumer-testing",
+    "bundling",
+    "red-green-evidence"
+  ],
+  "source": "SKILL.md"
+}

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "evidence-backed-open-source-contribution",
+  "slug": "evidence-backed-open-source-contribution",
+  "name": "Evidence-Backed Open-Source Contribution",
+  "productType": "skill",
+  "category": "developer-workflows",
+  "summary": "Take a bounded open-source issue from selection to maintainer-ready submission using contributor-rule discovery, collision checks, exact-base branching, red/green proof, repository-native validation, and honest CI/review reporting.",
+  "problem": "Open-source contributions can waste maintainer time or damage contributor credibility when they duplicate active work, solve the wrong layer, skip reproduction, misread CI, or present weak evidence as completion.",
+  "coreOutcomes": [
+    "Worthy-issue selection with duplicate-work prevention",
+    "Repository-specific rule and contribution-policy compliance",
+    "Exact upstream base and fork hygiene",
+    "Immutable red/green evidence on exact revisions",
+    "Right-layer fixes with bounded diffs",
+    "Maintainer-facing validation and truthful submission handoff"
+  ],
+  "requirements": [
+    "Public or accessible Git repository",
+    "Issue or bounded maintenance target",
+    "Ability to inspect repository contribution guidance and history",
+    "Test or reproduction path appropriate to the bug",
+    "Fork or authorised branch workflow",
+    "Git and hosted CI evidence when available"
+  ],
+  "boundaries": [
+    "Do not race an active credible contributor",
+    "Do not bypass repository rules about human submission or approvals",
+    "Cancelled or gated CI is not equivalent to a test failure",
+    "Local checks, hosted CI, review, and merge approval remain separate evidence classes",
+    "Only demonstrated reusable lessons should be packaged as product knowledge"
+  ],
+  "tags": [
+    "open-source",
+    "contribution",
+    "red-green",
+    "duplicate-prevention",
+    "maintainer-review",
+    "ci-evidence"
+  ],
+  "source": "SKILL.md"
+}
