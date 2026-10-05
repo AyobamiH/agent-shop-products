@@ -24,7 +24,7 @@
     },
     {
       "id": "evidence-backed-open-source-contribution",
-      "canonical": {"path": "products/evidence-backed-open-source-contribution/SKILL.md", "blobSha": "e9017cd272227087289644ec59e2bf72de53621c"},
+      "canonical": {"path": "products/evidence-backed-open-source-contribution/SKILL.md", "blobSha": "bf5477856827815e3bc5d440c59cb0df9880002a"},
       "origin": {"repository": "AyobamiH/agent-shop-products", "branch": "feat/public-package-verification-skills", "path": "products/evidence-backed-open-source-contribution/SKILL.md", "blobSha": "e9017cd272227087289644ec59e2bf72de53621c"}
     },
     {
@@ -49,7 +49,7 @@
     },
     {
       "id": "published-package-contract-verification",
-      "canonical": {"path": "products/published-package-contract-verification/SKILL.md", "blobSha": "89d5e356697041593ee31dfe15876f63b44843c1"},
+      "canonical": {"path": "products/published-package-contract-verification/SKILL.md", "blobSha": "93754536272fb9336832ce22a205a0a41a18ee7a"},
       "origin": {"repository": "AyobamiH/agent-shop-products", "branch": "feat/public-package-verification-skills", "path": "products/published-package-contract-verification/SKILL.md", "blobSha": "89d5e356697041593ee31dfe15876f63b44843c1"}
     },
     {

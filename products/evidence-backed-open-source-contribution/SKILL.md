@@ -274,6 +274,50 @@ proposed architectural term
 
 A zero-result issue-number search alone is insufficient.
 
+## Concurrent branch safety
+
+Treat a working branch as shared state, even when you created it.
+
+Record the branch head before writing. Before a destructive rewrite, force-push, squash, or reset:
+
+1. read the branch head again;
+2. compare it with the recorded SHA;
+3. if it advanced unexpectedly, stop the rewrite;
+4. inspect the intervening commits and final diff;
+5. treat the new work as a teammate contribution until ownership is understood.
+
+Never overwrite a branch merely because its name was created by your workflow. An agent, human, CI repair process, or another authorised session may have advanced it.
+
+When useful, prefer additive commits or a fresh branch over rewriting concurrent work.
+
+## Shell evidence hygiene
+
+Long-running validation commands can produce misleading terminal evidence unless the shell captures status correctly.
+
+For commands piped through `tee`, use `pipefail` or capture the producer's pipeline status explicitly:
+
+```sh
+set -o pipefail
+npm test 2>&1 | tee /tmp/test.log
+TEST_EXIT=${PIPESTATUS[0]}
+```
+
+Then report both:
+
+- the command exit status;
+- the test framework's final summary.
+
+Do not infer failure from a grep match alone. Test suites often intentionally print exceptions, rejected commands, or negative-case output while still passing.
+
+Avoid interactive pagers when collecting evidence:
+
+```sh
+git --no-pager diff ...
+git --no-pager log ...
+```
+
+This prevents later commands from appearing to be truncated when the terminal is actually waiting inside `less`.
+
 ## Commit hygiene
 
 Before review:

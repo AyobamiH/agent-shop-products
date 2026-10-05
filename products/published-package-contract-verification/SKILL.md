@@ -169,7 +169,43 @@ The permanent regression should:
 
 One public import is often enough because TypeScript loads the declaration entrypoint and its transitive graph.
 
-### 7. Verify the green state
+### 7. Prefer an installed-consumer fixture over a workspace-only harness
+
+When the repository already has a fixture that installs or links the built package through the same package-manager path used by consumers, extend that fixture before creating a new source-level harness.
+
+A strong fixture should:
+
+- depend on the package through its package boundary rather than importing source;
+- run after the package build;
+- compile code that already imports a real public export;
+- set `skipLibCheck: false`;
+- exercise the declarations that will actually be packed or installed.
+
+This is stronger than adding a workspace-only test beside the package because monorepo resolution can accidentally make private packages available and hide the defect.
+
+If an existing fixture already imports the public package, changing only its compiler strictness can be enough to turn it into a declaration-contract regression without duplicating test code.
+
+### 8. Verify package self-resolution deliberately
+
+Inside a package repository, a self-name import such as:
+
+```ts
+import type { PublicType } from "package-name";
+```
+
+is useful only when the test resolves through the built package export or an installed fixture. Confirm the resolution path.
+
+Do not assume that seeing the package name in source means the compiler is reading the published declaration entry. Use one or more of:
+
+- an installed-package fixture;
+- `tsc --traceResolution`;
+- package-manager isolation;
+- inspection of the resolved `.d.ts` path;
+- a build-order dependency that guarantees the artifact exists first.
+
+The acceptance boundary is the consumer-visible declaration file, not the spelling of the import.
+
+### 9. Verify the green state
 
 Require:
 
