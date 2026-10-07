@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "temporary-authority-bridge-lifecycle",
+  "slug": "temporary-authority-bridge-lifecycle",
+  "name": "Temporary Authority Bridge Lifecycle",
+  "productType": "skill",
+  "category": "production-governance",
+  "summary": "Use existing credential custody or delegated authority for one bounded cross-repository operation without copying secrets, then prove the consequence and remove the bridge so temporary access cannot become permanent architecture.",
+  "problem": "A blocked deployment or migration can tempt teams to copy credentials between repositories or leave a temporary privileged bridge behind after the emergency is over.",
+  "coreOutcomes": [
+    "Credential material remains in its existing custody",
+    "Bridge scope and exact target are bounded",
+    "Authority use is auditable",
+    "Consequence is independently read back",
+    "Bridge is removed immediately after use",
+    "Removal proof is separate from success proof"
+  ],
+  "requirements": [
+    "An existing authorised credential/authority holder",
+    "A bounded target operation",
+    "Repository or workflow isolation",
+    "Explicit scope and expiry condition",
+    "Independent readback of the resulting consequence",
+    "Ability to remove the bridge after use"
+  ],
+  "boundaries": [
+    "Do not copy secret material into source or logs",
+    "Do not widen provider scope merely to create the bridge",
+    "A bridge cannot silently become the canonical deployment path",
+    "An expired/invalid credential remains a credential-custody finding, not authority to mint a replacement",
+    "Removal is required even when the bounded operation fails"
+  ],
+  "tags": [
+    "credential-custody",
+    "temporary-authority",
+    "deployment",
+    "bridge",
+    "least-privilege",
+    "removal-proof"
+  ],
+  "source": "SKILL.md"
+}
