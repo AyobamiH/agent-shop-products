@@ -4,16 +4,27 @@ import { SectionHeading } from "@/components/layout/SectionHeading";
 import { catalogMeta, listProducts } from "@/domain/catalog/repository";
 import { CatalogBrowser } from "@/features/catalog-browse/components/CatalogBrowser";
 import { validateCatalogSearch } from "@/features/catalog-search/lib/search-params";
-import { buildMeta } from "@/lib/seo/meta";
+import { buildItemListJsonLd } from "@/lib/jsonld/product";
+import { buildCollectionPageJsonLd } from "@/lib/jsonld/site";
+import { buildPageHead } from "@/lib/seo/meta";
 import { SITE_DESCRIPTOR } from "@/lib/site";
 
-const TITLE = `Shop — ${SITE_DESCRIPTOR}`;
+const TITLE = `Capability catalogue — ${SITE_DESCRIPTOR}`;
 const DESCRIPTION =
-  "Search and filter the full catalogue of prompts, skills and production packs by problem, category and tag.";
+  "Deterministic capability discovery for agents. Search source-backed prompts and skills by problem, category and tag.";
 
 export const Route = createFileRoute("/shop")({
   validateSearch: validateCatalogSearch,
-  head: () => ({ meta: buildMeta({ title: TITLE, description: DESCRIPTION }) }),
+  head: () =>
+    buildPageHead({
+      title: TITLE,
+      description: DESCRIPTION,
+      path: "/shop",
+      jsonLd: [
+        buildCollectionPageJsonLd({ path: "/shop", name: "Capability catalogue", description: DESCRIPTION }),
+        buildItemListJsonLd(listProducts(), "Agent capability catalogue"),
+      ],
+    }),
   component: ShopPage,
 });
 
@@ -24,10 +35,13 @@ function ShopPage() {
     <PageShell>
       <SectionHeading
         as="h1"
-        eyebrow={`${catalogMeta.productCount} products`}
-        title="Catalogue"
+        eyebrow={`${catalogMeta.productCount} source-backed records`}
+        title="Capability catalogue"
         description={DESCRIPTION}
       />
+      <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
+        Stable route: <code>/shop</code>. This is a discovery surface for agents, not a consumer checkout.
+      </p>
       <div className="mt-10">
         <CatalogBrowser products={products} />
       </div>

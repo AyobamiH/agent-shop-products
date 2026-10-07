@@ -14,7 +14,7 @@ const rawCatalog = JSON.parse(
 ) as { products: Record<string, unknown>[] };
 
 describe("catalogue contract (build-time gate)", () => {
-  it("validates the bundled projection with the sync record inventory (16: 11 prompt, 5 skill)", () => {
+  it("validates the bundled projection against the explicit sync record", () => {
     const catalog = validateCanonicalCatalog(rawCatalog, catalogSource);
     expect(catalog.products).toHaveLength(CANONICAL_PRODUCT_COUNT);
   });
@@ -29,9 +29,14 @@ describe("catalogue contract (build-time gate)", () => {
     expect(() => validateCanonicalCatalog(drifted, catalogSource)).toThrow(/expected exactly \d+ products/);
   });
 
-  it("records 11 prompt and 5 skill products in the sync record", () => {
-    expect(catalogSource.productCountsByType).toEqual({ prompt: 11, skill: 5 });
-    expect(catalogSource.productIds).toHaveLength(16);
+  it("keeps sync-record counts internally consistent", () => {
+    const totalByType = Object.values(catalogSource.productCountsByType).reduce(
+      (sum, count) => sum + count,
+      0,
+    );
+    expect(totalByType).toBe(catalogSource.productCount);
+    expect(catalogSource.productIds).toHaveLength(catalogSource.productCount);
+    expect(catalogSource.productCountsByType["skill"] ?? 0).toBeGreaterThan(0);
   });
 
   it("rejects a projection whose type mix drifts", () => {

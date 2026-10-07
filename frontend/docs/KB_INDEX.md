@@ -11,7 +11,7 @@ This directory is the persistent operating memory for the shop.
 5. `CATALOG_CONTRACT.md` — canonical product-data contract.
 6. `FRONTEND_BRIEF.md` — frontend product experience and routes.
 7. `QUALITY_GATES.md` — engineering completion gates.
-8. `SOURCE_AND_COMMERCIALIZATION.md` — provenance, public-source, and licensing concerns.
+8. `SOURCE_AND_COMMERCIALIZATION.md` — provenance, public-source, and licensing concerns.\n9. `AGENT_DISCOVERY.md` — agent-only IA, crawl/index and machine-surface contract.
 
 
 

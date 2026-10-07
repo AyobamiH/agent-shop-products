@@ -1,31 +1,40 @@
-/**
- * /llms.txt orientation file. Plain text, derived from the catalogue.
- */
-
 import { catalogMeta, listCategories, listProducts } from "@/domain/catalog/repository";
+import { catalogSource } from "@/domain/catalog/source";
 import { categoryLabel } from "@/domain/catalog/facets";
-import { PRODUCT_HEADLINE, SITE_DESCRIPTOR } from "@/lib/site";
+import { absoluteUrl, PRODUCT_HEADLINE, SITE_DESCRIPTOR } from "@/lib/site";
 
 export function buildLlmsTxt(): string {
+  const counts = Object.entries(catalogSource.productCountsByType)
+    .map(([type, count]) => `${type}=${count}`)
+    .join(", ");
+
   const lines: string[] = [
     `# ${SITE_DESCRIPTOR} (descriptor, not a brand)`,
     "",
     PRODUCT_HEADLINE,
+    "This file is a convenience index for language-model and tool consumers; it is not claimed as a universal protocol.",
+    "",
+    "## Discovery",
+    `- agent guide: ${absoluteUrl("/agents")}`,
+    `- agent discovery text: ${absoluteUrl("/agents.txt")}`,
+    `- canonical catalogue: ${absoluteUrl("/catalog.json")}`,
+    `- per-product metadata: ${absoluteUrl("/raw/products/{slug}.md")}`,
     "",
     "## Catalogue",
     `- schemaVersion: ${catalogMeta.schemaVersion}`,
     `- products: ${catalogMeta.productCount}`,
-    "- full catalogue: /catalog.json",
-    "- per-product markdown: /raw/products/{slug}.md",
+    `- types: ${counts}`,
     "",
     "## Data policy",
-    "- No prices, ratings, reviews or sales figures are published; none are authoritatively available.",
-    "- Full raw prompt bodies are not exposed.",
+    "- Public records are source-backed metadata.",
+    "- No prices, ratings, reviews, compatibility or sales figures are invented.",
+    "- Full PROMPT.md and SKILL.md payload bodies are withheld.",
     "- Missing fields are omitted rather than fabricated.",
     "",
     "## Agent interface",
-    "- Planned interface is a CLI: shop search | show | sample | buy | install | update.",
-    "- Status: documented, not implemented. MCP is out of scope.",
+    "- HTTP discovery is available now through the endpoints above.",
+    "- CLI search/show/sample/buy/install/update is roadmap only.",
+    "- MCP is out of scope.",
     "",
     "## Categories",
     ...listCategories().map((category) => `- ${categoryLabel(category)} (${category})`),
@@ -35,7 +44,7 @@ export function buildLlmsTxt(): string {
 
   for (const product of listProducts()) {
     lines.push(
-      `- ${product.name} [${product.productType}] — ${product.summary} (/raw/products/${product.slug}.md)`,
+      `- ${product.name} [${product.productType}] — ${product.summary} (${absoluteUrl(`/raw/products/${product.slug}.md`)})`,
     );
   }
 

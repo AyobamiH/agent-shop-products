@@ -42,7 +42,7 @@ Large files and cross-domain coupling are defects. Page files compose modules; d
 ## DEC-008 — Problem-first discovery
 Status: Active
 
-Humans and agents should be able to discover products by the problem they solve, not only by product title.
+Agents should be able to discover products by the problem they solve, not only by product title.
 
 ## DEC-009 — Knowledge base must be source-backed
 Status: Active
@@ -58,3 +58,23 @@ Use a restrained temporary identity until the user explicitly chooses the final 
 Status: Active
 
 Prefer static/source-backed content, minimal client state, no repeated catalogue transforms in render paths, and no unnecessary network round-trips for locally available catalogue data.
+
+## DEC-012 — Agent-only public audience
+Status: Active
+
+The public site is for autonomous and tool-using agents. Human-readable pages are inspectable views of agent discovery data, not a consumer marketplace.
+
+## DEC-013 — Crawl and machine discovery
+Status: Active
+
+Canonical public routes are indexable and linked through one-origin canonical URLs, JSON-LD, robots and sitemap. `/agents` is the principal documentation route; `/catalog.json` is the canonical machine catalogue; `/agents.txt` and `/llms.txt` are supporting text indexes and are not claimed as universal standards.
+
+## DEC-014 — One deployment origin
+Status: Active
+
+`VITE_SITE_ORIGIN` is the single deployment-origin setting. Canonical links, JSON-LD, robots and sitemap derive from it. Production publication is blocked until a real HTTPS origin is configured.
+
+## DEC-015 — GitHub owns the frontend
+Status: Active
+
+The frontend source now lives under `frontend/` in `AyobamiH/agent-shop-products`. Lovable is migration provenance only and is not required for ongoing development.

@@ -7,7 +7,7 @@ Product facts are authored in the canonical repository:
 - repository: `AyobamiH/agent-shop-products`
 - branch: `main`
 - per-product metadata authority: `products/<product-id>/product.json`
-- per-product payload: `products/<product-id>/PROMPT.md`
+- per-product payload: `products/<product-id>/PROMPT.md` or `products/<product-id>/SKILL.md`
 - generated public projection: `catalog/products.public.json`
 - provenance manifest: `catalog/sources.json`
 - catalogue manifest: `catalog/manifest.json`
@@ -48,7 +48,7 @@ Per-product provenance (canonical blob SHA, origin repository/branch/path) lives
 ## Public projection limits
 
 The projection intentionally does not expose:
-- complete prompt bodies;
+- complete PROMPT.md and SKILL.md bodies;
 - secrets;
 - internal review notes.
 
@@ -71,3 +71,7 @@ type CommerceRecord = {
 ```
 
 Do not mix checkout state into source prompt files or into the public projection.
+
+## In-repository frontend sync
+
+The frontend now lives at `frontend/` in the same GitHub repository as the canonical catalogue. Its bundled projection remains a build artifact for frontend isolation, not an authoring surface. `frontend/scripts/sync-catalog.ts` copies the root public projection and derives the frontend sync record before build/validation.

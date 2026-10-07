@@ -1,0 +1,59 @@
+name: Frontend CI
+
+on:
+  pull_request:
+    paths:
+      - "frontend/**"
+      - "catalog/**"
+      - "products/**"
+      - ".github/workflows/frontend-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "frontend/**"
+      - "catalog/**"
+      - "products/**"
+      - ".github/workflows/frontend-ci.yml"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    env:
+      VITE_SITE_ORIGIN: https://agent-catalogue.example.invalid
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install
+        run: bun install --frozen-lockfile
+      - name: Sync canonical catalogue
+        run: |
+          bun run sync:catalog
+          git diff --exit-code -- catalog/products.public.json catalog/source.json
+      - name: Production build
+        run: bun run build
+      - name: Typecheck
+        run: bunx tsc --noEmit
+      - name: Lint
+        run: bun run lint
+      - name: Unit tests
+        run: bun run test
+      - name: Browser dependencies
+        run: |
+          python3 -m pip install playwright
+          python3 -m playwright install --with-deps chromium
+      - name: Start app
+        run: |
+          bun run dev -- --host 127.0.0.1 --port 8080 > /tmp/agent-catalogue-vite.log 2>&1 &
+          for i in {1..60}; do
+            if curl -fsS http://127.0.0.1:8080/agents >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/agent-catalogue-vite.log
+          exit 1
+      - name: Browser E2E
+        run: bun run e2e
