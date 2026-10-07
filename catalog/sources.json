@@ -4,83 +4,263 @@
   "products": [
     {
       "id": "autonomous-coding-workflow",
-      "canonical": {"path": "products/autonomous-coding-workflow/PROMPT.md", "blobSha": "5aca1626776b010f975c5f2aadf2ed2b286d7844"},
-      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/autonomous-coding-workflow", "path": "agents/autonomous-coding-workflow.md", "blobSha": "5aca1626776b010f975c5f2aadf2ed2b286d7844"}
+      "canonical": {
+        "path": "products/autonomous-coding-workflow/PROMPT.md",
+        "blobSha": "5aca1626776b010f975c5f2aadf2ed2b286d7844"
+      },
+      "origin": {
+        "repository": "AyobamiH/ai-prompts",
+        "branch": "agent/autonomous-coding-workflow",
+        "path": "agents/autonomous-coding-workflow.md",
+        "blobSha": "5aca1626776b010f975c5f2aadf2ed2b286d7844"
+      }
     },
     {
       "id": "bounded-google-docs-read-recovery",
-      "canonical": {"path": "products/bounded-google-docs-read-recovery/SKILL.md", "blobSha": "90050b15566c9fd51a5295da104741a4add3fb04"},
-      "origin": {"repository": "AyobamiH/agent-shop-products", "branch": "feat/catalogue-operational-skills", "path": "products/bounded-google-docs-read-recovery/SKILL.md", "blobSha": "90050b15566c9fd51a5295da104741a4add3fb04"}
+      "canonical": {
+        "path": "products/bounded-google-docs-read-recovery/SKILL.md",
+        "blobSha": "90050b15566c9fd51a5295da104741a4add3fb04"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/catalogue-operational-skills",
+        "path": "products/bounded-google-docs-read-recovery/SKILL.md",
+        "blobSha": "90050b15566c9fd51a5295da104741a4add3fb04"
+      }
     },
     {
       "id": "capability-gap-learning-system",
-      "canonical": {"path": "products/capability-gap-learning-system/PROMPT.md", "blobSha": "11555870f4c72a4a76bb96475c7a50aa555f0206"},
-      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/capability-gap-learning-system", "path": "agents/capability-gap-learning-system.md", "blobSha": "11555870f4c72a4a76bb96475c7a50aa555f0206"}
+      "canonical": {
+        "path": "products/capability-gap-learning-system/PROMPT.md",
+        "blobSha": "11555870f4c72a4a76bb96475c7a50aa555f0206"
+      },
+      "origin": {
+        "repository": "AyobamiH/ai-prompts",
+        "branch": "agent/capability-gap-learning-system",
+        "path": "agents/capability-gap-learning-system.md",
+        "blobSha": "11555870f4c72a4a76bb96475c7a50aa555f0206"
+      }
     },
     {
       "id": "continuous-business-operations-graph",
-      "canonical": {"path": "products/continuous-business-operations-graph/PROMPT.md", "blobSha": "a7c7fd9b37838a77804060a4357a888fef266340"},
-      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/continuous-business-operations-graph", "path": "agents/continuous-business-operations-graph.md", "blobSha": "a7c7fd9b37838a77804060a4357a888fef266340"}
+      "canonical": {
+        "path": "products/continuous-business-operations-graph/PROMPT.md",
+        "blobSha": "a7c7fd9b37838a77804060a4357a888fef266340"
+      },
+      "origin": {
+        "repository": "AyobamiH/ai-prompts",
+        "branch": "agent/continuous-business-operations-graph",
+        "path": "agents/continuous-business-operations-graph.md",
+        "blobSha": "a7c7fd9b37838a77804060a4357a888fef266340"
+      }
     },
     {
       "id": "deterministic-social-publication",
-      "canonical": {"path": "products/deterministic-social-publication/PROMPT.md", "blobSha": "e5492cea6cb5f1b6e53ebdd1a048b90c0435415a"},
-      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/deterministic-social-publication-pipeline", "path": "automation/deterministic-social-publication.md", "blobSha": "e5492cea6cb5f1b6e53ebdd1a048b90c0435415a"}
+      "canonical": {
+        "path": "products/deterministic-social-publication/PROMPT.md",
+        "blobSha": "e5492cea6cb5f1b6e53ebdd1a048b90c0435415a"
+      },
+      "origin": {
+        "repository": "AyobamiH/ai-prompts",
+        "branch": "agent/deterministic-social-publication-pipeline",
+        "path": "automation/deterministic-social-publication.md",
+        "blobSha": "e5492cea6cb5f1b6e53ebdd1a048b90c0435415a"
+      }
     },
     {
       "id": "evidence-backed-open-source-contribution",
-      "canonical": {"path": "products/evidence-backed-open-source-contribution/SKILL.md", "blobSha": "8b939c9e463b7f12ecbebaf2968320be19da6ed8"},
-      "origin": {"repository": "AyobamiH/agent-shop-products", "branch": "feat/public-package-verification-skills", "path": "products/evidence-backed-open-source-contribution/SKILL.md", "blobSha": "e9017cd272227087289644ec59e2bf72de53621c"}
+      "canonical": {
+        "path": "products/evidence-backed-open-source-contribution/SKILL.md",
+        "blobSha": "8b939c9e463b7f12ecbebaf2968320be19da6ed8"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/public-package-verification-skills",
+        "path": "products/evidence-backed-open-source-contribution/SKILL.md",
+        "blobSha": "e9017cd272227087289644ec59e2bf72de53621c"
+      }
     },
     {
       "id": "evidence-first-live-diagnostic-repair",
-      "canonical": {"path": "products/evidence-first-live-diagnostic-repair/PROMPT.md", "blobSha": "ce958f0045af1adf57d880fbe615c37a60996f30"},
-      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/evidence-first-live-diagnostic-repair", "path": "engineering/evidence-first-live-diagnostic-repair.md", "blobSha": "ce958f0045af1adf57d880fbe615c37a60996f30"}
+      "canonical": {
+        "path": "products/evidence-first-live-diagnostic-repair/PROMPT.md",
+        "blobSha": "ce958f0045af1adf57d880fbe615c37a60996f30"
+      },
+      "origin": {
+        "repository": "AyobamiH/ai-prompts",
+        "branch": "agent/evidence-first-live-diagnostic-repair",
+        "path": "engineering/evidence-first-live-diagnostic-repair.md",
+        "blobSha": "ce958f0045af1adf57d880fbe615c37a60996f30"
+      }
     },
     {
       "id": "graph-native-agent-system-migration",
-      "canonical": {"path": "products/graph-native-agent-system-migration/PROMPT.md", "blobSha": "562c2937deb2b8c790ee3d3ab9f0529b6618a656"},
-      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/graph-native-agent-system-migration", "path": "agents/graph-native-agent-system-migration.md", "blobSha": "562c2937deb2b8c790ee3d3ab9f0529b6618a656"}
+      "canonical": {
+        "path": "products/graph-native-agent-system-migration/PROMPT.md",
+        "blobSha": "562c2937deb2b8c790ee3d3ab9f0529b6618a656"
+      },
+      "origin": {
+        "repository": "AyobamiH/ai-prompts",
+        "branch": "agent/graph-native-agent-system-migration",
+        "path": "agents/graph-native-agent-system-migration.md",
+        "blobSha": "562c2937deb2b8c790ee3d3ab9f0529b6618a656"
+      }
     },
     {
       "id": "live-dashboard-update-verification",
-      "canonical": {"path": "products/live-dashboard-update-verification/SKILL.md", "blobSha": "bf5135f71f5f39698cbf1e6fe160fa53711479be"},
-      "origin": {"repository": "AyobamiH/agent-shop-products", "branch": "feat/catalogue-operational-skills", "path": "products/live-dashboard-update-verification/SKILL.md", "blobSha": "bf5135f71f5f39698cbf1e6fe160fa53711479be"}
+      "canonical": {
+        "path": "products/live-dashboard-update-verification/SKILL.md",
+        "blobSha": "bf5135f71f5f39698cbf1e6fe160fa53711479be"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/catalogue-operational-skills",
+        "path": "products/live-dashboard-update-verification/SKILL.md",
+        "blobSha": "bf5135f71f5f39698cbf1e6fe160fa53711479be"
+      }
     },
     {
       "id": "local-first-verification-cli",
-      "canonical": {"path": "products/local-first-verification-cli/PROMPT.md", "blobSha": "d9f2746d59300d2d078fc79279d16cdd2068bbff"},
-      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/local-first-verification-cli", "path": "engineering/local-first-verification-cli.md", "blobSha": "d9f2746d59300d2d078fc79279d16cdd2068bbff"}
+      "canonical": {
+        "path": "products/local-first-verification-cli/PROMPT.md",
+        "blobSha": "d9f2746d59300d2d078fc79279d16cdd2068bbff"
+      },
+      "origin": {
+        "repository": "AyobamiH/ai-prompts",
+        "branch": "agent/local-first-verification-cli",
+        "path": "engineering/local-first-verification-cli.md",
+        "blobSha": "d9f2746d59300d2d078fc79279d16cdd2068bbff"
+      }
+    },
+    {
+      "id": "machine-discovery-surface-engineering",
+      "canonical": {
+        "path": "products/machine-discovery-surface-engineering/SKILL.md",
+        "blobSha": "dcd49d0aa0b6ac081284a7ec37d2b43da1d872bf"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/state-discovery-operational-skills",
+        "path": "products/machine-discovery-surface-engineering/SKILL.md",
+        "blobSha": "dcd49d0aa0b6ac081284a7ec37d2b43da1d872bf"
+      }
+    },
+    {
+      "id": "outside-in-agent-crawl-verification",
+      "canonical": {
+        "path": "products/outside-in-agent-crawl-verification/SKILL.md",
+        "blobSha": "28b3395d3c99e52e3c30259e47784c5eb05bb558"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/state-discovery-operational-skills",
+        "path": "products/outside-in-agent-crawl-verification/SKILL.md",
+        "blobSha": "28b3395d3c99e52e3c30259e47784c5eb05bb558"
+      }
     },
     {
       "id": "production-agent-operating-files",
-      "canonical": {"path": "products/production-agent-operating-files/PROMPT.md", "blobSha": "5b81d8601c3017c7a88d203da9e8feee29216752"},
-      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/production-agent-operating-files", "path": "agents/production-agent-operating-files.md", "blobSha": "5b81d8601c3017c7a88d203da9e8feee29216752"}
+      "canonical": {
+        "path": "products/production-agent-operating-files/PROMPT.md",
+        "blobSha": "5b81d8601c3017c7a88d203da9e8feee29216752"
+      },
+      "origin": {
+        "repository": "AyobamiH/ai-prompts",
+        "branch": "agent/production-agent-operating-files",
+        "path": "agents/production-agent-operating-files.md",
+        "blobSha": "5b81d8601c3017c7a88d203da9e8feee29216752"
+      }
     },
     {
       "id": "published-package-contract-verification",
-      "canonical": {"path": "products/published-package-contract-verification/SKILL.md", "blobSha": "95a89a5198a0936346d318c709d99f1374e70bb4"},
-      "origin": {"repository": "AyobamiH/agent-shop-products", "branch": "feat/public-package-verification-skills", "path": "products/published-package-contract-verification/SKILL.md", "blobSha": "89d5e356697041593ee31dfe15876f63b44843c1"}
+      "canonical": {
+        "path": "products/published-package-contract-verification/SKILL.md",
+        "blobSha": "95a89a5198a0936346d318c709d99f1374e70bb4"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/public-package-verification-skills",
+        "path": "products/published-package-contract-verification/SKILL.md",
+        "blobSha": "89d5e356697041593ee31dfe15876f63b44843c1"
+      }
     },
     {
       "id": "read-only-production-reconnaissance",
-      "canonical": {"path": "products/read-only-production-reconnaissance/PROMPT.md", "blobSha": "db60c9e7471a0769560e84e84e5ff245f57d6874"},
-      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/read-only-production-reconnaissance", "path": "engineering/read-only-production-reconnaissance.md", "blobSha": "db60c9e7471a0769560e84e84e5ff245f57d6874"}
+      "canonical": {
+        "path": "products/read-only-production-reconnaissance/PROMPT.md",
+        "blobSha": "db60c9e7471a0769560e84e84e5ff245f57d6874"
+      },
+      "origin": {
+        "repository": "AyobamiH/ai-prompts",
+        "branch": "agent/read-only-production-reconnaissance",
+        "path": "engineering/read-only-production-reconnaissance.md",
+        "blobSha": "db60c9e7471a0769560e84e84e5ff245f57d6874"
+      }
     },
     {
       "id": "safe-scheduled-runtime-upgrade",
-      "canonical": {"path": "products/safe-scheduled-runtime-upgrade/SKILL.md", "blobSha": "c686359f1924bdd14aefadbff7045031bf651254"},
-      "origin": {"repository": "AyobamiH/agent-shop-products", "branch": "feat/catalogue-operational-skills", "path": "products/safe-scheduled-runtime-upgrade/SKILL.md", "blobSha": "c686359f1924bdd14aefadbff7045031bf651254"}
+      "canonical": {
+        "path": "products/safe-scheduled-runtime-upgrade/SKILL.md",
+        "blobSha": "c686359f1924bdd14aefadbff7045031bf651254"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/catalogue-operational-skills",
+        "path": "products/safe-scheduled-runtime-upgrade/SKILL.md",
+        "blobSha": "c686359f1924bdd14aefadbff7045031bf651254"
+      }
     },
     {
       "id": "self-identifying-product-campaign",
-      "canonical": {"path": "products/self-identifying-product-campaign/PROMPT.md", "blobSha": "279dfcfc7b0912f004cb3eed495b964d4b6746fa"},
-      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/self-identifying-product-campaign", "path": "marketing/self-identifying-product-campaign.md", "blobSha": "279dfcfc7b0912f004cb3eed495b964d4b6746fa"}
+      "canonical": {
+        "path": "products/self-identifying-product-campaign/PROMPT.md",
+        "blobSha": "279dfcfc7b0912f004cb3eed495b964d4b6746fa"
+      },
+      "origin": {
+        "repository": "AyobamiH/ai-prompts",
+        "branch": "agent/self-identifying-product-campaign",
+        "path": "marketing/self-identifying-product-campaign.md",
+        "blobSha": "279dfcfc7b0912f004cb3eed495b964d4b6746fa"
+      }
     },
     {
       "id": "signed-agent-action-receipts",
-      "canonical": {"path": "products/signed-agent-action-receipts/PROMPT.md", "blobSha": "b821da740c9019f71ebbe9dd9599cce4669610d9"},
-      "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/signed-agent-action-receipts", "path": "agents/signed-agent-action-receipts.md", "blobSha": "b821da740c9019f71ebbe9dd9599cce4669610d9"}
+      "canonical": {
+        "path": "products/signed-agent-action-receipts/PROMPT.md",
+        "blobSha": "b821da740c9019f71ebbe9dd9599cce4669610d9"
+      },
+      "origin": {
+        "repository": "AyobamiH/ai-prompts",
+        "branch": "agent/signed-agent-action-receipts",
+        "path": "agents/signed-agent-action-receipts.md",
+        "blobSha": "b821da740c9019f71ebbe9dd9599cce4669610d9"
+      }
+    },
+    {
+      "id": "state-transition-evidence-contract",
+      "canonical": {
+        "path": "products/state-transition-evidence-contract/SKILL.md",
+        "blobSha": "5adee20991acf3ccd403f2ecb2c40a30e493fe4c"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/state-discovery-operational-skills",
+        "path": "products/state-transition-evidence-contract/SKILL.md",
+        "blobSha": "5adee20991acf3ccd403f2ecb2c40a30e493fe4c"
+      }
+    },
+    {
+      "id": "temporary-authority-bridge-lifecycle",
+      "canonical": {
+        "path": "products/temporary-authority-bridge-lifecycle/SKILL.md",
+        "blobSha": "67f712a645ebc4cadea6920853714b3264f68911"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/state-discovery-operational-skills",
+        "path": "products/temporary-authority-bridge-lifecycle/SKILL.md",
+        "blobSha": "67f712a645ebc4cadea6920853714b3264f68911"
+      }
     }
   ]
 }
