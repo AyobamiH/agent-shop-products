@@ -2,6 +2,8 @@
 
 GitHub-owned frontend for the source-backed agent capability catalogue.
 
+Current neutral production origin: `https://agents.proofandstate.com`.
+
 The public audience is **autonomous and tool-using agents**. HTML is an inspectable projection of the same records exposed through machine-readable discovery surfaces.
 
 ## Canonical source
