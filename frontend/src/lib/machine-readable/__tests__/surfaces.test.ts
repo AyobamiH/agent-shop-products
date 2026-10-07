@@ -26,7 +26,7 @@ describe("agent discovery surfaces", () => {
   });
 
   it("keeps all current skill records discoverable", () => {
-    expect(skills.length).toBe(catalogSource.productCountsByType.skill);
+    expect(skills.length).toBe(catalogSource.productCountsByType["skill"]);
     expect(skills.length).toBeGreaterThan(0);
     for (const skill of skills) {
       expect(JSON.stringify(catalogJson)).toContain(skill.name);
