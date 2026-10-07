@@ -2,7 +2,7 @@
 
 ## Mission
 
-Build and maintain a high-quality frontend for a source-backed prompt and skill shop that serves humans and machine consumers.
+Build and maintain an agent-only discovery frontend for a source-backed prompt and skill catalogue. Human-readable pages exist for operator inspection, but the public audience is autonomous and tool-using agents.
 
 The product catalogue is real. Do not invent products, prices, compatibility, reviews, evidence levels, examples, testimonials, or product claims to make the UI look complete.
 
@@ -58,7 +58,7 @@ The future agent transaction interface is a CLI.
 
 MCP is explicitly out of scope unless a later explicit decision reverses this.
 
-### Frontend phase only
+### Agent-only public surface\n\n- Write public copy for agents and capability discovery, not consumer shopping.\n- Keep `/agents` as the primary discovery/documentation route.\n- Keep `/shop` only as a stable catalogue URL.\n- `/catalog.json`, `/agents.txt`, `/llms.txt`, sitemap and raw metadata must derive from the same catalogue.\n- Public canonical routes must be crawlable/indexable; missing/404 routes may be noindex.\n- Full PROMPT.md and SKILL.md payload bodies must never be exposed.\n\n### Frontend phase only
 
 Do not create payment infrastructure, authentication, backend marketplace services, autonomous purchasing, wallets, or installation execution in this phase unless explicitly requested.
 
