@@ -29,6 +29,23 @@ Evidence run:
 
 The acceptance covered root, agent discovery, catalogue JSON, agent/LLM text surfaces, robots, sitemap, every product page, every metadata Markdown record, canonical-origin consistency, payload privacy, retired-product 404s and representative crawler user agents.
 
+## Production acceptance evidence
+
+Merged production revision `3390144799af39368a87b7827bfb4ca23cc4aca7` was deployed to the same `agent-shop` Worker and bound to the neutral custom domain.
+
+Evidence run:
+
+- DoneState bridge run: https://github.com/AyobamiH/donestate/actions/runs/37627383743
+- Worker upload: PASS
+- Static asset upload: 23 files
+- Workers.dev route retained: `https://agent-shop.woeinvests.workers.dev`
+- Custom domain bound: `https://agents.proofandstate.com`
+- production DNS/edge reachability: PASS after bounded propagation
+- outside-in result: `{"status":"PASS","origin":"https://agents.proofandstate.com","products":16,"crawlerAgentsChecked":10}`
+- machine surfaces checked: `/catalog.json`, `/agents.txt`, `/llms.txt`, `/robots.txt`, `/sitemap.xml`
+
+This is the accepted production runtime for the current code slice.
+
 ## Discovery policy
 
 `robots.txt` explicitly allows major documented AI/search agents, including OpenAI, Anthropic, Perplexity, Google, Microsoft/Bing and Apple agents. It also retains `User-agent: * / Allow: /` so other and future LLM/search crawlers are not accidentally excluded.
@@ -56,7 +73,9 @@ The canonical deployment workflow expects:
 
 Secrets stay in GitHub/Cloudflare and are never committed.
 
-At the time of the first workers.dev acceptance, these secrets were not yet available in the `agent-shop-products` repository itself. A bounded one-off bridge reused current DoneState Cloudflare secret custody to prove the deployment without copying credentials into source.
+At the time of production acceptance, these secrets were not yet available in the `agent-shop-products` repository itself. Bounded one-off bridge workflows reused current DoneState Cloudflare secret custody for the live acceptance and were retired immediately afterwards.
+
+The canonical deployment workflow is therefore manual and fails closed when repository-owned Cloudflare credentials are missing. It must not report a successful deployment when no deployment occurred.
 
 ## Acceptance gate
 
