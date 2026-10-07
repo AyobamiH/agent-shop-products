@@ -1,4 +1,4 @@
-name: Deploy Agent Shop Acceptance
+name: Deploy Agent Shop Production
 
 on:
   workflow_dispatch:
@@ -15,7 +15,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: agent-shop-workers-dev
+  group: agent-shop-production
   cancel-in-progress: false
 
 jobs:
@@ -25,8 +25,8 @@ jobs:
       run:
         working-directory: frontend
     env:
-      ACCEPTANCE_ORIGIN: https://agent-shop.woeinvests.workers.dev
-      VITE_SITE_ORIGIN: https://agent-shop.woeinvests.workers.dev
+      ACCEPTANCE_ORIGIN: https://agents.proofandstate.com
+      VITE_SITE_ORIGIN: https://agents.proofandstate.com
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     steps:
@@ -47,7 +47,7 @@ jobs:
       - name: Install
         if: steps.credentials.outputs.available == 'true'
         run: bun install --frozen-lockfile
-      - name: Build canonical acceptance artifact
+      - name: Build canonical production artifact
         if: steps.credentials.outputs.available == 'true'
         run: bun run build
       - name: Validate Worker bundle
@@ -56,17 +56,17 @@ jobs:
       - name: Deploy agent-shop Worker
         if: steps.credentials.outputs.available == 'true'
         run: bunx wrangler@4.135.0 deploy --config wrangler.jsonc
-      - name: Wait for acceptance origin
+      - name: Wait for production origin
         if: steps.credentials.outputs.available == 'true'
         run: |
           for i in {1..60}; do
             if curl --fail --silent --show-error --location "$ACCEPTANCE_ORIGIN/agents" >/dev/null; then
-              echo "Acceptance origin is reachable."
+              echo "Production origin is reachable."
               exit 0
             fi
             sleep 2
           done
-          echo "::error::Acceptance origin did not become reachable."
+          echo "::error::Production origin did not become reachable."
           exit 1
       - name: Outside-in agent and crawler acceptance
         if: steps.credentials.outputs.available == 'true'
@@ -74,7 +74,7 @@ jobs:
       - name: Deployment status
         run: |
           if [ "${{ steps.credentials.outputs.available }}" = "true" ]; then
-            echo "Agent shop acceptance deployment completed and passed outside-in verification."
+            echo "Agent shop production deployment completed and passed outside-in verification."
           else
-            echo "Agent shop acceptance deployment was not attempted because repository Cloudflare credentials are unavailable."
+            echo "Agent shop production deployment was not attempted because repository Cloudflare credentials are unavailable."
           fi
