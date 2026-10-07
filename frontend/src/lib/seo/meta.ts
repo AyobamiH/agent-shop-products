@@ -49,3 +49,14 @@ export function buildPageHead({
     })),
   };
 }
+
+
+export function toMetaDescription(value: string, maxLength = 155): string {
+  const compact = value.replace(/\s+/g, " ").trim();
+  if (compact.length <= maxLength) return compact;
+
+  const slice = compact.slice(0, maxLength + 1);
+  const boundary = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("; "), slice.lastIndexOf(", "), slice.lastIndexOf(" "));
+  const trimmed = (boundary >= Math.floor(maxLength * 0.65) ? slice.slice(0, boundary) : compact.slice(0, maxLength)).trim();
+  return trimmed.replace(/[\s,;:.!?-]+$/g, "") + "…";
+}
