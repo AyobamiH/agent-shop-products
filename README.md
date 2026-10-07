@@ -1,6 +1,17 @@
 # Agent Shop Products
 
-Canonical source repository for AyobamiH prompt products and future agent skills used by the agent-first shop.
+Canonical source repository for AyobamiH prompt and skill products used by the agent-first shop.
+
+## Catalogue
+
+The catalogue contains **16 products: 11 prompts and 5 skills**. The [complete skills and work-coverage index](docs/SKILL_COVERAGE.md) lists every product, maps the reviewed procedures to their sources, and records supporting platform skills and unfinished acceptance checks.
+
+- [Product manifest](catalog/manifest.json)
+- [Public discovery projection](catalog/products.public.json)
+- [Source provenance](catalog/sources.json)
+- [Machine-readable procedure coverage](catalog/skill-coverage.json)
+
+Run `python3 scripts/validate_catalog.py` to check catalogue integrity without changing files.
 
 ## Principles
 
@@ -16,6 +27,7 @@ Canonical source repository for AyobamiH prompt products and future agent skills
 products/       Source product payloads
 catalog/        Machine-readable catalogue projections
 docs/           Product and catalogue governance
+scripts/        Read-only catalogue validation
 AGENTS.md       Repository operating contract
 ```
 

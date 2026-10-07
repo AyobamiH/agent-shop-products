@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "bounded-google-docs-read-recovery",
+  "slug": "bounded-google-docs-read-recovery",
+  "name": "Bounded Google Docs Read Recovery",
+  "productType": "skill",
+  "category": "developer-workflows",
+  "summary": "Diagnose Google Docs reader failures across network routes, OAuth refresh, Drive metadata and bounded document responses, then verify a compact-response repair without weakening document integrity checks.",
+  "problem": "A document reader can hide distinct transport, authentication, response-size and validation failures behind one error, while a zero process exit or successful preview can be mistaken for a repaired live collector.",
+  "coreOutcomes": [
+    "Layered diagnosis tied to the actual host and running reader revision",
+    "Conditional WSL route recovery with preserved configuration and guarded restarts",
+    "Sanitised exception evidence and bounded token-refresh retries",
+    "Compact Google Docs responses within the existing byte cap",
+    "Preserved nested content, positions, revisions and metadata consistency checks",
+    "Separate evidence for preview success, deployed revision and fresh saved observation"
+  ],
+  "requirements": [
+    "An authorised Google document and an existing credential path",
+    "Access to the application reader, its bounded-request contract and relevant diagnostics",
+    "Actual host output or authorised access to the affected execution environment",
+    "A preview or read-only execution path with explicit semantic results",
+    "Relevant fixtures or validation commands for document structure and failure behavior",
+    "Restart authority and a verified worker-drain procedure if a WSL configuration change is needed"
+  ],
+  "boundaries": [
+    "Network configuration changes require route evidence and do not universally resolve WSL failures",
+    "A WSL shutdown affects all running distributions and must account for their active work",
+    "Retries remain bounded and confined to eligible transient token-refresh failures",
+    "The existing response byte cap and document integrity checks remain in force",
+    "Diagnostics exclude credentials, response bodies and private document contents",
+    "Successful previews do not apply imports or document updates and may still write local authentication diagnostics",
+    "Reviewed code, historical previews, installed revisions and saved observations are distinct evidence",
+    "No live deployment, supply replenishment or downstream acceptance is guaranteed"
+  ],
+  "tags": [
+    "google-docs",
+    "oauth",
+    "bounded-http",
+    "wsl-networking",
+    "diagnostics",
+    "document-integrity",
+    "runtime-verification"
+  ],
+  "source": "SKILL.md"
+}

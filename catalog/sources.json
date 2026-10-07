@@ -8,6 +8,11 @@
       "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/autonomous-coding-workflow", "path": "agents/autonomous-coding-workflow.md", "blobSha": "5aca1626776b010f975c5f2aadf2ed2b286d7844"}
     },
     {
+      "id": "bounded-google-docs-read-recovery",
+      "canonical": {"path": "products/bounded-google-docs-read-recovery/SKILL.md", "blobSha": "90050b15566c9fd51a5295da104741a4add3fb04"},
+      "origin": {"repository": "AyobamiH/agent-shop-products", "branch": "feat/catalogue-operational-skills", "path": "products/bounded-google-docs-read-recovery/SKILL.md", "blobSha": "90050b15566c9fd51a5295da104741a4add3fb04"}
+    },
+    {
       "id": "capability-gap-learning-system",
       "canonical": {"path": "products/capability-gap-learning-system/PROMPT.md", "blobSha": "11555870f4c72a4a76bb96475c7a50aa555f0206"},
       "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/capability-gap-learning-system", "path": "agents/capability-gap-learning-system.md", "blobSha": "11555870f4c72a4a76bb96475c7a50aa555f0206"}
@@ -38,6 +43,11 @@
       "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/graph-native-agent-system-migration", "path": "agents/graph-native-agent-system-migration.md", "blobSha": "562c2937deb2b8c790ee3d3ab9f0529b6618a656"}
     },
     {
+      "id": "live-dashboard-update-verification",
+      "canonical": {"path": "products/live-dashboard-update-verification/SKILL.md", "blobSha": "bf5135f71f5f39698cbf1e6fe160fa53711479be"},
+      "origin": {"repository": "AyobamiH/agent-shop-products", "branch": "feat/catalogue-operational-skills", "path": "products/live-dashboard-update-verification/SKILL.md", "blobSha": "bf5135f71f5f39698cbf1e6fe160fa53711479be"}
+    },
+    {
       "id": "local-first-verification-cli",
       "canonical": {"path": "products/local-first-verification-cli/PROMPT.md", "blobSha": "d9f2746d59300d2d078fc79279d16cdd2068bbff"},
       "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/local-first-verification-cli", "path": "engineering/local-first-verification-cli.md", "blobSha": "d9f2746d59300d2d078fc79279d16cdd2068bbff"}
@@ -56,6 +66,11 @@
       "id": "read-only-production-reconnaissance",
       "canonical": {"path": "products/read-only-production-reconnaissance/PROMPT.md", "blobSha": "db60c9e7471a0769560e84e84e5ff245f57d6874"},
       "origin": {"repository": "AyobamiH/ai-prompts", "branch": "agent/read-only-production-reconnaissance", "path": "engineering/read-only-production-reconnaissance.md", "blobSha": "db60c9e7471a0769560e84e84e5ff245f57d6874"}
+    },
+    {
+      "id": "safe-scheduled-runtime-upgrade",
+      "canonical": {"path": "products/safe-scheduled-runtime-upgrade/SKILL.md", "blobSha": "c686359f1924bdd14aefadbff7045031bf651254"},
+      "origin": {"repository": "AyobamiH/agent-shop-products", "branch": "feat/catalogue-operational-skills", "path": "products/safe-scheduled-runtime-upgrade/SKILL.md", "blobSha": "c686359f1924bdd14aefadbff7045031bf651254"}
     },
     {
       "id": "self-identifying-product-campaign",

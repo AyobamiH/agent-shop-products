@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "live-dashboard-update-verification",
+  "slug": "live-dashboard-update-verification",
+  "name": "Live Dashboard Update Verification",
+  "productType": "skill",
+  "category": "frontend-verification",
+  "summary": "Verify live dashboard updates from observation to visible state, including shared DOM ownership, complete initial snapshots, successive events across views, freshness, and retained reading state under the production content security policy.",
+  "problem": "A dashboard can render correctly once while later events update detached nodes, leave hidden views stale, reset the reader's state, or confuse collection failures and missing data with healthy zero values.",
+  "coreOutcomes": [
+    "Data-to-interface failure boundary identification",
+    "Shared target ownership and mount-lifetime verification",
+    "Complete first-snapshot and successive-event browser evidence",
+    "Separate value, collection-status, revision, and freshness interpretation",
+    "Retained focus and reading state across live updates",
+    "Semantic browser assertions under the production content security policy"
+  ],
+  "requirements": [
+    "Dashboard with an identifiable snapshot or event update contract",
+    "Access to affected source, build configuration, and browser test commands",
+    "Controlled fixture or authorized live observation source",
+    "Real browser execution with the application's content security policy enforced",
+    "Observable transport, accepted state, and DOM update boundaries"
+  ],
+  "boundaries": [
+    "Synthetic browser evidence does not prove live collector or provider health",
+    "Known zero, blocked, stale, unknown, and collection failure remain distinct",
+    "A replacement node matching a selector does not prove original target continuity",
+    "Desktop, mobile, reconnect, and replay coverage are claimed only when exercised",
+    "Verification does not authorize production writes to manufacture update events",
+    "A bounded update-path result is not a whole-application health claim"
+  ],
+  "tags": [
+    "dashboard",
+    "live-updates",
+    "browser-verification",
+    "dom-ownership",
+    "freshness",
+    "content-security-policy"
+  ],
+  "source": "SKILL.md"
+}
