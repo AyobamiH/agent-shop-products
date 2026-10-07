@@ -3,7 +3,7 @@
   "recordKind": "catalogue-sync-record",
   "localRole": "synced-projection",
   "syncedOn": "2026-10-07",
-  "productCount": 16,
+  "productCount": 20,
   "upstream": {
     "repository": "AyobamiH/agent-shop-products",
     "branch": "main",
@@ -22,7 +22,7 @@
   ],
   "productCountsByType": {
     "prompt": 11,
-    "skill": 5
+    "skill": 9
   },
   "productIds": [
     "autonomous-coding-workflow",
@@ -35,11 +35,15 @@
     "graph-native-agent-system-migration",
     "live-dashboard-update-verification",
     "local-first-verification-cli",
+    "machine-discovery-surface-engineering",
+    "outside-in-agent-crawl-verification",
     "production-agent-operating-files",
     "published-package-contract-verification",
     "read-only-production-reconnaissance",
     "safe-scheduled-runtime-upgrade",
     "self-identifying-product-campaign",
-    "signed-agent-action-receipts"
+    "signed-agent-action-receipts",
+    "state-transition-evidence-contract",
+    "temporary-authority-bridge-lifecycle"
   ]
 }
