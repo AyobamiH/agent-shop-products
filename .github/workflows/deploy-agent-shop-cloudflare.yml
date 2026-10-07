@@ -2,14 +2,6 @@ name: Deploy Agent Shop Production
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - "frontend/**"
-      - "catalog/**"
-      - "products/**"
-      - ".github/workflows/deploy-agent-shop-cloudflare.yml"
 
 permissions:
   contents: read
@@ -34,30 +26,22 @@ jobs:
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
-      - name: Check Cloudflare deployment credentials
-        id: credentials
+      - name: Require Cloudflare deployment credentials
         run: |
-          if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ACCOUNT_ID" ]; then
-            echo "available=true" >> "$GITHUB_OUTPUT"
-            echo "Cloudflare deployment credentials are available."
-          else
-            echo "available=false" >> "$GITHUB_OUTPUT"
-            echo "::warning::Cloudflare deployment skipped: CLOUDFLARE_API_TOKEN and/or CLOUDFLARE_ACCOUNT_ID is not configured for this repository."
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error::CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID must be configured in this repository before running the canonical deployment workflow."
+            exit 1
           fi
+          echo "Cloudflare deployment credentials are available."
       - name: Install
-        if: steps.credentials.outputs.available == 'true'
         run: bun install --frozen-lockfile
       - name: Build canonical production artifact
-        if: steps.credentials.outputs.available == 'true'
         run: bun run build
       - name: Validate Worker bundle
-        if: steps.credentials.outputs.available == 'true'
         run: bunx wrangler@4.135.0 deploy --dry-run --config wrangler.jsonc --outdir /tmp/agent-shop-worker
       - name: Deploy agent-shop Worker
-        if: steps.credentials.outputs.available == 'true'
         run: bunx wrangler@4.135.0 deploy --config wrangler.jsonc
       - name: Wait for production origin
-        if: steps.credentials.outputs.available == 'true'
         run: |
           for i in {1..60}; do
             if curl --fail --silent --show-error --location "$ACCEPTANCE_ORIGIN/agents" >/dev/null; then
@@ -69,12 +53,6 @@ jobs:
           echo "::error::Production origin did not become reachable."
           exit 1
       - name: Outside-in agent and crawler acceptance
-        if: steps.credentials.outputs.available == 'true'
         run: node scripts/verify-deployed-surface.mjs
       - name: Deployment status
-        run: |
-          if [ "${{ steps.credentials.outputs.available }}" = "true" ]; then
-            echo "Agent shop production deployment completed and passed outside-in verification."
-          else
-            echo "Agent shop production deployment was not attempted because repository Cloudflare credentials are unavailable."
-          fi
+        run: echo "Agent shop production deployment completed and passed outside-in verification."
