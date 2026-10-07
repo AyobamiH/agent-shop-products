@@ -26,8 +26,9 @@ export const Route = createFileRoute("/products/$slug")({
       };
     }
     const { product } = loaderData;
+    const title = product.name.length < 30 ? `${product.name} — Agent Capability` : product.name;
     return buildPageHead({
-      title: product.name,
+      title,
       description: toMetaDescription(product.summary),
       path: `/products/${product.slug}`,
       jsonLd: [buildProductJsonLd(product), buildProductBreadcrumbJsonLd(product)],
