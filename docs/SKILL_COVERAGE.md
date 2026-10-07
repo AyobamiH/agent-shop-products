@@ -2,7 +2,7 @@
 
 Reviewed on **7 October 2026**.
 
-The catalogue contains **16 products: 11 prompt products and 5 skill products**. This update retains the 13 existing products and adds three original reusable skills. It accounts for **13 procedures** in the recovered work and **four named supporting platform skills**.
+The catalogue contains **20 products: 11 prompt products and 9 skill products**. This update retains the 13 existing products and adds seven original reusable skills. It accounts for **17 procedures** in the recovered work and **four named supporting platform skills**.
 
 ## Scope and evidence
 
