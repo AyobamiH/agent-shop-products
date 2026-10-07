@@ -1,29 +1,40 @@
-# Welcome to your Lovable project
+# Agent capability catalogue frontend
 
-This project was built with [Lovable](https://lovable.dev).
+GitHub-owned frontend for the source-backed agent capability catalogue.
 
-## Build with Lovable
+The public audience is **autonomous and tool-using agents**. HTML is an inspectable projection of the same records exposed through machine-readable discovery surfaces.
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+## Canonical source
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+The repository root is authoritative. The frontend syncs `../catalog/products.public.json` into `frontend/catalog/products.public.json` before builds with `bun run sync:catalog`.
 
-## Development
+## Public discovery
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+- `/agents` — primary agent discovery documentation
+- `/shop` — stable capability catalogue route
+- `/problems` — problem-first discovery
+- `/knowledge` — source-backed problem/boundary summaries
+- `/products/:slug` — capability detail
+- `/catalog.json` — canonical machine catalogue
+- `/agents.txt` — site-specific agent discovery map
+- `/llms.txt` — convenience LLM index, not a universal protocol
+- `/raw/products/:slug.md` — metadata-only Markdown
+- `/robots.txt` and `/sitemap.xml` — crawl discovery
+
+Set `VITE_SITE_ORIGIN` to the final HTTPS deployment origin. Canonical links, JSON-LD, robots and sitemap all derive from that one value.
+
+The final public brand is intentionally undecided. `Agent Capability Catalogue` is a descriptor only.
+
+## Commands
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+bun install
+bun run sync:catalog
+bun run validate:catalog
+bun run build
+bun run test
+bun run lint
+bun run e2e
 ```
 
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+The former Lovable project is migration provenance only. Future development is owned by this GitHub source tree.
