@@ -36,7 +36,7 @@ describe("catalogue contract (build-time gate)", () => {
     );
     expect(totalByType).toBe(catalogSource.productCount);
     expect(catalogSource.productIds).toHaveLength(catalogSource.productCount);
-    expect(catalogSource.productCountsByType.skill ?? 0).toBeGreaterThan(0);
+    expect(catalogSource.productCountsByType["skill"] ?? 0).toBeGreaterThan(0);
   });
 
   it("rejects a projection whose type mix drifts", () => {
