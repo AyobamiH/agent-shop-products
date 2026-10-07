@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "safe-scheduled-runtime-upgrade",
+  "slug": "safe-scheduled-runtime-upgrade",
+  "name": "Safe Scheduled Runtime Upgrade",
+  "productType": "skill",
+  "category": "production-reliability",
+  "summary": "Upgrade scheduled runtimes through an exact target, verified job draining, a fresh guarded review, recoverable timer restoration, and separate process-readiness and operational-completion checks.",
+  "problem": "Scheduled workers and queued jobs can change state during a release, while interrupted switches, automatic catch-up work, and slow diagnostics can make repeated upgrades or premature success claims unsafe.",
+  "coreOutcomes": [
+    "Exact target and clean-source verification with recovery ownership",
+    "Runtime, trigger, service-dependency and queued-job inventory",
+    "Bounded draining with preservation of original scheduling states",
+    "Fresh state-bound review and a single guarded release application",
+    "Recovery decisions for stale reviews, cancellation and ambiguous switches",
+    "Process-reported runtime readiness separated from pending asynchronous work",
+    "Configuration restart planning with full stop scope and durable handoff"
+  ],
+  "requirements": [
+    "A runtime driven by systemd timers or a scheduler with equivalent inspection and pause controls",
+    "An exact target revision or artifact digest and reviewable source",
+    "Access to service, process, queued-job and release-state observations",
+    "A release mechanism that rejects stale state or equivalent concurrent drift",
+    "Authority for the affected operational changes and a named recovery owner",
+    "Durable recovery evidence and a readiness check identifying the running instance"
+  ],
+  "boundaries": [
+    "A source checkout or successful apply response does not establish running-process readiness",
+    "Paused timers and empty PID fields do not establish that queued or in-flight work has drained",
+    "Worker termination, lock deletion and receipt rewriting are not shortcuts to quiescence",
+    "An ambiguous switch must be reconciled before repetition or rollback",
+    "Resuming schedules may start consequential catch-up work and requires the agreed recovery rule",
+    "Asynchronous start acceptance and slow diagnostic snapshots do not prove operational completion",
+    "Host and virtual-machine restarts require authority covering their full stop scope",
+    "The workflow provides no universal safety guarantee or claim of live acceptance"
+  ],
+  "tags": [
+    "runtime-upgrade",
+    "scheduled-workers",
+    "systemd",
+    "job-draining",
+    "state-bound-review",
+    "recovery",
+    "process-readiness",
+    "wsl"
+  ],
+  "source": "SKILL.md"
+}

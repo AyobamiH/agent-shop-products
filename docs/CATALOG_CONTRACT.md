@@ -73,6 +73,20 @@ Source/provenance manifest containing:
 
 It is an integrity record, not storefront copy.
 
+### `catalog/skill-coverage.json`
+
+A separate procedure-coverage record for the reviewed work. It is not a product inventory or a public product projection.
+
+The record contains the review scope, sanitised evidence sources, procedures and their evidence limits, mappings to every catalogue product, explicitly observed supporting platform skills, and inherited or unfinished work. Each procedure references existing product IDs and evidence-source IDs. Each product mapping must agree with the procedures that reference it.
+
+A procedure-to-product match does not prove that the product payload was invoked. Explicitly observed named platform skills are dependencies and do not become products unless separately authorised, authored and indexed through the normal product contract. Historical or partial evidence must not be upgraded into installation or live acceptance claims.
+
+`docs/SKILL_COVERAGE.md` is the readable index of this record. Keep the two files consistent. Omit private implementation references and raw evidence from the public coverage record.
+
+## Integrity validation
+
+Run `python3 scripts/validate_catalog.py` with Python 3.10 or later. This standard-library check is read-only and fails on invalid metadata, duplicate IDs/slugs, unresolved or escaping source paths, unindexed products, public projection drift, canonical source-hash drift, and invalid coverage references. It does not generate catalogue files or verify live operation, remote origin availability or the factual truth of an evidence summary.
+
 ## Missing fields
 
 Absence is meaningful.

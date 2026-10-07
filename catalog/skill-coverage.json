@@ -1,0 +1,658 @@
+{
+  "schemaVersion": "1.0.0",
+  "recordKind": "procedure-coverage",
+  "reviewedOn": "2026-10-07",
+  "scope": {
+    "statement": "Catalogue all reusable procedures evidenced by the reviewed work and account for every product already present in the canonical repository.",
+    "reviewedVisibleMessageCount": 65,
+    "baselineProductCount": 13,
+    "newProductIds": [
+      "bounded-google-docs-read-recovery",
+      "live-dashboard-update-verification",
+      "safe-scheduled-runtime-upgrade"
+    ],
+    "completeness": "Complete for the 65 recovered visible messages, the targeted authorised implementation review and the current continuity/catalogue work. This is not a claim to cover unreviewed conversations or every lifetime tool invocation.",
+    "publicationBoundary": "Original generalised workflows and sanitised evidence summaries only. Private source, shared-conversation links, raw transcripts, credentials, host identifiers and restricted implementation references are excluded.",
+    "invocationRule": "A product mapping is a match to reusable procedure coverage, not evidence that its PROMPT.md or SKILL.md was loaded. Only supportingSkills records explicitly observed named platform-skill invocation."
+  },
+  "evidenceSources": [
+    {
+      "id": "catalogue-baseline",
+      "kind": "public-repository",
+      "description": "Canonical inventory and source provenance at the start of this catalogue review.",
+      "url": "https://github.com/AyobamiH/agent-shop-products/tree/6b75108e0953c62240557daae53df3123a50428c",
+      "limits": "Shows that 11 prompt products and two skill products were already catalogued. Catalogue presence does not establish invocation in the recovered work."
+    },
+    {
+      "id": "recovered-work-thread",
+      "kind": "owner-supplied-visible-conversation",
+      "description": "A complete extraction of 65 visible user and assistant messages supplied for continuity, reviewed in message order. Tool envelopes and hidden/internal content were excluded.",
+      "limits": "Direct operator output, assistant reports, inherited handover claims and proposed actions have different evidential weight. The shared link, transcript, attachments and operational identifiers are not published here."
+    },
+    {
+      "id": "restricted-implementation-review",
+      "kind": "authorised-private-repository-review",
+      "description": "Read-only review of relevant merged changes, implementation, regressions and hosted CI for bounded provider reads, scheduled upgrades and dashboard rendering.",
+      "limits": "This is a sanitised review account, not independently inspectable public proof. Private code, repository links, revision identifiers, CI links and host details are withheld. Source and test evidence do not establish installation or current live behaviour."
+    },
+    {
+      "id": "continuity-capture",
+      "kind": "current-session-observation",
+      "description": "The visible transcript and a structured handover were persisted; the saved handover was read back. The named continuity and persistence skills were observed in the current session.",
+      "limits": "A saved handover supports recovery of context. It is not a guarantee that every future conversation will automatically retrieve the context."
+    },
+    {
+      "id": "catalogue-authoring",
+      "kind": "current-repository-work",
+      "description": "Canonical source and metadata were inspected and the skill-creator instructions were applied to author original reusable procedures for this repository.",
+      "limits": "Product mappings identify procedural coverage. They do not claim that a product's payload was loaded as a runtime skill in the earlier work."
+    }
+  ],
+  "procedures": [
+    {
+      "id": "recover-work-context",
+      "name": "Recover an earlier conversation into durable working context",
+      "trigger": "Continue work from a shared conversation without losing decisions, evidence or open acceptance checks.",
+      "status": "demonstrated",
+      "productIds": [
+        "autonomous-coding-workflow",
+        "production-agent-operating-files"
+      ],
+      "relationship": "composition",
+      "evidence": [
+        {
+          "sourceId": "recovered-work-thread",
+          "kind": "visible-workflow",
+          "summary": "Recovered prior state, separated inherited claims from current observations and retained unresolved next steps."
+        },
+        {
+          "sourceId": "continuity-capture",
+          "kind": "direct-session-observation",
+          "summary": "Extracted all visible messages, saved a clean transcript and structured handover, and read back the handover."
+        }
+      ],
+      "limits": [
+        "Durable context is a recovery record; it does not grant new operational authority or prove old completion claims.",
+        "Automatic cross-conversation retrieval is not established."
+      ]
+    },
+    {
+      "id": "isolate-connectivity-layer",
+      "name": "Separate host routing, transport, authentication and document failures",
+      "trigger": "A provider read fails differently between environments or after a network change.",
+      "status": "partially-demonstrated",
+      "productIds": [
+        "bounded-google-docs-read-recovery",
+        "read-only-production-reconnaissance",
+        "evidence-first-live-diagnostic-repair"
+      ],
+      "relationship": "composition",
+      "evidence": [
+        {
+          "sourceId": "recovered-work-thread",
+          "kind": "operator-output",
+          "summary": "Compared host and guest connectivity, address-family behaviour, endpoint reachability and the later authenticated reader result."
+        },
+        {
+          "sourceId": "restricted-implementation-review",
+          "kind": "source-and-regression-review",
+          "summary": "Reviewed bounded token-refresh transport retry and sanitised exception classification."
+        }
+      ],
+      "limits": [
+        "Endpoint reachability and an expected HTTP rejection do not prove authentication or a complete provider read.",
+        "The WSL configuration change has historical operator evidence, not an independently reproduced network root cause or a universal fix."
+      ]
+    },
+    {
+      "id": "activate-guarded-host-configuration",
+      "name": "Back up host configuration and verify effective activation",
+      "trigger": "A host or virtual-machine setting has been edited but the running environment may still use the previous setting.",
+      "status": "partially-demonstrated",
+      "productIds": [
+        "safe-scheduled-runtime-upgrade",
+        "bounded-google-docs-read-recovery",
+        "read-only-production-reconnaissance"
+      ],
+      "relationship": "composition",
+      "evidence": [
+        {
+          "sourceId": "recovered-work-thread",
+          "kind": "operator-output",
+          "summary": "Preserved resource settings and a backup, compared configuration modification time with the VM boot time, then checked the effective network mode after restart."
+        }
+      ],
+      "limits": [
+        "A saved configuration file is not evidence of activation.",
+        "The reusable procedure requires a scope-aware drain and restart plan; the historical outcome does not justify automatic host-wide changes."
+      ]
+    },
+    {
+      "id": "drain-and-restore-scheduled-work",
+      "name": "Pause wake-ups, drain work and restore scheduling",
+      "trigger": "A scheduled runtime needs maintenance while timers, workers or queued jobs may still be active.",
+      "status": "partially-demonstrated",
+      "productIds": [
+        "safe-scheduled-runtime-upgrade"
+      ],
+      "relationship": "standalone",
+      "evidence": [
+        {
+          "sourceId": "recovered-work-thread",
+          "kind": "operator-output-and-proposed-runbook",
+          "summary": "Recorded bounded maintenance instructions and observed timer state around an environment restart."
+        },
+        {
+          "sourceId": "restricted-implementation-review",
+          "kind": "source-and-regression-review",
+          "summary": "Reviewed timer-state preservation, worker draining, stale-review rejection, cancellation handling and restoration paths."
+        }
+      ],
+      "limits": [
+        "Source regressions do not establish real systemd operation or completion of the later release switch.",
+        "Queueing collection or refill work is not proof that the work completed."
+      ]
+    },
+    {
+      "id": "run-bounded-safe-diagnostics",
+      "name": "Run bounded host diagnostics and recover from malformed shell input",
+      "trigger": "Diagnostic commands hang, a multiline command is incomplete or terminal output risks mixing secrets with evidence.",
+      "status": "demonstrated",
+      "productIds": [
+        "read-only-production-reconnaissance",
+        "evidence-first-live-diagnostic-repair",
+        "autonomous-coding-workflow"
+      ],
+      "relationship": "composition",
+      "evidence": [
+        {
+          "sourceId": "recovered-work-thread",
+          "kind": "operator-output-and-visible-guidance",
+          "summary": "Replaced malformed shell input with bounded probes and kept saved-stage evidence distinct from process output."
+        }
+      ],
+      "limits": [
+        "Use explicit time and output bounds and inspect exit status; avoid dumping credentials, arbitrary environment variables or provider response bodies.",
+        "A shell process returning zero does not override a failed structured result."
+      ]
+    },
+    {
+      "id": "reconcile-dashboard-evidence",
+      "name": "Reconcile dashboard state with the underlying observation",
+      "trigger": "Cards, counters, freshness labels or readiness indicators disagree with recorded collector or provider results.",
+      "status": "partially-demonstrated",
+      "productIds": [
+        "live-dashboard-update-verification",
+        "local-first-verification-cli",
+        "evidence-first-live-diagnostic-repair"
+      ],
+      "relationship": "composition",
+      "evidence": [
+        {
+          "sourceId": "recovered-work-thread",
+          "kind": "operator-output-and-assistant-report",
+          "summary": "Compared preview results and collector stages with reported dashboard views, separating supply, readiness, rendering and freshness."
+        },
+        {
+          "sourceId": "restricted-implementation-review",
+          "kind": "source-and-regression-review",
+          "summary": "Verified that a render failure could leave old values and prevent freshness initialisation."
+        }
+      ],
+      "limits": [
+        "Referenced video attachments were not independently replayed during this catalogue review.",
+        "Synthetic render success does not prove live provider data, host deployment or business readiness."
+      ]
+    },
+    {
+      "id": "triage-collector-deadlines",
+      "name": "Localise collector failure and shared deadline starvation",
+      "trigger": "A multi-stage collection run contains mixed fast failures, long timeouts or missing diagnostics.",
+      "status": "partially-demonstrated",
+      "productIds": [
+        "evidence-first-live-diagnostic-repair",
+        "bounded-google-docs-read-recovery",
+        "read-only-production-reconnaissance"
+      ],
+      "relationship": "composition",
+      "evidence": [
+        {
+          "sourceId": "recovered-work-thread",
+          "kind": "operator-output-and-diagnostic-interpretation",
+          "summary": "Compared stage timing, exit status and shared budget consumption to identify distinct failure layers and missing detail."
+        }
+      ],
+      "limits": [
+        "The shared deadline diagnosis was recorded; a general budget correction was not demonstrated.",
+        "Separate source and reply failures remained unresolved in the reviewed evidence."
+      ]
+    },
+    {
+      "id": "interpret-authenticated-preview",
+      "name": "Read semantic preview results and eligibility correctly",
+      "trigger": "A dry-run or read-only provider preview finishes but reports unavailable data, no eligible work or no applied changes.",
+      "status": "demonstrated",
+      "productIds": [
+        "bounded-google-docs-read-recovery",
+        "deterministic-social-publication",
+        "evidence-first-live-diagnostic-repair"
+      ],
+      "relationship": "application",
+      "evidence": [
+        {
+          "sourceId": "recovered-work-thread",
+          "kind": "operator-output",
+          "summary": "Observed an unsuccessful authenticated reader result despite a successful wrapper exit, followed by a successful compact-response preview without applying imports or remote document updates; local credential-refresh or diagnostic writes are a separate concern."
+        }
+      ],
+      "limits": [
+        "A successful read can legitimately yield no eligible work.",
+        "Preview success does not establish a saved scheduled observation, publication, final installation or ongoing service health."
+      ]
+    },
+    {
+      "id": "trace-sanitised-read-failure",
+      "name": "Trace a swallowed reader failure without exposing provider data",
+      "trigger": "A generic exception obscures which bounded read or parser stage rejected a response.",
+      "status": "demonstrated",
+      "productIds": [
+        "bounded-google-docs-read-recovery",
+        "evidence-first-live-diagnostic-repair"
+      ],
+      "relationship": "composition",
+      "evidence": [
+        {
+          "sourceId": "recovered-work-thread",
+          "kind": "operator-output",
+          "summary": "Used a narrow exception trace to locate the failing bounded-read path without treating arbitrary exception text as safe output."
+        },
+        {
+          "sourceId": "restricted-implementation-review",
+          "kind": "source-and-regression-review",
+          "summary": "Reviewed projection of bounded exception classes and transport-only retry classification."
+        }
+      ],
+      "limits": [
+        "Classify known stages and exception classes; document bodies, tokens, raw URLs with credentials and arbitrary exception payloads remain excluded.",
+        "Transport retries do not authorise repeating side-effecting writes."
+      ]
+    },
+    {
+      "id": "preserve-bounds-with-compact-docs",
+      "name": "Reduce document formatting overhead while preserving read contracts",
+      "trigger": "A complete Google Docs JSON response exceeds a bounded reader's response limit.",
+      "status": "demonstrated",
+      "productIds": [
+        "bounded-google-docs-read-recovery"
+      ],
+      "relationship": "standalone",
+      "evidence": [
+        {
+          "sourceId": "recovered-work-thread",
+          "kind": "operator-output",
+          "summary": "A compact-JSON read-only preview succeeded after an earlier bounded response rejection."
+        },
+        {
+          "sourceId": "restricted-implementation-review",
+          "kind": "source-and-regression-review",
+          "summary": "Verified compact responses under the unchanged byte ceiling, nested document traversal, suggestion handling, revision/position retention and rejection of concurrent changes."
+        }
+      ],
+      "limits": [
+        "Compact JSON is an optimisation, not a guarantee that every document fits.",
+        "Do not silently truncate, omit document tabs or raise the configured response limit.",
+        "Passing code and regression evidence do not prove the final revision was installed on the owner's host."
+      ]
+    },
+    {
+      "id": "verify-streamed-dashboard-rendering",
+      "name": "Repair shared DOM ownership and verify successive dashboard updates",
+      "trigger": "Mounting a new view removes elements that an existing streaming renderer still updates.",
+      "status": "demonstrated",
+      "productIds": [
+        "live-dashboard-update-verification"
+      ],
+      "relationship": "standalone",
+      "evidence": [
+        {
+          "sourceId": "restricted-implementation-review",
+          "kind": "source-and-hosted-browser-regression-review",
+          "summary": "Verified preservation of live render targets, complete initial rendering, successive streamed updates, focus/reading state, CSP-compatible locator waits and a passing browser run over the integrated source tree."
+        }
+      ],
+      "limits": [
+        "These assertions cover the exercised synthetic browser scenarios.",
+        "Live provider correctness, current host deployment, reconnect behaviour and every possible stale-state condition are not established by those scenarios."
+      ]
+    },
+    {
+      "id": "deliver-bounded-repository-change",
+      "name": "Deliver a narrow repository change with truthful validation",
+      "trigger": "A diagnosed defect needs a reviewable patch, regression coverage and an exact-revision handoff.",
+      "status": "demonstrated",
+      "productIds": [
+        "evidence-backed-open-source-contribution",
+        "local-first-verification-cli"
+      ],
+      "relationship": "composition",
+      "evidence": [
+        {
+          "sourceId": "recovered-work-thread",
+          "kind": "assistant-report",
+          "summary": "Reported focused fixes, regression work and repository-native validation."
+        },
+        {
+          "sourceId": "restricted-implementation-review",
+          "kind": "merge-and-hosted-ci-review",
+          "summary": "Independently checked merged changes and successful main/browser workflows, including equality between the tested browser merge tree and final integrated tree."
+        },
+        {
+          "sourceId": "catalogue-authoring",
+          "kind": "direct-session-observation",
+          "summary": "Reused this workflow's evidence and public-learning boundaries when selecting original skill products instead of duplicating existing products or exporting private source."
+        }
+      ],
+      "limits": [
+        "Local checks, hosted CI, merge state, installed artifacts and live behaviour are separate evidence classes.",
+        "The exact full-suite test count reported in the earlier conversation was not independently extracted and is not a catalogue claim."
+      ]
+    },
+    {
+      "id": "handoff-exact-runtime-revision",
+      "name": "Hand off an exact runtime revision with separate live acceptance",
+      "trigger": "Code is merged but installation, the running process and later scheduled results still need verification.",
+      "status": "partially-demonstrated",
+      "productIds": [
+        "safe-scheduled-runtime-upgrade",
+        "local-first-verification-cli",
+        "autonomous-coding-workflow"
+      ],
+      "relationship": "composition",
+      "evidence": [
+        {
+          "sourceId": "recovered-work-thread",
+          "kind": "proposed-upgrade-and-acceptance-runbook",
+          "summary": "Specified an exact target revision, bounded drain, guarded apply, timer restoration and runtime/console acceptance conditions."
+        },
+        {
+          "sourceId": "restricted-implementation-review",
+          "kind": "source-and-regression-review",
+          "summary": "Verified single guarded apply, fresh state review, runtime identity checks and deferred heavyweight diagnostics after lightweight readiness."
+        }
+      ],
+      "limits": [
+        "The final host switch and live acceptance were not confirmed in the reviewed record.",
+        "A started or queued follow-up observation remains pending until its result is read back.",
+        "Do not rerun an ambiguous switch merely because a later expensive diagnostic timed out."
+      ]
+    }
+  ],
+  "productCoverage": [
+    {
+      "productId": "autonomous-coding-workflow",
+      "catalogueState": "retained",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "recover-work-context",
+        "run-bounded-safe-diagnostics",
+        "handoff-exact-runtime-revision"
+      ],
+      "invocation": "not-established",
+      "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
+    },
+    {
+      "productId": "bounded-google-docs-read-recovery",
+      "catalogueState": "added",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "isolate-connectivity-layer",
+        "activate-guarded-host-configuration",
+        "triage-collector-deadlines",
+        "interpret-authenticated-preview",
+        "trace-sanitised-read-failure",
+        "preserve-bounds-with-compact-docs"
+      ],
+      "invocation": "not-established",
+      "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
+    },
+    {
+      "productId": "capability-gap-learning-system",
+      "catalogueState": "retained",
+      "mapping": "not-established-in-reviewed-work",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "note": "Retained from the canonical catalogue. Its payload was not established as invoked in the reviewed work."
+    },
+    {
+      "productId": "continuous-business-operations-graph",
+      "catalogueState": "retained",
+      "mapping": "not-established-in-reviewed-work",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "note": "Retained from the canonical catalogue. Its payload was not established as invoked in the reviewed work."
+    },
+    {
+      "productId": "deterministic-social-publication",
+      "catalogueState": "retained",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "interpret-authenticated-preview"
+      ],
+      "invocation": "not-established",
+      "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
+    },
+    {
+      "productId": "evidence-backed-open-source-contribution",
+      "catalogueState": "retained",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "deliver-bounded-repository-change"
+      ],
+      "invocation": "not-established",
+      "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
+    },
+    {
+      "productId": "evidence-first-live-diagnostic-repair",
+      "catalogueState": "retained",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "isolate-connectivity-layer",
+        "run-bounded-safe-diagnostics",
+        "reconcile-dashboard-evidence",
+        "triage-collector-deadlines",
+        "interpret-authenticated-preview",
+        "trace-sanitised-read-failure"
+      ],
+      "invocation": "not-established",
+      "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
+    },
+    {
+      "productId": "graph-native-agent-system-migration",
+      "catalogueState": "retained",
+      "mapping": "not-established-in-reviewed-work",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "note": "Retained from the canonical catalogue. Its payload was not established as invoked in the reviewed work."
+    },
+    {
+      "productId": "live-dashboard-update-verification",
+      "catalogueState": "added",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "reconcile-dashboard-evidence",
+        "verify-streamed-dashboard-rendering"
+      ],
+      "invocation": "not-established",
+      "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
+    },
+    {
+      "productId": "local-first-verification-cli",
+      "catalogueState": "retained",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "reconcile-dashboard-evidence",
+        "deliver-bounded-repository-change",
+        "handoff-exact-runtime-revision"
+      ],
+      "invocation": "not-established",
+      "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
+    },
+    {
+      "productId": "production-agent-operating-files",
+      "catalogueState": "retained",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "recover-work-context"
+      ],
+      "invocation": "not-established",
+      "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
+    },
+    {
+      "productId": "published-package-contract-verification",
+      "catalogueState": "retained",
+      "mapping": "not-established-in-reviewed-work",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "note": "Retained from the canonical catalogue. Its payload was not established as invoked in the reviewed work."
+    },
+    {
+      "productId": "read-only-production-reconnaissance",
+      "catalogueState": "retained",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "isolate-connectivity-layer",
+        "activate-guarded-host-configuration",
+        "run-bounded-safe-diagnostics",
+        "triage-collector-deadlines"
+      ],
+      "invocation": "not-established",
+      "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
+    },
+    {
+      "productId": "safe-scheduled-runtime-upgrade",
+      "catalogueState": "added",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "activate-guarded-host-configuration",
+        "drain-and-restore-scheduled-work",
+        "handoff-exact-runtime-revision"
+      ],
+      "invocation": "not-established",
+      "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
+    },
+    {
+      "productId": "self-identifying-product-campaign",
+      "catalogueState": "retained",
+      "mapping": "not-established-in-reviewed-work",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "note": "Retained from the canonical catalogue. Its payload was not established as invoked in the reviewed work."
+    },
+    {
+      "productId": "signed-agent-action-receipts",
+      "catalogueState": "retained",
+      "mapping": "not-established-in-reviewed-work",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "note": "Retained from the canonical catalogue. Its payload was not established as invoked in the reviewed work."
+    }
+  ],
+  "supportingSkills": [
+    {
+      "name": "personal-context",
+      "role": "Recover prior decisions and continuity context.",
+      "observedIn": [
+        "recovered-work-thread",
+        "continuity-capture",
+        "catalogue-authoring"
+      ],
+      "catalogueTreatment": "external-platform-dependency",
+      "note": "The only named platform skill explicitly announced in the recovered visible thread; also used during follow-on continuity work."
+    },
+    {
+      "name": "openai-library:library",
+      "role": "Persist the recovered transcript and capture artefact.",
+      "observedIn": [
+        "continuity-capture"
+      ],
+      "catalogueTreatment": "external-platform-dependency",
+      "note": "Observed in the follow-on capture session, not asserted as invoked in the original thread. Its implementation is not republished."
+    },
+    {
+      "name": "pages:write-page",
+      "role": "Create and verify the structured handover.",
+      "observedIn": [
+        "continuity-capture"
+      ],
+      "catalogueTreatment": "external-platform-dependency",
+      "note": "Observed in the follow-on capture session, not asserted as invoked in the original thread. Its implementation is not republished."
+    },
+    {
+      "name": "skill-creator",
+      "role": "Author and validate reusable skill payloads.",
+      "observedIn": [
+        "catalogue-authoring"
+      ],
+      "catalogueTreatment": "external-platform-dependency",
+      "note": "Observed during this catalogue update. Repository products are authored here; personal platform-skill installation is not claimed."
+    }
+  ],
+  "carryForward": [
+    {
+      "id": "final-runtime-acceptance",
+      "state": "unconfirmed",
+      "relatedProductIds": [
+        "safe-scheduled-runtime-upgrade",
+        "local-first-verification-cli"
+      ],
+      "summary": "Final installation, running revision, restored scheduling and live console acceptance still require fresh host evidence."
+    },
+    {
+      "id": "fresh-scheduled-observation",
+      "state": "unconfirmed",
+      "relatedProductIds": [
+        "bounded-google-docs-read-recovery",
+        "local-first-verification-cli"
+      ],
+      "summary": "Read-only preview success must be followed by an observed saved scheduled result before ongoing recovery is claimed."
+    },
+    {
+      "id": "collector-budget-and-provider-recovery",
+      "state": "unresolved",
+      "relatedProductIds": [
+        "evidence-first-live-diagnostic-repair"
+      ],
+      "summary": "Shared collection deadline pressure and distinct source/reply failures were identified; completion of their repair was not demonstrated."
+    },
+    {
+      "id": "model-provider-acceptance",
+      "state": "inherited-or-pending",
+      "relatedProductIds": [
+        "deterministic-social-publication",
+        "self-identifying-product-campaign"
+      ],
+      "summary": "Earlier model-provider publication claims and later readiness blocks are historical context. A new provider acceptance result was not established."
+    },
+    {
+      "id": "editorial-and-supply-acceptance",
+      "state": "pending",
+      "relatedProductIds": [
+        "deterministic-social-publication",
+        "self-identifying-product-campaign"
+      ],
+      "summary": "Editorial checks, usable supply and normal scheduled publication acceptance remain separate from transport and UI recovery."
+    },
+    {
+      "id": "windows-git-bridge",
+      "state": "inherited-only",
+      "relatedProductIds": [],
+      "summary": "An earlier handover mentioned a Windows-to-guest repository bridge; its operational sequence was not demonstrated in the reviewed thread, so no new skill product is claimed."
+    },
+    {
+      "id": "runtime-package-warning",
+      "state": "deferred",
+      "relatedProductIds": [],
+      "summary": "An incidental package-manager/runtime warning was deferred. No repair or new product is claimed."
+    }
+  ]
+}

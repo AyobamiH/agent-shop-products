@@ -22,6 +22,20 @@
       "sourcePath": "products/autonomous-coding-workflow/PROMPT.md"
     },
     {
+      "id": "bounded-google-docs-read-recovery",
+      "slug": "bounded-google-docs-read-recovery",
+      "name": "Bounded Google Docs Read Recovery",
+      "productType": "skill",
+      "category": "developer-workflows",
+      "summary": "Diagnose Google Docs reader failures across network routes, OAuth refresh, Drive metadata and bounded document responses, then verify a compact-response repair without weakening document integrity checks.",
+      "problem": "A document reader can hide distinct transport, authentication, response-size and validation failures behind one error, while a zero process exit or successful preview can be mistaken for a repaired live collector.",
+      "coreOutcomes": ["Layered diagnosis tied to the actual host and running reader revision", "Conditional WSL route recovery with preserved configuration and guarded restarts", "Sanitised exception evidence and bounded token-refresh retries", "Compact Google Docs responses within the existing byte cap", "Preserved nested content, positions, revisions and metadata consistency checks", "Separate evidence for preview success, deployed revision and fresh saved observation"],
+      "requirements": ["An authorised Google document and an existing credential path", "Access to the application reader, its bounded-request contract and relevant diagnostics", "Actual host output or authorised access to the affected execution environment", "A preview or read-only execution path with explicit semantic results", "Relevant fixtures or validation commands for document structure and failure behavior", "Restart authority and a verified worker-drain procedure if a WSL configuration change is needed"],
+      "boundaries": ["Network configuration changes require route evidence and do not universally resolve WSL failures", "A WSL shutdown affects all running distributions and must account for their active work", "Retries remain bounded and confined to eligible transient token-refresh failures", "The existing response byte cap and document integrity checks remain in force", "Diagnostics exclude credentials, response bodies and private document contents", "Successful previews do not apply imports or document updates and may still write local authentication diagnostics", "Reviewed code, historical previews, installed revisions and saved observations are distinct evidence", "No live deployment, supply replenishment or downstream acceptance is guaranteed"],
+      "tags": ["google-docs", "oauth", "bounded-http", "wsl-networking", "diagnostics", "document-integrity", "runtime-verification"],
+      "sourcePath": "products/bounded-google-docs-read-recovery/SKILL.md"
+    },
+    {
       "id": "capability-gap-learning-system",
       "slug": "capability-gap-learning-system",
       "name": "Capability-Gap Learning System",
@@ -106,6 +120,20 @@
       "sourcePath": "products/graph-native-agent-system-migration/PROMPT.md"
     },
     {
+      "id": "live-dashboard-update-verification",
+      "slug": "live-dashboard-update-verification",
+      "name": "Live Dashboard Update Verification",
+      "productType": "skill",
+      "category": "frontend-verification",
+      "summary": "Verify live dashboard updates from observation to visible state, including shared DOM ownership, complete initial snapshots, successive events across views, freshness, and retained reading state under the production content security policy.",
+      "problem": "A dashboard can render correctly once while later events update detached nodes, leave hidden views stale, reset the reader's state, or confuse collection failures and missing data with healthy zero values.",
+      "coreOutcomes": ["Data-to-interface failure boundary identification", "Shared target ownership and mount-lifetime verification", "Complete first-snapshot and successive-event browser evidence", "Separate value, collection-status, revision, and freshness interpretation", "Retained focus and reading state across live updates", "Semantic browser assertions under the production content security policy"],
+      "requirements": ["Dashboard with an identifiable snapshot or event update contract", "Access to affected source, build configuration, and browser test commands", "Controlled fixture or authorized live observation source", "Real browser execution with the application's content security policy enforced", "Observable transport, accepted state, and DOM update boundaries"],
+      "boundaries": ["Synthetic browser evidence does not prove live collector or provider health", "Known zero, blocked, stale, unknown, and collection failure remain distinct", "A replacement node matching a selector does not prove original target continuity", "Desktop, mobile, reconnect, and replay coverage are claimed only when exercised", "Verification does not authorize production writes to manufacture update events", "A bounded update-path result is not a whole-application health claim"],
+      "tags": ["dashboard", "live-updates", "browser-verification", "dom-ownership", "freshness", "content-security-policy"],
+      "sourcePath": "products/live-dashboard-update-verification/SKILL.md"
+    },
+    {
       "id": "local-first-verification-cli",
       "slug": "local-first-verification-cli",
       "name": "Local-First Verification CLI",
@@ -160,6 +188,20 @@
       "boundaries": ["No repair, restart, reload, install, update, migrate, delete, publish, rotate, or reconcile", "Runtime and provider evidence outrank documentation", "Unavailable or unverified components cannot be reported healthy", "Preserve contradictions rather than editing them away"],
       "tags": ["reconnaissance", "production", "read-only", "runtime-truth", "inventory"],
       "sourcePath": "products/read-only-production-reconnaissance/PROMPT.md"
+    },
+    {
+      "id": "safe-scheduled-runtime-upgrade",
+      "slug": "safe-scheduled-runtime-upgrade",
+      "name": "Safe Scheduled Runtime Upgrade",
+      "productType": "skill",
+      "category": "production-reliability",
+      "summary": "Upgrade scheduled runtimes through an exact target, verified job draining, a fresh guarded review, recoverable timer restoration, and separate process-readiness and operational-completion checks.",
+      "problem": "Scheduled workers and queued jobs can change state during a release, while interrupted switches, automatic catch-up work, and slow diagnostics can make repeated upgrades or premature success claims unsafe.",
+      "coreOutcomes": ["Exact target and clean-source verification with recovery ownership", "Runtime, trigger, service-dependency and queued-job inventory", "Bounded draining with preservation of original scheduling states", "Fresh state-bound review and a single guarded release application", "Recovery decisions for stale reviews, cancellation and ambiguous switches", "Process-reported runtime readiness separated from pending asynchronous work", "Configuration restart planning with full stop scope and durable handoff"],
+      "requirements": ["A runtime driven by systemd timers or a scheduler with equivalent inspection and pause controls", "An exact target revision or artifact digest and reviewable source", "Access to service, process, queued-job and release-state observations", "A release mechanism that rejects stale state or equivalent concurrent drift", "Authority for the affected operational changes and a named recovery owner", "Durable recovery evidence and a readiness check identifying the running instance"],
+      "boundaries": ["A source checkout or successful apply response does not establish running-process readiness", "Paused timers and empty PID fields do not establish that queued or in-flight work has drained", "Worker termination, lock deletion and receipt rewriting are not shortcuts to quiescence", "An ambiguous switch must be reconciled before repetition or rollback", "Resuming schedules may start consequential catch-up work and requires the agreed recovery rule", "Asynchronous start acceptance and slow diagnostic snapshots do not prove operational completion", "Host and virtual-machine restarts require authority covering their full stop scope", "The workflow provides no universal safety guarantee or claim of live acceptance"],
+      "tags": ["runtime-upgrade", "scheduled-workers", "systemd", "job-draining", "state-bound-review", "recovery", "process-readiness", "wsl"],
+      "sourcePath": "products/safe-scheduled-runtime-upgrade/SKILL.md"
     },
     {
       "id": "self-identifying-product-campaign",
