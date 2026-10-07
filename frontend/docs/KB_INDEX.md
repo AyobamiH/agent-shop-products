@@ -1,0 +1,20 @@
+# Knowledge Base Index
+
+This directory is the persistent operating memory for the shop.
+
+## Read order
+
+1. `../AGENTS.md` — agent operating contract.
+2. `DECISIONS.md` — protected architectural decisions.
+3. `DRIFT_GUARD.md` — explicit non-goals and forbidden drift.
+4. `ARCHITECTURE.md` — module boundaries and frontend architecture.
+5. `CATALOG_CONTRACT.md` — canonical product-data contract.
+6. `FRONTEND_BRIEF.md` — frontend product experience and routes.
+7. `QUALITY_GATES.md` — engineering completion gates.
+8. `SOURCE_AND_COMMERCIALIZATION.md` — provenance, public-source, and licensing concerns.
+
+
+
+## Rule
+
+When a decision changes, update the relevant durable document in the same change. Do not rely on chat history to preserve architecture.

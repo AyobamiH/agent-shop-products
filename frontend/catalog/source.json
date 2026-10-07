@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.0.0",
+  "recordKind": "catalogue-sync-record",
+  "localRole": "synced-projection",
+  "syncedOn": "2026-10-07",
+  "productCount": 16,
+  "upstream": {
+    "repository": "AyobamiH/agent-shop-products",
+    "branch": "main",
+    "publicProjectionPath": "catalog/products.public.json",
+    "metadataAuthorityPath": "products/<product-id>/product.json",
+    "payloadPath": "products/<product-id>/PROMPT.md | products/<product-id>/SKILL.md",
+    "provenanceManifestPath": "catalog/sources.json",
+    "catalogueManifestPath": "catalog/manifest.json"
+  },
+  "notes": [
+    "The upstream repository is the only authoring authority for product facts.",
+    "catalog/products.public.json in this repository is a bundled projection, not an editable catalogue.",
+    "Per-product provenance lives upstream in catalog/sources.json and is not duplicated into this frontend.",
+    "No fallback or placeholder product data exists if a sync fails.",
+    "productCount, productCountsByType and productIds are the explicit expected inventory; the build fails when the projection disagrees with them. Update them only together with a new sync."
+  ],
+  "productCountsByType": {
+    "prompt": 11,
+    "skill": 5
+  },
+  "productIds": [
+    "autonomous-coding-workflow",
+    "bounded-google-docs-read-recovery",
+    "capability-gap-learning-system",
+    "continuous-business-operations-graph",
+    "deterministic-social-publication",
+    "evidence-backed-open-source-contribution",
+    "evidence-first-live-diagnostic-repair",
+    "graph-native-agent-system-migration",
+    "live-dashboard-update-verification",
+    "local-first-verification-cli",
+    "production-agent-operating-files",
+    "published-package-contract-verification",
+    "read-only-production-reconnaissance",
+    "safe-scheduled-runtime-upgrade",
+    "self-identifying-product-campaign",
+    "signed-agent-action-receipts"
+  ]
+}
