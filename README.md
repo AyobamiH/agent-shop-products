@@ -4,7 +4,7 @@ Canonical source repository for AyobamiH prompt and skill products used by the a
 
 ## Catalogue
 
-The catalogue contains **16 products: 11 prompts and 5 skills**. The [complete skills and work-coverage index](docs/SKILL_COVERAGE.md) lists every product, maps the reviewed procedures to their sources, and records supporting platform skills and unfinished acceptance checks.
+The catalogue contains **20 products: 11 prompts and 9 skills**. The [complete skills and work-coverage index](docs/SKILL_COVERAGE.md) lists every product, maps the reviewed procedures to their sources, and records supporting platform skills and unfinished acceptance checks.
 
 - [Product manifest](catalog/manifest.json)
 - [Public discovery projection](catalog/products.public.json)
