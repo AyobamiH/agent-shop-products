@@ -1,18 +1,19 @@
 {
-  "name": "tanstack_start_ts",
+  "name": "agent-capability-catalogue-frontend",
   "private": true,
   "sideEffects": false,
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "bun run validate:catalog && vite build",
-    "build:dev": "bun run validate:catalog && vite build --mode development",
+    "build": "bun run sync:catalog && bun run validate:catalog && vite build",
+    "build:dev": "bun run sync:catalog && bun run validate:catalog && vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
     "validate:catalog": "bun run scripts/validate-catalog.ts",
     "test": "vitest run",
-    "e2e": "python3 e2e/shop_url_filters.py && python3 e2e/product_surfaces.py"
+    "e2e": "python3 e2e/shop_url_filters.py && python3 e2e/product_surfaces.py",
+    "sync:catalog": "bun run scripts/sync-catalog.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
