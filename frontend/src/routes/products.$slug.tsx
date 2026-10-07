@@ -7,7 +7,7 @@ import { ProductHeader } from "@/features/product-detail/components/ProductHeade
 import { SourceNotice } from "@/features/product-detail/components/SourceNotice";
 import { RelatedProducts } from "@/features/product-detail/components/RelatedProducts";
 import { buildProductBreadcrumbJsonLd, buildProductJsonLd } from "@/lib/jsonld/product";
-import { buildPageHead } from "@/lib/seo/meta";
+import { buildPageHead, toMetaDescription } from "@/lib/seo/meta";
 import { SITE_DESCRIPTOR } from "@/lib/site";
 
 export const Route = createFileRoute("/products/$slug")({
@@ -27,8 +27,8 @@ export const Route = createFileRoute("/products/$slug")({
     }
     const { product } = loaderData;
     return buildPageHead({
-      title: `${product.name} — ${SITE_DESCRIPTOR}`,
-      description: product.summary,
+      title: product.name,
+      description: toMetaDescription(product.summary),
       path: `/products/${product.slug}`,
       jsonLd: [buildProductJsonLd(product), buildProductBreadcrumbJsonLd(product)],
       links: [
