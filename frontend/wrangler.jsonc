@@ -3,7 +3,9 @@
   "name": "agent-shop",
   "main": ".output/server/index.mjs",
   "compatibility_date": "2026-10-07",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "workers_dev": true,
   "preview_urls": true,
   "upload_source_maps": true,
@@ -23,5 +25,11 @@
       "enabled": true,
       "head_sampling_rate": 0.1
     }
-  }
+  },
+  "routes": [
+    {
+      "pattern": "agents.proofandstate.com",
+      "custom_domain": true
+    }
+  ]
 }
