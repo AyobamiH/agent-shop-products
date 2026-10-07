@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "outside-in-agent-crawl-verification",
+  "slug": "outside-in-agent-crawl-verification",
+  "name": "Outside-In Agent Crawl Verification",
+  "productType": "skill",
+  "category": "verification",
+  "summary": "Verify a deployed public surface from outside the runtime using canonical URLs, machine endpoints, representative crawler user agents, payload-leak checks and provider indexing observations instead of trusting deployment success.",
+  "problem": "CI and deployment commands can pass while public routing, DNS, canonical origins, crawler handling, static metadata or provider discovery are wrong.",
+  "coreOutcomes": [
+    "Post-deploy public route readback",
+    "Representative crawler user-agent checks",
+    "Canonical-origin and sitemap consistency proof",
+    "Machine-surface inventory validation",
+    "Payload and retired-route fencing",
+    "Provider crawl/index state kept separate",
+    "Deployment regressions caught before promotion"
+  ],
+  "requirements": [
+    "A deployed public origin",
+    "Known canonical route inventory",
+    "Machine discovery surfaces to verify",
+    "Ability to make unauthenticated outside-in HTTP requests",
+    "Expected product/capability count",
+    "Optional search-provider inspection access"
+  ],
+  "boundaries": [
+    "HTTP 200 does not prove indexing",
+    "Sitemap submission does not prove crawl or index",
+    "Crawler user-agent acceptance does not prove provider ingestion",
+    "Synthetic checks do not prove every geographic edge",
+    "Do not perform unauthorised mutating probes"
+  ],
+  "tags": [
+    "outside-in",
+    "crawl-verification",
+    "deployment-acceptance",
+    "crawler-user-agent",
+    "indexing",
+    "readback"
+  ],
+  "source": "SKILL.md"
+}
