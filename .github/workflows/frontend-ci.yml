@@ -46,14 +46,16 @@ jobs:
         run: |
           python3 -m pip install playwright
           python3 -m playwright install --with-deps chromium
-      - name: Start production preview
+      - name: Build Node preview for browser E2E
+        run: NITRO_PRESET=node_server bun run build
+      - name: Start Node preview
         run: |
-          bunx nitro preview --host 127.0.0.1 --port 8080 > /tmp/agent-catalogue-vite.log 2>&1 &
+          PORT=8080 HOST=127.0.0.1 node .output/server/index.mjs > /tmp/agent-catalogue-preview.log 2>&1 &
           for i in {1..60}; do
             if curl -fsS http://127.0.0.1:8080/agents >/dev/null; then exit 0; fi
             sleep 1
           done
-          cat /tmp/agent-catalogue-vite.log
+          cat /tmp/agent-catalogue-preview.log
           exit 1
       - name: Browser E2E
         run: bun run e2e
