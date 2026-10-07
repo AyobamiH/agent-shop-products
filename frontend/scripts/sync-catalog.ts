@@ -22,5 +22,5 @@ source.productCountsByType = Object.fromEntries(Object.entries(counts).sort());
 source.productIds = catalog.products.map((product) => product.id).sort();
 
 writeFileSync(localPath, upstreamText);
-writeFileSync(sourcePath, JSON.stringify(source, null, 2) + "\n");
+writeFileSync(sourcePath, JSON.stringify(source, null, 2));
 console.log("catalog sync:", catalog.products.length, counts);
