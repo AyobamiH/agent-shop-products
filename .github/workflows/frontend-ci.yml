@@ -48,7 +48,7 @@ jobs:
           python3 -m playwright install --with-deps chromium
       - name: Start production preview
         run: |
-          bun run preview -- --host 127.0.0.1 --port 8080 > /tmp/agent-catalogue-vite.log 2>&1 &
+          bunx nitro preview --host 127.0.0.1 --port 8080 > /tmp/agent-catalogue-vite.log 2>&1 &
           for i in {1..60}; do
             if curl -fsS http://127.0.0.1:8080/agents >/dev/null; then exit 0; fi
             sleep 1
