@@ -1,38 +1,66 @@
-# Cloudflare acceptance deployment
+# Cloudflare deployment
 
-## Purpose
-
-The first public deployment is an acceptance origin, not the final brand/domain decision.
+## Production topology
 
 - Worker: `agent-shop`
-- Acceptance origin: `https://agent-shop.woeinvests.workers.dev`
-- Production custom-domain candidate after acceptance: `https://agents.proofandstate.com`
-- Final brand: undecided
+- Acceptance/diagnostic origin: `https://agent-shop.woeinvests.workers.dev`
+- Canonical public origin: `https://agents.proofandstate.com`
+- Final product brand: undecided
 
-The acceptance origin proves that the GitHub-owned frontend works outside CI and that Cloudflare does not block search/AI discovery.
+The neutral `agents.proofandstate.com` hostname is intentionally independent of the eventual product name.
 
 ## Reused estate pattern
 
-This follows the existing portfolio convention: GitHub is source of truth, the frontend builds to a Cloudflare Worker plus Assets, Wrangler performs deployment, and an outside-in readback gate determines whether deployment is accepted.
+GitHub is the source of truth. The frontend builds to a Cloudflare Worker plus Workers Assets, Wrangler performs deployment, and an outside-in readback gate determines whether deployment is accepted.
 
 No D1, KV, Queues, Durable Objects, Workers AI, Vectorize or Containers are required for this phase.
+
+## workers.dev acceptance evidence
+
+The first real Cloudflare acceptance deployed merged revision `9e766c957dc750459010f669bf4067bae71003ce` through the existing Cloudflare credential custody already used by DoneState.
+
+Evidence run:
+
+- DoneState bridge run: https://github.com/AyobamiH/donestate/actions/runs/37626738083
+- Worker deployment: PASS
+- `https://agent-shop.woeinvests.workers.dev/agents`: reachable
+- root SSR routing: PASS after `run_worker_first=true`
+- outside-in machine/crawler acceptance: PASS
+
+The acceptance covered root, agent discovery, catalogue JSON, agent/LLM text surfaces, robots, sitemap, every product page, every metadata Markdown record, canonical-origin consistency, payload privacy, retired-product 404s and representative crawler user agents.
 
 ## Discovery policy
 
 `robots.txt` explicitly allows major documented AI/search agents, including OpenAI, Anthropic, Perplexity, Google, Microsoft/Bing and Apple agents. It also retains `User-agent: * / Allow: /` so other and future LLM/search crawlers are not accidentally excluded.
 
-Named rules are an auditable statement of intent, not a claim that every LLM vendor has a unique crawler or that robots directives guarantee indexing.
+Named rules are an auditable statement of intent. They do not imply that every LLM vendor has a unique crawler, and robots directives do not guarantee indexing or model ingestion.
+
+## Canonical origin contract
+
+`VITE_SITE_ORIGIN` must equal the origin being promoted.
+
+For production:
+
+```text
+https://agents.proofandstate.com
+```
+
+Canonical links, JSON-LD, `robots.txt`, `sitemap.xml`, catalogue URLs and generated Markdown detail links all derive from that value.
 
 ## Required GitHub secrets
+
+The canonical deployment workflow expects:
 
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ACCOUNT_ID`
 
 Secrets stay in GitHub/Cloudflare and are never committed.
 
+At the time of the first workers.dev acceptance, these secrets were not yet available in the `agent-shop-products` repository itself. A bounded one-off bridge reused current DoneState Cloudflare secret custody to prove the deployment without copying credentials into source.
+
 ## Acceptance gate
 
-After Wrangler deploys, `scripts/verify-deployed-surface.mjs` checks:
+After every deployment, `scripts/verify-deployed-surface.mjs` checks:
 
 - root and `/agents`;
 - `/catalog.json`, `/agents.txt`, `/llms.txt`, `/robots.txt`, `/sitemap.xml`;
@@ -43,4 +71,4 @@ After Wrangler deploys, `scripts/verify-deployed-surface.mjs` checks:
 - no raw prompt/skill payload markers;
 - representative crawler user agents receive HTTP 200 rather than a Cloudflare/application block.
 
-Only after this acceptance origin passes should a custom production domain be bound.
+A Wrangler success alone is not sufficient evidence of deployment acceptance.
