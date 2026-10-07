@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { getProductBySlug } from "@/domain/catalog/repository";
 import { buildProductMarkdown } from "@/lib/machine-readable/product-markdown";
 
-export const Route = createFileRoute("/raw/products/{\$slug}.md")({
+export const Route = createFileRoute("/raw/products/{$slug}.md")({
   server: {
     handlers: {
       GET: ({ params }) => {
