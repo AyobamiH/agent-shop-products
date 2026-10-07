@@ -3,16 +3,20 @@
   "recordKind": "procedure-coverage",
   "reviewedOn": "2026-10-07",
   "scope": {
-    "statement": "Catalogue all reusable procedures evidenced by the reviewed work and account for every product already present in the canonical repository.",
+    "statement": "Catalogue all reusable procedures evidenced by the reviewed work, including the subsequent state-governance and public machine-discovery acceptance work, and account for every product in the canonical repository.",
     "reviewedVisibleMessageCount": 65,
     "baselineProductCount": 13,
     "newProductIds": [
       "bounded-google-docs-read-recovery",
       "live-dashboard-update-verification",
-      "safe-scheduled-runtime-upgrade"
+      "machine-discovery-surface-engineering",
+      "outside-in-agent-crawl-verification",
+      "safe-scheduled-runtime-upgrade",
+      "state-transition-evidence-contract",
+      "temporary-authority-bridge-lifecycle"
     ],
-    "completeness": "Complete for the 65 recovered visible messages, the targeted authorised implementation review and the current continuity/catalogue work. This is not a claim to cover unreviewed conversations or every lifetime tool invocation.",
-    "publicationBoundary": "Original generalised workflows and sanitised evidence summaries only. Private source, shared-conversation links, raw transcripts, credentials, host identifiers and restricted implementation references are excluded.",
+    "completeness": "Complete for the original recovered 65 visible messages, the targeted authorised implementation review, the continuity/catalogue work, and the subsequent Proof & State plus Agent Shop state/discovery work explicitly cited here. It is not a claim to cover unreviewed conversations or every lifetime tool invocation.",
+    "publicationBoundary": "Original generalised workflows and sanitised evidence summaries only. Private source, shared-conversation links, raw transcripts, credentials, secret custody details, host identifiers and restricted implementation references are excluded.",
     "invocationRule": "A product mapping is a match to reusable procedure coverage, not evidence that its PROMPT.md or SKILL.md was loaded. Only supportingSkills records explicitly observed named platform-skill invocation."
   },
   "evidenceSources": [
@@ -46,6 +50,26 @@
       "kind": "current-repository-work",
       "description": "Canonical source and metadata were inspected and the skill-creator instructions were applied to author original reusable procedures for this repository.",
       "limits": "Product mappings identify procedural coverage. They do not claim that a product's payload was loaded as a runtime skill in the earlier work."
+    },
+    {
+      "id": "proof-state-operating-contract",
+      "kind": "public-repository",
+      "description": "Merged Proof & State shared operating contract and generated governance evidence.",
+      "url": "https://github.com/AyobamiH/proof-and-state/commit/b1f0dd5bbce7a68c2370caae1719eccf492550cb",
+      "limits": "Establishes the shared state/evidence/authority vocabulary. Product-specific live outcomes remain separate."
+    },
+    {
+      "id": "agent-shop-production-discovery",
+      "kind": "public-repository-and-provider-observation",
+      "description": "GitHub-owned Agent Shop deployment, crawler surface, Cloudflare outside-in acceptance, Search Console inspection and IndexNow verification observed during the current work.",
+      "url": "https://github.com/AyobamiH/agent-shop-products/tree/331e7f2ced6b35c45d203becd3df1725fe66aaab",
+      "limits": "Public source and current provider observations establish the exercised discovery workflow, not guaranteed future indexing or provider ingestion."
+    },
+    {
+      "id": "temporary-authority-bridge-observation",
+      "kind": "current-session-operational-observation",
+      "description": "A bounded Cloudflare deployment bridge reused existing repository secret custody, exposed no credential material, verified the public consequence and was removed after use.",
+      "limits": "The public skill generalises the lifecycle only. Secret values, private custody details and temporary workflow internals are not published."
     }
   ],
   "procedures": [
@@ -385,6 +409,100 @@
         "A started or queued follow-up observation remains pending until its result is read back.",
         "Do not rerun an ambiguous switch merely because a later expensive diagnostic timed out."
       ]
+    },
+    {
+      "id": "govern-state-transitions-with-evidence",
+      "name": "Keep execution, consequence, readback and outcome as separate evidence-backed states",
+      "trigger": "A workflow is at risk of treating a lower-layer success as completion.",
+      "status": "demonstrated",
+      "productIds": [
+        "state-transition-evidence-contract"
+      ],
+      "relationship": "standalone",
+      "evidence": [
+        {
+          "sourceId": "proof-state-operating-contract",
+          "kind": "merged-governance-contract",
+          "summary": "The shared operating contract merged with generated docs and CI-enforced state/evidence distinctions."
+        },
+        {
+          "sourceId": "agent-shop-production-discovery",
+          "kind": "deployment-and-provider-observation",
+          "summary": "Deployment, outside-in acceptance, sitemap submission, URL discovery and indexing were observed as separate states."
+        }
+      ],
+      "limits": [
+        "The vocabulary does not replace product-specific state machines.",
+        "A demonstrated state model does not prove every consumer has adopted it."
+      ]
+    },
+    {
+      "id": "engineer-machine-discovery-surfaces",
+      "name": "Build truthful machine-discovery surfaces from one canonical public source",
+      "trigger": "A public capability site needs to be discoverable by search crawlers, LLM crawlers and direct agents.",
+      "status": "demonstrated",
+      "productIds": [
+        "machine-discovery-surface-engineering"
+      ],
+      "relationship": "standalone",
+      "evidence": [
+        {
+          "sourceId": "agent-shop-production-discovery",
+          "kind": "source-deployment-and-live-audit",
+          "summary": "Implemented canonical HTML, robots, sitemap, JSON, agents/LLM guidance and raw metadata, then verified the production origin and live SEO surface."
+        },
+        {
+          "sourceId": "proof-state-operating-contract",
+          "kind": "governance-adoption",
+          "summary": "The reusable machine-discovery truthfulness and acceptance rules were promoted into parent governance."
+        }
+      ],
+      "limits": [
+        "Crawler permission does not guarantee provider indexing, retrieval or model ingestion.",
+        "Private payloads remain outside the public discovery surface."
+      ]
+    },
+    {
+      "id": "verify-public-agent-crawl-outside-in",
+      "name": "Verify a deployed agent/search surface from the unauthenticated public boundary",
+      "trigger": "A build or deployment is green but public routing, canonical origin or crawler behaviour still needs proof.",
+      "status": "demonstrated",
+      "productIds": [
+        "outside-in-agent-crawl-verification"
+      ],
+      "relationship": "standalone",
+      "evidence": [
+        {
+          "sourceId": "agent-shop-production-discovery",
+          "kind": "outside-in-provider-acceptance",
+          "summary": "Caught and repaired a real root-routing defect after deploy, then verified all canonical routes, machine surfaces, crawler user agents, sitemap and provider discovery state."
+        }
+      ],
+      "limits": [
+        "Representative user-agent checks do not cover every network edge.",
+        "HTTP reachability and sitemap acceptance remain distinct from indexing."
+      ]
+    },
+    {
+      "id": "use-and-retire-temporary-authority-bridge",
+      "name": "Use existing credential custody for one bounded operation and remove the bridge",
+      "trigger": "A target repository lacks direct provider credentials but another already-authorised authority can perform one bounded action.",
+      "status": "demonstrated",
+      "productIds": [
+        "temporary-authority-bridge-lifecycle"
+      ],
+      "relationship": "standalone",
+      "evidence": [
+        {
+          "sourceId": "temporary-authority-bridge-observation",
+          "kind": "bounded-authority-use-and-removal",
+          "summary": "Observed stale custody in one repository, reused current custody from another without exposing credentials, verified the public consequence, and retired the temporary bridge."
+        }
+      ],
+      "limits": [
+        "A temporary bridge is not a recommendation for permanent cross-repository credential sharing.",
+        "Credential rotation or creation remains a separate authority decision."
+      ]
     }
   ],
   "productCoverage": [
@@ -498,6 +616,26 @@
       "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
     },
     {
+      "productId": "machine-discovery-surface-engineering",
+      "catalogueState": "added",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "engineer-machine-discovery-surfaces"
+      ],
+      "invocation": "not-established",
+      "note": "Added from demonstrated subsequent state/discovery work; consult procedure evidence and limits."
+    },
+    {
+      "productId": "outside-in-agent-crawl-verification",
+      "catalogueState": "added",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "verify-public-agent-crawl-outside-in"
+      ],
+      "invocation": "not-established",
+      "note": "Added from demonstrated subsequent state/discovery work; consult procedure evidence and limits."
+    },
+    {
       "productId": "production-agent-operating-files",
       "catalogueState": "retained",
       "mapping": "procedure-coverage",
@@ -555,6 +693,26 @@
       "procedureIds": [],
       "invocation": "not-established",
       "note": "Retained from the canonical catalogue. Its payload was not established as invoked in the reviewed work."
+    },
+    {
+      "productId": "state-transition-evidence-contract",
+      "catalogueState": "added",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "govern-state-transitions-with-evidence"
+      ],
+      "invocation": "not-established",
+      "note": "Added from demonstrated subsequent state/discovery work; consult procedure evidence and limits."
+    },
+    {
+      "productId": "temporary-authority-bridge-lifecycle",
+      "catalogueState": "added",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "use-and-retire-temporary-authority-bridge"
+      ],
+      "invocation": "not-established",
+      "note": "Added from demonstrated subsequent state/discovery work; consult procedure evidence and limits."
     }
   ],
   "supportingSkills": [
@@ -653,6 +811,15 @@
       "state": "deferred",
       "relatedProductIds": [],
       "summary": "An incidental package-manager/runtime warning was deferred. No repair or new product is claimed."
+    },
+    {
+      "id": "agent-shop-google-indexing",
+      "state": "pending",
+      "relatedProductIds": [
+        "machine-discovery-surface-engineering",
+        "outside-in-agent-crawl-verification"
+      ],
+      "summary": "The public Agent Shop is crawlable and submitted to Google; URL indexing remains provider-controlled and is monitored separately."
     }
   ]
 }
