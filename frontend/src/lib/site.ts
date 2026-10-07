@@ -14,7 +14,7 @@ function normalizeOrigin(value: string): string {
  * Local development intentionally falls back to localhost.
  */
 export const SITE_ORIGIN = normalizeOrigin(
-  import.meta.env.VITE_SITE_ORIGIN ?? "http://localhost:8080",
+  import.meta.env["VITE_SITE_ORIGIN"] ?? "http://localhost:8080",
 );
 
 export const PRODUCT_HEADLINE =
