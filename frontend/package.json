@@ -4,8 +4,8 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
-    "build": "bun run sync:catalog && bun run validate:catalog && vite build",
+    "dev": "bun run sync:catalog && bun run generate:metadata && vite dev",
+    "build": "bun run sync:catalog && bun run generate:metadata && bun run validate:catalog && vite build",
     "build:dev": "bun run sync:catalog && bun run validate:catalog && vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
@@ -13,7 +13,8 @@
     "validate:catalog": "bun run scripts/validate-catalog.ts",
     "test": "vitest run",
     "e2e": "python3 e2e/shop_url_filters.py && python3 e2e/product_surfaces.py",
-    "sync:catalog": "bun run scripts/sync-catalog.ts"
+    "sync:catalog": "bun run scripts/sync-catalog.ts",
+    "generate:metadata": "bun run scripts/generate-public-metadata.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -71,7 +72,6 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
-    "@lovable.dev/vite-tanstack-config": "2.25.2",
     "@types/node": "^22.16.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",

@@ -37,4 +37,4 @@ bun run lint
 bun run e2e
 ```
 
-The former Lovable project is migration provenance only. Future development is owned by this GitHub source tree.
+The former Lovable project is migration provenance only. Future development is owned by this GitHub source tree. No Lovable runtime or build dependency remains.
