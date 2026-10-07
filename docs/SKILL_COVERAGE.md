@@ -2,7 +2,7 @@
 
 Reviewed on **7 October 2026**.
 
-The catalogue contains **16 products: 11 prompt products and 5 skill products**. This update retains the 13 existing products and adds three original reusable skills. It accounts for **13 procedures** in the recovered work and **four named supporting platform skills**.
+The catalogue contains **20 products: 11 prompt products and 9 skill products**. This update retains the 13 existing products and adds seven original reusable skills. It accounts for **17 procedures** in the recovered work and **four named supporting platform skills**.
 
 ## Scope and evidence
 
@@ -42,6 +42,39 @@ Trace an observation through collection, transport, accepted state and rendering
 
 Reviewed source and hosted browser regressions support the exercised synthetic rendering behaviour. Browser CI covered the same integrated source tree as the merged change. This establishes neither current owner-host deployment nor live provider correctness; unexercised reconnect and viewport paths remain unverified.
 
+
+### State-Transition Evidence Contract
+
+[Read the skill](../products/state-transition-evidence-contract/SKILL.md) · [Metadata](../products/state-transition-evidence-contract/product.json)
+
+Keep availability, execution, consequence, readback, outcome, evidence and freshness as separate state axes. Define GREEN as the highest required acceptance layer passing with current evidence, preserve unknown and ambiguous states, bind observations to identity/time, and reconcile ambiguous mutations before retry.
+
+The merged Proof & State shared operating contract and the Agent Shop deployment/indexing work demonstrate why lower-layer success cannot safely stand in for outside-in or provider-controlled outcomes.
+
+### Machine-Discovery Surface Engineering
+
+[Read the skill](../products/machine-discovery-surface-engineering/SKILL.md) · [Metadata](../products/machine-discovery-surface-engineering/product.json)
+
+Build public discovery from one canonical metadata source: crawlable HTML, robots, sitemap, machine JSON, agent guidance and stable metadata routes. Keep structured data truthful to the actual commercial state and keep private payloads outside the discovery projection.
+
+The Agent Shop production surface demonstrates the complete source-to-public projection and the later live audit; crawler permission remains distinct from provider indexing or LLM ingestion.
+
+### Outside-In Agent Crawl Verification
+
+[Read the skill](../products/outside-in-agent-crawl-verification/SKILL.md) · [Metadata](../products/outside-in-agent-crawl-verification/product.json)
+
+Verify a deployment from the unauthenticated public boundary rather than trusting CI or a deploy command. Check route inventory, canonical origin, machine surfaces, crawler user agents, payload fencing and provider discovery states separately.
+
+This workflow caught a real post-deploy root-routing defect on the Agent Shop, then proved the repaired production origin and later kept Google discovery/IndexNow states separate from crawlability.
+
+### Temporary Authority Bridge Lifecycle
+
+[Read the skill](../products/temporary-authority-bridge-lifecycle/SKILL.md) · [Metadata](../products/temporary-authority-bridge-lifecycle/product.json)
+
+Reuse an already-authorised credential holder for one bounded cross-repository operation without copying the secret. Pin the exact target, verify the provider consequence outside the bridge, and remove the temporary authority path immediately after success, failure or abandonment.
+
+The demonstrated Cloudflare acceptance path included one stale credential custody finding, one bounded reuse of current custody, public consequence readback and explicit bridge retirement. Secret values and private custody details are not published.
+
 ## Complete product inventory
 
 All existing IDs, slugs, metadata and payloads are retained. The 11 migrated prompt payloads and both pre-existing skill payloads remain unchanged.
@@ -58,12 +91,16 @@ All existing IDs, slugs, metadata and payloads are retained. The 11 migrated pro
 | [Graph-Native Agent System Migration](../products/graph-native-agent-system-migration/PROMPT.md) | Prompt | Existing product; routine runtime maintenance does not establish a graph migration. |
 | [Live Dashboard Update Verification](../products/live-dashboard-update-verification/SKILL.md) | Skill | New: shared DOM ownership, streaming updates and freshness verification. |
 | [Local-First Verification CLI](../products/local-first-verification-cli/PROMPT.md) | Prompt | Evidence classification across source, CI, runtime and visible results. |
+| [Machine-Discovery Surface Engineering](../products/machine-discovery-surface-engineering/SKILL.md) | Skill | New: canonical agent/search discovery surfaces with truthful metadata and payload boundaries. |
+| [Outside-In Agent Crawl Verification](../products/outside-in-agent-crawl-verification/SKILL.md) | Skill | New: deployed public-route, crawler and provider-discovery acceptance from outside the runtime. |
 | [Production Agent Operating Files](../products/production-agent-operating-files/PROMPT.md) | Prompt | Durable context and explicit evidence/authority boundaries. |
 | [Published Package Contract Verification](../products/published-package-contract-verification/SKILL.md) | Skill | Existing skill; package-export verification was not established in this work. |
 | [Read-Only Production System Reconnaissance](../products/read-only-production-reconnaissance/PROMPT.md) | Prompt | Host, route, process and collection-state inspection. |
 | [Safe Scheduled Runtime Upgrade](../products/safe-scheduled-runtime-upgrade/SKILL.md) | Skill | New: drain, guarded apply, schedule restoration and process acceptance. |
 | [Self-Identifying Product Campaign](../products/self-identifying-product-campaign/PROMPT.md) | Prompt | Retained; editorial/model-provider context is inherited or pending. |
 | [Signed Agent Action Receipts](../products/signed-agent-action-receipts/PROMPT.md) | Prompt | Retained; cryptographically signed receipt execution was not demonstrated. |
+| [State-Transition Evidence Contract](../products/state-transition-evidence-contract/SKILL.md) | Skill | New: multi-axis state, GREEN and evidence-freshness contract. |
+| [Temporary Authority Bridge Lifecycle](../products/temporary-authority-bridge-lifecycle/SKILL.md) | Skill | New: bounded credential-custody reuse with consequence and removal proof. |
 
 ## Procedure coverage
 
@@ -84,12 +121,16 @@ All existing IDs, slugs, metadata and payloads are retained. The 11 migrated pro
 | Repair shared DOM ownership and verify successive dashboard updates | Demonstrated | [Live Dashboard Update Verification](../products/live-dashboard-update-verification/SKILL.md) |
 | Deliver a narrow repository change with truthful validation | Demonstrated | [Evidence-Backed Open-Source Contribution](../products/evidence-backed-open-source-contribution/SKILL.md); [Local-First Verification CLI](../products/local-first-verification-cli/PROMPT.md) |
 | Hand off an exact runtime revision with separate live acceptance | Partially demonstrated | [Safe Scheduled Runtime Upgrade](../products/safe-scheduled-runtime-upgrade/SKILL.md); [Local-First Verification CLI](../products/local-first-verification-cli/PROMPT.md); [Autonomous Coding Workflow with a Work Ledger](../products/autonomous-coding-workflow/PROMPT.md) |
+| Keep execution, consequence, readback and outcome as separate evidence-backed states | Demonstrated | [State-Transition Evidence Contract](../products/state-transition-evidence-contract/SKILL.md) |
+| Build truthful machine-discovery surfaces from one canonical public source | Demonstrated | [Machine-Discovery Surface Engineering](../products/machine-discovery-surface-engineering/SKILL.md) |
+| Verify a deployed agent/search surface from the unauthenticated public boundary | Demonstrated | [Outside-In Agent Crawl Verification](../products/outside-in-agent-crawl-verification/SKILL.md) |
+| Use existing credential custody for one bounded operation and remove the bridge | Demonstrated | [Temporary Authority Bridge Lifecycle](../products/temporary-authority-bridge-lifecycle/SKILL.md) |
 
-### Why only three new products?
+### Why these seven added skills?
 
-Existing products already cover durable work context, read-only reconnaissance, evidence-first diagnosis, bounded contribution work, source/CI/runtime evidence distinctions and deterministic publication acceptance. Those procedures are mapped to their existing products instead of being repackaged as duplicate inventory.
+The original review added three skills because existing products already covered the other recovered procedures. Subsequent work then demonstrated four genuinely distinct procedures that were not represented in the catalogue: cross-product state-transition evidence, machine-discovery surface engineering, outside-in crawl acceptance and temporary-authority bridge lifecycle.
 
-The distinct gaps were bounded Google document-read recovery, safe maintenance of a scheduled runtime, and live dashboard rendering verification. The new payloads provide actionable procedures for those gaps. They are repository products, not a claim that personal platform skills were installed.
+Those later skills are backed by merged Proof & State governance and the exercised Agent Shop deployment/discovery work. They do not claim that Tail Wagging's still-unmerged subcontracting implementation is complete, and they do not turn provider indexing or crawler permission into guaranteed outcomes.
 
 ## Named supporting platform skills
 

@@ -15,10 +15,35 @@
       "category": "agent-workflows",
       "summary": "Build a resumable coding-agent workflow that selects bounded work from repository evidence, persists decisions in a durable ledger, verifies work before completion, and stops at explicit approval boundaries.",
       "problem": "Long-running coding agents can lose durable task state, repeat completed work, broaden scope, or claim completion without repository-owned evidence.",
-      "coreOutcomes": ["Repository-owned work selection and state", "Durable work ledger and resumability", "Explicit permission and approval boundaries", "Validation and evidence before completion", "Duplicate-work prevention"],
-      "requirements": ["Existing Git repository", "Node.js 20+ or equivalent scripting runtime", "Test runner and validation commands", "Roadmap or backlog stored in the repository", "Durable Markdown, JSON, or SQL work ledger", "Explicit permissions for mutation and external actions", "Git state inspection", "Evidence-pack storage"],
-      "boundaries": ["Not a general autonomous daemon", "Chat history is not authoritative workflow state", "Autonomy does not imply permission to deploy, push, publish, or expand scope"],
-      "tags": ["coding-agent", "work-ledger", "resumability", "verification", "approval-boundaries"],
+      "coreOutcomes": [
+        "Repository-owned work selection and state",
+        "Durable work ledger and resumability",
+        "Explicit permission and approval boundaries",
+        "Validation and evidence before completion",
+        "Duplicate-work prevention"
+      ],
+      "requirements": [
+        "Existing Git repository",
+        "Node.js 20+ or equivalent scripting runtime",
+        "Test runner and validation commands",
+        "Roadmap or backlog stored in the repository",
+        "Durable Markdown, JSON, or SQL work ledger",
+        "Explicit permissions for mutation and external actions",
+        "Git state inspection",
+        "Evidence-pack storage"
+      ],
+      "boundaries": [
+        "Not a general autonomous daemon",
+        "Chat history is not authoritative workflow state",
+        "Autonomy does not imply permission to deploy, push, publish, or expand scope"
+      ],
+      "tags": [
+        "coding-agent",
+        "work-ledger",
+        "resumability",
+        "verification",
+        "approval-boundaries"
+      ],
       "sourcePath": "products/autonomous-coding-workflow/PROMPT.md"
     },
     {
@@ -29,10 +54,41 @@
       "category": "developer-workflows",
       "summary": "Diagnose Google Docs reader failures across network routes, OAuth refresh, Drive metadata and bounded document responses, then verify a compact-response repair without weakening document integrity checks.",
       "problem": "A document reader can hide distinct transport, authentication, response-size and validation failures behind one error, while a zero process exit or successful preview can be mistaken for a repaired live collector.",
-      "coreOutcomes": ["Layered diagnosis tied to the actual host and running reader revision", "Conditional WSL route recovery with preserved configuration and guarded restarts", "Sanitised exception evidence and bounded token-refresh retries", "Compact Google Docs responses within the existing byte cap", "Preserved nested content, positions, revisions and metadata consistency checks", "Separate evidence for preview success, deployed revision and fresh saved observation"],
-      "requirements": ["An authorised Google document and an existing credential path", "Access to the application reader, its bounded-request contract and relevant diagnostics", "Actual host output or authorised access to the affected execution environment", "A preview or read-only execution path with explicit semantic results", "Relevant fixtures or validation commands for document structure and failure behavior", "Restart authority and a verified worker-drain procedure if a WSL configuration change is needed"],
-      "boundaries": ["Network configuration changes require route evidence and do not universally resolve WSL failures", "A WSL shutdown affects all running distributions and must account for their active work", "Retries remain bounded and confined to eligible transient token-refresh failures", "The existing response byte cap and document integrity checks remain in force", "Diagnostics exclude credentials, response bodies and private document contents", "Successful previews do not apply imports or document updates and may still write local authentication diagnostics", "Reviewed code, historical previews, installed revisions and saved observations are distinct evidence", "No live deployment, supply replenishment or downstream acceptance is guaranteed"],
-      "tags": ["google-docs", "oauth", "bounded-http", "wsl-networking", "diagnostics", "document-integrity", "runtime-verification"],
+      "coreOutcomes": [
+        "Layered diagnosis tied to the actual host and running reader revision",
+        "Conditional WSL route recovery with preserved configuration and guarded restarts",
+        "Sanitised exception evidence and bounded token-refresh retries",
+        "Compact Google Docs responses within the existing byte cap",
+        "Preserved nested content, positions, revisions and metadata consistency checks",
+        "Separate evidence for preview success, deployed revision and fresh saved observation"
+      ],
+      "requirements": [
+        "An authorised Google document and an existing credential path",
+        "Access to the application reader, its bounded-request contract and relevant diagnostics",
+        "Actual host output or authorised access to the affected execution environment",
+        "A preview or read-only execution path with explicit semantic results",
+        "Relevant fixtures or validation commands for document structure and failure behavior",
+        "Restart authority and a verified worker-drain procedure if a WSL configuration change is needed"
+      ],
+      "boundaries": [
+        "Network configuration changes require route evidence and do not universally resolve WSL failures",
+        "A WSL shutdown affects all running distributions and must account for their active work",
+        "Retries remain bounded and confined to eligible transient token-refresh failures",
+        "The existing response byte cap and document integrity checks remain in force",
+        "Diagnostics exclude credentials, response bodies and private document contents",
+        "Successful previews do not apply imports or document updates and may still write local authentication diagnostics",
+        "Reviewed code, historical previews, installed revisions and saved observations are distinct evidence",
+        "No live deployment, supply replenishment or downstream acceptance is guaranteed"
+      ],
+      "tags": [
+        "google-docs",
+        "oauth",
+        "bounded-http",
+        "wsl-networking",
+        "diagnostics",
+        "document-integrity",
+        "runtime-verification"
+      ],
       "sourcePath": "products/bounded-google-docs-read-recovery/SKILL.md"
     },
     {
@@ -43,10 +99,36 @@
       "category": "agent-governance",
       "summary": "Build a governed system that classifies why agent work is blocked, separates missing capability from missing permission, proposes the smallest justified improvement, validates it, and retries the original task without self-granting authority.",
       "problem": "Agents can misclassify permission or configuration failures as missing capabilities and expand their own authority instead of stopping or improving safely.",
-      "coreOutcomes": ["Boundary classification", "Recurring-gap deduplication", "Governed capability proposals", "Separated implementation and activation", "Retry of the original task after validated activation"],
-      "requirements": ["Existing agent or task runtime", "Durable task and checkpoint storage", "Allowlisted tool or skill gateway", "Explicit approval records", "Registry for agents, skills, tools, plugins, workers, and policies", "Structured task results with evidence", "Test runner and synthetic fixtures", "Retry path for the original blocked task"],
-      "boundaries": ["Missing permission is not missing capability", "Blocked agents cannot approve their own expansion", "Implementation and activation are separate", "Forbidden work remains forbidden"],
-      "tags": ["agent-governance", "capability-gaps", "permissions", "toolgate", "validation"],
+      "coreOutcomes": [
+        "Boundary classification",
+        "Recurring-gap deduplication",
+        "Governed capability proposals",
+        "Separated implementation and activation",
+        "Retry of the original task after validated activation"
+      ],
+      "requirements": [
+        "Existing agent or task runtime",
+        "Durable task and checkpoint storage",
+        "Allowlisted tool or skill gateway",
+        "Explicit approval records",
+        "Registry for agents, skills, tools, plugins, workers, and policies",
+        "Structured task results with evidence",
+        "Test runner and synthetic fixtures",
+        "Retry path for the original blocked task"
+      ],
+      "boundaries": [
+        "Missing permission is not missing capability",
+        "Blocked agents cannot approve their own expansion",
+        "Implementation and activation are separate",
+        "Forbidden work remains forbidden"
+      ],
+      "tags": [
+        "agent-governance",
+        "capability-gaps",
+        "permissions",
+        "toolgate",
+        "validation"
+      ],
       "sourcePath": "products/capability-gap-learning-system/PROMPT.md"
     },
     {
@@ -57,10 +139,36 @@
       "category": "agent-operations",
       "summary": "Build a durable, change-aware business operating loop that discovers, prioritises, executes, verifies, and replans useful work without relying on a fresh user prompt after each task.",
       "problem": "Repeatedly asking an LLM to keep going does not create durable autonomy, state ownership, recovery, duplicate prevention, or evidence-led continuation.",
-      "coreOutcomes": ["Canonical mission and business registry", "Evidence-backed candidate discovery", "Business-value scoring", "Explicit approval classes", "Duplicate-cycle prevention", "Restart recovery and verified continuation"],
-      "requirements": ["TypeScript or JavaScript service with durable task or graph runtime", "Durable SQL or equivalent state storage", "Business registry", "Allowlisted worker or task surface", "Explicit approval records", "Restart-aware scheduler", "Structured verification evidence"],
-      "boundaries": ["A cron job repeatedly calling an LLM is not sufficient", "No blanket authority for consequential actions", "Do not generate work from imagination when evidence is missing", "Do not learn from unverified outcomes"],
-      "tags": ["business-operations", "durable-graph", "autonomy", "scheduling", "verification"],
+      "coreOutcomes": [
+        "Canonical mission and business registry",
+        "Evidence-backed candidate discovery",
+        "Business-value scoring",
+        "Explicit approval classes",
+        "Duplicate-cycle prevention",
+        "Restart recovery and verified continuation"
+      ],
+      "requirements": [
+        "TypeScript or JavaScript service with durable task or graph runtime",
+        "Durable SQL or equivalent state storage",
+        "Business registry",
+        "Allowlisted worker or task surface",
+        "Explicit approval records",
+        "Restart-aware scheduler",
+        "Structured verification evidence"
+      ],
+      "boundaries": [
+        "A cron job repeatedly calling an LLM is not sufficient",
+        "No blanket authority for consequential actions",
+        "Do not generate work from imagination when evidence is missing",
+        "Do not learn from unverified outcomes"
+      ],
+      "tags": [
+        "business-operations",
+        "durable-graph",
+        "autonomy",
+        "scheduling",
+        "verification"
+      ],
       "sourcePath": "products/continuous-business-operations-graph/PROMPT.md"
     },
     {
@@ -71,10 +179,36 @@
       "category": "publication-reliability",
       "summary": "Build an auditable social publishing pipeline with immutable content specifications, durable slot ownership, one bounded provider write, official readback, reconciliation, and evidence-backed terminal states.",
       "problem": "Schedulers and provider write responses can be mistaken for publication truth, while blind retries can create duplicate external effects.",
-      "coreOutcomes": ["Deterministic selection and slot ownership", "Immutable content specification", "One bounded provider write", "Official provider readback", "Ambiguous-write reconciliation", "Auditable terminal classifications"],
-      "requirements": ["TypeScript or JavaScript service", "Durable SQL storage", "Official provider write and read APIs", "Named publication opportunity scheduler", "Explicit authority for live writes", "Zero-write shadow mode", "Platform constraints"],
-      "boundaries": ["Official provider readback is publication truth", "Ambiguous writes are not blindly retried", "Content models do not choose product, campaign, account, connector, or approval", "One scheduler owner controls a slot"],
-      "tags": ["social-publishing", "idempotency", "provider-readback", "reconciliation", "scheduling"],
+      "coreOutcomes": [
+        "Deterministic selection and slot ownership",
+        "Immutable content specification",
+        "One bounded provider write",
+        "Official provider readback",
+        "Ambiguous-write reconciliation",
+        "Auditable terminal classifications"
+      ],
+      "requirements": [
+        "TypeScript or JavaScript service",
+        "Durable SQL storage",
+        "Official provider write and read APIs",
+        "Named publication opportunity scheduler",
+        "Explicit authority for live writes",
+        "Zero-write shadow mode",
+        "Platform constraints"
+      ],
+      "boundaries": [
+        "Official provider readback is publication truth",
+        "Ambiguous writes are not blindly retried",
+        "Content models do not choose product, campaign, account, connector, or approval",
+        "One scheduler owner controls a slot"
+      ],
+      "tags": [
+        "social-publishing",
+        "idempotency",
+        "provider-readback",
+        "reconciliation",
+        "scheduling"
+      ],
       "sourcePath": "products/deterministic-social-publication/PROMPT.md"
     },
     {
@@ -85,10 +219,37 @@
       "category": "developer-workflows",
       "summary": "Take a bounded open-source issue from selection to maintainer-ready submission using contributor-rule discovery, collision checks, exact-base branching, red/green proof, repository-native validation, and honest CI/review reporting.",
       "problem": "Open-source contributions can waste maintainer time or damage contributor credibility when they duplicate active work, solve the wrong layer, skip reproduction, misread CI, or present weak evidence as completion.",
-      "coreOutcomes": ["Worthy-issue selection with duplicate-work prevention","Repository-specific rule and contribution-policy compliance","Exact upstream base and fork hygiene","Immutable red/green evidence on exact revisions","Right-layer fixes with bounded diffs","Maintainer-facing validation and truthful submission handoff"],
-      "requirements": ["Public or accessible Git repository","Issue or bounded maintenance target","Ability to inspect repository contribution guidance and history","Test or reproduction path appropriate to the bug","Fork or authorised branch workflow","Git and hosted CI evidence when available"],
-      "boundaries": ["Do not race an active credible contributor","Do not bypass repository rules about human submission or approvals","Cancelled or gated CI is not equivalent to a test failure","Local checks, hosted CI, review, and merge approval remain separate evidence classes","Only demonstrated reusable lessons should be packaged as product knowledge"],
-      "tags": ["open-source","contribution","red-green","duplicate-prevention","maintainer-review","ci-evidence"],
+      "coreOutcomes": [
+        "Worthy-issue selection with duplicate-work prevention",
+        "Repository-specific rule and contribution-policy compliance",
+        "Exact upstream base and fork hygiene",
+        "Immutable red/green evidence on exact revisions",
+        "Right-layer fixes with bounded diffs",
+        "Maintainer-facing validation and truthful submission handoff"
+      ],
+      "requirements": [
+        "Public or accessible Git repository",
+        "Issue or bounded maintenance target",
+        "Ability to inspect repository contribution guidance and history",
+        "Test or reproduction path appropriate to the bug",
+        "Fork or authorised branch workflow",
+        "Git and hosted CI evidence when available"
+      ],
+      "boundaries": [
+        "Do not race an active credible contributor",
+        "Do not bypass repository rules about human submission or approvals",
+        "Cancelled or gated CI is not equivalent to a test failure",
+        "Local checks, hosted CI, review, and merge approval remain separate evidence classes",
+        "Only demonstrated reusable lessons should be packaged as product knowledge"
+      ],
+      "tags": [
+        "open-source",
+        "contribution",
+        "red-green",
+        "duplicate-prevention",
+        "maintainer-review",
+        "ci-evidence"
+      ],
       "sourcePath": "products/evidence-backed-open-source-contribution/SKILL.md"
     },
     {
@@ -99,10 +260,35 @@
       "category": "production-reliability",
       "summary": "Diagnose and repair external-write failures without duplicate side effects by ranking evidence, separating ambiguous outcomes, and requiring authoritative provider readback before success.",
       "problem": "External API calls can return ambiguous or misleading local success while the provider-side effect is absent, duplicated, delayed, or unknown.",
-      "coreOutcomes": ["Read-only failure reconnaissance", "Provider-first evidence hierarchy", "Explicit external-write outcome model", "Idempotent and correlation-safe repair", "Official readback before success"],
-      "requirements": ["TypeScript or JavaScript service with external API writes", "Durable transaction store", "Official provider read/status/receipt APIs", "Test runner", "Local no-write execution path", "Explicit authority for real diagnostic writes", "Durable idempotency or correlation mechanism"],
-      "boundaries": ["Successful local execution is not provider success", "Ambiguous evidence remains unresolved", "Live diagnostic writes must be explicitly authorised", "Repair must not create duplicates"],
-      "tags": ["debugging", "external-writes", "provider-readback", "idempotency", "reconciliation"],
+      "coreOutcomes": [
+        "Read-only failure reconnaissance",
+        "Provider-first evidence hierarchy",
+        "Explicit external-write outcome model",
+        "Idempotent and correlation-safe repair",
+        "Official readback before success"
+      ],
+      "requirements": [
+        "TypeScript or JavaScript service with external API writes",
+        "Durable transaction store",
+        "Official provider read/status/receipt APIs",
+        "Test runner",
+        "Local no-write execution path",
+        "Explicit authority for real diagnostic writes",
+        "Durable idempotency or correlation mechanism"
+      ],
+      "boundaries": [
+        "Successful local execution is not provider success",
+        "Ambiguous evidence remains unresolved",
+        "Live diagnostic writes must be explicitly authorised",
+        "Repair must not create duplicates"
+      ],
+      "tags": [
+        "debugging",
+        "external-writes",
+        "provider-readback",
+        "idempotency",
+        "reconciliation"
+      ],
       "sourcePath": "products/evidence-first-live-diagnostic-repair/PROMPT.md"
     },
     {
@@ -113,10 +299,35 @@
       "category": "agent-architecture",
       "summary": "Migrate an existing automation or agent system from loosely connected jobs and schedulers into a durable graph runtime with checkpoints, explicit authority, idempotent effects, recovery, and provider-side verification.",
       "problem": "Live systems built from loosely connected schedulers, queues, and conversational loops can duplicate side effects, lose state, or become unsafe during big-bang orchestration rewrites.",
-      "coreOutcomes": ["Incremental graph migration", "Durable run identity and checkpoints", "Guarded state transitions", "Idempotent external effects", "Crash and restart recovery", "Single authoritative owner during cutover"],
-      "requirements": ["Existing TypeScript or JavaScript service", "Durable SQL database", "Test runner", "Read-only live-runtime inspection", "Zero-write or dry-run mode", "Official provider readback"],
-      "boundaries": ["Not a greenfield rewrite", "Never allow two authoritative owners for the same external effect", "Do not infer completion from graph code or compilation alone", "Prefer existing runtime architecture unless a graph dependency already fits"],
-      "tags": ["agent-architecture", "migration", "graph-runtime", "idempotency", "cutover"],
+      "coreOutcomes": [
+        "Incremental graph migration",
+        "Durable run identity and checkpoints",
+        "Guarded state transitions",
+        "Idempotent external effects",
+        "Crash and restart recovery",
+        "Single authoritative owner during cutover"
+      ],
+      "requirements": [
+        "Existing TypeScript or JavaScript service",
+        "Durable SQL database",
+        "Test runner",
+        "Read-only live-runtime inspection",
+        "Zero-write or dry-run mode",
+        "Official provider readback"
+      ],
+      "boundaries": [
+        "Not a greenfield rewrite",
+        "Never allow two authoritative owners for the same external effect",
+        "Do not infer completion from graph code or compilation alone",
+        "Prefer existing runtime architecture unless a graph dependency already fits"
+      ],
+      "tags": [
+        "agent-architecture",
+        "migration",
+        "graph-runtime",
+        "idempotency",
+        "cutover"
+      ],
       "sourcePath": "products/graph-native-agent-system-migration/PROMPT.md"
     },
     {
@@ -127,10 +338,37 @@
       "category": "frontend-verification",
       "summary": "Verify live dashboard updates from observation to visible state, including shared DOM ownership, complete initial snapshots, successive events across views, freshness, and retained reading state under the production content security policy.",
       "problem": "A dashboard can render correctly once while later events update detached nodes, leave hidden views stale, reset the reader's state, or confuse collection failures and missing data with healthy zero values.",
-      "coreOutcomes": ["Data-to-interface failure boundary identification", "Shared target ownership and mount-lifetime verification", "Complete first-snapshot and successive-event browser evidence", "Separate value, collection-status, revision, and freshness interpretation", "Retained focus and reading state across live updates", "Semantic browser assertions under the production content security policy"],
-      "requirements": ["Dashboard with an identifiable snapshot or event update contract", "Access to affected source, build configuration, and browser test commands", "Controlled fixture or authorized live observation source", "Real browser execution with the application's content security policy enforced", "Observable transport, accepted state, and DOM update boundaries"],
-      "boundaries": ["Synthetic browser evidence does not prove live collector or provider health", "Known zero, blocked, stale, unknown, and collection failure remain distinct", "A replacement node matching a selector does not prove original target continuity", "Desktop, mobile, reconnect, and replay coverage are claimed only when exercised", "Verification does not authorize production writes to manufacture update events", "A bounded update-path result is not a whole-application health claim"],
-      "tags": ["dashboard", "live-updates", "browser-verification", "dom-ownership", "freshness", "content-security-policy"],
+      "coreOutcomes": [
+        "Data-to-interface failure boundary identification",
+        "Shared target ownership and mount-lifetime verification",
+        "Complete first-snapshot and successive-event browser evidence",
+        "Separate value, collection-status, revision, and freshness interpretation",
+        "Retained focus and reading state across live updates",
+        "Semantic browser assertions under the production content security policy"
+      ],
+      "requirements": [
+        "Dashboard with an identifiable snapshot or event update contract",
+        "Access to affected source, build configuration, and browser test commands",
+        "Controlled fixture or authorized live observation source",
+        "Real browser execution with the application's content security policy enforced",
+        "Observable transport, accepted state, and DOM update boundaries"
+      ],
+      "boundaries": [
+        "Synthetic browser evidence does not prove live collector or provider health",
+        "Known zero, blocked, stale, unknown, and collection failure remain distinct",
+        "A replacement node matching a selector does not prove original target continuity",
+        "Desktop, mobile, reconnect, and replay coverage are claimed only when exercised",
+        "Verification does not authorize production writes to manufacture update events",
+        "A bounded update-path result is not a whole-application health claim"
+      ],
+      "tags": [
+        "dashboard",
+        "live-updates",
+        "browser-verification",
+        "dom-ownership",
+        "freshness",
+        "content-security-policy"
+      ],
       "sourcePath": "products/live-dashboard-update-verification/SKILL.md"
     },
     {
@@ -141,11 +379,123 @@
       "category": "developer-tooling",
       "summary": "Build a stack-aware, read-only CLI that classifies verified facts, warnings, failures, skipped checks, and unverified production claims before developers trust AI-generated changes.",
       "problem": "Static checks and local command success can be mistaken for production readiness, while skipped or unavailable evidence is often collapsed into false confidence.",
-      "coreOutcomes": ["Safe project-boundary detection", "Stack-aware probe selection", "Read-only evidence collection", "Explicit proof categories", "Human and machine-readable reports", "Next-safe-step recommendations"],
-      "requirements": ["Node.js 20+ or equivalent CLI runtime", "Repository with source/configuration/deployment metadata", "Test runner", "Safe subprocess execution layer", "Optional explicit runtime/CI/provider inputs", "Dedicated evidence output path when needed"],
-      "boundaries": ["Read-only by design must be enforced", "Skipped is not failed", "Unverified is not safe", "Configured is not running", "CI is not production", "Repository scan is not a security audit"],
-      "tags": ["cli", "verification", "read-only", "repository-audit", "evidence"],
+      "coreOutcomes": [
+        "Safe project-boundary detection",
+        "Stack-aware probe selection",
+        "Read-only evidence collection",
+        "Explicit proof categories",
+        "Human and machine-readable reports",
+        "Next-safe-step recommendations"
+      ],
+      "requirements": [
+        "Node.js 20+ or equivalent CLI runtime",
+        "Repository with source/configuration/deployment metadata",
+        "Test runner",
+        "Safe subprocess execution layer",
+        "Optional explicit runtime/CI/provider inputs",
+        "Dedicated evidence output path when needed"
+      ],
+      "boundaries": [
+        "Read-only by design must be enforced",
+        "Skipped is not failed",
+        "Unverified is not safe",
+        "Configured is not running",
+        "CI is not production",
+        "Repository scan is not a security audit"
+      ],
+      "tags": [
+        "cli",
+        "verification",
+        "read-only",
+        "repository-audit",
+        "evidence"
+      ],
       "sourcePath": "products/local-first-verification-cli/PROMPT.md"
+    },
+    {
+      "id": "machine-discovery-surface-engineering",
+      "slug": "machine-discovery-surface-engineering",
+      "name": "Machine-Discovery Surface Engineering",
+      "productType": "skill",
+      "category": "agent-discovery",
+      "summary": "Design public websites so search engines, LLM crawlers and direct agents can discover truthful capabilities through canonical HTML, robots, sitemap, machine JSON, agent guidance and stable metadata without exposing private payloads.",
+      "problem": "A human-readable website can be technically public while agents cannot reliably discover its capabilities, or discoverability work can leak private payloads and invent unsupported commerce metadata.",
+      "coreOutcomes": [
+        "Canonical public discovery contract",
+        "Crawler policy with named and wildcard intent",
+        "Machine-readable capability projection",
+        "Stable per-capability metadata routes",
+        "Truthful structured data aligned to commercial state",
+        "Payload/privacy boundary preserved",
+        "Single-origin canonical consistency"
+      ],
+      "requirements": [
+        "A public website or capability surface",
+        "Canonical source of public metadata",
+        "Control of robots and sitemap outputs",
+        "Ability to emit machine-readable JSON or equivalent",
+        "A stable canonical origin",
+        "Build/test path for crawl surfaces"
+      ],
+      "boundaries": [
+        "robots rules express permission, not guaranteed indexing or model ingestion",
+        "llms.txt or agents.txt are convenience surfaces, not universal standards",
+        "Do not invent price, review, rating, compatibility or availability",
+        "Do not expose full private prompt, skill, credential or customer payloads",
+        "Crawler access does not grant action authority"
+      ],
+      "tags": [
+        "agent-discovery",
+        "seo",
+        "llm-crawlers",
+        "robots",
+        "sitemap",
+        "structured-data",
+        "machine-readable"
+      ],
+      "sourcePath": "products/machine-discovery-surface-engineering/SKILL.md"
+    },
+    {
+      "id": "outside-in-agent-crawl-verification",
+      "slug": "outside-in-agent-crawl-verification",
+      "name": "Outside-In Agent Crawl Verification",
+      "productType": "skill",
+      "category": "verification",
+      "summary": "Verify a deployed public surface from outside the runtime using canonical URLs, machine endpoints, representative crawler user agents, payload-leak checks and provider indexing observations instead of trusting deployment success.",
+      "problem": "CI and deployment commands can pass while public routing, DNS, canonical origins, crawler handling, static metadata or provider discovery are wrong.",
+      "coreOutcomes": [
+        "Post-deploy public route readback",
+        "Representative crawler user-agent checks",
+        "Canonical-origin and sitemap consistency proof",
+        "Machine-surface inventory validation",
+        "Payload and retired-route fencing",
+        "Provider crawl/index state kept separate",
+        "Deployment regressions caught before promotion"
+      ],
+      "requirements": [
+        "A deployed public origin",
+        "Known canonical route inventory",
+        "Machine discovery surfaces to verify",
+        "Ability to make unauthenticated outside-in HTTP requests",
+        "Expected product/capability count",
+        "Optional search-provider inspection access"
+      ],
+      "boundaries": [
+        "HTTP 200 does not prove indexing",
+        "Sitemap submission does not prove crawl or index",
+        "Crawler user-agent acceptance does not prove provider ingestion",
+        "Synthetic checks do not prove every geographic edge",
+        "Do not perform unauthorised mutating probes"
+      ],
+      "tags": [
+        "outside-in",
+        "crawl-verification",
+        "deployment-acceptance",
+        "crawler-user-agent",
+        "indexing",
+        "readback"
+      ],
+      "sourcePath": "products/outside-in-agent-crawl-verification/SKILL.md"
     },
     {
       "id": "production-agent-operating-files",
@@ -155,10 +505,37 @@
       "category": "agent-governance",
       "summary": "Design and implement the complete operating-file pack and runtime contract for a specialised agent, aligning role, scope, policy, tools, memory, machine-enforced permissions, tests, runtime health, and operator evidence.",
       "problem": "Agent behaviour files can describe permissions or capabilities that the actual runtime does not enforce, leaving documentation and execution authority out of sync.",
-      "coreOutcomes": ["Bounded agent role and scope", "Machine-readable manifest", "Tool and permission enforcement", "Durable memory boundaries", "Runtime verification", "Operator-facing status evidence"],
-      "requirements": ["TypeScript or JavaScript agent runtime or repository", "Task orchestrator or invocation entrypoint", "Machine-readable agent manifest", "Tool or skill gateway", "Durable runtime state", "Test runner", "Bounded agent role", "Explicit approval boundaries"],
-      "boundaries": ["Markdown shapes behaviour but does not enforce permissions", "Runtime evidence and executable enforcement outrank prose", "Do not infer a running service from source presence", "Contradictions between docs, config, and runtime must be reported"],
-      "tags": ["agent-operating-files", "governance", "tool-permissions", "runtime-contract", "memory"],
+      "coreOutcomes": [
+        "Bounded agent role and scope",
+        "Machine-readable manifest",
+        "Tool and permission enforcement",
+        "Durable memory boundaries",
+        "Runtime verification",
+        "Operator-facing status evidence"
+      ],
+      "requirements": [
+        "TypeScript or JavaScript agent runtime or repository",
+        "Task orchestrator or invocation entrypoint",
+        "Machine-readable agent manifest",
+        "Tool or skill gateway",
+        "Durable runtime state",
+        "Test runner",
+        "Bounded agent role",
+        "Explicit approval boundaries"
+      ],
+      "boundaries": [
+        "Markdown shapes behaviour but does not enforce permissions",
+        "Runtime evidence and executable enforcement outrank prose",
+        "Do not infer a running service from source presence",
+        "Contradictions between docs, config, and runtime must be reported"
+      ],
+      "tags": [
+        "agent-operating-files",
+        "governance",
+        "tool-permissions",
+        "runtime-contract",
+        "memory"
+      ],
       "sourcePath": "products/production-agent-operating-files/PROMPT.md"
     },
     {
@@ -169,10 +546,36 @@
       "category": "developer-tooling",
       "summary": "Verify and repair the package users actually install by testing built exports, declaration graphs, dependency boundaries, and consumer compilation instead of trusting source-only checks.",
       "problem": "A library can pass source typechecking and runtime builds while publishing declarations or exports that reference private workspace or dev-only dependencies unavailable to consumers.",
-      "coreOutcomes": ["Consumer-style verification through built package exports","Separate runtime and declaration dependency-boundary analysis","Immutable red/green evidence on exact revisions","Declaration bundler repair at the generating layer","Regression coverage with skipLibCheck disabled","Release metadata tied to user-visible package fixes"],
-      "requirements": ["Package or monorepo with a buildable public artifact","Published or build-time package metadata","TypeScript when declaration files are part of the public contract","Access to the package build and relevant validation commands","Ability to inspect generated artifacts without editing them directly"],
-      "boundaries": ["Source typechecking is not sufficient package proof","skipLibCheck must not hide defects in the package's own declarations","Private build dependencies must not be promoted to runtime dependencies without architectural justification","Generated declaration files are inspected, not hand-edited","A green result is not accepted unless the regression was capable of failing on the pre-fix state"],
-      "tags": ["package-contract","typescript","declarations","consumer-testing","bundling","red-green-evidence"],
+      "coreOutcomes": [
+        "Consumer-style verification through built package exports",
+        "Separate runtime and declaration dependency-boundary analysis",
+        "Immutable red/green evidence on exact revisions",
+        "Declaration bundler repair at the generating layer",
+        "Regression coverage with skipLibCheck disabled",
+        "Release metadata tied to user-visible package fixes"
+      ],
+      "requirements": [
+        "Package or monorepo with a buildable public artifact",
+        "Published or build-time package metadata",
+        "TypeScript when declaration files are part of the public contract",
+        "Access to the package build and relevant validation commands",
+        "Ability to inspect generated artifacts without editing them directly"
+      ],
+      "boundaries": [
+        "Source typechecking is not sufficient package proof",
+        "skipLibCheck must not hide defects in the package's own declarations",
+        "Private build dependencies must not be promoted to runtime dependencies without architectural justification",
+        "Generated declaration files are inspected, not hand-edited",
+        "A green result is not accepted unless the regression was capable of failing on the pre-fix state"
+      ],
+      "tags": [
+        "package-contract",
+        "typescript",
+        "declarations",
+        "consumer-testing",
+        "bundling",
+        "red-green-evidence"
+      ],
       "sourcePath": "products/published-package-contract-verification/SKILL.md"
     },
     {
@@ -183,10 +586,35 @@
       "category": "production-operations",
       "summary": "Map a live software system without mutating source, services, schedules, databases, credentials, providers, or runtime state, while reconciling documentation against observed runtime truth.",
       "problem": "A confident but incorrect production inventory can be more dangerous than an incomplete one, especially when stale documentation is treated as authoritative.",
-      "coreOutcomes": ["Zero-write production inventory", "Process, socket, service, scheduler, repository, and datastore discovery", "Secret-safe configuration shape discovery", "Contradiction reconciliation", "Evidence-backed risk and portability report"],
-      "requirements": ["Read access to host/runtime", "Read access to relevant repositories/configuration", "Bounded shell inspection", "Read-only service/process/socket/container/database queries", "Secure report destination", "Secret and private-data boundaries", "Defined operator scope"],
-      "boundaries": ["No repair, restart, reload, install, update, migrate, delete, publish, rotate, or reconcile", "Runtime and provider evidence outrank documentation", "Unavailable or unverified components cannot be reported healthy", "Preserve contradictions rather than editing them away"],
-      "tags": ["reconnaissance", "production", "read-only", "runtime-truth", "inventory"],
+      "coreOutcomes": [
+        "Zero-write production inventory",
+        "Process, socket, service, scheduler, repository, and datastore discovery",
+        "Secret-safe configuration shape discovery",
+        "Contradiction reconciliation",
+        "Evidence-backed risk and portability report"
+      ],
+      "requirements": [
+        "Read access to host/runtime",
+        "Read access to relevant repositories/configuration",
+        "Bounded shell inspection",
+        "Read-only service/process/socket/container/database queries",
+        "Secure report destination",
+        "Secret and private-data boundaries",
+        "Defined operator scope"
+      ],
+      "boundaries": [
+        "No repair, restart, reload, install, update, migrate, delete, publish, rotate, or reconcile",
+        "Runtime and provider evidence outrank documentation",
+        "Unavailable or unverified components cannot be reported healthy",
+        "Preserve contradictions rather than editing them away"
+      ],
+      "tags": [
+        "reconnaissance",
+        "production",
+        "read-only",
+        "runtime-truth",
+        "inventory"
+      ],
       "sourcePath": "products/read-only-production-reconnaissance/PROMPT.md"
     },
     {
@@ -197,10 +625,43 @@
       "category": "production-reliability",
       "summary": "Upgrade scheduled runtimes through an exact target, verified job draining, a fresh guarded review, recoverable timer restoration, and separate process-readiness and operational-completion checks.",
       "problem": "Scheduled workers and queued jobs can change state during a release, while interrupted switches, automatic catch-up work, and slow diagnostics can make repeated upgrades or premature success claims unsafe.",
-      "coreOutcomes": ["Exact target and clean-source verification with recovery ownership", "Runtime, trigger, service-dependency and queued-job inventory", "Bounded draining with preservation of original scheduling states", "Fresh state-bound review and a single guarded release application", "Recovery decisions for stale reviews, cancellation and ambiguous switches", "Process-reported runtime readiness separated from pending asynchronous work", "Configuration restart planning with full stop scope and durable handoff"],
-      "requirements": ["A runtime driven by systemd timers or a scheduler with equivalent inspection and pause controls", "An exact target revision or artifact digest and reviewable source", "Access to service, process, queued-job and release-state observations", "A release mechanism that rejects stale state or equivalent concurrent drift", "Authority for the affected operational changes and a named recovery owner", "Durable recovery evidence and a readiness check identifying the running instance"],
-      "boundaries": ["A source checkout or successful apply response does not establish running-process readiness", "Paused timers and empty PID fields do not establish that queued or in-flight work has drained", "Worker termination, lock deletion and receipt rewriting are not shortcuts to quiescence", "An ambiguous switch must be reconciled before repetition or rollback", "Resuming schedules may start consequential catch-up work and requires the agreed recovery rule", "Asynchronous start acceptance and slow diagnostic snapshots do not prove operational completion", "Host and virtual-machine restarts require authority covering their full stop scope", "The workflow provides no universal safety guarantee or claim of live acceptance"],
-      "tags": ["runtime-upgrade", "scheduled-workers", "systemd", "job-draining", "state-bound-review", "recovery", "process-readiness", "wsl"],
+      "coreOutcomes": [
+        "Exact target and clean-source verification with recovery ownership",
+        "Runtime, trigger, service-dependency and queued-job inventory",
+        "Bounded draining with preservation of original scheduling states",
+        "Fresh state-bound review and a single guarded release application",
+        "Recovery decisions for stale reviews, cancellation and ambiguous switches",
+        "Process-reported runtime readiness separated from pending asynchronous work",
+        "Configuration restart planning with full stop scope and durable handoff"
+      ],
+      "requirements": [
+        "A runtime driven by systemd timers or a scheduler with equivalent inspection and pause controls",
+        "An exact target revision or artifact digest and reviewable source",
+        "Access to service, process, queued-job and release-state observations",
+        "A release mechanism that rejects stale state or equivalent concurrent drift",
+        "Authority for the affected operational changes and a named recovery owner",
+        "Durable recovery evidence and a readiness check identifying the running instance"
+      ],
+      "boundaries": [
+        "A source checkout or successful apply response does not establish running-process readiness",
+        "Paused timers and empty PID fields do not establish that queued or in-flight work has drained",
+        "Worker termination, lock deletion and receipt rewriting are not shortcuts to quiescence",
+        "An ambiguous switch must be reconciled before repetition or rollback",
+        "Resuming schedules may start consequential catch-up work and requires the agreed recovery rule",
+        "Asynchronous start acceptance and slow diagnostic snapshots do not prove operational completion",
+        "Host and virtual-machine restarts require authority covering their full stop scope",
+        "The workflow provides no universal safety guarantee or claim of live acceptance"
+      ],
+      "tags": [
+        "runtime-upgrade",
+        "scheduled-workers",
+        "systemd",
+        "job-draining",
+        "state-bound-review",
+        "recovery",
+        "process-readiness",
+        "wsl"
+      ],
       "sourcePath": "products/safe-scheduled-runtime-upgrade/SKILL.md"
     },
     {
@@ -211,10 +672,37 @@
       "category": "marketing-systems",
       "summary": "Build evidence-backed campaigns that help the right audience recognise an observable current problem before presenting a relevant product, service, or diagnostic next step.",
       "problem": "Marketing can become generic, manipulative, or feature-led when it assumes personal knowledge, invents outcomes, or pushes people through a hidden funnel.",
-      "coreOutcomes": ["Product-truth definition", "Observable audience-signal model", "Evidence-backed claims", "Useful insight before product connection", "Optional next step and response qualification", "Learning from real responses"],
-      "requirements": ["Real product, service, or diagnostic offer", "Defined audience and exclusions", "Observable problem signals", "Evidence for product claims", "Useful non-pressure next step", "Relevant audience channel", "Attention/recognition/qualification distinction"],
-      "boundaries": ["Do not invent customer results or guaranteed outcomes", "Do not create fake urgency or superiority claims", "Do not pretend to know the reader personally", "Do not generate mass cold outreach", "Content should remain useful if the reader never buys"],
-      "tags": ["marketing", "self-identification", "evidence", "campaigns", "product-positioning"],
+      "coreOutcomes": [
+        "Product-truth definition",
+        "Observable audience-signal model",
+        "Evidence-backed claims",
+        "Useful insight before product connection",
+        "Optional next step and response qualification",
+        "Learning from real responses"
+      ],
+      "requirements": [
+        "Real product, service, or diagnostic offer",
+        "Defined audience and exclusions",
+        "Observable problem signals",
+        "Evidence for product claims",
+        "Useful non-pressure next step",
+        "Relevant audience channel",
+        "Attention/recognition/qualification distinction"
+      ],
+      "boundaries": [
+        "Do not invent customer results or guaranteed outcomes",
+        "Do not create fake urgency or superiority claims",
+        "Do not pretend to know the reader personally",
+        "Do not generate mass cold outreach",
+        "Content should remain useful if the reader never buys"
+      ],
+      "tags": [
+        "marketing",
+        "self-identification",
+        "evidence",
+        "campaigns",
+        "product-positioning"
+      ],
       "sourcePath": "products/self-identifying-product-campaign/PROMPT.md"
     },
     {
@@ -225,11 +713,119 @@
       "category": "agent-security",
       "summary": "Build an evidence-bound execution system where one bounded consequential action requires transaction-specific approval, executes exactly once, is independently verified, and produces an offline-verifiable signed receipt.",
       "problem": "Consequential agent actions can blur proposal, approval, execution, verification, and proof into one trust boundary, making replay and false-success risks difficult to audit.",
-      "coreOutcomes": ["Transaction-specific approval", "Separated proposer, authority, executor, signer, and verifier", "Exactly-once bounded mutation", "Independent state verification", "Signed receipt and offline verification", "Deterministic interrupted-execution reconciliation"],
-      "requirements": ["Node.js 22.5+ with ESM and strict TypeScript", "Git and local filesystem", "Durable SQL storage", "Separate Ed25519 approval and receipt-signing keys", "SHA-256 support", "Disposable Git repository for demonstration", "Child-process API"],
-      "boundaries": ["Protect one bounded action first rather than claiming generic tool security", "Approval and receipt-signing key material must remain separate", "Executor claims are not sufficient verification", "Development process separation is not an OS sandbox"],
-      "tags": ["agent-security", "receipts", "approval", "cryptographic-proof", "idempotency"],
+      "coreOutcomes": [
+        "Transaction-specific approval",
+        "Separated proposer, authority, executor, signer, and verifier",
+        "Exactly-once bounded mutation",
+        "Independent state verification",
+        "Signed receipt and offline verification",
+        "Deterministic interrupted-execution reconciliation"
+      ],
+      "requirements": [
+        "Node.js 22.5+ with ESM and strict TypeScript",
+        "Git and local filesystem",
+        "Durable SQL storage",
+        "Separate Ed25519 approval and receipt-signing keys",
+        "SHA-256 support",
+        "Disposable Git repository for demonstration",
+        "Child-process API"
+      ],
+      "boundaries": [
+        "Protect one bounded action first rather than claiming generic tool security",
+        "Approval and receipt-signing key material must remain separate",
+        "Executor claims are not sufficient verification",
+        "Development process separation is not an OS sandbox"
+      ],
+      "tags": [
+        "agent-security",
+        "receipts",
+        "approval",
+        "cryptographic-proof",
+        "idempotency"
+      ],
       "sourcePath": "products/signed-agent-action-receipts/PROMPT.md"
+    },
+    {
+      "id": "state-transition-evidence-contract",
+      "slug": "state-transition-evidence-contract",
+      "name": "State-Transition Evidence Contract",
+      "productType": "skill",
+      "category": "agent-governance",
+      "summary": "Define and enforce separate availability, execution, consequence, readback, outcome, evidence and freshness states so agents cannot promote a lower-layer success into an unverified higher-layer claim.",
+      "problem": "Agent systems repeatedly collapse configured, executed, accepted, deployed, read-back and outcome states into one success flag, creating false completion and unsafe retries.",
+      "coreOutcomes": [
+        "Explicit multi-axis state model",
+        "Highest-required-acceptance GREEN rule",
+        "Unknown and ambiguous states preserved",
+        "Evidence identity and freshness attached to consequential state",
+        "Retry rules tied to readback rather than missing responses",
+        "Product-specific state machines aligned without being collapsed"
+      ],
+      "requirements": [
+        "A workflow with consequential state transitions",
+        "Durable state or evidence records",
+        "Defined acceptance layers for the work profile",
+        "Independent readback where a higher consequence boundary is observable",
+        "Tests or validators capable of rejecting invalid promotions"
+      ],
+      "boundaries": [
+        "The shared vocabulary does not replace product-specific state machines",
+        "A lower-layer pass never proves a higher layer",
+        "Unknown is not failure and ambiguous is not safe-to-retry",
+        "Executor-produced claims do not independently verify the executor",
+        "Evidence must be refreshed when its subject changes"
+      ],
+      "tags": [
+        "state-machine",
+        "evidence",
+        "readback",
+        "agent-governance",
+        "acceptance",
+        "unknown-state",
+        "green-rule"
+      ],
+      "sourcePath": "products/state-transition-evidence-contract/SKILL.md"
+    },
+    {
+      "id": "temporary-authority-bridge-lifecycle",
+      "slug": "temporary-authority-bridge-lifecycle",
+      "name": "Temporary Authority Bridge Lifecycle",
+      "productType": "skill",
+      "category": "production-governance",
+      "summary": "Use existing credential custody or delegated authority for one bounded cross-repository operation without copying secrets, then prove the consequence and remove the bridge so temporary access cannot become permanent architecture.",
+      "problem": "A blocked deployment or migration can tempt teams to copy credentials between repositories or leave a temporary privileged bridge behind after the emergency is over.",
+      "coreOutcomes": [
+        "Credential material remains in its existing custody",
+        "Bridge scope and exact target are bounded",
+        "Authority use is auditable",
+        "Consequence is independently read back",
+        "Bridge is removed immediately after use",
+        "Removal proof is separate from success proof"
+      ],
+      "requirements": [
+        "An existing authorised credential/authority holder",
+        "A bounded target operation",
+        "Repository or workflow isolation",
+        "Explicit scope and expiry condition",
+        "Independent readback of the resulting consequence",
+        "Ability to remove the bridge after use"
+      ],
+      "boundaries": [
+        "Do not copy secret material into source or logs",
+        "Do not widen provider scope merely to create the bridge",
+        "A bridge cannot silently become the canonical deployment path",
+        "An expired/invalid credential remains a credential-custody finding, not authority to mint a replacement",
+        "Removal is required even when the bounded operation fails"
+      ],
+      "tags": [
+        "credential-custody",
+        "temporary-authority",
+        "deployment",
+        "bridge",
+        "least-privilege",
+        "removal-proof"
+      ],
+      "sourcePath": "products/temporary-authority-bridge-lifecycle/SKILL.md"
     }
   ]
 }

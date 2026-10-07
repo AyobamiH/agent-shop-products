@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "machine-discovery-surface-engineering",
+  "slug": "machine-discovery-surface-engineering",
+  "name": "Machine-Discovery Surface Engineering",
+  "productType": "skill",
+  "category": "agent-discovery",
+  "summary": "Design public websites so search engines, LLM crawlers and direct agents can discover truthful capabilities through canonical HTML, robots, sitemap, machine JSON, agent guidance and stable metadata without exposing private payloads.",
+  "problem": "A human-readable website can be technically public while agents cannot reliably discover its capabilities, or discoverability work can leak private payloads and invent unsupported commerce metadata.",
+  "coreOutcomes": [
+    "Canonical public discovery contract",
+    "Crawler policy with named and wildcard intent",
+    "Machine-readable capability projection",
+    "Stable per-capability metadata routes",
+    "Truthful structured data aligned to commercial state",
+    "Payload/privacy boundary preserved",
+    "Single-origin canonical consistency"
+  ],
+  "requirements": [
+    "A public website or capability surface",
+    "Canonical source of public metadata",
+    "Control of robots and sitemap outputs",
+    "Ability to emit machine-readable JSON or equivalent",
+    "A stable canonical origin",
+    "Build/test path for crawl surfaces"
+  ],
+  "boundaries": [
+    "robots rules express permission, not guaranteed indexing or model ingestion",
+    "llms.txt or agents.txt are convenience surfaces, not universal standards",
+    "Do not invent price, review, rating, compatibility or availability",
+    "Do not expose full private prompt, skill, credential or customer payloads",
+    "Crawler access does not grant action authority"
+  ],
+  "tags": [
+    "agent-discovery",
+    "seo",
+    "llm-crawlers",
+    "robots",
+    "sitemap",
+    "structured-data",
+    "machine-readable"
+  ],
+  "source": "SKILL.md"
+}

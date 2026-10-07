@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "state-transition-evidence-contract",
+  "slug": "state-transition-evidence-contract",
+  "name": "State-Transition Evidence Contract",
+  "productType": "skill",
+  "category": "agent-governance",
+  "summary": "Define and enforce separate availability, execution, consequence, readback, outcome, evidence and freshness states so agents cannot promote a lower-layer success into an unverified higher-layer claim.",
+  "problem": "Agent systems repeatedly collapse configured, executed, accepted, deployed, read-back and outcome states into one success flag, creating false completion and unsafe retries.",
+  "coreOutcomes": [
+    "Explicit multi-axis state model",
+    "Highest-required-acceptance GREEN rule",
+    "Unknown and ambiguous states preserved",
+    "Evidence identity and freshness attached to consequential state",
+    "Retry rules tied to readback rather than missing responses",
+    "Product-specific state machines aligned without being collapsed"
+  ],
+  "requirements": [
+    "A workflow with consequential state transitions",
+    "Durable state or evidence records",
+    "Defined acceptance layers for the work profile",
+    "Independent readback where a higher consequence boundary is observable",
+    "Tests or validators capable of rejecting invalid promotions"
+  ],
+  "boundaries": [
+    "The shared vocabulary does not replace product-specific state machines",
+    "A lower-layer pass never proves a higher layer",
+    "Unknown is not failure and ambiguous is not safe-to-retry",
+    "Executor-produced claims do not independently verify the executor",
+    "Evidence must be refreshed when its subject changes"
+  ],
+  "tags": [
+    "state-machine",
+    "evidence",
+    "readback",
+    "agent-governance",
+    "acceptance",
+    "unknown-state",
+    "green-rule"
+  ],
+  "source": "SKILL.md"
+}
