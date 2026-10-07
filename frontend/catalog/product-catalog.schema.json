@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/product-catalog.schema.json",
+  "title": "Source-backed Agent Shop Public Product Catalogue",
+  "description": "Structural contract for the public projection synced from AyobamiH/agent-shop-products (main, catalog/products.public.json). This repository does not author product facts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "catalogKind", "products"],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0.0" },
+    "catalogKind": { "type": "string" },
+    "policy": { "type": "object" },
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "slug",
+          "name",
+          "productType",
+          "category",
+          "summary",
+          "problem",
+          "coreOutcomes",
+          "requirements",
+          "boundaries",
+          "tags"
+        ],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "name": { "type": "string", "minLength": 1 },
+          "productType": { "type": "string", "enum": ["prompt", "skill", "production-pack"] },
+          "category": { "type": "string", "minLength": 1 },
+          "summary": { "type": "string", "minLength": 1 },
+          "problem": { "type": "string", "minLength": 1 },
+          "coreOutcomes": { "type": "array", "items": { "type": "string" } },
+          "requirements": { "type": "array", "items": { "type": "string" } },
+          "boundaries": { "type": "array", "items": { "type": "string" } },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "sourcePath": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
