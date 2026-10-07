@@ -1,11 +1,7 @@
-/**
- * /raw/products/{slug}.md projection: catalogue metadata only.
- * Full prompt bodies are deliberately withheld.
- */
-
 import { categoryLabel } from "@/domain/catalog/facets";
 import { catalogSource } from "@/domain/catalog/source";
 import type { Product } from "@/domain/catalog/types";
+import { absoluteUrl } from "@/lib/site";
 
 export function buildProductMarkdown(product: Product): string {
   const sections: string[] = [
@@ -14,7 +10,7 @@ export function buildProductMarkdown(product: Product): string {
     `- id: ${product.id}`,
     `- type: ${product.productType}`,
     `- category: ${categoryLabel(product.category)} (${product.category})`,
-    `- detail: /products/${product.slug}`,
+    `- detail: ${absoluteUrl(`/products/${product.slug}`)}`,
     "",
     "## Summary",
     product.summary,
@@ -39,7 +35,7 @@ export function buildProductMarkdown(product: Product): string {
   sections.push(
     "",
     "## Not published",
-    "Price, ratings, reviews, sales figures and the full prompt body are not published.",
+    "Price, ratings, reviews, sales figures and full PROMPT.md / SKILL.md payload bodies are not published.",
   );
 
   return `${sections.join("\n")}\n`;

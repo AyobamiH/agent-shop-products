@@ -1,17 +1,15 @@
-/**
- * JSON-LD generation.
- *
- * No `offers`, `aggregateRating` or `review` node is emitted: the catalogue
- * contains no price, rating or review data and none may be invented (DEC-005).
- */
-
 import type { Product } from "@/domain/catalog/types";
 import { categoryLabel } from "@/domain/catalog/facets";
+import { absoluteUrl } from "@/lib/site";
 
 export function buildProductJsonLd(product: Product): Record<string, unknown> {
+  const url = absoluteUrl(`/products/${product.slug}`);
   return {
     "@context": "https://schema.org",
     "@type": "Product",
+    "@id": `${url}#capability`,
+    url,
+    mainEntityOfPage: url,
     name: product.name,
     description: product.summary,
     category: categoryLabel(product.category),
@@ -33,7 +31,24 @@ export function buildItemListJsonLd(
       "@type": "ListItem",
       position: index + 1,
       name: product.name,
-      url: `/products/${product.slug}`,
+      url: absoluteUrl(`/products/${product.slug}`),
     })),
+  };
+}
+
+export function buildProductBreadcrumbJsonLd(product: Product): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Agent discovery", item: absoluteUrl("/agents") },
+      { "@type": "ListItem", position: 2, name: "Capability catalogue", item: absoluteUrl("/shop") },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: product.name,
+        item: absoluteUrl(`/products/${product.slug}`),
+      },
+    ],
   };
 }

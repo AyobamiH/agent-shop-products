@@ -1,16 +1,20 @@
-/**
- * /catalog.json projection. Derived from the same repository the UI uses, so
- * human and machine surfaces can never disagree (DEC-002).
- */
-
 import { catalogMeta, listProducts } from "@/domain/catalog/repository";
 import { catalogSource } from "@/domain/catalog/source";
+import { absoluteUrl } from "@/lib/site";
 
 export function buildCatalogJson(): Record<string, unknown> {
   return {
     schemaVersion: catalogMeta.schemaVersion,
     catalogKind: catalogMeta.catalogKind,
+    audience: "autonomous-agents",
     productCount: catalogMeta.productCount,
+    productCountsByType: catalogSource.productCountsByType,
+    discovery: {
+      agents: absoluteUrl("/agents"),
+      agentsTxt: absoluteUrl("/agents.txt"),
+      llmsTxt: absoluteUrl("/llms.txt"),
+      sitemap: absoluteUrl("/sitemap.xml"),
+    },
     source: {
       repository: catalogSource.upstream.repository,
       branch: catalogSource.upstream.branch,
@@ -26,13 +30,13 @@ export function buildCatalogJson(): Record<string, unknown> {
       noInventedReviews: true,
       noInventedCompatibility: true,
       noInventedEvidenceLevel: true,
-      fullPromptBodiesWithheld: true,
+      fullPromptAndSkillBodiesWithheld: true,
     },
-    agentInterface: { kind: "cli", status: "planned" },
+    agentInterface: { kind: "cli", status: "planned", mcp: "out-of-scope" },
     products: listProducts().map((product) => ({
       ...product,
-      detailUrl: `/products/${product.slug}`,
-      rawUrl: `/raw/products/${product.slug}.md`,
+      detailUrl: absoluteUrl(`/products/${product.slug}`),
+      rawUrl: absoluteUrl(`/raw/products/${product.slug}.md`),
     })),
   };
 }
