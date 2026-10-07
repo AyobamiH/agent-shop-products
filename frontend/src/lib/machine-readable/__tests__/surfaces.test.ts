@@ -7,7 +7,7 @@ import { buildAgentsTxt } from "../agents";
 import { buildCatalogJson } from "../catalog";
 import { buildLlmsTxt } from "../llms";
 import { buildProductMarkdown } from "../product-markdown";
-import { buildRobotsTxt } from "../robots";
+import { buildRobotsTxt, EXPLICIT_CRAWLER_ALLOWLIST } from "../robots";
 
 const products = listProducts();
 const skills = products.filter((product) => product.productType === "skill");
@@ -41,6 +41,9 @@ describe("agent discovery surfaces", () => {
     expect(agentsTxt).toContain("MCP is out of scope");
     expect(llmsTxt).toContain("convenience index");
     const robots = buildRobotsTxt();
+    for (const crawler of EXPLICIT_CRAWLER_ALLOWLIST) {
+      expect(robots).toContain("User-agent: " + crawler);
+    }
     expect(robots).toContain("User-agent: *");
     expect(robots).toContain("Allow: /");
     expect(robots).toContain("Sitemap: " + absoluteUrl("/sitemap.xml"));
