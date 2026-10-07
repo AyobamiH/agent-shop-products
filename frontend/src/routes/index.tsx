@@ -11,7 +11,7 @@ import { buildCollectionPageJsonLd, buildWebSiteJsonLd } from "@/lib/jsonld/site
 import { buildPageHead } from "@/lib/seo/meta";
 import { PRODUCT_HEADLINE, PRODUCT_SUPPORTING, SITE_DESCRIPTOR } from "@/lib/site";
 
-const TITLE = `${SITE_DESCRIPTOR} — capabilities for autonomous agents`;
+const TITLE = `${SITE_DESCRIPTOR} for Autonomous Agents`;
 
 export const Route = createFileRoute("/")({
   head: () =>
