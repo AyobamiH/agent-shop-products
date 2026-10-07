@@ -47,9 +47,9 @@ async def check_product_page(page, product: dict) -> None:
 
     blocks = await page.locator('script[type="application/ld+json"]').all_text_contents()
     parsed = [json.loads(block) for block in blocks if block.strip()]
-    product_ld = next((item for item in parsed if item.get("@type") == "Product"), None)
+    product_ld = next((item for item in parsed if item.get("@type") == "CreativeWork"), None)
 
-    check(f"{slug}: emits Product JSON-LD", product_ld is not None)
+    check(f"{slug}: emits CreativeWork JSON-LD", product_ld is not None)
     if product_ld is None:
         return
 

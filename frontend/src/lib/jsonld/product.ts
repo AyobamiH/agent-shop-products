@@ -6,15 +6,15 @@ export function buildProductJsonLd(product: Product): Record<string, unknown> {
   const url = absoluteUrl(`/products/${product.slug}`);
   return {
     "@context": "https://schema.org",
-    "@type": "Product",
+    "@type": "CreativeWork",
     "@id": `${url}#capability`,
     url,
     mainEntityOfPage: url,
     name: product.name,
     description: product.summary,
-    category: categoryLabel(product.category),
+    genre: categoryLabel(product.category),
     keywords: product.tags.join(", "),
-    additionalType: product.productType,
+    additionalType: product.productType === "skill" ? "Agent skill" : "Agent prompt",
   };
 }
 

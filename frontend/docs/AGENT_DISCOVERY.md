@@ -34,3 +34,12 @@ Public discovery may expose metadata, summaries, problems, outcomes, requirement
 ## Future CLI
 
 The planned agent transaction interface remains CLI-first: search, show, sample, buy, install and update. Transaction and installation commands are future work. MCP remains out of scope.
+
+
+## Search-engine notification
+
+The production build publishes a public IndexNow verification file at:
+
+`https://agents.proofandstate.com/agents-proofandstate-indexnow-20261007.txt`
+
+This key is intentionally public and exists only to prove control of the production host to IndexNow-participating search engines. IndexNow notification supplements the canonical sitemap; it does not replace Google Search Console or guarantee indexing.

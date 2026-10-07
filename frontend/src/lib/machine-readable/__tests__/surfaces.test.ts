@@ -58,10 +58,10 @@ describe("agent discovery surfaces", () => {
     }
   });
 
-  it("keeps structured data free of invented commerce", () => {
+  it("uses truthful non-commerce structured data", () => {
     for (const product of products) {
       const node = buildProductJsonLd(product) as Record<string, unknown>;
-      expect(node["@type"]).toBe("Product");
+      expect(node["@type"]).toBe("CreativeWork");
       expect(node["url"]).toBe(absoluteUrl("/products/" + product.slug));
       expect(node).not.toHaveProperty("offers");
       expect(node).not.toHaveProperty("aggregateRating");
