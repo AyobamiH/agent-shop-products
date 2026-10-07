@@ -124,10 +124,18 @@ async def main() -> None:
         )
 
         for product in PRODUCTS:
-            status, markdown = await read_text(page, f"/raw/products/{product['slug']}.md")
+            raw_path = f"/raw/products/{product['slug']}.md"
+            response = await page.request.get(f"{BASE_URL}{raw_path}")
+            status = response.status
+            markdown = await response.text()
+            content_type = response.headers.get("content-type", "")
             ok = status == 200 and product["name"] in markdown
             clean = not any(marker in markdown for marker in PAYLOAD_MARKERS)
-            check(f"/raw/products/{product['slug']}.md serves metadata only", ok and clean)
+            detail = (
+                f"status={status} content-type={content_type} "
+                f"prefix={markdown[:120]!r}"
+            )
+            check(f"{raw_path} serves metadata only", ok and clean, detail)
 
         for path in [
             "/products/audiogram",
