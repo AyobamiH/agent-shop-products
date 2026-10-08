@@ -14,8 +14,20 @@
       "metadata": "products/bounded-google-docs-read-recovery/product.json"
     },
     {
+      "id": "bounded-solo-maintainer-release",
+      "metadata": "products/bounded-solo-maintainer-release/product.json"
+    },
+    {
       "id": "capability-gap-learning-system",
       "metadata": "products/capability-gap-learning-system/product.json"
+    },
+    {
+      "id": "capability-surface-reconciliation",
+      "metadata": "products/capability-surface-reconciliation/product.json"
+    },
+    {
+      "id": "consent-aware-plugin-measurement",
+      "metadata": "products/consent-aware-plugin-measurement/product.json"
     },
     {
       "id": "continuous-business-operations-graph",
@@ -76,6 +88,10 @@
     {
       "id": "signed-agent-action-receipts",
       "metadata": "products/signed-agent-action-receipts/product.json"
+    },
+    {
+      "id": "staged-mcp-plugin-activation",
+      "metadata": "products/staged-mcp-plugin-activation/product.json"
     },
     {
       "id": "state-transition-evidence-contract",

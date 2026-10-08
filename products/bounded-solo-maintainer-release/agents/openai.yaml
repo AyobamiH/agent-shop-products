@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bounded Solo-Maintainer Release"
+  short_description: "Record a narrow owner exception and verify the release"
+  default_prompt: "Use $bounded-solo-maintainer-release to assess the authorised release path and preserve its evidence."

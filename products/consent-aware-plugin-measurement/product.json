@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "consent-aware-plugin-measurement",
+  "slug": "consent-aware-plugin-measurement",
+  "name": "Consent-Aware Plugin Measurement",
+  "productType": "skill",
+  "category": "marketing-analytics",
+  "summary": "Keep consented website events, operational tool telemetry and native campaign evidence separate, using the exact dataset's sampling rules and bounded attribution claims.",
+  "problem": "Website traffic, sampled tool calls and scheduled social posts can be combined into unsupported claims about plugin installs, unique users, conversions or customer demand.",
+  "coreOutcomes": [
+    "Aligned product, hostname, property and dataset identities",
+    "Website consent and operational-telemetry separation",
+    "Transport and tool-outcome classification",
+    "API-specific sampling-aware queries without double weighting",
+    "Policy reconciliation against actual fields, recipients and retention",
+    "Reports that preserve controlled-test and attribution limits"
+  ],
+  "requirements": [
+    "Authorised website and operational measurement access",
+    "Actual telemetry schema and deployed consent behaviour",
+    "Current documentation for the query API and dataset",
+    "Read-only query path and bounded synthetic test input",
+    "Implementation-backed privacy and retention information"
+  ],
+  "boundaries": [
+    "Does not infer unique people or installs from aggregate tool calls",
+    "Does not treat owner or synthetic tests as independent demand",
+    "Blocked or unavailable collection is not a measured zero",
+    "Direct-client opt-out handling does not establish intermediary forwarding",
+    "Does not perform legal certification or clear provider findings by assertion"
+  ],
+  "tags": [
+    "analytics",
+    "ga4",
+    "consent",
+    "telemetry",
+    "sampling",
+    "attribution",
+    "plugin-launch"
+  ],
+  "source": "SKILL.md"
+}

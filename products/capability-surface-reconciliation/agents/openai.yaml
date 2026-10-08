@@ -1,0 +1,4 @@
+interface:
+  display_name: "Capability Surface Reconciliation"
+  short_description: "Reconcile skills, tools and real execution evidence"
+  default_prompt: "Use $capability-surface-reconciliation to review the current evidence and produce a bounded next action."
