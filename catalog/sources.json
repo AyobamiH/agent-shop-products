@@ -42,6 +42,19 @@
       }
     },
     {
+      "id": "bounded-solo-maintainer-release",
+      "canonical": {
+        "path": "products/bounded-solo-maintainer-release/SKILL.md",
+        "blobSha": "c363c91bf482f55f2c9f981cba2f25d73318c9a5"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/current-capability-extraction",
+        "path": "products/bounded-solo-maintainer-release/SKILL.md",
+        "blobSha": "c363c91bf482f55f2c9f981cba2f25d73318c9a5"
+      }
+    },
+    {
       "id": "capability-gap-learning-system",
       "canonical": {
         "path": "products/capability-gap-learning-system/PROMPT.md",
@@ -279,7 +292,7 @@
       "id": "staged-mcp-plugin-activation",
       "canonical": {
         "path": "products/staged-mcp-plugin-activation/SKILL.md",
-        "blobSha": "76ba19e3f51e73d885af02eac1be336ed2bf0102"
+        "blobSha": "a0c599b951a80cd1e7c7872dfc82387e9c254ef8"
       },
       "origin": {
         "repository": "AyobamiH/agent-shop-products",

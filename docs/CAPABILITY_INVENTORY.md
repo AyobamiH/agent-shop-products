@@ -197,7 +197,7 @@ Control exposure is not permission to send messages, delegate work or operate a 
 
 The latest reviewed record establishes a public One Click owner connection and one synthetic brief result. The response indicates that no project was created or deployed. Its listing version and response-schema version are separate facts.
 
-A separate OpsTruth draft passed provider ownership verification and discovered 21 tools. Those observations do not establish a published MCP integration or a standalone OpsTruth tool in this session registry. Six OpsTruth skills are advertised separately. Candidate repair, human review, runtime deployment, fresh scans and live review cases retain their own states.
+A separate OpsTruth draft passed provider ownership verification and discovered 21 tools. Those observations do not establish a published MCP integration or a standalone OpsTruth tool in this session registry. Six OpsTruth skills are advertised separately. The newer owner checkpoint records an eligible owner-led release, exact-main deployment and cleared native scans. Live review cases, a real recording, provider publication and clean-account acceptance remain separate. The exception is not independent human review.
 
 Read [the latest work review](LATEST_WORK_REVIEW.md) for dated sources and limits. No activation action was taken by this extraction.
 

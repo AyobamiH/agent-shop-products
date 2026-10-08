@@ -4,7 +4,7 @@ Canonical source repository for AyobamiH prompt and skill products used by the a
 
 ## Catalogue
 
-The catalogue contains **24 products: 11 prompts and 13 skills**. The [complete skills and work-coverage index](docs/SKILL_COVERAGE.md) maps 27 reviewed procedures to their sources and records observed platform dependencies and unfinished acceptance checks.
+The catalogue contains **25 products: 11 prompts and 14 skills**. The [complete skills and work-coverage index](docs/SKILL_COVERAGE.md) maps 28 reviewed procedures to their sources and records observed platform dependencies and unfinished acceptance checks.
 
 The [current capability inventory](docs/CAPABILITY_INVENTORY.md) records 109 distinct external skill names, 868 advertised tools and 11 separate orchestration controls as a dated metadata snapshot. Listed capabilities are not proof of connection or execution. The [latest work review](docs/LATEST_WORK_REVIEW.md) preserves the newer activation, measurement and campaign evidence.
 

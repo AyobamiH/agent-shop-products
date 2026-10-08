@@ -3,7 +3,7 @@
   "recordKind": "catalogue-sync-record",
   "localRole": "synced-projection",
   "syncedOn": "2026-10-08",
-  "productCount": 24,
+  "productCount": 25,
   "upstream": {
     "repository": "AyobamiH/agent-shop-products",
     "branch": "main",
@@ -22,12 +22,13 @@
   ],
   "productCountsByType": {
     "prompt": 11,
-    "skill": 13
+    "skill": 14
   },
   "productIds": [
     "agent-subcontracting-commercial-handoff",
     "autonomous-coding-workflow",
     "bounded-google-docs-read-recovery",
+    "bounded-solo-maintainer-release",
     "capability-gap-learning-system",
     "capability-surface-reconciliation",
     "consent-aware-plugin-measurement",

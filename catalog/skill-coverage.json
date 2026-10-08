@@ -9,6 +9,7 @@
     "newProductIds": [
       "agent-subcontracting-commercial-handoff",
       "bounded-google-docs-read-recovery",
+      "bounded-solo-maintainer-release",
       "capability-surface-reconciliation",
       "consent-aware-plugin-measurement",
       "live-dashboard-update-verification",
@@ -19,7 +20,7 @@
       "state-transition-evidence-contract",
       "temporary-authority-bridge-lifecycle"
     ],
-    "completeness": "Complete for the original 65-message review and explicitly cited follow-on evidence, including the latest bounded owner work record and this session's complete skill/tool metadata enumeration. This does not claim coverage of hidden content, all lifetime tool invocations or unreviewed work. Also includes the newer Agent Shop production-discovery record at main a77830e, recovered while reconciling the publication branch.",
+    "completeness": "Complete for the original 65-message review and explicitly cited follow-on evidence, including the latest bounded owner work record and this session's complete skill/tool metadata enumeration. This does not claim coverage of hidden content, all lifetime tool invocations or unreviewed work. Also includes the newer Agent Shop production-discovery record at main a77830e, recovered while reconciling the publication branch. The latest owner release checkpoint at 23:40 UTC supersedes PR #37 review, merge, deployment and scanner blockers while retaining later provider acceptance gates.",
     "publicationBoundary": "Original generalised workflows and sanitised evidence summaries only. Private source, shared-conversation links, raw transcripts, credentials, secret custody details, host identifiers and restricted implementation references are excluded.",
     "invocationRule": "A product mapping is a match to reusable procedure coverage, not evidence that its PROMPT.md or SKILL.md was loaded. Only supportingSkills records explicitly observed named platform-skill invocation.",
     "latestCapabilitySnapshot": "catalog/capability-inventory.json"
@@ -92,7 +93,7 @@
     {
       "id": "launch-activation-owner-record",
       "kind": "sanitised-owner-work-record",
-      "description": "Dated launch, native scheduling, consent measurement and plugin activation work reviewed through the latest owner record updated at 22:42 UTC on 8 October 2026.",
+      "description": "Dated launch, native scheduling, consent measurement and plugin activation work reviewed through the latest owner release record updated at 23:40 UTC on 8 October 2026 (9 October in the owner's local time).",
       "limits": "The public record contains generalised summaries only. Owner-account connection and synthetic-test evidence are reported observations, not independent customer acceptance. Private screenshots, queue ledgers, account IDs, reviewer access and operational identifiers are withheld."
     },
     {
@@ -105,9 +106,9 @@
     {
       "id": "opstruth-activation-privacy-repair",
       "kind": "public-repository",
-      "description": "Open OpsTruth PR #37 corrects external-reader annotations with a bounded compatibility migration and further reconciles telemetry privacy text; reviewed head 67a247d3965c907fe1ec74b5e3482e43625f3645.",
+      "description": "OpsTruth PR #37 was normally merged at bf7a60f7ca37919071ef9f9c246ec18ec26b0d89 after a recorded eligible owner-led release exception; it includes bounded external-reader annotations, compatibility checks and telemetry privacy repairs.",
       "url": "https://github.com/AyobamiH/opstruth-chatgpt-plugin/pull/37",
-      "limits": "Candidate source and checks are separate from required independent human review, merge, production deployment, fresh provider scans and live review-case execution."
+      "limits": "Public source and deployment workflow success establish the recorded release. The owner exception is not independent human review. Live review cases, walkthrough and provider publication remain separate."
     },
     {
       "id": "opstruth-analytics-query-repair",
@@ -129,6 +130,20 @@
       "description": "New main commits link the owned subcontracting skill to the independent Tail Wagging service guide and record exact-source Worker and outside-in acceptance on 9 October 2026.",
       "url": "https://github.com/AyobamiH/agent-shop-products/commit/a77830eaae1753a39d6245632709b8d00a0f4167",
       "limits": "The production record establishes 21-product service discovery at that release, not deployment of this extraction's 24-product catalogue. Provider work intake, commercial agreement, payment and execution remain separate. The newer Tail Wagging intake expansion has its own release boundary."
+    },
+    {
+      "id": "opstruth-owner-release-and-native-rescan",
+      "kind": "public-release-and-sanitised-provider-observation",
+      "description": "Exact-main production deployment and smoke passed for bf7a60f7ca37919071ef9f9c246ec18ec26b0d89. The latest owner checkpoint reports fresh native scans clearing all 21 tools and the privacy finding on the same draft.",
+      "url": "https://github.com/AyobamiH/opstruth-chatgpt-plugin/commit/bf7a60f7ca37919071ef9f9c246ec18ec26b0d89",
+      "limits": "Merge and deployment were checked against public provider records. Native scanner results are sanitised owner observations. The draft remains configured, not submitted and not published; live review cases and recording remain unproven."
+    },
+    {
+      "id": "opstruth-bounded-owner-release-policy",
+      "kind": "public-repository-policy",
+      "description": "The merged release-readiness policy records the explicitly owner-directed solo-maintainer exception, its maintenance-only eligibility and required exact-head checks, protected merge, rollback and readback.",
+      "url": "https://github.com/AyobamiH/opstruth-chatgpt-plugin/blob/bf7a60f7ca37919071ef9f9c246ec18ec26b0d89/docs/release-readiness.md",
+      "limits": "The exception adds no target-system writes, credential/signing authority, authentication scope, private storage, network destination or workflow/deployment authority. It does not impersonate independent review or grant autonomous policy-changing powers to the bot."
     }
   ],
   "procedures": [
@@ -631,11 +646,16 @@
           "sourceId": "provider-activation-guidance",
           "kind": "official-contract",
           "summary": "Checked the current initial-MCP submission route and required executed review material."
+        },
+        {
+          "sourceId": "opstruth-owner-release-and-native-rescan",
+          "kind": "recorded-release-and-native-readback",
+          "summary": "The corrected runtime was merged/deployed, production smoke passed and fresh provider scans cleared the tool and privacy findings while the draft stayed unpublished."
         }
       ],
       "limits": [
-        "Provider discovery does not establish exposure in the current conversation.",
-        "Required review, deployed repair, live cases and walkthrough remain incomplete.",
+        "Provider discovery and native scan clearance do not establish current conversation exposure or completed live review cases.",
+        "A real walkthrough, provider submission/review/publication and clean-account acceptance remain incomplete.",
         "No new Agent Shop MCP server is introduced."
       ]
     },
@@ -652,12 +672,12 @@
       "evidence": [
         {
           "sourceId": "opstruth-activation-privacy-repair",
-          "kind": "public-candidate-patch",
+          "kind": "merged-public-patch",
           "summary": "Changed only the ten external reader open-world hints, retained local validator semantics and the historical compatibility fixture, and bounded the permitted discovery migration."
         }
       ],
       "limits": [
-        "This is tested candidate-source evidence, not proof of production deployment.",
+        "The repaired release is deployed and native scan clearance is reported; reviewer-case execution and public availability remain separate.",
         "Annotation hints do not enforce authorisation or make returned content trusted."
       ]
     },
@@ -709,12 +729,17 @@
         },
         {
           "sourceId": "opstruth-activation-privacy-repair",
-          "kind": "public-candidate-policy-repair",
+          "kind": "merged-policy-repair",
           "summary": "Reconciled telemetry recipients, storage retention, cache duration and direct-client opt-out scope."
+        },
+        {
+          "sourceId": "opstruth-owner-release-and-native-rescan",
+          "kind": "reported-native-privacy-readback",
+          "summary": "The same draft's refreshed metadata check now clears the privacy finding after the reviewed runtime and policy release."
         }
       ],
       "limits": [
-        "A policy edit does not clear a provider privacy finding.",
+        "Policy edits alone do not clear a finding; this later checkpoint records actual native clearance.",
         "Intermediary propagation of browser opt-out signals is unestablished.",
         "Traffic aggregates include owner/test activity and do not prove installs or people counts."
       ]
@@ -818,6 +843,37 @@
         "The newer provider job ledger requires its own exact release/readback.",
         "Crawlable links and accepted discovery do not prove indexing, adoption or revenue."
       ]
+    },
+    {
+      "id": "release-under-bounded-owner-exception",
+      "name": "Release an eligible maintenance patch under a recorded owner exception without inventing independent review",
+      "trigger": "A sole maintainer cannot obtain non-author review and explicitly authorises the documented bounded release route.",
+      "status": "demonstrated",
+      "productIds": [
+        "bounded-solo-maintainer-release",
+        "staged-mcp-plugin-activation",
+        "evidence-backed-open-source-contribution",
+        "state-transition-evidence-contract"
+      ],
+      "relationship": "composition",
+      "evidence": [
+        {
+          "sourceId": "opstruth-bounded-owner-release-policy",
+          "kind": "explicit-policy-and-authority-record",
+          "summary": "Recorded the owner direction and narrow eligibility, preserved technical review and all exact-head checks, and excluded self-approval, target mutation and wider authority."
+        },
+        {
+          "sourceId": "opstruth-owner-release-and-native-rescan",
+          "kind": "guarded-release-and-readback",
+          "summary": "Normal exact-head merge, exact-main deployment, production smoke and preserved configuration were read back; subsequent native scans cleared their findings."
+        }
+      ],
+      "limits": [
+        "This is owner-directed release acceptance, not independent human review or a formal security scan.",
+        "A missing reviewer does not automatically permit an exception.",
+        "Ineligible authority-expanding changes retain their normal review gate.",
+        "Deployment and scanner success do not establish provider publication or customer outcomes."
+      ]
     }
   ],
   "productCoverage": [
@@ -858,6 +914,16 @@
       ],
       "invocation": "not-established",
       "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
+    },
+    {
+      "productId": "bounded-solo-maintainer-release",
+      "catalogueState": "added",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "release-under-bounded-owner-exception"
+      ],
+      "invocation": "not-established",
+      "note": "Original public workflow extracted from the explicitly authorised and recorded owner release; no independent review or earlier invocation of this shop payload is claimed."
     },
     {
       "productId": "capability-gap-learning-system",
@@ -916,7 +982,8 @@
       "procedureIds": [
         "deliver-bounded-repository-change",
         "repair-bounded-mcp-annotations",
-        "verify-public-brief-connection-and-semantics"
+        "verify-public-brief-connection-and-semantics",
+        "release-under-bounded-owner-exception"
       ],
       "invocation": "not-established",
       "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
@@ -1063,7 +1130,8 @@
       "procedureIds": [
         "stage-initial-mcp-plugin-activation",
         "repair-bounded-mcp-annotations",
-        "verify-public-brief-connection-and-semantics"
+        "verify-public-brief-connection-and-semantics",
+        "release-under-bounded-owner-exception"
       ],
       "invocation": "not-established",
       "note": "Original public skill authored from the explicitly cited current review; its procedure evidence does not prove this product payload was invoked in earlier work."
@@ -1079,7 +1147,8 @@
         "stage-initial-mcp-plugin-activation",
         "separate-launch-measurement-planes",
         "reconcile-native-campaign-queue-evidence",
-        "correct-capability-launch-claims"
+        "correct-capability-launch-claims",
+        "release-under-bounded-owner-exception"
       ],
       "invocation": "not-established",
       "note": "Added from demonstrated subsequent state/discovery work; consult procedure evidence and limits."
@@ -1229,7 +1298,7 @@
         "staged-mcp-plugin-activation",
         "state-transition-evidence-contract"
       ],
-      "summary": "The draft has ownership/discovery evidence, while the candidate requires independent human review, merge/deployment, fresh provider checks, executed review cases and a real walkthrough."
+      "summary": "The eligible owner-led release is merged and deployed; native tool and privacy scans are clear. Execute the live review cases, provide the actual walkthrough and complete provider submission/review/publication and separate clean-account acceptance."
     },
     {
       "id": "oneclick-minimal-brief-deployment",

@@ -14,6 +14,10 @@
       "metadata": "products/bounded-google-docs-read-recovery/product.json"
     },
     {
+      "id": "bounded-solo-maintainer-release",
+      "metadata": "products/bounded-solo-maintainer-release/product.json"
+    },
+    {
       "id": "capability-gap-learning-system",
       "metadata": "products/capability-gap-learning-system/product.json"
     },

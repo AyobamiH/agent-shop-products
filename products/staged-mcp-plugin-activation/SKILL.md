@@ -49,7 +49,7 @@ Create a real, accessible walkthrough when required. A planned video, test descr
 
 Read fresh automated findings after deploying the repaired runtime. Policy edits and passing local tests do not prove that the provider's scanner is now satisfied. Document telemetry fields, recipients, retention and the scope of consent or opt-out behaviour using the actual implementation.
 
-Preserve any applicable repository human-review gate. A green CI run or owner instruction cannot stand in for a required independent review.
+Preserve the applicable repository review rule. Green CI does not establish independent review. If the owner explicitly authorises a narrow solo-maintainer exception, record and validate that policy change through the existing governance path; preserve the normal protected merge and all remaining checks. Never relabel the exception as non-author approval. Treat the exception, guarded release, rollback preparation and runtime readback as a distinct procedure.
 
 ## Test the public connection
 

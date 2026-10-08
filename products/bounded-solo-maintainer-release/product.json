@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "bounded-solo-maintainer-release",
+  "slug": "bounded-solo-maintainer-release",
+  "name": "Bounded Solo-Maintainer Release",
+  "productType": "skill",
+  "category": "agent-operations",
+  "summary": "Execute an explicitly owner-authorised release under a narrow recorded solo-maintainer exception while preserving exact-head checks, protected merge, rollback and runtime evidence.",
+  "problem": "A sole maintainer can be blocked by a non-author review rule, while informal workarounds risk inventing approval or silently weakening release and target-system boundaries.",
+  "coreOutcomes": [
+    "Explicit owner authority and a bounded policy exception",
+    "Technical review distinguished from independent approval and formal scanning",
+    "Exact candidate, merged tree and deployed revision reconciliation",
+    "Normal protected merge with stale-head rejection",
+    "Rollback preparation, smoke tests and independent runtime readback",
+    "Provider scan clearance separated from live-case and publication acceptance"
+  ],
+  "requirements": [
+    "Explicit owner-authorised exception for an owner-controlled release",
+    "Current repository governance and required checks",
+    "Exact candidate source and immutable validation evidence",
+    "Existing authorised merge and deployment mechanisms",
+    "Previous-runtime and rollback information",
+    "Read-only production and provider acceptance surfaces"
+  ],
+  "boundaries": [
+    "Reviewer absence does not automatically authorise an exception",
+    "Does not impersonate reviewers or grant authority over inspected systems",
+    "Does not disable protections or waive unrelated checks",
+    "Manual technical review is not a formal security scan",
+    "Deployment and scanner success do not establish publication or customer adoption"
+  ],
+  "tags": [
+    "solo-maintainer",
+    "release-governance",
+    "authority",
+    "exact-revision",
+    "deployment",
+    "rollback",
+    "evidence"
+  ],
+  "source": "SKILL.md"
+}
