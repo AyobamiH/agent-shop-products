@@ -31,8 +31,20 @@ const declaredRobotsAgents = [
 
 const payloadMarkers = ["```", "## System role", "<system>", "---\nname:"];
 
+const acceptanceNonce = Date.now().toString(36);
+
 async function request(path, options = {}) {
-  const response = await fetch(origin + path, { redirect: "follow", ...options });
+  const url = new URL(origin + path);
+  url.searchParams.set("__acceptance", acceptanceNonce);
+  const headers = new Headers(options.headers ?? {});
+  headers.set("cache-control", "no-cache");
+  headers.set("pragma", "no-cache");
+  const response = await fetch(url, {
+    redirect: "follow",
+    cache: "no-store",
+    ...options,
+    headers,
+  });
   const text = await response.text();
   return { response, text };
 }
