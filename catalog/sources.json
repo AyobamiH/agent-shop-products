@@ -3,6 +3,19 @@
   "canonicalRepository": "AyobamiH/agent-shop-products",
   "products": [
     {
+      "id": "agent-subcontracting-commercial-handoff",
+      "canonical": {
+        "path": "products/agent-subcontracting-commercial-handoff/SKILL.md",
+        "blobSha": "49a03c2e05e6a142417a66edfa122eec87252a94"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/agent-subcontracting-commercial-handoff",
+        "path": "products/agent-subcontracting-commercial-handoff/SKILL.md",
+        "blobSha": "49a03c2e05e6a142417a66edfa122eec87252a94"
+      }
+    },
+    {
       "id": "autonomous-coding-workflow",
       "canonical": {
         "path": "products/autonomous-coding-workflow/PROMPT.md",
