@@ -8,7 +8,7 @@ export const Route = createFileRoute("/agents.txt")({
         new Response(buildAgentsTxt(), {
           headers: {
             "content-type": "text/plain; charset=utf-8",
-            "cache-control": "public, max-age=300",
+            "cache-control": "public, max-age=60, must-revalidate",
           },
         }),
     },
