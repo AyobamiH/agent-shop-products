@@ -40,7 +40,7 @@ describe("catalogue contract (build-time gate)", () => {
   });
 
   it("rejects a projection whose type mix drifts", () => {
-    const promptIndex = rawCatalog.products.findIndex((product) => product.productType === "prompt");
+    const promptIndex = rawCatalog.products.findIndex((product) => product["productType"] === "prompt");
     expect(promptIndex).toBeGreaterThanOrEqual(0);
 
     const drifted = {
