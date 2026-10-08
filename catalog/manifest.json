@@ -2,6 +2,10 @@
   "schemaVersion": "1.0.0",
   "products": [
     {
+      "id": "agent-subcontracting-commercial-handoff",
+      "metadata": "products/agent-subcontracting-commercial-handoff/product.json"
+    },
+    {
       "id": "autonomous-coding-workflow",
       "metadata": "products/autonomous-coding-workflow/product.json"
     },
