@@ -52,7 +52,18 @@ jobs:
           done
           echo "::error::Production origin did not become reachable."
           exit 1
-      - name: Outside-in agent and crawler acceptance
-        run: node scripts/verify-deployed-surface.mjs
+      - name: Wait for deployed content convergence and run outside-in acceptance
+        run: |
+          set -euo pipefail
+          for attempt in {1..18}; do
+            if node scripts/verify-deployed-surface.mjs; then
+              echo "Outside-in acceptance passed on attempt $attempt."
+              exit 0
+            fi
+            echo "Public content has not converged yet; retrying in 5 seconds."
+            sleep 5
+          done
+          echo "::error::Public content did not converge before the acceptance deadline."
+          exit 1
       - name: Deployment status
         run: echo "Agent shop production deployment completed and passed outside-in verification."
