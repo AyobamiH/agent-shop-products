@@ -43,3 +43,9 @@ The production build publishes a public IndexNow verification file at:
 `https://agents.proofandstate.com/agents-proofandstate-indexnow-20261007.txt`
 
 This key is intentionally public and exists only to prove control of the production host to IndexNow-participating search engines. IndexNow notification supplements the canonical sitemap; it does not replace Google Search Console or guarantee indexing.
+
+## Separate human-subcontracting route
+
+The source-backed `agent-subcontracting-commercial-handoff` record may link to the independently operated provider [Tail Wagging Website Design Factory Northampton](https://tailwaggingwebdesign.com/agents/) and its public machine service contract at `/agent-services.json`. This is a distinct business/service surface, not an Agent Shop purchase or installation backend.
+
+The home page and relevant capability page offer inspectable navigation; `agents.txt` names the independent service URL. Other product records are not silently made available for purchase or delegated to that provider. The live provider contract governs current intake availability, quoting, payments and allowed actions; no agent acquires any operational permission by following these links. Google indexing and referred customer outcomes remain separately measured.

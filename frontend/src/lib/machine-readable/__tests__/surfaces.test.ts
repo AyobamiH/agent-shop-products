@@ -4,6 +4,7 @@ import { catalogSource } from "@/domain/catalog/source";
 import { buildProductJsonLd } from "@/lib/jsonld/product";
 import { absoluteUrl } from "@/lib/site";
 import { buildAgentsTxt } from "../agents";
+import { SUBCONTRACTING_CAPABILITY_SLUG, SUBCONTRACTING_SERVICE_GUIDE, SUBCONTRACTING_SERVICE_CATALOGUE } from "@/features/agent-discovery/subcontracting-source";
 import { buildCatalogJson } from "../catalog";
 import { buildLlmsTxt } from "../llms";
 import { buildProductMarkdown } from "../product-markdown";
@@ -47,6 +48,17 @@ describe("agent discovery surfaces", () => {
     expect(robots).toContain("User-agent: *");
     expect(robots).toContain("Allow: /");
     expect(robots).toContain("Sitemap: " + absoluteUrl("/sitemap.xml"));
+  });
+
+  it("separates the supported subcontracting provider from catalogue transaction authority", () => {
+    const record = products.find((product) => product.slug === SUBCONTRACTING_CAPABILITY_SLUG);
+    expect(record?.name).toBe("Agent Subcontracting Commercial Handoff");
+    expect(agentsTxt).toContain(absoluteUrl(`/products/${SUBCONTRACTING_CAPABILITY_SLUG}`));
+    expect(agentsTxt).toContain(SUBCONTRACTING_SERVICE_GUIDE);
+    expect(agentsTxt).toContain(SUBCONTRACTING_SERVICE_CATALOGUE);
+    expect(agentsTxt).toContain("does not accept paid jobs, issue quotes");
+    expect(agentsTxt).toContain("Receipt, owner acceptance, price, payment and completion");
+    expect(JSON.stringify(catalogJson)).not.toContain(SUBCONTRACTING_SERVICE_CATALOGUE);
   });
 
   it("withholds full prompt and skill payload bodies", () => {
