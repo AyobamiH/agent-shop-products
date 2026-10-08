@@ -25,9 +25,20 @@ jobs:
       VITE_SITE_ORIGIN: https://agent-catalogue.example.invalid
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: AyobamiH/design.md
+          ref: 9bf8eae67128b6cc55ad9bf86665767deb4c11cd
+          path: .design-reference
+          persist-credentials: false
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
+      - name: Validate Google DESIGN.md contract
+        working-directory: .design-reference
+        run: |
+          bun install --frozen-lockfile
+          bun run packages/cli/src/index.ts lint ../frontend/DESIGN.md
       - name: Install
         run: bun install --frozen-lockfile
       - name: Sync canonical catalogue
