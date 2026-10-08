@@ -40,10 +40,16 @@ describe("catalogue contract (build-time gate)", () => {
   });
 
   it("rejects a projection whose type mix drifts", () => {
+    const promptIndex = rawCatalog.products.findIndex((product) => product["productType"] === "prompt");
+    expect(promptIndex).toBeGreaterThanOrEqual(0);
+
     const drifted = {
       ...rawCatalog,
-      products: rawCatalog.products.map((p, i) => (i === 0 ? { ...p, productType: "skill" } : p)),
+      products: rawCatalog.products.map((product, index) =>
+        index === promptIndex ? { ...product, productType: "skill" } : product,
+      ),
     };
+
     expect(() => validateCanonicalCatalog(drifted, catalogSource)).toThrow(/skill products/);
   });
 

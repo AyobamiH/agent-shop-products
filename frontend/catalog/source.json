@@ -2,8 +2,8 @@
   "schemaVersion": "1.0.0",
   "recordKind": "catalogue-sync-record",
   "localRole": "synced-projection",
-  "syncedOn": "2026-10-07",
-  "productCount": 20,
+  "syncedOn": "2026-10-08",
+  "productCount": 21,
   "upstream": {
     "repository": "AyobamiH/agent-shop-products",
     "branch": "main",
@@ -22,9 +22,10 @@
   ],
   "productCountsByType": {
     "prompt": 11,
-    "skill": 9
+    "skill": 10
   },
   "productIds": [
+    "agent-subcontracting-commercial-handoff",
     "autonomous-coding-workflow",
     "bounded-google-docs-read-recovery",
     "capability-gap-learning-system",

@@ -8,6 +8,51 @@
   },
   "products": [
     {
+      "id": "agent-subcontracting-commercial-handoff",
+      "slug": "agent-subcontracting-commercial-handoff",
+      "name": "Agent Subcontracting Commercial Handoff",
+      "productType": "skill",
+      "category": "agent-commerce",
+      "summary": "Publish a machine-readable subcontracting surface that lets agents discover a human service provider, submit bounded jobs, use only server-authoritative published packages, and keep receipt, acceptance, payment, execution and completion as separate states.",
+      "problem": "Agents often attempt work beyond their competence while service businesses expose only human-facing contact pages or unsafe checkout inputs, making delegation, pricing authority and execution state ambiguous.",
+      "coreOutcomes": [
+        "Machine-readable service and procurement catalogue",
+        "Structured bounded agent job intake",
+        "Server-authoritative published package pricing",
+        "Quote-first treatment for custom technical work",
+        "Explicit separation of receipt, acceptance, payment, authority, execution and outcome",
+        "Outside-in verification of the public subcontracting contract"
+      ],
+      "requirements": [
+        "A public business/service website",
+        "A server-owned service/package catalogue",
+        "A bounded API or equivalent intake mechanism",
+        "An owner contact/review path",
+        "A proven payment provider for any published checkout path",
+        "Explicit repository/site mutation authority before technical work",
+        "Public discovery and outside-in verification capability"
+      ],
+      "boundaries": [
+        "Discovery or job receipt does not grant repository or production access",
+        "Caller-supplied prices, currencies or provider price identifiers are rejected",
+        "Custom work remains quote-first when no authoritative published price exists",
+        "Payment acceptance is not proof of technical completion or business outcome",
+        "Unsupported payment providers must not be advertised as configured",
+        "A successful intake request is not owner acceptance"
+      ],
+      "tags": [
+        "agent-subcontracting",
+        "agent-commerce",
+        "structured-intake",
+        "stripe",
+        "server-authoritative-pricing",
+        "quote-first",
+        "authority-boundaries",
+        "outside-in-verification"
+      ],
+      "sourcePath": "products/agent-subcontracting-commercial-handoff/SKILL.md"
+    },
+    {
       "id": "autonomous-coding-workflow",
       "slug": "autonomous-coding-workflow",
       "name": "Autonomous Coding Workflow with a Work Ledger",

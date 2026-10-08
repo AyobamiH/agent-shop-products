@@ -2,7 +2,7 @@
 
 Reviewed on **7 October 2026**.
 
-The catalogue contains **20 products: 11 prompt products and 9 skill products**. This update retains the 13 existing products and adds seven original reusable skills. It accounts for **17 procedures** in the recovered work and **four named supporting platform skills**.
+The catalogue contains **21 products: 11 prompt products and 10 skill products**. This update retains the 13 existing products and adds eight original reusable skills. It accounts for **18 procedures** in the recovered work and **four named supporting platform skills**.
 
 ## Scope and evidence
 
@@ -75,12 +75,21 @@ Reuse an already-authorised credential holder for one bounded cross-repository o
 
 The demonstrated Cloudflare acceptance path included one stale credential custody finding, one bounded reuse of current custody, public consequence readback and explicit bridge retirement. Secret values and private custody details are not published.
 
+### Agent Subcontracting Commercial Handoff
+
+[Read the skill](../products/agent-subcontracting-commercial-handoff/SKILL.md) · [Metadata](../products/agent-subcontracting-commercial-handoff/product.json)
+
+Publish a machine-readable service and procurement contract so autonomous agents can hand bounded work to a human business instead of guessing beyond their capability. Keep published Stripe packages server-authoritative, custom technical work quote-first, structured job requests bounded, and job receipt/owner acceptance/payment/authority/execution/outcome as separate states.
+
+The public Tail Wagging implementation is merged and deployed. Its agent route is live and indexable with a zero-issue audit, the machine discovery URLs were accepted through key-validated IndexNow, and repository-native contract tests cover the structured intake and rejection of caller-supplied commercial terms. A real production job POST was intentionally not sent because it would create a consequential owner email/business request.
+
 ## Complete product inventory
 
 All existing IDs, slugs, metadata and payloads are retained. The 11 migrated prompt payloads and both pre-existing skill payloads remain unchanged.
 
 | Product | Type | Relationship to the reviewed work |
 | --- | --- | --- |
+| [Agent Subcontracting Commercial Handoff](../products/agent-subcontracting-commercial-handoff/SKILL.md) | Skill | New: machine-readable service delegation, bounded job intake and authoritative payment/authority state separation. |
 | [Autonomous Coding Workflow with a Work Ledger](../products/autonomous-coding-workflow/PROMPT.md) | Prompt | Context recovery, bounded diagnostics and exact-revision handoff. |
 | [Bounded Google Docs Read Recovery](../products/bounded-google-docs-read-recovery/SKILL.md) | Skill | New: layered provider-read diagnosis, compact JSON and coherent document reads. |
 | [Capability-Gap Learning System](../products/capability-gap-learning-system/PROMPT.md) | Prompt | Existing product; invocation or direct use not established in the reviewed work. |
@@ -125,8 +134,9 @@ All existing IDs, slugs, metadata and payloads are retained. The 11 migrated pro
 | Build truthful machine-discovery surfaces from one canonical public source | Demonstrated | [Machine-Discovery Surface Engineering](../products/machine-discovery-surface-engineering/SKILL.md) |
 | Verify a deployed agent/search surface from the unauthenticated public boundary | Demonstrated | [Outside-In Agent Crawl Verification](../products/outside-in-agent-crawl-verification/SKILL.md) |
 | Use existing credential custody for one bounded operation and remove the bridge | Demonstrated | [Temporary Authority Bridge Lifecycle](../products/temporary-authority-bridge-lifecycle/SKILL.md) |
+| Publish an agent-discoverable subcontracting surface with bounded intake and authoritative payment terms | Demonstrated | [Agent Subcontracting Commercial Handoff](../products/agent-subcontracting-commercial-handoff/SKILL.md); [Machine-Discovery Surface Engineering](../products/machine-discovery-surface-engineering/SKILL.md); [State-Transition Evidence Contract](../products/state-transition-evidence-contract/SKILL.md) |
 
-### Why these seven added skills?
+### Why these eight added skills?
 
 The original review added three skills because existing products already covered the other recovered procedures. Subsequent work then demonstrated four genuinely distinct procedures that were not represented in the catalogue: cross-product state-transition evidence, machine-discovery surface engineering, outside-in crawl acceptance and temporary-authority bridge lifecycle.
 

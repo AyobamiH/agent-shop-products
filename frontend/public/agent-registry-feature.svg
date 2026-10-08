@@ -21,9 +21,9 @@
     <rect x="116" y="414" width="246" height="52" rx="7" fill="#EFF6FF" stroke="#BFDBFE"/>
     <text x="138" y="446" fill="#1D4ED8">GET /catalog.json</text>
     <rect x="382" y="414" width="204" height="52" rx="7" fill="#F8FAFC" stroke="#D8DEE7"/>
-    <text x="404" y="446" fill="#475467">20 records</text>
+    <text x="404" y="446" fill="#475467">21 records</text>
     <rect x="606" y="414" width="218" height="52" rx="7" fill="#F8FAFC" stroke="#D8DEE7"/>
-    <text x="628" y="446" fill="#475467">11 prompt · 9 skill</text>
+    <text x="628" y="446" fill="#475467">11 prompt · 10 skill</text>
   </g>
   <g transform="translate(930 150)" opacity=".9">
     <g fill="none" stroke="#2563EB" stroke-width="16" stroke-linecap="square">
