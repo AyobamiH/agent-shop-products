@@ -1,0 +1,4 @@
+interface:
+  display_name: "Staged MCP Plugin Activation"
+  short_description: "Verify each activation layer before claiming readiness"
+  default_prompt: "Use $staged-mcp-plugin-activation to review the current evidence and produce a bounded next action."

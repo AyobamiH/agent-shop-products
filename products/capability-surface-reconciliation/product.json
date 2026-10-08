@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "capability-surface-reconciliation",
+  "slug": "capability-surface-reconciliation",
+  "name": "Capability Surface Reconciliation",
+  "productType": "skill",
+  "category": "agent-operations",
+  "summary": "Build a dated inventory of advertised skills and tools, then reconcile discovery, connection, execution and publication claims against their actual evidence.",
+  "problem": "A handover or published listing can imply that a tool integration works even when only skills, metadata or an unpublished discovery draft have been verified.",
+  "coreOutcomes": [
+    "Complete paginated skill and tool metadata inventory",
+    "Distinct-name counts with provider surfaces preserved",
+    "Separate capability, authority and runtime evidence axes",
+    "Contradiction handling bound to version, target and time",
+    "Procedure-to-product mapping without republishing external implementations"
+  ],
+  "requirements": [
+    "Authorised prior work evidence and current repository decisions",
+    "Access to the current skill catalogues and tool registry",
+    "Account-specific or runtime readback when those claims need verification",
+    "A public/private publication boundary for saved metadata"
+  ],
+  "boundaries": [
+    "Advertised capabilities are not proof of connection or successful execution",
+    "Inventorying a tool does not authorise its use",
+    "External platform skills and tools are dependencies, not owned products",
+    "Does not enumerate unconnected remote servers or lifetime invocations",
+    "Does not change the shop's CLI-first interface"
+  ],
+  "tags": [
+    "skills",
+    "mcp",
+    "capability-inventory",
+    "evidence",
+    "continuity",
+    "readiness"
+  ],
+  "source": "SKILL.md"
+}

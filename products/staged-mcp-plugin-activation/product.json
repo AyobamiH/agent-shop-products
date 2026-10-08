@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "staged-mcp-plugin-activation",
+  "slug": "staged-mcp-plugin-activation",
+  "name": "Staged MCP Plugin Activation",
+  "productType": "skill",
+  "category": "developer-tooling",
+  "summary": "Advance an MCP-backed plugin through exact-package checks, endpoint verification, semantic discovery repairs, real review tests and bounded public-connection acceptance.",
+  "problem": "Package validation, endpoint discovery and a public skills listing can be mistaken for a fully tested, reviewed and connected tool integration.",
+  "coreOutcomes": [
+    "Exact archive and deployed-revision reconciliation",
+    "Provider-specific migration and ownership checks",
+    "Narrow annotation repairs with compatibility evidence",
+    "Separate written scenarios from executed review cases",
+    "Truthful public-owner and clean-account acceptance states"
+  ],
+  "requirements": [
+    "Existing plugin and candidate package or draft",
+    "Current provider submission and connection documentation",
+    "Authorised deployment and provider review surfaces",
+    "Repository-native contract checks and applicable review gates",
+    "Supported test client and non-sensitive representative inputs"
+  ],
+  "boundaries": [
+    "Does not bypass publication, consent or repository review gates",
+    "Provider ownership and discovery do not prove all clients or tools work",
+    "An edited privacy policy does not prove scanner clearance",
+    "An owner test does not establish independent customer adoption",
+    "Provider-specific submission rules must be refreshed"
+  ],
+  "tags": [
+    "mcp",
+    "plugins",
+    "activation",
+    "tool-annotations",
+    "compatibility",
+    "review",
+    "acceptance"
+  ],
+  "source": "SKILL.md"
+}

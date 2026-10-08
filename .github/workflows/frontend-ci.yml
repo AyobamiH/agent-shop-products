@@ -6,6 +6,7 @@ on:
       - "frontend/**"
       - "catalog/**"
       - "products/**"
+      - "scripts/**"
       - ".github/workflows/frontend-ci.yml"
       - ".github/workflows/deploy-agent-shop-cloudflare.yml"
   push:
@@ -14,6 +15,7 @@ on:
       - "frontend/**"
       - "catalog/**"
       - "products/**"
+      - "scripts/**"
       - ".github/workflows/frontend-ci.yml"
 
 jobs:
@@ -42,6 +44,11 @@ jobs:
           bun run packages/cli/src/index.ts lint ../frontend/DESIGN.md
       - name: Install
         run: bun install --frozen-lockfile
+      - name: Canonical catalogue and capability inventory
+        working-directory: .
+        run: |
+          python3 scripts/validate_catalog.py
+          python3 scripts/validate_capability_inventory.py
       - name: Sync canonical catalogue
         run: |
           bun run sync:catalog

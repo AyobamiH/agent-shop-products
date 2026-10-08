@@ -72,3 +72,9 @@ products/<product-id>/product.json
 Its metadata uses `productType: "skill"` and `source: "SKILL.md"`.
 
 Public skills follow the same evidence, provenance, no-mock-data, stable-ID, and public-source-boundary rules as prompt products. A skill must be based on demonstrated reusable work; exploratory or interest-only material is not promoted into the canonical catalogue.
+
+## DEC-012 — External capabilities remain dependencies
+
+A complete skill/tool discovery snapshot records external metadata separately from owned product payloads. Availability, connection, permission, execution, publication and customer outcomes require their own evidence.
+
+Owner-authorised extraction may publish original generalised procedures from reviewed work. It does not authorise copying third-party implementations, expose account or credential material, or reverse the CLI-first interface decision.

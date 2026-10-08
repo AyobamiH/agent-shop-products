@@ -1,0 +1,4405 @@
+{
+  "schemaVersion": "1.0.0",
+  "recordKind": "session-capability-inventory",
+  "capturedOn": "2026-10-08",
+  "scope": {
+    "statement": "Metadata advertised to this review session: all cloud and executor skill catalogue pages, all entries in the tool registry, and separately declared orchestration controls.",
+    "completeness": "This is a session snapshot. It does not enumerate every remote MCP server, every tool available after a different connection, or every lifetime invocation.",
+    "skillBodiesIncluded": false,
+    "toolInstructionBodiesIncluded": false,
+    "runtimeRule": "Advertised metadata does not establish connection, granted authority, successful execution, publication, or customer availability.",
+    "publicationBoundary": "Names and provider surfaces only; no account identifiers, credentials, host paths, plugin IDs, private examples or third-party implementations."
+  },
+  "counts": {
+    "uniqueSkills": 109,
+    "skillSurfaceEntries": 182,
+    "cloudSkillEntries": 94,
+    "executorSkillEntries": 88,
+    "advertisedTools": 868,
+    "toolProviders": 38,
+    "orchestrationControls": 11
+  },
+  "skills": [
+    {
+      "name": "answers-charts",
+      "surfaces": [
+        "executor"
+      ]
+    },
+    {
+      "name": "answers-images",
+      "surfaces": [
+        "executor"
+      ]
+    },
+    {
+      "name": "answers-pronunciation",
+      "surfaces": [
+        "executor"
+      ]
+    },
+    {
+      "name": "answers-quizzes",
+      "surfaces": [
+        "executor"
+      ]
+    },
+    {
+      "name": "app-698c5319a3c8819180537c0c37cde979:build-with-one-click",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "codex-security:assess-patch-risk",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "codex-security:attack-path-analysis",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "codex-security:deep-security-scan",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "codex-security:define-security-policy",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "codex-security:finding-discovery",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "codex-security:fix-finding",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "codex-security:propose-security-hardening",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "codex-security:security-diff-scan",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "codex-security:security-scan",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "codex-security:threat-model",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "codex-security:track-findings",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "codex-security:triage-finding",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "codex-security:validation",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "codex-security:verify-fix",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "codex-security:vulnerability-writeup",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "demos:answers-ask-user-input",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "demos:onboarding-artifact-creation",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "demos:onboarding-email",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "demos:onboarding-learn-writing-style",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "demos:onboarding-messaging",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "demos:onboarding-parallel-research",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "demos:onboarding-setup-pet",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "demos:onboarding-website-creation",
+      "surfaces": [
+        "cloud"
+      ]
+    },
+    {
+      "name": "documents",
+      "surfaces": [
+        "executor"
+      ]
+    },
+    {
+      "name": "figma:figma-code-connect",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "figma:figma-create-new-file",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "figma:figma-design-to-code",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "figma:figma-generate-design",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "figma:figma-generate-diagram",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "figma:figma-generate-library",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "figma:figma-generative-plugins",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "figma:figma-implement-motion",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "figma:figma-shaders",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "figma:figma-swiftui",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "figma:figma-use",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "figma:figma-use-figjam",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "figma:figma-use-motion",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "figma:figma-use-slides",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "google-drive:google-docs",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "google-drive:google-drive",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "google-drive:google-drive-comments",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "google-drive:google-sheets",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "google-drive:google-slides",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "health:health",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "heygen:heygen-workflows",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "imagegen",
+      "surfaces": [
+        "executor"
+      ]
+    },
+    {
+      "name": "openai-docs",
+      "surfaces": [
+        "executor"
+      ]
+    },
+    {
+      "name": "openai-library:library",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "opstruth:audit-repository",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "opstruth:reconcile-agent-claims",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "opstruth:review-change-safety",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "opstruth:trace-application",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "opstruth:verify-action-receipt",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "opstruth:verify-release-readiness",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "pages:maintain-space",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "pages:manage-schedules",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "pages:organize-space",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "pages:write-page",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "pdf",
+      "surfaces": [
+        "executor"
+      ]
+    },
+    {
+      "name": "personal-context",
+      "surfaces": [
+        "executor"
+      ]
+    },
+    {
+      "name": "plugin-management:plugin-management",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "Presentations",
+      "surfaces": [
+        "executor"
+      ]
+    },
+    {
+      "name": "product-design:audit",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "product-design:ideate",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "product-design:image-to-code",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "product-design:index",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "product-design:url-to-code",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "remotion:remotion-best-practices",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "remotion:remotion-captions",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "remotion:remotion-create",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "remotion:remotion-docs",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "remotion:remotion-interactivity",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "remotion:remotion-maps",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "remotion:remotion-markup",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "remotion:remotion-multimedia",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "remotion:remotion-render",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "remotion:remotion-saas",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "remotion:remotion-studio",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "remotion:remotion-upgrade",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "resolve-recipients",
+      "surfaces": [
+        "executor"
+      ]
+    },
+    {
+      "name": "sites:sites-building",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "sites:sites-hosting",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "sites:sites-mcp",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "sites:sites-preview-troubleshooting",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "skill-creator",
+      "surfaces": [
+        "executor"
+      ]
+    },
+    {
+      "name": "Spreadsheets",
+      "surfaces": [
+        "executor"
+      ]
+    },
+    {
+      "name": "stripe:connect-recommend",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "stripe:connect-required-verification-information",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "stripe:metronome",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "stripe:stripe-apps",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "stripe:stripe-best-practices",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "stripe:stripe-directory",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "stripe:stripe-docs",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "stripe:stripe-pay",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "stripe:stripe-projects",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "stripe:upgrade-stripe",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "supabase:supabase",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "supabase:supabase-postgres-best-practices",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "template-creator:template-creator",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "visualize",
+      "surfaces": [
+        "executor"
+      ]
+    },
+    {
+      "name": "work-pets:create-pet",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "work-pets:pets",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "work-pets:update-pet",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "writing-blocks",
+      "surfaces": [
+        "executor"
+      ]
+    }
+  ],
+  "toolProviders": [
+    {
+      "name": "Atlassian",
+      "count": 22
+    },
+    {
+      "name": "Automations",
+      "count": 7
+    },
+    {
+      "name": "Cloudflare Docs",
+      "count": 2
+    },
+    {
+      "name": "Cloudinary",
+      "count": 23
+    },
+    {
+      "name": "DoneState",
+      "count": 19
+    },
+    {
+      "name": "DoneState Account Controls",
+      "count": 2
+    },
+    {
+      "name": "Figma",
+      "count": 42
+    },
+    {
+      "name": "GitHub",
+      "count": 89
+    },
+    {
+      "name": "Gmail",
+      "count": 21
+    },
+    {
+      "name": "Google Calendar",
+      "count": 15
+    },
+    {
+      "name": "Google Drive",
+      "count": 45
+    },
+    {
+      "name": "GSC Wizard",
+      "count": 125
+    },
+    {
+      "name": "Health",
+      "count": 9
+    },
+    {
+      "name": "HeyGen",
+      "count": 91
+    },
+    {
+      "name": "Hotline",
+      "count": 1
+    },
+    {
+      "name": "Image Generation",
+      "count": 1
+    },
+    {
+      "name": "Linear",
+      "count": 74
+    },
+    {
+      "name": "LinkedIn",
+      "count": 1
+    },
+    {
+      "name": "Lovable",
+      "count": 41
+    },
+    {
+      "name": "Metricool",
+      "count": 9
+    },
+    {
+      "name": "One Click",
+      "count": 1
+    },
+    {
+      "name": "One Click Review 1.0.1",
+      "count": 1
+    },
+    {
+      "name": "OpenAI Library",
+      "count": 11
+    },
+    {
+      "name": "Outlook Email",
+      "count": 38
+    },
+    {
+      "name": "Pages",
+      "count": 40
+    },
+    {
+      "name": "Parallel Search",
+      "count": 2
+    },
+    {
+      "name": "Personal Context",
+      "count": 1
+    },
+    {
+      "name": "Pets",
+      "count": 11
+    },
+    {
+      "name": "Plugin Management",
+      "count": 6
+    },
+    {
+      "name": "Remote Desktop Commander",
+      "count": 31
+    },
+    {
+      "name": "RUBE",
+      "count": 6
+    },
+    {
+      "name": "Runtime",
+      "count": 8
+    },
+    {
+      "name": "Safety Settings",
+      "count": 5
+    },
+    {
+      "name": "Sites",
+      "count": 25
+    },
+    {
+      "name": "Skills",
+      "count": 2
+    },
+    {
+      "name": "Stripe",
+      "count": 11
+    },
+    {
+      "name": "Supabase",
+      "count": 29
+    },
+    {
+      "name": "Web Search",
+      "count": 1
+    }
+  ],
+  "tools": [
+    {
+      "name": "apply_patch",
+      "provider": "Runtime"
+    },
+    {
+      "name": "exec_command",
+      "provider": "Runtime"
+    },
+    {
+      "name": "image_gen__imagegen",
+      "provider": "Image Generation"
+    },
+    {
+      "name": "list_mcp_resource_templates",
+      "provider": "Runtime"
+    },
+    {
+      "name": "list_mcp_resources",
+      "provider": "Runtime"
+    },
+    {
+      "name": "mcp__cloudflare_docs__migrate_pages_to_workers_guide",
+      "provider": "Cloudflare Docs"
+    },
+    {
+      "name": "mcp__cloudflare_docs__search_cloudflare_documentation",
+      "provider": "Cloudflare Docs"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_addgraphcontext",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_addoreditjiraissuecomment",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_atlassianuserinfo",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_createconfluencecontent",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_createjiraissue",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_discover",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_editjiraissue",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_executedestructive",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_executeread",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_executewrite",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_getaccessibleatlassianresources",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_getconfluencecontent",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_getgraphcontext",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_getgraphobject",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_getjiraissue",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_getjiraissuetypemetawithfields",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_getloomvideo",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_search",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_searchconfluence",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_searchjiraissuesusingjql",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_transitionjiraissue",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__atlassian_updateconfluencecontent",
+      "provider": "Atlassian"
+    },
+    {
+      "name": "mcp__codex_apps__automations_create",
+      "provider": "Automations"
+    },
+    {
+      "name": "mcp__codex_apps__automations_discover_webhook_schema",
+      "provider": "Automations"
+    },
+    {
+      "name": "mcp__codex_apps__automations_list",
+      "provider": "Automations"
+    },
+    {
+      "name": "mcp__codex_apps__automations_list_event_sources",
+      "provider": "Automations"
+    },
+    {
+      "name": "mcp__codex_apps__automations_peek",
+      "provider": "Automations"
+    },
+    {
+      "name": "mcp__codex_apps__automations_run_now",
+      "provider": "Automations"
+    },
+    {
+      "name": "mcp__codex_apps__automations_update",
+      "provider": "Automations"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_attach_automation_to_page",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_create_canvas",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_create_controller_automation",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_create_page",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_create_page_visualization",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_create_presentation",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_create_space",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_create_spreadsheet",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_edit_page",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_execute_artifact_code",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_find_pages",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_get_artifact_execution_status",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_get_page_auto_update",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_get_page_sharing",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_get_sharing_availability",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_get_space",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_get_space_sharing",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_inspect_artifact",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_inspect_page_reference",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_list_page_automations",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_list_page_comments",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_list_pages",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_list_spaces",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_manage_page_comment",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_move_page",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_patch_page",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_progress_update",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_read_page",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_read_page_changes",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_read_page_reference",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_read_page_transcript",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_reply_page_comment",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_run_page_auto_update",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_search_sharing_recipients",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_set_page_auto_update",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_trash_page",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_update_page_sharing",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_update_space_sharing",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_upload_artifact_images",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__chatgpt_space_write_page_reference",
+      "provider": "Pages"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_asset_rename",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_asset_update",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_create_asset_relations",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_create_folder",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_delete_asset",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_delete_asset_relations",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_delete_derived_assets",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_delete_folder",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_download_asset_backup",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_generate_archive",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_get_asset_details",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_get_tx_reference",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_get_usage_details",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_list_files",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_list_images",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_list_tags",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_list_videos",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_move_folder",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_search_assets",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_search_folders",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_transform_asset",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_upload_asset",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__cloudinary_visual_search_assets",
+      "provider": "Cloudinary"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_account_controls_delete_account_data",
+      "provider": "DoneState Account Controls"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_account_controls_inspect_account",
+      "provider": "DoneState Account Controls"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_cancel_objective",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_create_github_app_setup",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_create_objective",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_create_openai_credential_setup",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_create_verification_handoff",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_delete_objective",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_delete_openai_credential",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_discover_maintenance_work",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_get_github_app_status",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_get_objective",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_get_openai_credential_status",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_list_maintenance_findings",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_list_maintenance_repositories",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_remove_maintenance_repository",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_request_opstruth_verification",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_select_maintenance_repository",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_start_maintenance_repair",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_start_objective",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__donestate_submit_verifier_attestation",
+      "provider": "DoneState"
+    },
+    {
+      "name": "mcp__codex_apps__figma_add_code_connect_map",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_create_generative_plugin",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_create_new_file",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_create_shader",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_download_assets",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_export_video",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_generate_deck",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_generate_diagram",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_generate_figma_design",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_get_code_connect_map",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_get_code_connect_suggestions",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_get_context_for_code_connect",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_get_design_context",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_get_figjam",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_get_generative_plugin",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_get_libraries",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_get_metadata",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_get_motion_context",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_get_screenshot",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_get_shader",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_get_variable_defs",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_list_file_components_for_code_connect",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_list_file_shaders",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_list_generative_plugins",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_list_shaders",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_open_figma_mcp_app_in_thread",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_search_design_system",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_send_code_connect_mappings",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_update_generative_plugin",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_update_shader",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_upload_assets",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_use_figma",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_weave_cancel_tool_run",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_weave_find_model",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_weave_get_model_run_output",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_weave_get_tool_inputs",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_weave_get_tool_run_output",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_weave_list_tools",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_weave_run_model",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_weave_run_tool",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_weave_upload_asset",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__figma_whoami",
+      "provider": "Figma"
+    },
+    {
+      "name": "mcp__codex_apps__github_add_comment_to_issue",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_add_issue_assignees",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_add_issue_labels",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_add_reaction_to_issue_comment",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_add_reaction_to_pr",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_add_reaction_to_pr_review_comment",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_add_review_to_pr",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_compare_commits",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_convert_pull_request_to_draft",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_create_blob",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_create_branch",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_create_commit",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_create_file",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_create_issue",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_create_pull_request",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_create_tree",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_delete_file",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_dismiss_pull_request_review",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_download_user_content",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_download_workflow_artifact",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_enable_auto_merge",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_fetch",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_fetch_blob",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_fetch_commit",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_fetch_commit_workflow_runs",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_fetch_file",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_fetch_issue",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_fetch_issue_comments",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_fetch_pr",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_fetch_pr_comments",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_fetch_pr_file_patch",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_fetch_pr_patch",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_fetch_workflow_job_logs",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_fetch_workflow_job_steps",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_fetch_workflow_run_artifacts",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_fetch_workflow_run_jobs",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_get_commit_combined_status",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_get_issue_comment_reactions",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_get_pr_diff",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_get_pr_info",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_get_pr_reactions",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_get_pr_review_comment_reactions",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_get_profile",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_get_repo",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_get_repo_collaborator_permission",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_get_user_login",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_get_users_recent_prs_in_repo",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_label_pr",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_list_installations",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_list_installed_accounts",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_list_pr_changed_filenames",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_list_pull_request_review_threads",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_list_pull_request_reviews",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_list_recent_issues",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_list_repositories",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_list_repositories_by_affiliation",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_list_repositories_by_installation",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_list_user_org_memberships",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_list_user_orgs",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_lock_issue_conversation",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_mark_pull_request_ready_for_review",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_merge_pull_request",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_remove_issue_assignees",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_remove_issue_label",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_remove_pull_request_reviewers",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_remove_reaction_from_issue_comment",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_remove_reaction_from_pr",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_remove_reaction_from_pr_review_comment",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_reply_to_review_comment",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_request_pull_request_reviewers",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_rerun_failed_workflow_run_jobs",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_rerun_workflow_job",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_resolve_review_thread",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_search",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_search_branches",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_search_commits",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_search_installed_repositories_streaming",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_search_installed_repositories_v2",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_search_issues",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_search_prs",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_search_repositories",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_unlock_issue_conversation",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_unresolve_review_thread",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_update_file",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_update_issue",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_update_issue_comment",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_update_pull_request",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_update_ref",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__github_update_review_comment",
+      "provider": "GitHub"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_apply_labels_to_emails",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_archive_emails",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_batch_modify_email",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_batch_read_email",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_batch_read_email_threads",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_bulk_label_matching_emails",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_create_draft",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_create_label",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_delete_emails",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_forward_emails",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_get_profile",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_list_drafts",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_list_labels",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_read_attachment",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_read_email",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_read_email_thread",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_search_email_ids",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_search_emails",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_send_draft",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_send_email",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__gmail_update_draft",
+      "provider": "Gmail"
+    },
+    {
+      "name": "mcp__codex_apps__google_calendar_batch_read_event",
+      "provider": "Google Calendar"
+    },
+    {
+      "name": "mcp__codex_apps__google_calendar_create_event",
+      "provider": "Google Calendar"
+    },
+    {
+      "name": "mcp__codex_apps__google_calendar_delete_event",
+      "provider": "Google Calendar"
+    },
+    {
+      "name": "mcp__codex_apps__google_calendar_fetch",
+      "provider": "Google Calendar"
+    },
+    {
+      "name": "mcp__codex_apps__google_calendar_get_availability",
+      "provider": "Google Calendar"
+    },
+    {
+      "name": "mcp__codex_apps__google_calendar_get_colors",
+      "provider": "Google Calendar"
+    },
+    {
+      "name": "mcp__codex_apps__google_calendar_get_profile",
+      "provider": "Google Calendar"
+    },
+    {
+      "name": "mcp__codex_apps__google_calendar_list_calendars",
+      "provider": "Google Calendar"
+    },
+    {
+      "name": "mcp__codex_apps__google_calendar_list_event_labels",
+      "provider": "Google Calendar"
+    },
+    {
+      "name": "mcp__codex_apps__google_calendar_read_event",
+      "provider": "Google Calendar"
+    },
+    {
+      "name": "mcp__codex_apps__google_calendar_respond_event",
+      "provider": "Google Calendar"
+    },
+    {
+      "name": "mcp__codex_apps__google_calendar_search",
+      "provider": "Google Calendar"
+    },
+    {
+      "name": "mcp__codex_apps__google_calendar_search_events",
+      "provider": "Google Calendar"
+    },
+    {
+      "name": "mcp__codex_apps__google_calendar_set_event_label_silently",
+      "provider": "Google Calendar"
+    },
+    {
+      "name": "mcp__codex_apps__google_calendar_update_event",
+      "provider": "Google Calendar"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_batch_update_document",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_batch_update_presentation",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_batch_update_spreadsheet",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_bulk_update_file_comments",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_copy_file",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_create_file",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_create_folder",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_create_presentation_from_template",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_delete_file",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_duplicate_sheet_in_new_spreadsheet",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_export_file",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_fetch",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_fetch_file_revision",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_find_document_text_range",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_document",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_document_comments",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_document_paragraph_range",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_document_tables",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_document_text",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_file_comments",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_file_metadata",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_presentation",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_presentation_comments",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_presentation_outline",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_presentation_tables",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_presentation_text",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_profile",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_slide",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_slide_thumbnail",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_spreadsheet_cells",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_spreadsheet_comments",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_spreadsheet_metadata",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_get_spreadsheet_range",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_import_document",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_import_presentation",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_import_spreadsheet",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_list_drives",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_list_file_revisions",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_list_folder",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_recent_documents",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_search",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_search_spreadsheet_rows",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_share_file",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_update_file",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__google_drive_upload_file",
+      "provider": "Google Drive"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_add_migration_redirects",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_add_site",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_add_tracked_urls",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_analyze_cannibalization",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_analyze_ctr_curve",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_analyze_query_shapes",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_analyze_sampling_impact",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_audit_onpage_seo",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_breakdown_by_path",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_bulk_inspect_urls",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_check_tracked_url_now",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_compare_migration",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_create_annotation",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_create_content_group",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_create_gsc_property",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_create_report_client",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_create_saved_filter",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_create_shared_report",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_create_topic_cluster",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_delete_annotation",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_delete_content_group",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_delete_migration_redirects",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_delete_saved_filter",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_delete_shared_report",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_delete_site",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_delete_topic_cluster",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_detect_anomalies",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_detect_change_points",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_find_decaying_content",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_find_page_poaching_opportunities",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_forecast_traffic",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_generate_seo_report",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_account_info",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_bing_crawl_issues",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_bing_crawl_stats",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_bing_feeds",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_bing_keyword_stats",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_bing_link_counts",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_bing_page_queries",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_bing_page_stats",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_bing_query_page_stats",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_bing_query_page_trend",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_bing_query_stats",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_bing_traffic_stats",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_bing_url_submission_quota",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_blended_landing_pages",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_branded_performance",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_content_group_performance",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_core_web_vitals",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_cross_site_summary",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_decay_overview",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_experiment_results",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_feed_audit_results",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_filter_options",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_ga4_ecommerce",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_ga4_error_pages",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_ga4_key_events",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_ga4_llm_traffic",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_ga4_overview",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_gmc_best_sellers",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_gmc_competitors",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_gmc_pricing_insights",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_gmc_title_hygiene",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_indexing_tracker",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_indexing_tracker_report",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_indexnow_settings",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_inspection_quota",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_longtail_clusters",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_merchant_listings_performance",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_organic_shopping_performance",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_page_performance",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_position_distribution",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_product_listing_status",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_query_performance",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_query_shape_trend",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_query_value_attribution",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_ranking_changes",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_site_summary",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_sitemap_performance",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_tag_group_view",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_topic_cluster_performance",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_yandex_indexing_history",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_yandex_query_stats",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_get_yandex_site_summary",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_inspect_url",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_algo_updates",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_annotations",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_bing_sites",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_content_groups",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_experiments",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_ga4_custom_dimensions",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_ga4_properties",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_gmc_accounts",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_indexnow_submissions",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_migration_redirects",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_report_clients",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_saved_filters",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_shared_reports",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_sitemaps",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_sites",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_tags",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_topic_clusters",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_tracked_urls",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_url_inspections",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_list_yandex_sites",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_manage_tags",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_query_countries",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_query_devices",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_query_ga4_custom_dimensions",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_query_ga4_report",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_query_search_analytics",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_query_top_pages",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_query_top_queries",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_remove_tracked_urls",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_run_feed_audit",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_score_opportunities",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_set_dashboard_visibility",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_submit_indexnow_urls",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_submit_sitemap",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_update_annotation",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_update_content_group",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_update_indexnow_settings",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_update_saved_filter",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_update_site",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__gsc_wizard_update_topic_cluster",
+      "provider": "GSC Wizard"
+    },
+    {
+      "name": "mcp__codex_apps__health_aggregate_timeseries_file",
+      "provider": "Health"
+    },
+    {
+      "name": "mcp__codex_apps__health_fetch_characteristics",
+      "provider": "Health"
+    },
+    {
+      "name": "mcp__codex_apps__health_health_summary",
+      "provider": "Health"
+    },
+    {
+      "name": "mcp__codex_apps__health_list_account_connections",
+      "provider": "Health"
+    },
+    {
+      "name": "mcp__codex_apps__health_open_medical_resource",
+      "provider": "Health"
+    },
+    {
+      "name": "mcp__codex_apps__health_query_samples_file",
+      "provider": "Health"
+    },
+    {
+      "name": "mcp__codex_apps__health_sync_account_connection",
+      "provider": "Health"
+    },
+    {
+      "name": "mcp__codex_apps__health_view_all_metrics",
+      "provider": "Health"
+    },
+    {
+      "name": "mcp__codex_apps__health_view_synced_metrics",
+      "provider": "Health"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_bulk_asset_statuses",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_bulk_lipsync_statuses",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_bulk_video_statuses",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_bulk_video_translation_statuses",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_choose_voice",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_complete_asset_batch",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_ai_clipping",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_asset_upload_batch",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_avatar_consent",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_brand_glossary",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_brand_kit",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_digital_twin",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_filler_word_removal",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_folder",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_lipsync",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_lipsync_batch",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_photo_avatar",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_prompt_avatar",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_speech",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_template",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_video_batch",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_video_from_avatar",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_video_from_cinematic_avatar",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_video_from_image",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_video_from_studio",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_video_translation",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_create_video_translation_batch",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_delete_ai_clipping",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_delete_asset",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_delete_avatar_group",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_delete_avatar_look",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_delete_brand_glossary",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_delete_brand_kit",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_delete_lipsync",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_delete_template",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_delete_video",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_delete_video_translation",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_generate_from_template",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_ai_clipping",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_asset",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_asset_batch",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_avatar_creation_status",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_avatar_group",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_avatar_look",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_brand_glossary",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_brand_kit",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_current_user",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_filler_word_removal",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_folder",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_lipsync",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_lipsync_batch",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_model_video",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_template",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_video",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_video_agent_resource",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_video_agent_session",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_video_batch",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_video_scenes",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_video_translation",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_get_video_translation_batch",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_list_ai_clipping",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_list_avatar_groups",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_list_avatar_looks",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_list_avatars",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_list_brand_glossaries",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_list_brand_kits",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_list_lipsyncs",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_list_look_templates",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_list_model_audio_voices",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_list_templates",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_list_video_agent_session_videos",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_list_video_agent_sessions",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_list_video_agent_styles",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_list_video_translation_languages",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_list_video_translations",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_list_videos",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_list_voices",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_open_avatar_creator",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_prepare_avatar_video",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_search_audio_sounds",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_set_template_variables",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_show_video",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_stop_video_agent_session",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_update_avatar_group",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_update_avatar_look",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_update_brand_glossary",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_update_brand_kit",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_update_lipsync",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_update_template",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_update_video_translation",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__heygen_video_agent_generate",
+      "provider": "HeyGen"
+    },
+    {
+      "name": "mcp__codex_apps__hotline_get_local_hotline",
+      "provider": "Hotline"
+    },
+    {
+      "name": "mcp__codex_apps__library_create_library_file",
+      "provider": "OpenAI Library"
+    },
+    {
+      "name": "mcp__codex_apps__library_finalize_uploads",
+      "provider": "OpenAI Library"
+    },
+    {
+      "name": "mcp__codex_apps__library_find",
+      "provider": "OpenAI Library"
+    },
+    {
+      "name": "mcp__codex_apps__library_list",
+      "provider": "OpenAI Library"
+    },
+    {
+      "name": "mcp__codex_apps__library_manage_library",
+      "provider": "OpenAI Library"
+    },
+    {
+      "name": "mcp__codex_apps__library_prepare_materialize",
+      "provider": "OpenAI Library"
+    },
+    {
+      "name": "mcp__codex_apps__library_prepare_uploads",
+      "provider": "OpenAI Library"
+    },
+    {
+      "name": "mcp__codex_apps__library_read",
+      "provider": "OpenAI Library"
+    },
+    {
+      "name": "mcp__codex_apps__library_replace_library_file",
+      "provider": "OpenAI Library"
+    },
+    {
+      "name": "mcp__codex_apps__library_search",
+      "provider": "OpenAI Library"
+    },
+    {
+      "name": "mcp__codex_apps__library_share",
+      "provider": "OpenAI Library"
+    },
+    {
+      "name": "mcp__codex_apps__linear_create_attachment",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_create_attachment_from_upload",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_create_initiative_label",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_create_issue_label",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_delete_attachment",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_delete_comment",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_delete_customer",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_delete_customer_need",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_delete_diff_comment",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_delete_status_update",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_extract_images",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_fetch",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_agent_skill",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_attachment",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_diff",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_diff_threads",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_document",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_initiative",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_issue",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_issue_status",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_milestone",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_notifications",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_project",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_release",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_release_note",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_status_updates",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_team",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_template",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_user",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_get_workspace",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_agent_skills",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_comments",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_customers",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_cycles",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_diffs",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_documents",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_initiative_labels",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_initiatives",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_issue_labels",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_issue_statuses",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_issues",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_milestones",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_project_labels",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_projects",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_release_notes",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_release_pipelines",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_releases",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_teams",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_templates",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_list_users",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_mark_notification",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_merge_diff",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_prepare_attachment_upload",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_resolve_diff_thread",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_save_comment",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_save_customer",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_save_customer_need",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_save_diff_comment",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_save_document",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_save_initiative",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_save_initiative_label",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_save_issue",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_save_issue_label",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_save_milestone",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_save_project",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_save_project_label",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_save_release",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_save_release_note",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_save_status_update",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_search",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_search_documentation",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_share_issue",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_submit_diff_review",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linear_unshare_issue",
+      "provider": "Linear"
+    },
+    {
+      "name": "mcp__codex_apps__linkedin_linkedin_search_people",
+      "provider": "LinkedIn"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_add_connector",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_create_project",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_create_workspace_skill",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_delete_workspace_skill",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_deploy_project",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_enable_database",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_get_database_status",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_get_diff",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_get_file_upload_url",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_get_me",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_get_message",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_get_project",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_get_project_analytics",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_get_project_analytics_trend",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_get_project_knowledge",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_get_workspace",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_get_workspace_knowledge",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_get_workspace_skill",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_initiate_project",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_list_connectors",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_list_custom_connectors",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_list_design_systems",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_list_edits",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_list_files",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_list_messages",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_list_projects",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_list_template_projects",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_list_workspace_skills",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_list_workspaces",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_move_projects_to_folder",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_query_database",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_read_file",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_remix_project",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_render_project_widget",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_respond_to_approval",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_send_message",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_set_folder_visibility",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_set_project_knowledge",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_set_project_visibility",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_set_workspace_knowledge",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__lovable_update_workspace_skill",
+      "provider": "Lovable"
+    },
+    {
+      "name": "mcp__codex_apps__metricool_createscheduledpost",
+      "provider": "Metricool"
+    },
+    {
+      "name": "mcp__codex_apps__metricool_createscheduledpostforreview",
+      "provider": "Metricool"
+    },
+    {
+      "name": "mcp__codex_apps__metricool_getanalyticsavailablemetrics",
+      "provider": "Metricool"
+    },
+    {
+      "name": "mcp__codex_apps__metricool_getanalyticsdatabymetrics",
+      "provider": "Metricool"
+    },
+    {
+      "name": "mcp__codex_apps__metricool_getbesttimetopostbynetwork",
+      "provider": "Metricool"
+    },
+    {
+      "name": "mcp__codex_apps__metricool_getbrandsettings",
+      "provider": "Metricool"
+    },
+    {
+      "name": "mcp__codex_apps__metricool_getscheduledposts",
+      "provider": "Metricool"
+    },
+    {
+      "name": "mcp__codex_apps__metricool_sendscheduledpostforreview",
+      "provider": "Metricool"
+    },
+    {
+      "name": "mcp__codex_apps__metricool_updatescheduledpost",
+      "provider": "Metricool"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_add_email_attachments",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_create_category",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_create_contact",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_create_contact_folder",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_create_forward_draft",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_create_mail_folder",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_create_reply_draft",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_delete_contact",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_delete_contact_folder",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_draft_email",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_fetch_attachment",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_fetch_contact",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_fetch_contact_folder",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_fetch_message",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_fetch_messages_batch",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_find_mail_folder",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_forward_email",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_get_profile",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_get_recent_emails",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_get_unsubscribe_info",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_list_attachments",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_list_categories",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_list_contact_folders",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_list_contacts",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_list_mail_folders",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_list_messages",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_mark_email_read_state",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_move_email",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_reply_to_email",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_schedule_email",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_search_mailbox_contacts",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_search_messages",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_search_people",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_send_email",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_set_message_categories",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_unsubscribe_via_mailto",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_update_contact",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__microsoft_outlook_email_update_contact_folder",
+      "provider": "Outlook Email"
+    },
+    {
+      "name": "mcp__codex_apps__one_click_oneclick_prepare_basic_draft",
+      "provider": "One Click"
+    },
+    {
+      "name": "mcp__codex_apps__one_click_review_1_0_1_oneclick_prepare_basic_draft",
+      "provider": "One Click Review 1.0.1"
+    },
+    {
+      "name": "mcp__codex_apps__parallel_search_web_fetch",
+      "provider": "Parallel Search"
+    },
+    {
+      "name": "mcp__codex_apps__parallel_search_web_search",
+      "provider": "Parallel Search"
+    },
+    {
+      "name": "mcp__codex_apps__personal_context_search",
+      "provider": "Personal Context"
+    },
+    {
+      "name": "mcp__codex_apps__pets_adopt",
+      "provider": "Pets"
+    },
+    {
+      "name": "mcp__codex_apps__pets_create_pet",
+      "provider": "Pets"
+    },
+    {
+      "name": "mcp__codex_apps__pets_delete_pet",
+      "provider": "Pets"
+    },
+    {
+      "name": "mcp__codex_apps__pets_get_pet_download_link",
+      "provider": "Pets"
+    },
+    {
+      "name": "mcp__codex_apps__pets_list_pets",
+      "provider": "Pets"
+    },
+    {
+      "name": "mcp__codex_apps__pets_prepare_pet_upload",
+      "provider": "Pets"
+    },
+    {
+      "name": "mcp__codex_apps__pets_select_pet",
+      "provider": "Pets"
+    },
+    {
+      "name": "mcp__codex_apps__pets_share_pet",
+      "provider": "Pets"
+    },
+    {
+      "name": "mcp__codex_apps__pets_unshare_pet",
+      "provider": "Pets"
+    },
+    {
+      "name": "mcp__codex_apps__pets_update_pet",
+      "provider": "Pets"
+    },
+    {
+      "name": "mcp__codex_apps__pets_validate_pet_spritesheet",
+      "provider": "Pets"
+    },
+    {
+      "name": "mcp__codex_apps__plugin_management_get_app_permissions",
+      "provider": "Plugin Management"
+    },
+    {
+      "name": "mcp__codex_apps__plugin_management_get_plugin_dependencies",
+      "provider": "Plugin Management"
+    },
+    {
+      "name": "mcp__codex_apps__plugin_management_search_plugins",
+      "provider": "Plugin Management"
+    },
+    {
+      "name": "mcp__codex_apps__plugin_management_suggest_plugins",
+      "provider": "Plugin Management"
+    },
+    {
+      "name": "mcp__codex_apps__plugin_management_uninstall_app",
+      "provider": "Plugin Management"
+    },
+    {
+      "name": "mcp__codex_apps__plugin_management_update_app_permissions",
+      "provider": "Plugin Management"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_create_directory",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_edit_block",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_force_terminate",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_get_config",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_get_file_info",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_get_more_search_results",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_get_recent_tool_calls",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_get_tool_result",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_get_usage_stats",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_give_feedback_to_desktop_commander",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_interact_with_process",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_kill_process",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_list_devices",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_list_directory",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_list_processes",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_list_remote_tool_calls",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_list_searches",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_list_sessions",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_move_file",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_ping",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_read_file",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_read_multiple_files",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_read_process_output",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_set_config_value",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_shutdown",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_start_process",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_start_search",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_stop_search",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_who_am_i",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_write_file",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__remote_desktop_commander_write_pdf",
+      "provider": "Remote Desktop Commander"
+    },
+    {
+      "name": "mcp__codex_apps__rube_rube_create_plan",
+      "provider": "RUBE"
+    },
+    {
+      "name": "mcp__codex_apps__rube_rube_manage_connections",
+      "provider": "RUBE"
+    },
+    {
+      "name": "mcp__codex_apps__rube_rube_multi_execute_tool",
+      "provider": "RUBE"
+    },
+    {
+      "name": "mcp__codex_apps__rube_rube_remote_bash_tool",
+      "provider": "RUBE"
+    },
+    {
+      "name": "mcp__codex_apps__rube_rube_remote_workbench",
+      "provider": "RUBE"
+    },
+    {
+      "name": "mcp__codex_apps__rube_rube_search_tools",
+      "provider": "RUBE"
+    },
+    {
+      "name": "mcp__codex_apps__safety_settings_get_family_info",
+      "provider": "Safety Settings"
+    },
+    {
+      "name": "mcp__codex_apps__safety_settings_get_parental_controls",
+      "provider": "Safety Settings"
+    },
+    {
+      "name": "mcp__codex_apps__safety_settings_get_trusted_contact",
+      "provider": "Safety Settings"
+    },
+    {
+      "name": "mcp__codex_apps__safety_settings_prepare_parental_control_update",
+      "provider": "Safety Settings"
+    },
+    {
+      "name": "mcp__codex_apps__safety_settings_update_parental_control",
+      "provider": "Safety Settings"
+    },
+    {
+      "name": "mcp__codex_apps__search_service_web_run",
+      "provider": "Web Search"
+    },
+    {
+      "name": "mcp__codex_apps__sites_add_custom_domain",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_change_site_slug",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_create_schedule",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_create_site",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_create_source_repository_write_credential",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_deploy_private_site_version",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_deploy_site_version",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_generate_siwc_bypass_token",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_get_deployment_status",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_get_environment_variables",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_get_site",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_get_site_version",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_get_site_worker_logs",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_list_custom_domains",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_list_site_versions",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_list_sites",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_read_database_overview",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_read_database_table_rows",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_refresh_custom_domain_status",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_remove_custom_domain",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_save_site_version",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_save_version_and_deploy_private",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_update_environment_variables",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_update_site_access",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__sites_update_site_metadata",
+      "provider": "Sites"
+    },
+    {
+      "name": "mcp__codex_apps__stripe_atlas_company_formation",
+      "provider": "Stripe"
+    },
+    {
+      "name": "mcp__codex_apps__stripe_list_available_accounts_or_orgs",
+      "provider": "Stripe"
+    },
+    {
+      "name": "mcp__codex_apps__stripe_manage_stripe_accounts",
+      "provider": "Stripe"
+    },
+    {
+      "name": "mcp__codex_apps__stripe_search_stripe_documentation",
+      "provider": "Stripe"
+    },
+    {
+      "name": "mcp__codex_apps__stripe_send_stripe_feedback",
+      "provider": "Stripe"
+    },
+    {
+      "name": "mcp__codex_apps__stripe_stripe_analytics",
+      "provider": "Stripe"
+    },
+    {
+      "name": "mcp__codex_apps__stripe_stripe_api_details",
+      "provider": "Stripe"
+    },
+    {
+      "name": "mcp__codex_apps__stripe_stripe_api_read",
+      "provider": "Stripe"
+    },
+    {
+      "name": "mcp__codex_apps__stripe_stripe_api_search",
+      "provider": "Stripe"
+    },
+    {
+      "name": "mcp__codex_apps__stripe_stripe_api_write",
+      "provider": "Stripe"
+    },
+    {
+      "name": "mcp__codex_apps__stripe_stripe_implementation_planner",
+      "provider": "Stripe"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_apply_migration",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_confirm_cost",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_create_branch",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_create_project",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_delete_branch",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_deploy_edge_function",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_execute_sql",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_generate_typescript_types",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_get_advisors",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_get_cost",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_get_edge_function",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_get_organization",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_get_project",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_get_project_url",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_get_publishable_keys",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_list_branches",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_list_edge_functions",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_list_extensions",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_list_migrations",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_list_organizations",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_list_projects",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_list_tables",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_merge_branch",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_pause_project",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_query_logs",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_rebase_branch",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_reset_branch",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_restore_project",
+      "provider": "Supabase"
+    },
+    {
+      "name": "mcp__codex_apps__supabase_search_docs",
+      "provider": "Supabase"
+    },
+    {
+      "name": "read_mcp_resource",
+      "provider": "Runtime"
+    },
+    {
+      "name": "skills__list",
+      "provider": "Skills"
+    },
+    {
+      "name": "skills__read",
+      "provider": "Skills"
+    },
+    {
+      "name": "update_plan",
+      "provider": "Runtime"
+    },
+    {
+      "name": "view_image",
+      "provider": "Runtime"
+    },
+    {
+      "name": "write_stdin",
+      "provider": "Runtime"
+    }
+  ],
+  "orchestrationControls": [
+    "collaboration.followup_task",
+    "collaboration.interrupt_agent",
+    "collaboration.list_agents",
+    "collaboration.send_message",
+    "collaboration.spawn_agent",
+    "collaboration.wait_agent",
+    "functions.exec",
+    "functions.request_user_input",
+    "functions.wait",
+    "mcp__cua_repl.js",
+    "mcp__cua_repl.js_reset"
+  ],
+  "executionConstraints": [
+    {
+      "provider": "RUBE",
+      "state": "excluded-from-execution",
+      "reason": "Owner constraint retained; registry presence is recorded without invoking it."
+    },
+    {
+      "provider": "Metricool",
+      "state": "excluded-from-reviewed-campaign",
+      "reason": "The reviewed LinkedIn scheduling workflow uses the native composer."
+    }
+  ],
+  "productBoundary": "These external platform capabilities are dependencies, not Agent Shop products. Only original reviewed workflows enter the product catalogue."
+}

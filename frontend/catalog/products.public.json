@@ -177,6 +177,85 @@
       "sourcePath": "products/capability-gap-learning-system/PROMPT.md"
     },
     {
+      "id": "capability-surface-reconciliation",
+      "slug": "capability-surface-reconciliation",
+      "name": "Capability Surface Reconciliation",
+      "productType": "skill",
+      "category": "agent-operations",
+      "summary": "Build a dated inventory of advertised skills and tools, then reconcile discovery, connection, execution and publication claims against their actual evidence.",
+      "problem": "A handover or published listing can imply that a tool integration works even when only skills, metadata or an unpublished discovery draft have been verified.",
+      "coreOutcomes": [
+        "Complete paginated skill and tool metadata inventory",
+        "Distinct-name counts with provider surfaces preserved",
+        "Separate capability, authority and runtime evidence axes",
+        "Contradiction handling bound to version, target and time",
+        "Procedure-to-product mapping without republishing external implementations"
+      ],
+      "requirements": [
+        "Authorised prior work evidence and current repository decisions",
+        "Access to the current skill catalogues and tool registry",
+        "Account-specific or runtime readback when those claims need verification",
+        "A public/private publication boundary for saved metadata"
+      ],
+      "boundaries": [
+        "Advertised capabilities are not proof of connection or successful execution",
+        "Inventorying a tool does not authorise its use",
+        "External platform skills and tools are dependencies, not owned products",
+        "Does not enumerate unconnected remote servers or lifetime invocations",
+        "Does not change the shop's CLI-first interface"
+      ],
+      "tags": [
+        "skills",
+        "mcp",
+        "capability-inventory",
+        "evidence",
+        "continuity",
+        "readiness"
+      ],
+      "sourcePath": "products/capability-surface-reconciliation/SKILL.md"
+    },
+    {
+      "id": "consent-aware-plugin-measurement",
+      "slug": "consent-aware-plugin-measurement",
+      "name": "Consent-Aware Plugin Measurement",
+      "productType": "skill",
+      "category": "marketing-analytics",
+      "summary": "Keep consented website events, operational tool telemetry and native campaign evidence separate, using the exact dataset's sampling rules and bounded attribution claims.",
+      "problem": "Website traffic, sampled tool calls and scheduled social posts can be combined into unsupported claims about plugin installs, unique users, conversions or customer demand.",
+      "coreOutcomes": [
+        "Aligned product, hostname, property and dataset identities",
+        "Website consent and operational-telemetry separation",
+        "Transport and tool-outcome classification",
+        "API-specific sampling-aware queries without double weighting",
+        "Policy reconciliation against actual fields, recipients and retention",
+        "Reports that preserve controlled-test and attribution limits"
+      ],
+      "requirements": [
+        "Authorised website and operational measurement access",
+        "Actual telemetry schema and deployed consent behaviour",
+        "Current documentation for the query API and dataset",
+        "Read-only query path and bounded synthetic test input",
+        "Implementation-backed privacy and retention information"
+      ],
+      "boundaries": [
+        "Does not infer unique people or installs from aggregate tool calls",
+        "Does not treat owner or synthetic tests as independent demand",
+        "Blocked or unavailable collection is not a measured zero",
+        "Direct-client opt-out handling does not establish intermediary forwarding",
+        "Does not perform legal certification or clear provider findings by assertion"
+      ],
+      "tags": [
+        "analytics",
+        "ga4",
+        "consent",
+        "telemetry",
+        "sampling",
+        "attribution",
+        "plugin-launch"
+      ],
+      "sourcePath": "products/consent-aware-plugin-measurement/SKILL.md"
+    },
+    {
       "id": "continuous-business-operations-graph",
       "slug": "continuous-business-operations-graph",
       "name": "Continuous Autonomous Business Operations Graph",
@@ -789,6 +868,46 @@
         "idempotency"
       ],
       "sourcePath": "products/signed-agent-action-receipts/PROMPT.md"
+    },
+    {
+      "id": "staged-mcp-plugin-activation",
+      "slug": "staged-mcp-plugin-activation",
+      "name": "Staged MCP Plugin Activation",
+      "productType": "skill",
+      "category": "developer-tooling",
+      "summary": "Advance an MCP-backed plugin through exact-package checks, endpoint verification, semantic discovery repairs, real review tests and bounded public-connection acceptance.",
+      "problem": "Package validation, endpoint discovery and a public skills listing can be mistaken for a fully tested, reviewed and connected tool integration.",
+      "coreOutcomes": [
+        "Exact archive and deployed-revision reconciliation",
+        "Provider-specific migration and ownership checks",
+        "Narrow annotation repairs with compatibility evidence",
+        "Separate written scenarios from executed review cases",
+        "Truthful public-owner and clean-account acceptance states"
+      ],
+      "requirements": [
+        "Existing plugin and candidate package or draft",
+        "Current provider submission and connection documentation",
+        "Authorised deployment and provider review surfaces",
+        "Repository-native contract checks and applicable review gates",
+        "Supported test client and non-sensitive representative inputs"
+      ],
+      "boundaries": [
+        "Does not bypass publication, consent or repository review gates",
+        "Provider ownership and discovery do not prove all clients or tools work",
+        "An edited privacy policy does not prove scanner clearance",
+        "An owner test does not establish independent customer adoption",
+        "Provider-specific submission rules must be refreshed"
+      ],
+      "tags": [
+        "mcp",
+        "plugins",
+        "activation",
+        "tool-annotations",
+        "compatibility",
+        "review",
+        "acceptance"
+      ],
+      "sourcePath": "products/staged-mcp-plugin-activation/SKILL.md"
     },
     {
       "id": "state-transition-evidence-contract",

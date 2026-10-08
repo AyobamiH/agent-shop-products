@@ -4,14 +4,17 @@ Canonical source repository for AyobamiH prompt and skill products used by the a
 
 ## Catalogue
 
-The catalogue contains **21 products: 11 prompts and 10 skills**. The [complete skills and work-coverage index](docs/SKILL_COVERAGE.md) lists every product, maps the reviewed procedures to their sources, and records supporting platform skills and unfinished acceptance checks.
+The catalogue contains **24 products: 11 prompts and 13 skills**. The [complete skills and work-coverage index](docs/SKILL_COVERAGE.md) maps 27 reviewed procedures to their sources and records observed platform dependencies and unfinished acceptance checks.
+
+The [current capability inventory](docs/CAPABILITY_INVENTORY.md) records 109 distinct external skill names, 868 advertised tools and 11 separate orchestration controls as a dated metadata snapshot. Listed capabilities are not proof of connection or execution. The [latest work review](docs/LATEST_WORK_REVIEW.md) preserves the newer activation, measurement and campaign evidence.
 
 - [Product manifest](catalog/manifest.json)
 - [Public discovery projection](catalog/products.public.json)
 - [Source provenance](catalog/sources.json)
 - [Machine-readable procedure coverage](catalog/skill-coverage.json)
+- [Machine-readable capability inventory](catalog/capability-inventory.json)
 
-Run `python3 scripts/validate_catalog.py` to check catalogue integrity without changing files.
+Run `python3 scripts/validate_catalog.py` and `python3 scripts/validate_capability_inventory.py` to check integrity without changing files or executing advertised capabilities.
 
 ## Principles
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Consent-Aware Plugin Measurement"
+  short_description: "Measure website and tool activity with bounded claims"
+  default_prompt: "Use $consent-aware-plugin-measurement to review the current evidence and produce a bounded next action."

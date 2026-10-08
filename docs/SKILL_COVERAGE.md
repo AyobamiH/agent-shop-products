@@ -1,191 +1,135 @@
 # Skills catalogue and work coverage
 
-Reviewed on **7 October 2026**.
+Reviewed on **9 October 2026**. The catalogue contains **24 products: 11 prompts and 13 skills**, mapped against **27 reviewed procedures** and **six observed named platform dependencies**.
 
-The catalogue contains **21 products: 11 prompt products and 10 skill products**. This update retains the 13 existing products and adds eight original reusable skills. It accounts for **18 procedures** in the recovered work and **four named supporting platform skills**.
+The original review began with 13 products and 65 visible user/assistant messages. Eight later source-backed skills and the three new skills below bring the catalogue to 24. The 21 payloads present at the start of this extraction remain unchanged. All product mappings represent procedure coverage; none claims that the corresponding shop payload was invoked in the earlier work.
 
 ## Scope and evidence
 
-This review covers the canonical repository at [the starting revision](https://github.com/AyobamiH/agent-shop-products/tree/6b75108e0953c62240557daae53df3123a50428c), all **65 visible messages** in the owner-supplied work conversation, a targeted authorised review of relevant implementation and hosted CI, and the follow-on continuity and catalogue work.
+The [machine-readable coverage authority](../catalog/skill-coverage.json) preserves the original recovered-work scope and its evidence limits. It now also covers explicitly cited follow-on state/discovery, subcontracting, campaign, measurement and MCP activation work. The newest owner work record was updated at 22:42 UTC on 8 October 2026; public repository states were checked separately. The newer 9 October Agent Shop production-discovery record was recovered during branch reconciliation.
 
-That is the completeness boundary. Unreviewed conversations, hidden/internal content and every lifetime tool invocation are outside it. Video attachments were referenced in the conversation but were not independently replayed during this catalogue review.
+Sanitised owner/private observations remain reported evidence, not independently inspectable public proof. Shared links, raw transcripts, account identifiers, reviewer credentials, host details and private implementation material are excluded. Hidden content, unreviewed conversations and lifetime invocation coverage are outside this review.
 
-A product mapping means its procedure covers the work; it does **not** claim the product's payload was loaded as a runtime skill. The named platform invocations are listed separately below. Presence in the pre-existing catalogue is also distinct from observed use in this work.
+The separate [capability inventory](CAPABILITY_INVENTORY.md) contains 109 distinct external skill names across 182 catalogue entries, 868 advertised tools and 11 separate controls. Advertisement is not runtime acceptance. The six named dependencies below identify observed instruction use; the larger inventory does not imply that every skill was loaded.
 
-The implementation review involved a private source repository. This public record contains original generalised instructions and sanitised evidence summaries. Private code, repository and CI links, commit identifiers, raw transcripts, shared links, document contents, credentials and host identifiers are excluded. The private review summaries are not independently inspectable public proof.
+## New original skills from the latest work
 
-The machine-readable authority for this coverage record is [catalog/skill-coverage.json](../catalog/skill-coverage.json). Product source and metadata remain authoritative in each product directory; [catalog/manifest.json](../catalog/manifest.json) indexes them.
+| Skill | Reusable procedure | Evidence boundary |
+| --- | --- | --- |
+| [Capability Surface Reconciliation](../products/capability-surface-reconciliation/SKILL.md) | Reconcile catalogue metadata, discovery, session exposure, connection, execution and publication | Session metadata is complete within its capture scope; runtime claims require separate evidence |
+| [Staged MCP Plugin Activation](../products/staged-mcp-plugin-activation/SKILL.md) | Verify exact packages, ownership, annotations, review material and public connection | OpsTruth's initial draft remains short of review/publication acceptance; One Click passed one owner workflow |
+| [Consent-Aware Plugin Measurement](../products/consent-aware-plugin-measurement/SKILL.md) | Separate website consent, tool telemetry and campaign evidence with API-specific sampling | Aggregates do not establish unique people, installs, test attribution or privacy clearance |
 
-## New reusable skills
-
-### Bounded Google Docs Read Recovery
-
-[Read the skill](../products/bounded-google-docs-read-recovery/SKILL.md) · [Metadata](../products/bounded-google-docs-read-recovery/product.json)
-
-Localise failures across the actual host's network route, token refresh, Drive metadata, Docs response and local validation. Use bounded, sanitised diagnostics and compact JSON while preserving the configured response ceiling, complete nested content, text positions, revisions and coherent-read checks. Interpret the preview's semantic result independently of process exit status or eligibility count.
-
-The historical record includes operator output from a successful read-only preview. The authorised source review supports the compact-response implementation and relevant regressions. Neither establishes installation of the final revision or a fresh scheduled observation. WSL networking changes are conditional on evidence and the full restart scope.
-
-### Safe Scheduled Runtime Upgrade
-
-[Read the skill](../products/safe-scheduled-runtime-upgrade/SKILL.md) · [Metadata](../products/safe-scheduled-runtime-upgrade/product.json)
-
-Inventory schedules, dependencies, queued jobs and active workers; preserve original activation states; pause new wake-ups and drain work within a bound. Create a fresh state-bound review, apply through the existing guard once, reconcile ambiguous outcomes and restore scheduling through the agreed recovery path. Verify the actual running process separately from checkout or release metadata.
-
-Reviewed implementation and regressions support the procedure, including stale reviews, cancellation, restoration failures and readiness bounds. The final host switch and live acceptance were not confirmed in the reviewed record. Asynchronous collection/refill acceptance remains distinct from completion.
-
-### Live Dashboard Update Verification
-
-[Read the skill](../products/live-dashboard-update-verification/SKILL.md) · [Metadata](../products/live-dashboard-update-verification/product.json)
-
-Trace an observation through collection, transport, accepted state and rendering. Preserve shared live DOM targets, verify a complete first snapshot and successive events across views, retain focus and reading state, and test under the production content security policy. Distinguish a measured zero from blocked, stale, unknown and failed collection states.
-
-Reviewed source and hosted browser regressions support the exercised synthetic rendering behaviour. Browser CI covered the same integrated source tree as the merged change. This establishes neither current owner-host deployment nor live provider correctness; unexercised reconnect and viewport paths remain unverified.
-
-
-### State-Transition Evidence Contract
-
-[Read the skill](../products/state-transition-evidence-contract/SKILL.md) · [Metadata](../products/state-transition-evidence-contract/product.json)
-
-Keep availability, execution, consequence, readback, outcome, evidence and freshness as separate state axes. Define GREEN as the highest required acceptance layer passing with current evidence, preserve unknown and ambiguous states, bind observations to identity/time, and reconcile ambiguous mutations before retry.
-
-The merged Proof & State shared operating contract and the Agent Shop deployment/indexing work demonstrate why lower-layer success cannot safely stand in for outside-in or provider-controlled outcomes.
-
-### Machine-Discovery Surface Engineering
-
-[Read the skill](../products/machine-discovery-surface-engineering/SKILL.md) · [Metadata](../products/machine-discovery-surface-engineering/product.json)
-
-Build public discovery from one canonical metadata source: crawlable HTML, robots, sitemap, machine JSON, agent guidance and stable metadata routes. Keep structured data truthful to the actual commercial state and keep private payloads outside the discovery projection.
-
-The Agent Shop production surface demonstrates the complete source-to-public projection and the later live audit; crawler permission remains distinct from provider indexing or LLM ingestion.
-
-### Outside-In Agent Crawl Verification
-
-[Read the skill](../products/outside-in-agent-crawl-verification/SKILL.md) · [Metadata](../products/outside-in-agent-crawl-verification/product.json)
-
-Verify a deployment from the unauthenticated public boundary rather than trusting CI or a deploy command. Check route inventory, canonical origin, machine surfaces, crawler user agents, payload fencing and provider discovery states separately.
-
-This workflow caught a real post-deploy root-routing defect on the Agent Shop, then proved the repaired production origin and later kept Google discovery/IndexNow states separate from crawlability.
-
-### Temporary Authority Bridge Lifecycle
-
-[Read the skill](../products/temporary-authority-bridge-lifecycle/SKILL.md) · [Metadata](../products/temporary-authority-bridge-lifecycle/product.json)
-
-Reuse an already-authorised credential holder for one bounded cross-repository operation without copying the secret. Pin the exact target, verify the provider consequence outside the bridge, and remove the temporary authority path immediately after success, failure or abandonment.
-
-The demonstrated Cloudflare acceptance path included one stale credential custody finding, one bounded reuse of current custody, public consequence readback and explicit bridge retirement. Secret values and private custody details are not published.
-
-### Agent Subcontracting Commercial Handoff
-
-[Read the skill](../products/agent-subcontracting-commercial-handoff/SKILL.md) · [Metadata](../products/agent-subcontracting-commercial-handoff/product.json)
-
-Publish a machine-readable service and procurement contract so autonomous agents can hand bounded work to a human business instead of guessing beyond their capability. Keep published Stripe packages server-authoritative, custom technical work quote-first, structured job requests bounded, and job receipt/owner acceptance/payment/authority/execution/outcome as separate states.
-
-The public Tail Wagging implementation is merged and deployed. Its agent route is live and indexable with a zero-issue audit, the machine discovery URLs were accepted through key-validated IndexNow, and repository-native contract tests cover the structured intake and rejection of caller-supplied commercial terms. A real production job POST was intentionally not sent because it would create a consequential owner email/business request.
+These original payloads include small referenced calibration resources and UI metadata. They are repository products; no personal-skill installation or hosted shop MCP server is claimed. Existing products cover related coding, state, campaign and contribution procedures rather than duplicating their payloads.
 
 ## Complete product inventory
 
-All existing IDs, slugs, metadata and payloads are retained. The 11 migrated prompt payloads and both pre-existing skill payloads remain unchanged.
-
-| Product | Type | Relationship to the reviewed work |
+| Product | Type | Reviewed procedure coverage |
 | --- | --- | --- |
-| [Agent Subcontracting Commercial Handoff](../products/agent-subcontracting-commercial-handoff/SKILL.md) | Skill | New: machine-readable service delegation, bounded job intake and authoritative payment/authority state separation. |
-| [Autonomous Coding Workflow with a Work Ledger](../products/autonomous-coding-workflow/PROMPT.md) | Prompt | Context recovery, bounded diagnostics and exact-revision handoff. |
-| [Bounded Google Docs Read Recovery](../products/bounded-google-docs-read-recovery/SKILL.md) | Skill | New: layered provider-read diagnosis, compact JSON and coherent document reads. |
-| [Capability-Gap Learning System](../products/capability-gap-learning-system/PROMPT.md) | Prompt | Existing product; invocation or direct use not established in the reviewed work. |
-| [Continuous Autonomous Business Operations Graph](../products/continuous-business-operations-graph/PROMPT.md) | Prompt | Existing product; the full operating-graph workflow was not established. |
-| [Deterministic Social Publication Pipeline](../products/deterministic-social-publication/PROMPT.md) | Prompt | Preview eligibility and later publication acceptance remain separate. |
-| [Evidence-Backed Open-Source Contribution](../products/evidence-backed-open-source-contribution/SKILL.md) | Skill | Bounded patches, regression evidence, native CI and truthful handoff. |
-| [Evidence-First Live Diagnostic and Repair](../products/evidence-first-live-diagnostic-repair/PROMPT.md) | Prompt | Failure localisation, safe tracing and semantic result interpretation. |
-| [Graph-Native Agent System Migration](../products/graph-native-agent-system-migration/PROMPT.md) | Prompt | Existing product; routine runtime maintenance does not establish a graph migration. |
-| [Live Dashboard Update Verification](../products/live-dashboard-update-verification/SKILL.md) | Skill | New: shared DOM ownership, streaming updates and freshness verification. |
-| [Local-First Verification CLI](../products/local-first-verification-cli/PROMPT.md) | Prompt | Evidence classification across source, CI, runtime and visible results. |
-| [Machine-Discovery Surface Engineering](../products/machine-discovery-surface-engineering/SKILL.md) | Skill | New: canonical agent/search discovery surfaces with truthful metadata and payload boundaries. |
-| [Outside-In Agent Crawl Verification](../products/outside-in-agent-crawl-verification/SKILL.md) | Skill | New: deployed public-route, crawler and provider-discovery acceptance from outside the runtime. |
-| [Production Agent Operating Files](../products/production-agent-operating-files/PROMPT.md) | Prompt | Durable context and explicit evidence/authority boundaries. |
-| [Published Package Contract Verification](../products/published-package-contract-verification/SKILL.md) | Skill | Existing skill; package-export verification was not established in this work. |
-| [Read-Only Production System Reconnaissance](../products/read-only-production-reconnaissance/PROMPT.md) | Prompt | Host, route, process and collection-state inspection. |
-| [Safe Scheduled Runtime Upgrade](../products/safe-scheduled-runtime-upgrade/SKILL.md) | Skill | New: drain, guarded apply, schedule restoration and process acceptance. |
-| [Self-Identifying Product Campaign](../products/self-identifying-product-campaign/PROMPT.md) | Prompt | Retained; editorial/model-provider context is inherited or pending. |
-| [Signed Agent Action Receipts](../products/signed-agent-action-receipts/PROMPT.md) | Prompt | Retained; cryptographically signed receipt execution was not demonstrated. |
-| [State-Transition Evidence Contract](../products/state-transition-evidence-contract/SKILL.md) | Skill | New: multi-axis state, GREEN and evidence-freshness contract. |
-| [Temporary Authority Bridge Lifecycle](../products/temporary-authority-bridge-lifecycle/SKILL.md) | Skill | New: bounded credential-custody reuse with consequence and removal proof. |
+| [Agent Subcontracting Commercial Handoff](../products/agent-subcontracting-commercial-handoff/SKILL.md) | skill | 2 mapped procedures |
+| [Autonomous Coding Workflow with a Work Ledger](../products/autonomous-coding-workflow/PROMPT.md) | prompt | 3 mapped procedures |
+| [Bounded Google Docs Read Recovery](../products/bounded-google-docs-read-recovery/SKILL.md) | skill | 6 mapped procedures |
+| [Capability-Gap Learning System](../products/capability-gap-learning-system/PROMPT.md) | prompt | Not established in this reviewed work |
+| [Capability Surface Reconciliation](../products/capability-surface-reconciliation/SKILL.md) | skill | 3 mapped procedures |
+| [Consent-Aware Plugin Measurement](../products/consent-aware-plugin-measurement/SKILL.md) | skill | 2 mapped procedures |
+| [Continuous Autonomous Business Operations Graph](../products/continuous-business-operations-graph/PROMPT.md) | prompt | Not established in this reviewed work |
+| [Deterministic Social Publication Pipeline](../products/deterministic-social-publication/PROMPT.md) | prompt | 2 mapped procedures |
+| [Evidence-Backed Open-Source Contribution](../products/evidence-backed-open-source-contribution/SKILL.md) | skill | 3 mapped procedures |
+| [Evidence-First Live Diagnostic and Repair](../products/evidence-first-live-diagnostic-repair/PROMPT.md) | prompt | 8 mapped procedures |
+| [Graph-Native Agent System Migration](../products/graph-native-agent-system-migration/PROMPT.md) | prompt | Not established in this reviewed work |
+| [Live Dashboard Update Verification](../products/live-dashboard-update-verification/SKILL.md) | skill | 3 mapped procedures |
+| [Local-First Verification CLI](../products/local-first-verification-cli/PROMPT.md) | prompt | 4 mapped procedures |
+| [Machine-Discovery Surface Engineering](../products/machine-discovery-surface-engineering/SKILL.md) | skill | 3 mapped procedures |
+| [Outside-In Agent Crawl Verification](../products/outside-in-agent-crawl-verification/SKILL.md) | skill | 2 mapped procedures |
+| [Production Agent Operating Files](../products/production-agent-operating-files/PROMPT.md) | prompt | 1 mapped procedure |
+| [Published Package Contract Verification](../products/published-package-contract-verification/SKILL.md) | skill | Not established in this reviewed work |
+| [Read-Only Production System Reconnaissance](../products/read-only-production-reconnaissance/PROMPT.md) | prompt | 4 mapped procedures |
+| [Safe Scheduled Runtime Upgrade](../products/safe-scheduled-runtime-upgrade/SKILL.md) | skill | 3 mapped procedures |
+| [Self-Identifying Product Campaign](../products/self-identifying-product-campaign/PROMPT.md) | prompt | 2 mapped procedures |
+| [Signed Agent Action Receipts](../products/signed-agent-action-receipts/PROMPT.md) | prompt | Not established in this reviewed work |
+| [Staged MCP Plugin Activation](../products/staged-mcp-plugin-activation/SKILL.md) | skill | 3 mapped procedures |
+| [State-Transition Evidence Contract](../products/state-transition-evidence-contract/SKILL.md) | skill | 7 mapped procedures |
+| [Temporary Authority Bridge Lifecycle](../products/temporary-authority-bridge-lifecycle/SKILL.md) | skill | 1 mapped procedure |
 
 ## Procedure coverage
 
-“Demonstrated” identifies observed work or reviewed implementation/regression evidence for that procedure. It does not imply a live deployment. “Partially demonstrated” identifies a useful procedure whose operational sequence, explanation or final acceptance remains incomplete. Consult the evidence and limits for each record in the JSON.
+“Demonstrated” includes reviewed implementation or observed workflow evidence. It does not automatically mean deployed or operational. “Partially demonstrated” retains incomplete acceptance. Read each record's evidence kind and limits in the JSON.
 
-| Procedure | Status | Catalogue coverage |
+| Procedure | Status | Product coverage |
 | --- | --- | --- |
-| Recover an earlier conversation into durable working context | Demonstrated | [Autonomous Coding Workflow with a Work Ledger](../products/autonomous-coding-workflow/PROMPT.md); [Production Agent Operating Files](../products/production-agent-operating-files/PROMPT.md) |
-| Separate host routing, transport, authentication and document failures | Partially demonstrated | [Bounded Google Docs Read Recovery](../products/bounded-google-docs-read-recovery/SKILL.md); [Read-Only Production System Reconnaissance](../products/read-only-production-reconnaissance/PROMPT.md); [Evidence-First Live Diagnostic and Repair](../products/evidence-first-live-diagnostic-repair/PROMPT.md) |
-| Back up host configuration and verify effective activation | Partially demonstrated | [Safe Scheduled Runtime Upgrade](../products/safe-scheduled-runtime-upgrade/SKILL.md); [Bounded Google Docs Read Recovery](../products/bounded-google-docs-read-recovery/SKILL.md); [Read-Only Production System Reconnaissance](../products/read-only-production-reconnaissance/PROMPT.md) |
-| Pause wake-ups, drain work and restore scheduling | Partially demonstrated | [Safe Scheduled Runtime Upgrade](../products/safe-scheduled-runtime-upgrade/SKILL.md) |
-| Run bounded host diagnostics and recover from malformed shell input | Demonstrated | [Read-Only Production System Reconnaissance](../products/read-only-production-reconnaissance/PROMPT.md); [Evidence-First Live Diagnostic and Repair](../products/evidence-first-live-diagnostic-repair/PROMPT.md); [Autonomous Coding Workflow with a Work Ledger](../products/autonomous-coding-workflow/PROMPT.md) |
-| Reconcile dashboard state with the underlying observation | Partially demonstrated | [Live Dashboard Update Verification](../products/live-dashboard-update-verification/SKILL.md); [Local-First Verification CLI](../products/local-first-verification-cli/PROMPT.md); [Evidence-First Live Diagnostic and Repair](../products/evidence-first-live-diagnostic-repair/PROMPT.md) |
-| Localise collector failure and shared deadline starvation | Partially demonstrated | [Evidence-First Live Diagnostic and Repair](../products/evidence-first-live-diagnostic-repair/PROMPT.md); [Bounded Google Docs Read Recovery](../products/bounded-google-docs-read-recovery/SKILL.md); [Read-Only Production System Reconnaissance](../products/read-only-production-reconnaissance/PROMPT.md) |
-| Read semantic preview results and eligibility correctly | Demonstrated | [Bounded Google Docs Read Recovery](../products/bounded-google-docs-read-recovery/SKILL.md); [Deterministic Social Publication Pipeline](../products/deterministic-social-publication/PROMPT.md); [Evidence-First Live Diagnostic and Repair](../products/evidence-first-live-diagnostic-repair/PROMPT.md) |
-| Trace a swallowed reader failure without exposing provider data | Demonstrated | [Bounded Google Docs Read Recovery](../products/bounded-google-docs-read-recovery/SKILL.md); [Evidence-First Live Diagnostic and Repair](../products/evidence-first-live-diagnostic-repair/PROMPT.md) |
-| Reduce document formatting overhead while preserving read contracts | Demonstrated | [Bounded Google Docs Read Recovery](../products/bounded-google-docs-read-recovery/SKILL.md) |
-| Repair shared DOM ownership and verify successive dashboard updates | Demonstrated | [Live Dashboard Update Verification](../products/live-dashboard-update-verification/SKILL.md) |
-| Deliver a narrow repository change with truthful validation | Demonstrated | [Evidence-Backed Open-Source Contribution](../products/evidence-backed-open-source-contribution/SKILL.md); [Local-First Verification CLI](../products/local-first-verification-cli/PROMPT.md) |
-| Hand off an exact runtime revision with separate live acceptance | Partially demonstrated | [Safe Scheduled Runtime Upgrade](../products/safe-scheduled-runtime-upgrade/SKILL.md); [Local-First Verification CLI](../products/local-first-verification-cli/PROMPT.md); [Autonomous Coding Workflow with a Work Ledger](../products/autonomous-coding-workflow/PROMPT.md) |
-| Keep execution, consequence, readback and outcome as separate evidence-backed states | Demonstrated | [State-Transition Evidence Contract](../products/state-transition-evidence-contract/SKILL.md) |
-| Build truthful machine-discovery surfaces from one canonical public source | Demonstrated | [Machine-Discovery Surface Engineering](../products/machine-discovery-surface-engineering/SKILL.md) |
-| Verify a deployed agent/search surface from the unauthenticated public boundary | Demonstrated | [Outside-In Agent Crawl Verification](../products/outside-in-agent-crawl-verification/SKILL.md) |
-| Use existing credential custody for one bounded operation and remove the bridge | Demonstrated | [Temporary Authority Bridge Lifecycle](../products/temporary-authority-bridge-lifecycle/SKILL.md) |
-| Publish an agent-discoverable subcontracting surface with bounded intake and authoritative payment terms | Demonstrated | [Agent Subcontracting Commercial Handoff](../products/agent-subcontracting-commercial-handoff/SKILL.md); [Machine-Discovery Surface Engineering](../products/machine-discovery-surface-engineering/SKILL.md); [State-Transition Evidence Contract](../products/state-transition-evidence-contract/SKILL.md) |
+| Recover an earlier conversation into durable working context | demonstrated | [Autonomous Coding Workflow with a Work Ledger](../products/autonomous-coding-workflow/PROMPT.md); [Production Agent Operating Files](../products/production-agent-operating-files/PROMPT.md) |
+| Separate host routing, transport, authentication and document failures | partially-demonstrated | [Bounded Google Docs Read Recovery](../products/bounded-google-docs-read-recovery/SKILL.md); [Read-Only Production System Reconnaissance](../products/read-only-production-reconnaissance/PROMPT.md); [Evidence-First Live Diagnostic and Repair](../products/evidence-first-live-diagnostic-repair/PROMPT.md) |
+| Back up host configuration and verify effective activation | partially-demonstrated | [Safe Scheduled Runtime Upgrade](../products/safe-scheduled-runtime-upgrade/SKILL.md); [Bounded Google Docs Read Recovery](../products/bounded-google-docs-read-recovery/SKILL.md); [Read-Only Production System Reconnaissance](../products/read-only-production-reconnaissance/PROMPT.md) |
+| Pause wake-ups, drain work and restore scheduling | partially-demonstrated | [Safe Scheduled Runtime Upgrade](../products/safe-scheduled-runtime-upgrade/SKILL.md) |
+| Run bounded host diagnostics and recover from malformed shell input | demonstrated | [Read-Only Production System Reconnaissance](../products/read-only-production-reconnaissance/PROMPT.md); [Evidence-First Live Diagnostic and Repair](../products/evidence-first-live-diagnostic-repair/PROMPT.md); [Autonomous Coding Workflow with a Work Ledger](../products/autonomous-coding-workflow/PROMPT.md) |
+| Reconcile dashboard state with the underlying observation | partially-demonstrated | [Live Dashboard Update Verification](../products/live-dashboard-update-verification/SKILL.md); [Local-First Verification CLI](../products/local-first-verification-cli/PROMPT.md); [Evidence-First Live Diagnostic and Repair](../products/evidence-first-live-diagnostic-repair/PROMPT.md) |
+| Localise collector failure and shared deadline starvation | partially-demonstrated | [Evidence-First Live Diagnostic and Repair](../products/evidence-first-live-diagnostic-repair/PROMPT.md); [Bounded Google Docs Read Recovery](../products/bounded-google-docs-read-recovery/SKILL.md); [Read-Only Production System Reconnaissance](../products/read-only-production-reconnaissance/PROMPT.md) |
+| Read semantic preview results and eligibility correctly | demonstrated | [Bounded Google Docs Read Recovery](../products/bounded-google-docs-read-recovery/SKILL.md); [Deterministic Social Publication Pipeline](../products/deterministic-social-publication/PROMPT.md); [Evidence-First Live Diagnostic and Repair](../products/evidence-first-live-diagnostic-repair/PROMPT.md) |
+| Trace a swallowed reader failure without exposing provider data | demonstrated | [Bounded Google Docs Read Recovery](../products/bounded-google-docs-read-recovery/SKILL.md); [Evidence-First Live Diagnostic and Repair](../products/evidence-first-live-diagnostic-repair/PROMPT.md) |
+| Reduce document formatting overhead while preserving read contracts | demonstrated | [Bounded Google Docs Read Recovery](../products/bounded-google-docs-read-recovery/SKILL.md) |
+| Repair shared DOM ownership and verify successive dashboard updates | demonstrated | [Live Dashboard Update Verification](../products/live-dashboard-update-verification/SKILL.md) |
+| Deliver a narrow repository change with truthful validation | demonstrated | [Evidence-Backed Open-Source Contribution](../products/evidence-backed-open-source-contribution/SKILL.md); [Local-First Verification CLI](../products/local-first-verification-cli/PROMPT.md) |
+| Hand off an exact runtime revision with separate live acceptance | partially-demonstrated | [Safe Scheduled Runtime Upgrade](../products/safe-scheduled-runtime-upgrade/SKILL.md); [Local-First Verification CLI](../products/local-first-verification-cli/PROMPT.md); [Autonomous Coding Workflow with a Work Ledger](../products/autonomous-coding-workflow/PROMPT.md) |
+| Keep execution, consequence, readback and outcome as separate evidence-backed states | demonstrated | [State-Transition Evidence Contract](../products/state-transition-evidence-contract/SKILL.md) |
+| Build truthful machine-discovery surfaces from one canonical public source | demonstrated | [Machine-Discovery Surface Engineering](../products/machine-discovery-surface-engineering/SKILL.md) |
+| Verify a deployed agent/search surface from the unauthenticated public boundary | demonstrated | [Outside-In Agent Crawl Verification](../products/outside-in-agent-crawl-verification/SKILL.md) |
+| Use existing credential custody for one bounded operation and remove the bridge | demonstrated | [Temporary Authority Bridge Lifecycle](../products/temporary-authority-bridge-lifecycle/SKILL.md) |
+| Publish an agent-discoverable subcontracting surface with bounded intake and authoritative payment terms | demonstrated | [Agent Subcontracting Commercial Handoff](../products/agent-subcontracting-commercial-handoff/SKILL.md); [Machine-Discovery Surface Engineering](../products/machine-discovery-surface-engineering/SKILL.md); [State-Transition Evidence Contract](../products/state-transition-evidence-contract/SKILL.md) |
+| Inventory advertised skills and tools without upgrading them into runtime claims | demonstrated | [Capability Surface Reconciliation](../products/capability-surface-reconciliation/SKILL.md); [State-Transition Evidence Contract](../products/state-transition-evidence-contract/SKILL.md) |
+| Advance an initial MCP draft through ownership and discovery while preserving later gates | partially-demonstrated | [Staged MCP Plugin Activation](../products/staged-mcp-plugin-activation/SKILL.md); [Capability Surface Reconciliation](../products/capability-surface-reconciliation/SKILL.md); [State-Transition Evidence Contract](../products/state-transition-evidence-contract/SKILL.md) |
+| Repair external-reader annotations without weakening historical compatibility checks | demonstrated | [Staged MCP Plugin Activation](../products/staged-mcp-plugin-activation/SKILL.md); [Evidence-Backed Open-Source Contribution](../products/evidence-backed-open-source-contribution/SKILL.md) |
+| Verify a public owner connection and repair minimal-input handoff semantics | demonstrated | [Staged MCP Plugin Activation](../products/staged-mcp-plugin-activation/SKILL.md); [Evidence-First Live Diagnostic and Repair](../products/evidence-first-live-diagnostic-repair/PROMPT.md); [Evidence-Backed Open-Source Contribution](../products/evidence-backed-open-source-contribution/SKILL.md) |
+| Keep website consent, operational tool telemetry and social activity separate | demonstrated | [Consent-Aware Plugin Measurement](../products/consent-aware-plugin-measurement/SKILL.md); [Live Dashboard Update Verification](../products/live-dashboard-update-verification/SKILL.md); [State-Transition Evidence Contract](../products/state-transition-evidence-contract/SKILL.md) |
+| Repair operational analytics at the actual API and outcome boundary | demonstrated | [Consent-Aware Plugin Measurement](../products/consent-aware-plugin-measurement/SKILL.md); [Evidence-First Live Diagnostic and Repair](../products/evidence-first-live-diagnostic-repair/PROMPT.md); [Local-First Verification CLI](../products/local-first-verification-cli/PROMPT.md) |
+| Reconcile native scheduled posts with a deterministic campaign ledger | partially-demonstrated | [Deterministic Social Publication Pipeline](../products/deterministic-social-publication/PROMPT.md); [Self-Identifying Product Campaign](../products/self-identifying-product-campaign/PROMPT.md); [State-Transition Evidence Contract](../products/state-transition-evidence-contract/SKILL.md) |
+| Correct launch copy to the highest evidenced product capability | demonstrated | [Capability Surface Reconciliation](../products/capability-surface-reconciliation/SKILL.md); [Self-Identifying Product Campaign](../products/self-identifying-product-campaign/PROMPT.md); [State-Transition Evidence Contract](../products/state-transition-evidence-contract/SKILL.md) |
 
-### Why these eight added skills?
+| Link an owned capability to an independent provider without transferring commercial authority | demonstrated | [Agent Subcontracting Commercial Handoff](../products/agent-subcontracting-commercial-handoff/SKILL.md); [Machine-Discovery Surface Engineering](../products/machine-discovery-surface-engineering/SKILL.md); [Outside-In Agent Crawl Verification](../products/outside-in-agent-crawl-verification/SKILL.md) |
 
-The original review added three skills because existing products already covered the other recovered procedures. Subsequent work then demonstrated four genuinely distinct procedures that were not represented in the catalogue: cross-product state-transition evidence, machine-discovery surface engineering, outside-in crawl acceptance and temporary-authority bridge lifecycle.
+## Observed supporting platform skills
 
-Those later skills are backed by merged Proof & State governance and the exercised Agent Shop deployment/discovery work. They do not claim that Tail Wagging's still-unmerged subcontracting implementation is complete, and they do not turn provider indexing or crawler permission into guaranteed outcomes.
+These are dependencies. Their implementations were not copied into the repository.
 
-## Named supporting platform skills
-
-These are observed dependencies of the work, not additional products in this repository. Their implementations are not copied or republished.
-
-| Named skill | Observed use | Scope |
+| Named skill | Observed role | Evidence sources |
 | --- | --- | --- |
-| `personal-context` | Recover earlier decisions and continuity context. | Explicitly announced in the recovered thread and used in follow-on continuity/catalogue work. |
-| `openai-library:library` | Persist the recovered transcript and capture artefact. | Follow-on capture session. |
-| `pages:write-page` | Create and read back a structured handover. | Follow-on capture session. |
-| `skill-creator` | Author and validate reusable skill payloads. | This catalogue update. |
+| `personal-context` | Recover prior decisions and continuity context. | recovered-work-thread, continuity-capture, catalogue-authoring, current-capability-extraction |
+| `openai-library:library` | Persist the recovered transcript and capture artefact. | continuity-capture, current-capability-extraction |
+| `pages:write-page` | Create and verify the structured handover. | continuity-capture |
+| `skill-creator` | Author and validate reusable skill payloads. | catalogue-authoring, current-capability-extraction |
+| `plugin-management:plugin-management` | Inspect available capabilities before proposing a connection or installation. | current-capability-extraction |
+| `sites:sites-mcp` | Understand the available hosted-MCP workflow and its connection boundary. | current-capability-extraction |
 
-Only `personal-context` was explicitly named as invoked in the recovered 65-message thread. Similarity to another platform skill's subject matter does not establish its invocation. The other three named skills were observed in the subsequent capture or catalogue work.
-
-A saved transcript and handover preserve recoverable context. They do not guarantee automatic recall in every future conversation, grant operational permissions or convert historical claims into fresh evidence.
+The original recovered thread explicitly named Personal Context. Follow-on sessions account for the remaining observed instructions. A saved handover supports recovery; it does not guarantee automatic retrieval, confer new authority or refresh an old completion claim.
 
 ## Open and inherited work
 
-These items are retained for continuity and are not marketed as completed capabilities:
+These records are retained for continuity and are not marketed as completed outcomes.
 
-| Item | Evidence state | What remains |
+| Item | State | Remaining evidence |
 | --- | --- | --- |
-| final runtime acceptance | unconfirmed | Final installation, running revision, restored scheduling and live console acceptance still require fresh host evidence. |
-| fresh scheduled observation | unconfirmed | Read-only preview success must be followed by an observed saved scheduled result before ongoing recovery is claimed. |
-| collector budget and provider recovery | unresolved | Shared collection deadline pressure and distinct source/reply failures were identified; completion of their repair was not demonstrated. |
-| model provider acceptance | inherited or pending | Earlier model-provider publication claims and later readiness blocks are historical context. A new provider acceptance result was not established. |
-| editorial and supply acceptance | pending | Editorial checks, usable supply and normal scheduled publication acceptance remain separate from transport and UI recovery. |
-| windows git bridge | inherited only | An earlier handover mentioned a Windows-to-guest repository bridge; its operational sequence was not demonstrated in the reviewed thread, so no new skill product is claimed. |
-| runtime package warning | deferred | An incidental package-manager/runtime warning was deferred. No repair or new product is claimed. |
+| final-runtime-acceptance | unconfirmed | Final installation, running revision, restored scheduling and live console acceptance still require fresh host evidence. |
+| fresh-scheduled-observation | unconfirmed | Read-only preview success must be followed by an observed saved scheduled result before ongoing recovery is claimed. |
+| collector-budget-and-provider-recovery | unresolved | Shared collection deadline pressure and distinct source/reply failures were identified; completion of their repair was not demonstrated. |
+| model-provider-acceptance | inherited-or-pending | Earlier model-provider publication claims and later readiness blocks are historical context. A new provider acceptance result was not established. |
+| editorial-and-supply-acceptance | pending | Editorial checks, usable supply and normal scheduled publication acceptance remain separate from transport and UI recovery. |
+| windows-git-bridge | inherited-only | An earlier handover mentioned a Windows-to-guest repository bridge; its operational sequence was not demonstrated in the reviewed thread, so no new skill product is claimed. |
+| runtime-package-warning | deferred | An incidental package-manager/runtime warning was deferred. No repair or new product is claimed. |
+| agent-shop-google-indexing | pending | The public Agent Shop is crawlable and submitted to Google; URL indexing remains provider-controlled and is monitored separately. |
+| opstruth-initial-mcp-review | pending | The draft has ownership/discovery evidence, while the candidate requires independent human review, merge/deployment, fresh provider checks, executed review cases and a real walkthrough. |
+| oneclick-minimal-brief-deployment | pending | PR #8 is tested candidate source but remains unmerged and undeployed; public-owner success does not prove the candidate repair is live. |
+| oneclick-owned-domain-measurement | pending | Owned-domain authority and DNS/cutover remain unresolved; live measurement must be checked on the intended canonical origin. |
+| independent-plugin-acceptance | unconfirmed | A public owner-account basic test is established in the reviewed record; clean-account installation and independent workflow acceptance remain separate. |
+| operational-traffic-attribution | unestablished | Historical operational aggregates have no sufficient test, user or error-cause markers to establish unique people, installs, independent demand or causal attribution. |
 
-Source review, regression results, hosted CI, merge state, installation, process readiness, saved observations and downstream outcomes must remain separate when updating these records. A later heavyweight diagnostic timeout does not by itself invalidate independently observed lightweight readiness or authorise repeating a release switch.
+## Maintaining this record
 
-## Maintaining the catalogue
+Read [AGENTS.md](../AGENTS.md), [protected decisions](DECISIONS.md) and [the catalogue contract](CATALOG_CONTRACT.md). Author original payload and metadata first. Preserve stable IDs and existing provenance. Synchronise the manifest, public projection, payload blob hashes, procedure mappings and this index together.
 
-1. Read [AGENTS.md](../AGENTS.md), [DECISIONS.md](DECISIONS.md) and the [catalogue contract](CATALOG_CONTRACT.md).
-2. Author a real payload and metadata in its product directory; preserve stable identifiers and existing source provenance.
-3. Add a procedure only when reviewed evidence supports its scope. Keep pending work and named dependencies distinct from product inventory.
-4. Synchronise the manifest, public projection and canonical payload blob hashes. Preserve original provenance for existing products.
-5. Update the coverage JSON and this human-readable index together; do not silently reinterpret procedure mappings as skill invocations.
-6. Run the read-only integrity check before committing:
+Run both read-only validators:
 
 ```sh
 python3 scripts/validate_catalog.py
+python3 scripts/validate_capability_inventory.py
 ```
 
-The validator checks metadata, IDs/slugs, source containment, manifest membership, public projection equality, canonical blob hashes and coverage references. It does not verify the truth of private evidence summaries, remote origin availability, installation or live application behaviour. Review those claims against their actual evidence.
-
-Git history records subsequent catalogue changes. Do not publish private evidence merely to make a public product claim appear stronger.
+They check catalogue and metadata integrity, not private-summary truth, account connection, deployment, live provider behaviour or customer outcomes. See [the latest work review](LATEST_WORK_REVIEW.md) for the current continuation boundary.

@@ -83,9 +83,19 @@ A procedure-to-product match does not prove that the product payload was invoked
 
 `docs/SKILL_COVERAGE.md` is the readable index of this record. Keep the two files consistent. Omit private implementation references and raw evidence from the public coverage record.
 
+### `catalog/capability-inventory.json`
+
+A dated metadata snapshot of external platform capabilities advertised to the review session. It records distinct skill names with cloud/executor surfaces, exact tool names grouped by provider, and separately declared orchestration controls. Counts derive from those records.
+
+This is not a product inventory, an installation manifest or proof that the capabilities work. Do not copy external skill implementations or privileged tool instructions into it. Keep account IDs, plugin IDs, package paths, credentials and private examples outside the public record. Owner execution exclusions remain distinct from metadata presence.
+
+`docs/CAPABILITY_INVENTORY.md` is its readable count and boundary summary. Refresh both after a meaningful capability-surface change. The inventory does not change the shop's CLI-first interface.
+
 ## Integrity validation
 
 Run `python3 scripts/validate_catalog.py` with Python 3.10 or later. This standard-library check is read-only and fails on invalid metadata, duplicate IDs/slugs, unresolved or escaping source paths, unindexed products, public projection drift, canonical source-hash drift, and invalid coverage references. It does not generate catalogue files or verify live operation, remote origin availability or the factual truth of an evidence summary.
+
+Run `python3 scripts/validate_capability_inventory.py` for capability metadata shape, duplicate names, provider membership, surface counts and total consistency. Neither validator invokes the advertised capabilities.
 
 ## Missing fields
 

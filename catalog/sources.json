@@ -55,6 +55,32 @@
       }
     },
     {
+      "id": "capability-surface-reconciliation",
+      "canonical": {
+        "path": "products/capability-surface-reconciliation/SKILL.md",
+        "blobSha": "cc5e0a590a2b7b1e0e7fda83a1d2c3f874dcad35"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/current-capability-extraction",
+        "path": "products/capability-surface-reconciliation/SKILL.md",
+        "blobSha": "cc5e0a590a2b7b1e0e7fda83a1d2c3f874dcad35"
+      }
+    },
+    {
+      "id": "consent-aware-plugin-measurement",
+      "canonical": {
+        "path": "products/consent-aware-plugin-measurement/SKILL.md",
+        "blobSha": "01b1964f4cee9e30d3f1adf57fd8a4560a271736"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/current-capability-extraction",
+        "path": "products/consent-aware-plugin-measurement/SKILL.md",
+        "blobSha": "01b1964f4cee9e30d3f1adf57fd8a4560a271736"
+      }
+    },
+    {
       "id": "continuous-business-operations-graph",
       "canonical": {
         "path": "products/continuous-business-operations-graph/PROMPT.md",
@@ -247,6 +273,19 @@
         "branch": "agent/signed-agent-action-receipts",
         "path": "agents/signed-agent-action-receipts.md",
         "blobSha": "b821da740c9019f71ebbe9dd9599cce4669610d9"
+      }
+    },
+    {
+      "id": "staged-mcp-plugin-activation",
+      "canonical": {
+        "path": "products/staged-mcp-plugin-activation/SKILL.md",
+        "blobSha": "76ba19e3f51e73d885af02eac1be336ed2bf0102"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/current-capability-extraction",
+        "path": "products/staged-mcp-plugin-activation/SKILL.md",
+        "blobSha": "76ba19e3f51e73d885af02eac1be336ed2bf0102"
       }
     },
     {
