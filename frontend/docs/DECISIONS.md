@@ -78,3 +78,11 @@ Status: Active
 Status: Active
 
 The frontend source now lives under `frontend/` in `AyobamiH/agent-shop-products`. Lovable is migration provenance only and is not required for ongoing development.
+
+
+## DEC-016 — Google DESIGN.md governs visual identity
+Status: Active
+
+`frontend/DESIGN.md` is the visual-design authority for the Agent Shop frontend and is linted in CI with the pinned Google Labs `design.md` implementation. The current design reference is a standards registry crossed with a package index and laboratory instrument panel. The registry-aperture mark is intentionally name-independent because final branding remains undecided.
+
+The interface favours provenance, queryability, boundaries and machine routes over decorative marketplace conventions. Gradients, AI sparkles, fake ratings, invented verification badges and commerce decoration are prohibited unless a later evidence-backed product decision changes the contract.

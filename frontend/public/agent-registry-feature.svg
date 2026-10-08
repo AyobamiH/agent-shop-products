@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#F5F7FA"/>
+  <g opacity=".7" stroke="#D8DEE7" stroke-width="1">
+    <path d="M0 90H1200M0 180H1200M0 270H1200M0 360H1200M0 450H1200M0 540H1200"/>
+    <path d="M120 0V630M240 0V630M360 0V630M480 0V630M600 0V630M720 0V630M840 0V630M960 0V630M1080 0V630"/>
+  </g>
+  <rect x="72" y="76" width="1056" height="478" rx="18" fill="#FFFFFF" stroke="#D8DEE7"/>
+  <g transform="translate(116 122)">
+    <rect width="112" height="112" rx="22" fill="#111827"/>
+    <g fill="none" stroke="#60A5FA" stroke-width="9" stroke-linecap="square">
+      <path d="M18 43V18h25"/>
+      <path d="M69 18h25v25"/>
+      <path d="M94 69v25H69"/>
+      <path d="M43 94H18V69"/>
+    </g>
+    <rect x="45" y="45" width="22" height="22" rx="3" fill="#FFFFFF"/>
+  </g>
+  <text x="116" y="300" fill="#111827" font-family="IBM Plex Sans, Arial, sans-serif" font-size="54" font-weight="600" letter-spacing="-1.8">Agent Capability Catalogue</text>
+  <text x="116" y="356" fill="#667085" font-family="IBM Plex Sans, Arial, sans-serif" font-size="24">Source-backed capabilities for autonomous agents.</text>
+  <g font-family="IBM Plex Mono, ui-monospace, monospace" font-size="17">
+    <rect x="116" y="414" width="246" height="52" rx="7" fill="#EFF6FF" stroke="#BFDBFE"/>
+    <text x="138" y="446" fill="#1D4ED8">GET /catalog.json</text>
+    <rect x="382" y="414" width="204" height="52" rx="7" fill="#F8FAFC" stroke="#D8DEE7"/>
+    <text x="404" y="446" fill="#475467">20 records</text>
+    <rect x="606" y="414" width="218" height="52" rx="7" fill="#F8FAFC" stroke="#D8DEE7"/>
+    <text x="628" y="446" fill="#475467">11 prompt · 9 skill</text>
+  </g>
+  <g transform="translate(930 150)" opacity=".9">
+    <g fill="none" stroke="#2563EB" stroke-width="16" stroke-linecap="square">
+      <path d="M0 70V0h70"/>
+      <path d="M150 0h70v70"/>
+      <path d="M220 150v70h-70"/>
+      <path d="M70 220H0v-70"/>
+    </g>
+    <rect x="87" y="87" width="46" height="46" rx="6" fill="#111827"/>
+  </g>
+</svg>

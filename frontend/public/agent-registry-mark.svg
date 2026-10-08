@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Registry aperture mark</title>
+  <desc id="desc">Four open blue corner brackets frame a solid dark capability record.</desc>
+  <g fill="none" stroke="#2563EB" stroke-width="6" stroke-linecap="square">
+    <path d="M9 25V9h16"/>
+    <path d="M39 9h16v16"/>
+    <path d="M55 39v16H39"/>
+    <path d="M25 55H9V39"/>
+  </g>
+  <rect x="25" y="25" width="14" height="14" rx="2" fill="#111827"/>
+</svg>

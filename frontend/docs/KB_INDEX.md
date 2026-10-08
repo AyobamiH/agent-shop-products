@@ -18,3 +18,4 @@ This directory is the persistent operating memory for the shop.
 ## Rule
 
 When a decision changes, update the relevant durable document in the same change. Do not rely on chat history to preserve architecture.
+- [Agent Shop design rationale](DESIGN_REFERENCE.md) — Google DESIGN.md authority, logo rationale and registry UX references.
