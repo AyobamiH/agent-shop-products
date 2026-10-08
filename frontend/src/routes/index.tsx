@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import { getFeaturedProducts } from "@/domain/catalog/featured";
-import { catalogMeta, listCategories, listProducts } from "@/domain/catalog/repository";
+import { SUBCONTRACTING_CAPABILITY_SLUG } from "@/features/agent-discovery/subcontracting-source";
+import { catalogMeta, getProductBySlug, listCategories, listProducts } from "@/domain/catalog/repository";
 import { categoryLabel } from "@/domain/catalog/facets";
 import { ProductList } from "@/features/catalog-browse/components/ProductList";
 import { MachineSurfaces } from "@/features/agent-discovery/components/MachineSurfaces";
@@ -35,6 +36,7 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   const products = listProducts();
   const featured = getFeaturedProducts();
+  const subcontracting = getProductBySlug(SUBCONTRACTING_CAPABILITY_SLUG);
   const categories = listCategories();
   const promptCount = products.filter((product) => product.productType === "prompt").length;
   const skillCount = products.filter((product) => product.productType === "skill").length;
@@ -87,6 +89,26 @@ function HomePage() {
           </dl>
         </aside>
       </section>
+
+      {subcontracting ? (
+        <section className="mt-10 border-l-2 border-primary pl-5" aria-labelledby="subcontracting-heading">
+          <h2 id="subcontracting-heading" className="text-base font-semibold">
+            When an agent needs a human subcontractor
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            The source-backed handoff record explains scoped website or repository work, quote-first custom
+            requests, and the separation of discovery, acceptance, payment and completion. This registry does
+            not accept or charge for work orders.
+          </p>
+          <Link
+            to="/products/$slug"
+            params={{ slug: subcontracting.slug }}
+            className="mt-3 inline-block text-sm font-medium text-primary underline underline-offset-4"
+          >
+            Inspect {subcontracting.name}
+          </Link>
+        </section>
+      ) : null}
 
       <section className="mt-16">
         <SectionHeading

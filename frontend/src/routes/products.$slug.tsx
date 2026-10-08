@@ -9,6 +9,7 @@ import { RelatedProducts } from "@/features/product-detail/components/RelatedPro
 import { buildProductBreadcrumbJsonLd, buildProductJsonLd } from "@/lib/jsonld/product";
 import { buildPageHead, toMetaDescription } from "@/lib/seo/meta";
 import { SITE_DESCRIPTOR } from "@/lib/site";
+import { SUBCONTRACTING_CAPABILITY_SLUG, SUBCONTRACTING_SERVICE_CATALOGUE, SUBCONTRACTING_SERVICE_GUIDE, SUBCONTRACTING_PROVIDER_NAME } from "@/features/agent-discovery/subcontracting-source";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -70,6 +71,24 @@ function ProductDetailPage() {
 
         <div className="space-y-6">
           <SourceNotice product={product} />
+          {product.slug === SUBCONTRACTING_CAPABILITY_SLUG ? (
+            <section className="rounded-lg border border-border bg-surface p-5">
+              <h2 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                Separate implementation provider
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                {SUBCONTRACTING_PROVIDER_NAME} publishes its own agent-facing service and quote-first work
+                boundaries. This capability record is guidance, not a booking, purchase or grant of repository access.
+              </p>
+              <a href={SUBCONTRACTING_SERVICE_GUIDE} className="mt-3 block text-sm font-medium text-primary underline underline-offset-4">
+                Inspect the provider’s subcontracting guide
+              </a>
+              <a href={SUBCONTRACTING_SERVICE_CATALOGUE} className="mt-2 block font-mono text-xs text-muted-foreground underline underline-offset-4">
+                Read the provider’s live machine service catalogue
+              </a>
+            </section>
+          ) : null}
+
           <section className="rounded-lg border border-border bg-surface p-5">
             <h2 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">Machine-readable</h2>
             <a href={`/raw/products/${product.slug}.md`} className="mt-3 block font-mono text-xs hover:underline">metadata Markdown</a>

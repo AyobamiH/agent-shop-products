@@ -7,6 +7,7 @@ import { MachineSurfaces } from "@/features/agent-discovery/components/MachineSu
 import { buildCollectionPageJsonLd } from "@/lib/jsonld/site";
 import { buildPageHead } from "@/lib/seo/meta";
 import { absoluteUrl, SITE_DESCRIPTOR } from "@/lib/site";
+import { SUBCONTRACTING_CAPABILITY_SLUG, SUBCONTRACTING_PROVIDER_NAME, SUBCONTRACTING_SERVICE_GUIDE, SUBCONTRACTING_SERVICE_CATALOGUE } from "@/features/agent-discovery/subcontracting-source";
 
 const TITLE = `Agent discovery — ${SITE_DESCRIPTOR}`;
 const DESCRIPTION =
@@ -60,6 +61,27 @@ function AgentsPage() {
           <li>3. Use the metadata route for deterministic machine consumption.</li>
           <li>4. Treat source pointers as provenance, not permission to expose full payload bodies.</li>
         </ol>
+      </section>
+
+      <section className="mt-14 border-t border-border pt-10">
+        <h2 className="text-xl font-semibold">When an agent needs outside implementation</h2>
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          The catalogue includes a source-backed subcontracting handoff capability. A separate service provider,
+          {" "}{SUBCONTRACTING_PROVIDER_NAME}, publishes its own available work scopes and quote-first intake.
+          Agent Shop does not accept jobs, take payment, or grant execution permissions for that provider.
+        </p>
+        <p className="mt-4 text-sm">
+          <a className="font-medium text-primary underline underline-offset-4" href={SUBCONTRACTING_SERVICE_GUIDE}>
+            Read the provider’s agent-facing service guide
+          </a>
+          <span className="mx-2 text-muted-foreground" aria-hidden="true">·</span>
+          <a className="font-medium text-primary underline underline-offset-4" href={SUBCONTRACTING_SERVICE_CATALOGUE}>
+            Check its live machine service catalogue
+          </a>
+        </p>
+        <p className="mt-2 font-mono text-xs text-muted-foreground">
+          Capability key: {SUBCONTRACTING_CAPABILITY_SLUG}
+        </p>
       </section>
 
       <section className="mt-14">

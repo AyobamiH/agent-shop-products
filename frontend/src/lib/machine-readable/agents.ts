@@ -1,6 +1,7 @@
 import { catalogMeta } from "@/domain/catalog/repository";
 import { catalogSource } from "@/domain/catalog/source";
 import { absoluteUrl, SITE_DESCRIPTOR } from "@/lib/site";
+import { SUBCONTRACTING_CAPABILITY_SLUG, SUBCONTRACTING_PROVIDER_NAME, SUBCONTRACTING_SERVICE_GUIDE, SUBCONTRACTING_SERVICE_CATALOGUE } from "@/features/agent-discovery/subcontracting-source";
 
 export function buildAgentsTxt(): string {
   const counts = Object.entries(catalogSource.productCountsByType)
@@ -40,6 +41,14 @@ export function buildAgentsTxt(): string {
     "- Future CLI: search, show, sample, buy, install, update.",
     "- buy/install/update are roadmap only; this frontend does not execute commerce or installation.",
     "- MCP is out of scope for this product.",
+    "",
+    "## Distinct service implementation route",
+    `source-backed capability: ${absoluteUrl(`/products/${SUBCONTRACTING_CAPABILITY_SLUG}`)}`,
+    `external provider: ${SUBCONTRACTING_PROVIDER_NAME}`,
+    `provider agent guide: ${SUBCONTRACTING_SERVICE_GUIDE}`,
+    `provider live service catalogue: ${SUBCONTRACTING_SERVICE_CATALOGUE}`,
+    "- Agent Shop provides capability metadata only; it does not accept paid jobs, issue quotes, grant repository access or execute purchases.",
+    "- Verify the provider's live contract independently. Receipt, owner acceptance, price, payment and completion are separate evidence states.",
     "",
     "## Crawl policy",
     "- Public discovery routes are intended to be crawlable and indexable.",
