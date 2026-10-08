@@ -91,3 +91,14 @@ After every deployment, `scripts/verify-deployed-surface.mjs` checks:
 - representative crawler user agents receive HTTP 200 rather than a Cloudflare/application block.
 
 A Wrangler success alone is not sufficient evidence of deployment acceptance.
+
+
+## Edge convergence rule
+
+A reachable route is not sufficient deployment evidence.
+
+Cloudflare can make the new Worker route reachable before every cached machine surface has converged to the new catalogue projection. The production workflow therefore retries the complete outside-in acceptance for a bounded period after deployment.
+
+The acceptance loop must observe the exact deployed catalogue, canonical origin, product count/type mix, product detail/raw metadata routes, crawler policy, retired-route fencing and payload boundaries before the release is accepted.
+
+Do not redeploy merely because an immediate post-deploy read returned the previous public projection. Treat that first mismatch as pending edge convergence until the bounded readback window expires.
