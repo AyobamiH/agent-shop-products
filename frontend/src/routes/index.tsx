@@ -75,7 +75,7 @@ function HomePage() {
               <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">registry snapshot</p>
               <p className="mt-1 text-sm font-medium">Canonical public projection</p>
             </div>
-            <img src="/agent-registry-mark.svg" alt="" aria-hidden="true" className="size-9" />
+            <img src="/agent-registry-mark.svg" alt="Agent Capability Catalogue registry aperture logo" className="size-9" />
           </div>
           <dl className="divide-y divide-border">
             <RegistryRow label="records" value={String(catalogMeta.productCount)} />
