@@ -3,10 +3,11 @@
   "recordKind": "procedure-coverage",
   "reviewedOn": "2026-10-07",
   "scope": {
-    "statement": "Catalogue all reusable procedures evidenced by the reviewed work, including the subsequent state-governance and public machine-discovery acceptance work, and account for every product in the canonical repository.",
+    "statement": "Catalogue all reusable procedures evidenced by the reviewed work, including subsequent state-governance, public machine-discovery acceptance and agent-subcontracting commercial handoff work, and account for every product in the canonical repository.",
     "reviewedVisibleMessageCount": 65,
     "baselineProductCount": 13,
     "newProductIds": [
+      "agent-subcontracting-commercial-handoff",
       "bounded-google-docs-read-recovery",
       "live-dashboard-update-verification",
       "machine-discovery-surface-engineering",
@@ -15,7 +16,7 @@
       "state-transition-evidence-contract",
       "temporary-authority-bridge-lifecycle"
     ],
-    "completeness": "Complete for the original recovered 65 visible messages, the targeted authorised implementation review, the continuity/catalogue work, and the subsequent Proof & State plus Agent Shop state/discovery work explicitly cited here. It is not a claim to cover unreviewed conversations or every lifetime tool invocation.",
+    "completeness": "Complete for the original recovered 65 visible messages, the targeted authorised implementation review, continuity/catalogue work, Proof & State and Agent Shop state/discovery work, and the Tail Wagging agent-subcontracting implementation/deployment explicitly cited here. It is not a claim to cover unreviewed conversations or every lifetime tool invocation.",
     "publicationBoundary": "Original generalised workflows and sanitised evidence summaries only. Private source, shared-conversation links, raw transcripts, credentials, secret custody details, host identifiers and restricted implementation references are excluded.",
     "invocationRule": "A product mapping is a match to reusable procedure coverage, not evidence that its PROMPT.md or SKILL.md was loaded. Only supportingSkills records explicitly observed named platform-skill invocation."
   },
@@ -70,6 +71,13 @@
       "kind": "current-session-operational-observation",
       "description": "A bounded Cloudflare deployment bridge reused existing repository secret custody, exposed no credential material, verified the public consequence and was removed after use.",
       "limits": "The public skill generalises the lifecycle only. Secret values, private custody details and temporary workflow internals are not published."
+    },
+    {
+      "id": "tail-wagging-agent-subcontract-production",
+      "kind": "public-repository-and-provider-observation",
+      "description": "Tail Wagging agent subcontracting surface merged, passed repository-native acceptance, deployed through the Cloudflare production workflow, passed live GSC/on-page inspection and completed key-validated IndexNow notification.",
+      "url": "https://github.com/AyobamiH/wagging-web-wins/commit/97d01c462030beaffc95f7aa0df3d726be2d29ec",
+      "limits": "The live public discovery surface and production deployment are observable. The structured job endpoint was validated by repository-native contract tests; a live job submission was intentionally not sent because it would create a real owner email/business request. PayPal remains unconfigured."
     }
   ],
   "procedures": [
@@ -503,9 +511,44 @@
         "A temporary bridge is not a recommendation for permanent cross-repository credential sharing.",
         "Credential rotation or creation remains a separate authority decision."
       ]
+    },
+    {
+      "id": "publish-agent-subcontracting-commercial-handoff",
+      "name": "Publish an agent-discoverable subcontracting surface with bounded intake and authoritative payment terms",
+      "trigger": "A service business wants agents to delegate website/repository work instead of attempting it themselves.",
+      "status": "demonstrated",
+      "productIds": [
+        "agent-subcontracting-commercial-handoff",
+        "machine-discovery-surface-engineering",
+        "state-transition-evidence-contract"
+      ],
+      "relationship": "composition",
+      "evidence": [
+        {
+          "sourceId": "tail-wagging-agent-subcontract-production",
+          "kind": "public-source-ci-deployment-and-live-discovery",
+          "summary": "The public Tail Wagging implementation exposes /agents/, /agents.txt and /agent-services.json, enforces a bounded structured job request, keeps published Stripe packages server-authoritative, leaves custom work quote-first, separates job receipt/payment/work states, passed exact-head acceptance, deployed to Cloudflare, and reached a zero-issue live audit with key-validated IndexNow submission."
+        }
+      ],
+      "limits": [
+        "A real production job POST was not sent because that would create a consequential business request/email; the endpoint contract is established by repository-native tests and deployment of the tested Worker.",
+        "Published Stripe package checkout and custom quote-first work are distinct; arbitrary custom pricing is not accepted.",
+        "PayPal is explicitly not established as a configured payment provider.",
+        "Discovery and job receipt do not grant repository or production mutation authority."
+      ]
     }
   ],
   "productCoverage": [
+    {
+      "productId": "agent-subcontracting-commercial-handoff",
+      "catalogueState": "added",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "publish-agent-subcontracting-commercial-handoff"
+      ],
+      "invocation": "not-established",
+      "note": "Added from demonstrated Tail Wagging agent-subcontracting work; consult the procedure evidence and limits."
+    },
     {
       "productId": "autonomous-coding-workflow",
       "catalogueState": "retained",
@@ -620,7 +663,8 @@
       "catalogueState": "added",
       "mapping": "procedure-coverage",
       "procedureIds": [
-        "engineer-machine-discovery-surfaces"
+        "engineer-machine-discovery-surfaces",
+        "publish-agent-subcontracting-commercial-handoff"
       ],
       "invocation": "not-established",
       "note": "Added from demonstrated subsequent state/discovery work; consult procedure evidence and limits."
@@ -699,7 +743,8 @@
       "catalogueState": "added",
       "mapping": "procedure-coverage",
       "procedureIds": [
-        "govern-state-transitions-with-evidence"
+        "govern-state-transitions-with-evidence",
+        "publish-agent-subcontracting-commercial-handoff"
       ],
       "invocation": "not-established",
       "note": "Added from demonstrated subsequent state/discovery work; consult procedure evidence and limits."
