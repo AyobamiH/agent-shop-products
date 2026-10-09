@@ -8,7 +8,8 @@ const SESSION = "cs_test_123456789012345";
 const INTENT = "pi_123456789012345";
 type Row = { state?: unknown; idempotency_key?: unknown; checkout_session_id?: unknown; checkout_url?: unknown; payment_intent_id?: unknown; last_download_at?: unknown; [key: string]: unknown };
 
-function fixture({ preventEntitlementInsert = false } = {}) {
+function fixture({ preventEntitlementInsert = false,
+  stripeCommittedButTimedOut = false, tamperRecoverySession = false } = {}) {
   const orders = new Map<string, Row>();
   const entitlements = new Map<string, Row>();
   const events = new Set<string>();
@@ -43,6 +44,11 @@ function fixture({ preventEntitlementInsert = false } = {}) {
         orders.set(String(id),{ id,offer_id,offer_version,currency,amount_pence,terms_version,state,
           claim_token_hash,idempotency_key,created_at,updated_at,checkout_session_id:null,payment_intent_id:null });
         currentOrderId=String(id);
+      } else if (s.includes("SET state='checkout_open'") && s.includes("checkout_session_id IS NULL")) {
+        const row = orders.get(String(v[2]));
+        if (row?.state === "creating" && !row.checkout_session_id) {
+          row.state = "checkout_open"; row.checkout_session_id = v[0];
+        }
       } else if (s.includes("SET state='checkout_open'")) {
         const row=orders.get(String(v[3]))!; row.state="checkout_open";row.checkout_session_id=v[0];row.checkout_url=v[1];
       } else if (s.includes("SET state='failed'")) {
@@ -117,6 +123,7 @@ function fixture({ preventEntitlementInsert = false } = {}) {
     if(url.pathname.endsWith("/checkout/sessions")&&init?.method==="POST"){
       const body=new URLSearchParams(String(init.body));
       if(body.get("automatic_tax[enabled]") !== "true") throw Error("Stripe Tax must be active");
+      if (stripeCommittedButTimedOut) throw new Error("synthetic Stripe transport loss after session commit");
       return new Response(JSON.stringify({id:SESSION,url:"https://checkout.stripe.com/pay/"+SESSION,
         livemode:false,mode:"payment",client_reference_id:body.get("client_reference_id")}),{status:200});
     }
@@ -125,7 +132,7 @@ function fixture({ preventEntitlementInsert = false } = {}) {
       amount_subtotal:4900, amount_total:5880, total_details:{amount_tax:980,amount_discount:0,amount_shipping:0},
       currency:"gbp",payment_intent:INTENT,client_reference_id:currentOrderId,
       metadata:{agent_shop_order_id:currentOrderId,offer_id:KIT,offer_version:"2026.10.1"},
-      line_items:{data:[{price:{id:"price_123456789012"},quantity:1}]},
+      line_items:{data:[{price:{id:tamperRecoverySession?"price_999999999999":"price_123456789012"},quantity:1}]},
     }),{status:200});
     return new Response(JSON.stringify({error:"unexpected"}),{status:500});
   };
@@ -221,13 +228,50 @@ describe("Stripe-hosted private-kit integration without live customer effects", 
     expect(denied?.status).toBe(409);
     expect(f.events.size).toBe(2);
   });
-  it("does not acknowledge an early genuine webhook while checkout is still creating", async () => {
+  it("does not acknowledge an unproven early webhook while checkout is still creating", async () => {
     const f=fixture();
     const id=crypto.randomUUID();
     f.orders.set(id,{id,state:"creating"});
     const response=await handleCommerceRequest(await f.signedEvent("checkout.session.completed",
       "evt_early123456",{id:SESSION,client_reference_id:id}),f.env,f.fakeStripe);
-    expect(response?.status).toBe(503);
+    expect(response?.status).toBe(409);
+    expect(f.events.size).toBe(0);
+  });
+
+  it("recovers an ambiguous Stripe session POST after it committed, using only signed and server-read evidence", async () => {
+    const f = fixture({stripeCommittedButTimedOut:true});
+    const browser = new Request(API+"checkout",{method:"POST",headers:{
+      origin:"https://agents.proofandstate.com", "Content-Type":"application/json",
+      "Idempotency-Key":crypto.randomUUID()},body:JSON.stringify({offerId:KIT})});
+    const checkout = await handleCommerceRequest(browser, f.env, f.fakeStripe);
+    expect(checkout?.status).toBe(503);
+    expect((await checkout!.json()).error).toBe("PAYMENT_PROVIDER_UNAVAILABLE");
+    const order = [...f.orders.values()][0]!;
+    expect(order.state).toBe("creating");
+    expect(order.checkout_session_id).toBeNull();
+    const callback = await f.signedEvent("checkout.session.completed", "evt_recovery123456", {
+      id:SESSION, client_reference_id:order["id"],
+    });
+    expect((await handleCommerceRequest(callback,f.env,f.fakeStripe))?.status).toBe(200);
+    expect(order.state).toBe("paid");
+    expect(order.checkout_session_id).toBe(SESSION);
+    expect(f.entitlements.get(String(order["id"]))?.state).toBe("active");
+    expect(f.events.size).toBe(1);
+  });
+
+  it("rejects forged recovery mismatched against Stripe's authoritative price", async () => {
+    const f = fixture({stripeCommittedButTimedOut:true,tamperRecoverySession:true});
+    const browser = new Request(API+"checkout",{method:"POST",headers:{
+      origin:"https://agents.proofandstate.com", "Content-Type":"application/json",
+      "Idempotency-Key":crypto.randomUUID()},body:JSON.stringify({offerId:KIT})});
+    expect((await handleCommerceRequest(browser,f.env,f.fakeStripe))?.status).toBe(503);
+    const order = [...f.orders.values()][0]!;
+    const forged = await f.signedEvent("checkout.session.completed", "evt_badrecover123456", {
+      id:SESSION,client_reference_id:order["id"],
+    });
+    expect((await handleCommerceRequest(forged,f.env,f.fakeStripe))?.status).toBe(409);
+    expect(order.state).toBe("creating");
+    expect(f.entitlements.size).toBe(0);
     expect(f.events.size).toBe(0);
   });
 });

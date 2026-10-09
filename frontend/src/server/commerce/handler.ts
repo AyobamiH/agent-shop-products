@@ -107,8 +107,18 @@ async function checkout(request: Request, env: CommerceEnv, fetcher: typeof fetc
   try {
     session = await createStripeSession(env, approved, orderId, fetcher);
   } catch (error) {
-    await applied(db.prepare("UPDATE commerce_orders SET state='failed',updated_at=? WHERE id=? AND state='creating'")
-      .bind(now(), orderId));
+    // Stripe can accept a session before our network receives its response.
+    // A transport timeout/5xx is not proof that no Checkout Session exists.
+    // Retain the creating row for signed-webhook reconciliation rather than
+    // marking the order failed and permanently losing a paid customer event.
+    const definiteRejection = error instanceof CommerceFailure && (
+      error.code === "PAYMENT_PRICE_MISMATCH" ||
+      (error.code === "PAYMENT_PROVIDER_ERROR" && !error.retryable)
+    );
+    if (definiteRejection) {
+      await applied(db.prepare("UPDATE commerce_orders SET state='failed',updated_at=? WHERE id=? AND state='creating'")
+        .bind(now(), orderId));
+    }
     throw error;
   }
   await applied(db.prepare(
@@ -221,21 +231,47 @@ async function processWebhookEvent(event: StripeEvent, env: CommerceEnv, fetcher
   if (typeof sessionId !== "string" || !sessionPattern.test(sessionId)) {
     throw new CommerceFailure("INVALID_EVENT", 400);
   }
-  const order = await db.prepare("SELECT * FROM commerce_orders WHERE checkout_session_id=?")
+  let order = await db.prepare("SELECT * FROM commerce_orders WHERE checkout_session_id=?")
     .bind(sessionId).first<Order>();
   if (!order) {
-    // A webhook can race checkout-session persistence. Retry rather than silently
-    // losing a legitimate paid event; ignore only proven unrelated sessions.
+    // Stripe may complete a session after its API POST committed but before
+    // our Worker received the Checkout URL. A signed webhook provides a hint,
+    // not ownership proof: re-read Stripe's authoritative session, inspect the
+    // complete offer linkage and atomically fence the originally creating row.
     const ref = data?.["client_reference_id"];
     if (typeof ref === "string" && orderPattern.test(ref)) {
-      const creating = await db.prepare("SELECT id,state FROM commerce_orders WHERE id=?")
-        .bind(ref).first<{ id: string; state: string }>();
-      if (creating?.state === "creating") {
+      const creating = await db.prepare("SELECT * FROM commerce_orders WHERE id=?")
+        .bind(ref).first<Order>();
+      if (creating?.state === "creating" && !creating.checkout_session_id) {
+        const approved = offerOrFail(env, creating.offer_id);
+        const provider = await getStripeSession(env, sessionId, fetcher);
+        if (
+          provider.client_reference_id !== creating.id ||
+          provider.mode !== "payment" ||
+          provider.livemode !== (approved.mode === "live") ||
+          provider.currency !== approved.currency ||
+          provider.amount_subtotal !== approved.unitAmountPence ||
+          provider.metadata?.["agent_shop_order_id"] !== creating.id ||
+          provider.metadata?.["offer_id"] !== approved.id ||
+          provider.metadata?.["offer_version"] !== approved.version ||
+          provider.line_items?.data?.length !== 1 ||
+          provider.line_items.data[0]?.price?.id !== approved.priceId ||
+          provider.line_items.data[0]?.quantity !== 1
+        ) throw new CommerceFailure("PAYMENT_RECONCILIATION_FAILED", 409);
+        await applied(db.prepare(
+          "UPDATE commerce_orders SET state='checkout_open',checkout_session_id=?,updated_at=? WHERE id=? AND state='creating' AND checkout_session_id IS NULL",
+        ).bind(sessionId, timestamp, creating.id), 1);
+        order = await db.prepare("SELECT * FROM commerce_orders WHERE checkout_session_id=?")
+          .bind(sessionId).first<Order>();
+      } else if (creating?.state === "creating") {
         throw new CommerceFailure("ORDER_PENDING_RECONCILIATION", 503, true);
       }
     }
-    await applied(recordEvent);
-    return;
+    if (!order) {
+      // Foreign sessions cannot create entitlements or expose purchaser data.
+      await applied(recordEvent);
+      return;
+    }
   }
   if (type === "checkout.session.async_payment_failed" || type === "checkout.session.expired") {
     await db.batch([
