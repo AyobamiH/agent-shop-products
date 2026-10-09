@@ -122,3 +122,7 @@ publication boundaries, R2 object-key secrecy and completion noindex. It logs
 products are not paid customers. The workflow makes no checkout request,
 performs no database writes, and submits no indexing requests. A newly enabled
 public sale needs separate owner-approved merchant/test transaction evidence.
+
+## Stripe ambiguous checkout-session recovery
+
+A Stripe Checkout create request can succeed at the provider before a response reaches the Worker. Transport failures must preserve the creating order, not falsely mark it failed. On a later signed Stripe event, the Worker re-fetches the Checkout Session directly from Stripe, verifies all order, price, amount, metadata and merchant-mode links, conditionally records the session against that one creating order and follows standard payment and entitlement reconciliation. Invalid claims do not issue entitlements; no duplicate checkout is started. Browser claim loss requires authorised manual recovery. Synthetic tests cover a committed Stripe request followed by transport loss and a mismatched session; live Stripe test-mode acceptance remains separate.
