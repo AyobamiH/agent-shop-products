@@ -4,6 +4,7 @@ import { IDENTITY_STATUS, PRODUCT_HEADLINE, SITE_DESCRIPTOR } from "@/lib/site";
 const CATALOG_LINKS = [
   { to: "/agents", label: "Agent discovery" },
   { to: "/shop", label: "Capability catalogue" },
+  { to: "/solutions", label: "Problem-solving guides" },
   { to: "/problems", label: "Problem index" },
   { to: "/knowledge", label: "Source-backed knowledge" },
 ] as const;
