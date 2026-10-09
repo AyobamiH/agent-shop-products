@@ -20,15 +20,15 @@ on:
 
 jobs:
   verify:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     defaults:
       run:
         working-directory: frontend
     env:
       VITE_SITE_ORIGIN: https://agent-catalogue.example.invalid
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6
         with:
           repository: AyobamiH/design.md
           ref: 9bf8eae67128b6cc55ad9bf86665767deb4c11cd
