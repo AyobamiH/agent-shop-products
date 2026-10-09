@@ -1,0 +1,29 @@
+name: Agent Shop public release parity
+
+on:
+  schedule:
+    - cron: "19 8 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent-shop-public-parity
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Verify pure comparison contract
+        run: node --test frontend/scripts/live-discovery-parity.test.mjs
+      - name: Compare current main with real production HTTP surfaces
+        run: node frontend/scripts/live-discovery-parity.mjs
