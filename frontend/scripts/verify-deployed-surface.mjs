@@ -1,13 +1,12 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { verifyRegistrySurface } from "./verify-registry-surface.mjs";
 
 const origin = (process.env.ACCEPTANCE_ORIGIN ?? "").replace(/\/+$/, "");
 if (!origin) throw new Error("ACCEPTANCE_ORIGIN is required");
 
 const root = resolve(import.meta.dirname, "..");
-const catalogue = JSON.parse(
-  readFileSync(resolve(root, "catalog/products.public.json"), "utf8"),
-);
+const catalogue = JSON.parse(readFileSync(resolve(root, "catalog/products.public.json"), "utf8"));
 const products = catalogue.products;
 
 const crawlerAgents = [
@@ -23,11 +22,7 @@ const crawlerAgents = [
   "Applebot",
 ];
 
-const declaredRobotsAgents = [
-  ...crawlerAgents,
-  "Google-Extended",
-  "Applebot-Extended",
-];
+const declaredRobotsAgents = [...crawlerAgents, "Google-Extended", "Applebot-Extended"];
 
 const payloadMarkers = ["```", "## System role", "<system>", "---\nname:"];
 
@@ -93,7 +88,10 @@ for (const product of products) {
 
   const raw = await expectStatus(`/raw/products/${product.slug}.md`);
   requireValue(raw.text.includes(product.name), `${product.slug}: raw metadata missing name`);
-  requireValue(raw.text.includes(`- type: ${product.productType}`), `${product.slug}: raw type mismatch`);
+  requireValue(
+    raw.text.includes(`- type: ${product.productType}`),
+    `${product.slug}: raw type mismatch`,
+  );
   for (const marker of payloadMarkers) {
     requireValue(!raw.text.includes(marker), `${product.slug}: raw payload marker leaked`);
   }
@@ -118,11 +116,13 @@ for (const retired of [
   await expectStatus(retired, 404);
 }
 
+const registryAcceptance = await verifyRegistrySurface(origin);
 console.log(
   JSON.stringify({
     status: "PASS",
     origin,
     products: products.length,
+    ...registryAcceptance,
     crawlerAgentsChecked: crawlerAgents.length,
     machineSurfaces: ["/catalog.json", "/agents.txt", "/llms.txt", "/robots.txt", "/sitemap.xml"],
   }),

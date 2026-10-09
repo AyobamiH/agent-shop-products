@@ -11,7 +11,7 @@ export function ProductCard({ product }: { product: Product }) {
   const hiddenTagCount = product.tags.length - MAX_VISIBLE_TAGS;
 
   return (
-    <article className="group relative flex h-full flex-col rounded-lg border border-border bg-surface p-5 transition-colors hover:border-primary/35 hover:bg-primary/[0.02]">
+    <article className="group relative flex h-full min-w-0 flex-col rounded-lg border border-border bg-surface p-5 transition-colors hover:border-primary/35 hover:bg-primary/[0.02]">
       <div className="flex flex-wrap items-center gap-2">
         <MetaChip>{humanizeSlug(product.productType)}</MetaChip>
         <MetaChip>{categoryLabel(product.category)}</MetaChip>

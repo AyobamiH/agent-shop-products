@@ -19,3 +19,6 @@ This directory is the persistent operating memory for the shop.
 
 When a decision changes, update the relevant durable document in the same change. Do not rely on chat history to preserve architecture.
 - [Agent Shop design rationale](DESIGN_REFERENCE.md) — Google DESIGN.md authority, logo rationale and registry UX references.
+# Full registry and bug index
+
+See `../../docs/CAPABILITY_SHOP_AND_BUG_INDEX.md` for the owner-authorised 990 external listings, quote-first procurement policy, bug evidence boundaries and deployment requirements. The implementation adds `/capabilities`, `/capabilities/{id}`, `/capabilities.json`, `/capability-brief.json?id={id}`, `/coding-bugs` and `/coding-bugs.json` beside the original product discovery routes.

@@ -75,3 +75,6 @@ Do not mix checkout state into source prompt files or into the public projection
 ## In-repository frontend sync
 
 The frontend now lives at `frontend/` in the same GitHub repository as the canonical catalogue. Its bundled projection remains a build artifact for frontend isolation, not an authoring surface. `frontend/scripts/sync-catalog.ts` copies the root public projection and derives the frontend sync record before build/validation.
+# External capability and coding bug contracts
+
+The owner-authorised registry has three additional canonical inputs: `catalog/capability-inventory.json`, `catalog/capability-acquisition.json` and `catalog/agentic-coding-bugs.json`. They are synced into `frontend/catalog` and consumed through separate domain repositories. All 990 advertised capability names must have unique stable IDs, detail URLs and GET integration briefs. These metadata listings are not owned product payloads, executable tool schemas, external skill downloads or ready installations. Quote-first integration requires provider feasibility and accepted commercial terms. Bug entries preserve source, evidence scope, next acceptance and historical/candidate status.

@@ -14,7 +14,7 @@ export function ProductList({
   return (
     <ul
       className={cn(
-        "grid list-none gap-4 sm:grid-cols-2",
+        "grid min-w-0 grid-cols-1 list-none gap-4 sm:grid-cols-2",
         columns === 3 ? "lg:grid-cols-3" : null,
         className,
       )}

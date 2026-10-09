@@ -14,6 +14,9 @@ export function buildCatalogJson(): Record<string, unknown> {
       agentsTxt: absoluteUrl("/agents.txt"),
       llmsTxt: absoluteUrl("/llms.txt"),
       sitemap: absoluteUrl("/sitemap.xml"),
+      externalCapabilities: absoluteUrl("/capabilities.json"),
+      integrationBriefTemplate: absoluteUrl("/capability-brief.json?id={id}"),
+      codingBugs: absoluteUrl("/coding-bugs.json"),
     },
     source: {
       repository: catalogSource.upstream.repository,
