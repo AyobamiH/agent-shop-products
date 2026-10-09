@@ -5,6 +5,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: agent-shop-production
@@ -12,58 +13,108 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.repository == 'AyobamiH/agent-shop-products' && github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch'
+    environment: production
     runs-on: ubuntu-24.04
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: frontend
     env:
       ACCEPTANCE_ORIGIN: https://agents.proofandstate.com
+      CANONICAL_ORIGIN: https://agents.proofandstate.com
       VITE_SITE_ORIGIN: https://agents.proofandstate.com
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          package-manager-cache: false
       - uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
-      - name: Require Cloudflare deployment credentials
-        run: |
-          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
-            echo "::error::CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID must be configured in this repository before running the canonical deployment workflow."
-            exit 1
-          fi
-          echo "Cloudflare deployment credentials are available."
-      - name: Install
-        run: bun install --frozen-lockfile
-      - name: Build canonical production artifact
-        run: bun run build
-      - name: Validate Worker bundle
-        run: bunx wrangler@4.135.0 deploy --dry-run --config wrangler.jsonc --outdir /tmp/agent-shop-worker
-      - name: Deploy agent-shop Worker
-        run: bunx wrangler@4.135.0 deploy --config wrangler.jsonc
-      - name: Wait for production origin
-        run: |
-          for i in {1..60}; do
-            if curl --fail --silent --show-error --location "$ACCEPTANCE_ORIGIN/agents" >/dev/null; then
-              echo "Production origin is reachable."
-              exit 0
-            fi
-            sleep 2
-          done
-          echo "::error::Production origin did not become reachable."
-          exit 1
-      - name: Wait for deployed content convergence and run outside-in acceptance
+          bun-version: "1.4.2"
+
+      - name: Require scoped production Cloudflare credentials
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           set -euo pipefail
-          for attempt in {1..18}; do
-            if node scripts/verify-deployed-surface.mjs; then
-              echo "Outside-in acceptance passed on attempt $attempt."
-              exit 0
-            fi
-            echo "Public content has not converged yet; retrying in 5 seconds."
-            sleep 5
-          done
-          echo "::error::Public content did not converge before the acceptance deadline."
-          exit 1
-      - name: Deployment status
-        run: echo "Agent shop production deployment completed and passed outside-in verification."
+          if [[ -z "$CLOUDFLARE_API_TOKEN" || "$CLOUDFLARE_ACCOUNT_ID" != "6ddcbcb8474f1a7e460b2f0aabec0e2f" ]]; then
+            echo "::error::Production environment Cloudflare token or exact account ID is not configured; release aborted before any upload."
+            exit 1
+          fi
+          echo "Configured production account verified. No token values emitted."
+
+      - name: Require successful exact-main push CI
+        working-directory: .
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/check-release-ci.mjs
+
+      - name: Verify immutable release and rollback regression contracts
+        working-directory: .
+        run: |
+          node --test \
+            scripts/check-release-ci.node-check.mjs \
+            scripts/parse-candidate-upload.node-check.mjs \
+            scripts/guarded-promote.node-check.mjs
+
+      - name: Install frozen dependencies without deployment credentials
+        run: bun install --frozen-lockfile
+      - name: Build exact canonical source without deployment credentials
+        run: bun run build
+      - name: Verify TypeScript and static quality
+        run: |
+          bunx tsc --noEmit
+          bun run lint
+      - name: Validate candidate bundle without production mutation
+        run: bunx wrangler@4.135.0 deploy --dry-run --config wrangler.jsonc --outdir /tmp/agent-shop-verified-worker
+
+      - name: Upload immutable candidate without changing production traffic
+        id: candidate
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+          ALIAS="release-${GITHUB_SHA:0:8}"
+          bunx wrangler@4.135.0 versions upload --config wrangler.jsonc \
+            --preview-alias "$ALIAS" --tag "$GITHUB_SHA" \
+            --message "candidate $GITHUB_SHA" \
+            > "$RUNNER_TEMP/agent-shop-version-upload.txt"
+          node ../scripts/parse-candidate-upload.mjs \
+            "$RUNNER_TEMP/agent-shop-version-upload.txt" "$GITHUB_SHA" >> "$GITHUB_OUTPUT"
+
+      - name: Verify preview business and source contracts before promotion
+        env:
+          ACCEPTANCE_ORIGIN: ${{ steps.candidate.outputs.preview_url }}
+        run: |
+          set -euo pipefail
+          node scripts/verify-deployed-surface.mjs > "$RUNNER_TEMP/agent-shop-candidate-parity.json"
+          node --input-type=module - <<'NODE'
+          import { readFileSync } from "node:fs";
+          const result = JSON.parse(readFileSync(process.env.RUNNER_TEMP + "/agent-shop-candidate-parity.json", "utf8"));
+          if (result.status !== "PASS" || result.commerceActive !== false ||
+              result.privateKitOffer !== "planned" || result.products !== 33 ||
+              result.externalCapabilities !== 990 || result.codingBugs !== 20) {
+            throw Error("UNAPPROVED_OR_UNVERIFIED_COMMERCIAL_CANDIDATE");
+          }
+          console.log("Verified preview: source backed, disabled commerce, D1/R2 bindings required.");
+          NODE
+
+      - name: Reconfirm main and exact-head CI before irreversible promotion
+        working-directory: .
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/check-release-ci.mjs
+
+      - name: Guarded promotion with verified rollback on failed public readback
+        working-directory: .
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          CANDIDATE_VERSION_ID: ${{ steps.candidate.outputs.version_id }}
+        run: node scripts/guarded-promote.mjs
