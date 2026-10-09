@@ -31,5 +31,29 @@
       "pattern": "agents.proofandstate.com",
       "custom_domain": true
     }
+  ],
+  "d1_databases": [
+    {
+      "binding": "COMMERCE_DB",
+      "database_name": "agent-shop-commerce",
+      "database_id": "f3fa2e0b-bb41-4c51-8b44-25f699baa39b"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "PRIVATE_KITS",
+      "bucket_name": "agent-shop-private-kits",
+      "jurisdiction": "eu"
+    }
+  ],
+  "ratelimits": [
+    {
+      "name": "COMMERCE_RATE_LIMITER",
+      "namespace_id": "1034302681",
+      "simple": {
+        "limit": 6,
+        "period": 60
+      }
+    }
   ]
 }

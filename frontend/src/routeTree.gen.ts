@@ -21,11 +21,14 @@ import { Route as CodingBugsDotjsonRouteImport } from './routes/coding-bugs[.]js
 import { Route as IntegrationServicesRouteImport } from './routes/integration-services'
 import { Route as KnowledgeRouteImport } from './routes/knowledge'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
+import { Route as PrivateKitsRouteImport } from './routes/private-kits'
 import { Route as ProblemsRouteImport } from './routes/problems'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as CapabilitiesIdRouteImport } from './routes/capabilities_.$id'
+import { Route as PrivateKitsCompleteRouteImport } from './routes/private-kits.complete'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -88,6 +91,11 @@ const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
   path: '/llms.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivateKitsRoute = PrivateKitsRouteImport.update({
+  id: '/private-kits',
+  path: '/private-kits',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProblemsRoute = ProblemsRouteImport.update({
   id: '/problems',
   path: '/problems',
@@ -108,10 +116,20 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SolutionsRoute = SolutionsRouteImport.update({
+  id: '/solutions',
+  path: '/solutions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CapabilitiesIdRoute = CapabilitiesIdRouteImport.update({
   id: '/capabilities_/$id',
   path: '/capabilities/$id',
   getParentRoute: () => rootRouteImport,
+} as any)
+const PrivateKitsCompleteRoute = PrivateKitsCompleteRouteImport.update({
+  id: '/complete',
+  path: '/complete',
+  getParentRoute: () => PrivateKitsRoute,
 } as any)
 const ProductsSlugRoute = ProductsSlugRouteImport.update({
   id: '/products/$slug',
@@ -132,11 +150,14 @@ export interface FileRoutesByFullPath {
   '/integration-services': typeof IntegrationServicesRoute
   '/knowledge': typeof KnowledgeRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/private-kits': typeof PrivateKitsRouteWithChildren
   '/problems': typeof ProblemsRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/solutions': typeof SolutionsRoute
   '/capabilities/$id': typeof CapabilitiesIdRoute
+  '/private-kits/complete': typeof PrivateKitsCompleteRoute
   '/products/$slug': typeof ProductsSlugRoute
 }
 export interface FileRoutesByTo {
@@ -152,11 +173,14 @@ export interface FileRoutesByTo {
   '/integration-services': typeof IntegrationServicesRoute
   '/knowledge': typeof KnowledgeRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/private-kits': typeof PrivateKitsRouteWithChildren
   '/problems': typeof ProblemsRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/solutions': typeof SolutionsRoute
   '/capabilities/$id': typeof CapabilitiesIdRoute
+  '/private-kits/complete': typeof PrivateKitsCompleteRoute
   '/products/$slug': typeof ProductsSlugRoute
 }
 export interface FileRoutesById {
@@ -173,11 +197,14 @@ export interface FileRoutesById {
   '/integration-services': typeof IntegrationServicesRoute
   '/knowledge': typeof KnowledgeRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/private-kits': typeof PrivateKitsRouteWithChildren
   '/problems': typeof ProblemsRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/solutions': typeof SolutionsRoute
   '/capabilities_/$id': typeof CapabilitiesIdRoute
+  '/private-kits/complete': typeof PrivateKitsCompleteRoute
   '/products/$slug': typeof ProductsSlugRoute
 }
 export interface FileRouteTypes {
@@ -195,11 +222,14 @@ export interface FileRouteTypes {
     | '/integration-services'
     | '/knowledge'
     | '/llms.txt'
+    | '/private-kits'
     | '/problems'
     | '/robots.txt'
     | '/shop'
     | '/sitemap.xml'
+    | '/solutions'
     | '/capabilities/$id'
+    | '/private-kits/complete'
     | '/products/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -215,11 +245,14 @@ export interface FileRouteTypes {
     | '/integration-services'
     | '/knowledge'
     | '/llms.txt'
+    | '/private-kits'
     | '/problems'
     | '/robots.txt'
     | '/shop'
     | '/sitemap.xml'
+    | '/solutions'
     | '/capabilities/$id'
+    | '/private-kits/complete'
     | '/products/$slug'
   id:
     | '__root__'
@@ -235,11 +268,14 @@ export interface FileRouteTypes {
     | '/integration-services'
     | '/knowledge'
     | '/llms.txt'
+    | '/private-kits'
     | '/problems'
     | '/robots.txt'
     | '/shop'
     | '/sitemap.xml'
+    | '/solutions'
     | '/capabilities_/$id'
+    | '/private-kits/complete'
     | '/products/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -256,10 +292,12 @@ export interface RootRouteChildren {
   IntegrationServicesRoute: typeof IntegrationServicesRoute
   KnowledgeRoute: typeof KnowledgeRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
+  PrivateKitsRoute: typeof PrivateKitsRouteWithChildren
   ProblemsRoute: typeof ProblemsRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   ShopRoute: typeof ShopRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SolutionsRoute: typeof SolutionsRoute
   CapabilitiesIdRoute: typeof CapabilitiesIdRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
 }
@@ -350,6 +388,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LlmsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/private-kits': {
+      id: '/private-kits'
+      path: '/private-kits'
+      fullPath: '/private-kits'
+      preLoaderRoute: typeof PrivateKitsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/problems': {
       id: '/problems'
       path: '/problems'
@@ -378,12 +423,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/solutions': {
+      id: '/solutions'
+      path: '/solutions'
+      fullPath: '/solutions'
+      preLoaderRoute: typeof SolutionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/capabilities_/$id': {
       id: '/capabilities_/$id'
       path: '/capabilities/$id'
       fullPath: '/capabilities/$id'
       preLoaderRoute: typeof CapabilitiesIdRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/private-kits/complete': {
+      id: '/private-kits/complete'
+      path: '/complete'
+      fullPath: '/private-kits/complete'
+      preLoaderRoute: typeof PrivateKitsCompleteRouteImport
+      parentRoute: typeof PrivateKitsRoute
     }
     '/products/$slug': {
       id: '/products/$slug'
@@ -394,6 +453,18 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface PrivateKitsRouteChildren {
+  PrivateKitsCompleteRoute: typeof PrivateKitsCompleteRoute
+}
+
+const PrivateKitsRouteChildren: PrivateKitsRouteChildren = {
+  PrivateKitsCompleteRoute: PrivateKitsCompleteRoute,
+}
+
+const PrivateKitsRouteWithChildren = PrivateKitsRoute._addFileChildren(
+  PrivateKitsRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -408,10 +479,12 @@ const rootRouteChildren: RootRouteChildren = {
   IntegrationServicesRoute: IntegrationServicesRoute,
   KnowledgeRoute: KnowledgeRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
+  PrivateKitsRoute: PrivateKitsRouteWithChildren,
   ProblemsRoute: ProblemsRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   ShopRoute: ShopRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SolutionsRoute: SolutionsRoute,
   CapabilitiesIdRoute: CapabilitiesIdRoute,
   ProductsSlugRoute: ProductsSlugRoute,
 }

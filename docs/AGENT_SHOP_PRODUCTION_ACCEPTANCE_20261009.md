@@ -1,0 +1,9 @@
+# Agent Shop public production acceptance — 9 October 2026
+
+Reviewed source `b16a326ed7e8e25364bdab7a2f7732316ff718e3`, canonical GitHub CI [run #37938637465](https://github.com/AyobamiH/agent-shop-products/actions/runs/37938637465): successful. Local canonical production build and Cloudflare bundle validation passed with `VITE_SITE_ORIGIN=https://agents.proofandstate.com`.
+
+Cloudflare Worker `agent-shop`: candidate version `d4e9d269-a0e4-4117-a6f7-74fbb352a578`, deployment `512a7f31-3003-4f65-9eab-78684198c6da`, promoted at 100% through the Cloudflare Deployments API. This was **not a GitHub Actions protected deployment run**; repository Actions secrets were absent and the attempted provisioning was blocked. An earlier malformed deployment with localhost canonical was detected and replaced with the correct independently accepted candidate. This incident justifies production-canonical enforcement in `frontend/src/lib/site.ts`.
+
+Outside-in verifier `frontend/scripts/verify-deployed-surface.mjs` returned `PASS` at `https://agents.proofandstate.com`, showing 33 owned products, 990 advertised external capability records and 20 coding bug records, plus ten crawler checks and expected machine-readable endpoints. `/solutions` and `/integration-services` returned HTTP 200; `/agents` showed the exact HTTPS canonical. This confirms **distribution**, not Google indexation, a paid offer, Stripe payment, private delivery or a real customer.
+
+Deployment automation improvement remains separately open: no production GitHub Actions secret was installed in this session, and the manual authenticated Cloudflare API promotion must not be misrepresented as a protected workflow. The privacy/commerce proposal must pass its own exact-source CI, independent live readback and commercial gates before a transaction may be claimed.

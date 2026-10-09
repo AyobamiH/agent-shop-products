@@ -13,9 +13,12 @@ function normalizeOrigin(value: string): string {
  * Set VITE_SITE_ORIGIN to the deployed HTTPS origin.
  * Local development intentionally falls back to localhost.
  */
-export const SITE_ORIGIN = normalizeOrigin(
-  import.meta.env["VITE_SITE_ORIGIN"] ?? "http://localhost:8080",
-);
+const configuredOrigin = import.meta.env["VITE_SITE_ORIGIN"];
+if (import.meta.env.PROD && (!configuredOrigin ||
+    !/^https:\/\/[a-z0-9.-]+(?::443)?$/i.test(configuredOrigin))) {
+  throw new Error("Production SITE_ORIGIN must be an explicitly configured HTTPS origin");
+}
+export const SITE_ORIGIN = normalizeOrigin(configuredOrigin ?? "http://localhost:8080");
 
 export const PRODUCT_HEADLINE =
   "Source-backed prompts and skills for autonomous agents, indexed by the problem they solve.";
