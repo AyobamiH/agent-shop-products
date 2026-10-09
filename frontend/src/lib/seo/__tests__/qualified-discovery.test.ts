@@ -5,13 +5,13 @@ import { absoluteUrl } from "@/lib/site";
 import { indexableSitemapPaths } from "@/routes/sitemap[.]xml";
 
 describe("qualified discovery", () => {
-  it("indexes all original products and eight useful collection/service pages", () => {
+  it("indexes all original products and every approved collection/service page", () => {
     const paths = indexableSitemapPaths();
     expect(new Set(paths).size).toBe(paths.length);
     for (const product of listProducts()) {
       expect(paths).toContain("/products/" + product.slug);
     }
-    for (const path of [
+    const approvedCollections = [
       "/",
       "/shop",
       "/agents",
@@ -20,10 +20,12 @@ describe("qualified discovery", () => {
       "/capabilities",
       "/coding-bugs",
       "/integration-services",
-    ]) {
+      "/solutions",
+    ];
+    for (const path of approvedCollections) {
       expect(paths).toContain(path);
     }
-    expect(paths.length).toBe(listProducts().length + 8);
+    expect(paths.length).toBe(listProducts().length + approvedCollections.length);
   });
 
   it("excludes names-only references and machine files from the Google sitemap", () => {
