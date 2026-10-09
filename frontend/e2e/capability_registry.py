@@ -26,12 +26,20 @@ async def main():
             assert {r["name"] for r in records if r["kind"] == kind} == {r["name"] for r in source}
         assert {r["name"] for r in records if r["kind"] == "control"} == set(INVENTORY["orchestrationControls"])
         sitemap = await (await page.request.get(ORIGIN + "/sitemap.xml")).text()
-        for r in records:
-            assert "/capabilities/" + r["id"] in sitemap
+        # All 990 advertised names remain accessible via JSON, but search
+        # results prioritise original product and problem pages.
+        assert "/capabilities</loc>" in sitemap
+        assert "/coding-bugs</loc>" in sitemap
+        assert "/integration-services</loc>" in sitemap
+        assert "/capabilities/" not in sitemap
+        assert "/capabilities.json" not in sitemap
+        assert "/raw/products/" not in sitemap
         for kind in ["skill", "tool", "control"]:
             record = next(r for r in records if r["kind"] == kind and r["integrationRequestAllowed"])
             await page.goto(ORIGIN + "/capabilities/" + record["id"])
             await expect(page.get_by_role("heading", name=record["name"], exact=True)).to_be_visible()
+            robots = await page.locator('meta[name="robots"]').get_attribute("content")
+            assert robots and "noindex" in robots and "follow" in robots
             await expect(page.get_by_role("link", name="Request an integration quote")).to_have_attribute("href", "https://tailwaggingwebdesign.com/agents/")
             brief = await (await page.request.get(ORIGIN + "/capability-brief.json?id=" + record["id"])).json()
             assert brief["handoff"]["templateIsIncomplete"] is True
@@ -47,6 +55,16 @@ async def main():
                 write = await page.request.fetch(ORIGIN + path, method=method, data="{}")
                 assert write.status == 405, (path, method, write.status)
                 assert write.headers["allow"] == "GET"
+
+        await page.goto(ORIGIN + "/integration-services")
+        await expect(page.get_by_role("heading", name="When an agent workflow needs an experienced implementer")).to_be_visible()
+        quote = page.get_by_role("link", name="Request a scoped integration quote")
+        assert (await quote.get_attribute("href")).startswith("https://tailwaggingwebdesign.com/agents/")
+        assert "utm_source=agent_shop" in (await quote.get_attribute("href"))
+        html = await page.content()
+        assert '"@type":"Service"' in html
+        assert '"offers":' not in html
+        assert "not yet offered" in html
 
         await page.goto(ORIGIN + "/capabilities")
         await expect(page.get_by_test_id("capability-count")).to_contain_text("990 matching capabilities")
@@ -75,7 +93,7 @@ async def main():
         assert bugs["bugCount"] == len(BUGS)
 
         await page.set_viewport_size({"width": 390, "height": 844})
-        for path in ["/shop", "/capabilities?kind=control", "/coding-bugs?q=hydration"]:
+        for path in ["/shop", "/capabilities?kind=control", "/coding-bugs?q=hydration", "/integration-services"]:
             await page.goto(ORIGIN + path)
             fits = await page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
             if not fits:
@@ -87,7 +105,7 @@ async def main():
             assert fits, path + " overflows mobile viewport"
         assert not errors, errors
         await browser.close()
-        print(f"PASS: 990 registry records, all sitemap IDs, quote boundaries, URL filters, {len(BUGS)} bugs and mobile layout")
+        print(f"PASS: 990 registry records, search-focused sitemap, noindex references, quote boundaries, URL filters, {len(BUGS)} bugs and mobile layout")
 
 
 asyncio.run(main())

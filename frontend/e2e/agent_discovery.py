@@ -51,7 +51,9 @@ async def main():
 
         status, sitemap = await read_text(page, "/sitemap.xml")
         check("/sitemap.xml 200", status == 200)
-        check("sitemap agents.txt", CANONICAL_ORIGIN + "/agents.txt" in sitemap)
+        check("sitemap agent guide", CANONICAL_ORIGIN + "/agents" in sitemap)
+        check("sitemap integration service", CANONICAL_ORIGIN + "/integration-services" in sitemap)
+        check("sitemap excludes machine files", "/agents.txt" not in sitemap and "/catalog.json" not in sitemap)
         for product in PRODUCTS:
             check("sitemap " + product["slug"], CANONICAL_ORIGIN + "/products/" + product["slug"] in sitemap)
 

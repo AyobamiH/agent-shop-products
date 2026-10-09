@@ -16,6 +16,8 @@ export const Route = createFileRoute("/capabilities_/$id")({
           title: `${loaderData.capability.name} — integration brief`,
           description: `Inspect ${loaderData.capability.kind} ${loaderData.capability.name} and request original integration work subject to provider feasibility and agreed scope.`,
           path: `/capabilities/${loaderData.capability.id}`,
+          // Names-only third-party rows stay accessible, not search-indexed.
+          indexable: false,
         })
       : { meta: [{ name: "robots", content: "noindex, nofollow" }] },
   component: CapabilityDetail,

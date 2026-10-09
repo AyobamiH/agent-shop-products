@@ -35,6 +35,12 @@ export function IntegrationNotice({
           Read the integration brief JSON
         </a>
       ) : null}
+      <a
+        href="/integration-services"
+        className="mt-3 block text-xs text-primary underline underline-offset-4"
+      >
+        How scoping, payment and delivery are separated
+      </a>
       <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
         Provider accounts, external implementations and host privileges are outside the offer. A
         request is subject to feasibility and acceptance; discovery establishes no purchase or

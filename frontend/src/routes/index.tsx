@@ -3,7 +3,12 @@ import { PageShell } from "@/components/layout/PageShell";
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import { getFeaturedProducts } from "@/domain/catalog/featured";
 import { SUBCONTRACTING_CAPABILITY_SLUG } from "@/features/agent-discovery/subcontracting-source";
-import { catalogMeta, getProductBySlug, listCategories, listProducts } from "@/domain/catalog/repository";
+import {
+  catalogMeta,
+  getProductBySlug,
+  listCategories,
+  listProducts,
+} from "@/domain/catalog/repository";
 import { categoryLabel } from "@/domain/catalog/facets";
 import { ProductList } from "@/features/catalog-browse/components/ProductList";
 import { MachineSurfaces } from "@/features/agent-discovery/components/MachineSurfaces";
@@ -68,16 +73,31 @@ function HomePage() {
             >
               Search capability catalogue
             </Link>
+            <Link
+              to="/integration-services"
+              className="rounded-md border border-border bg-surface px-4 py-2.5 text-sm font-medium transition-colors hover:border-primary/40"
+            >
+              Scope professional integration
+            </Link>
           </div>
         </div>
 
-        <aside className="rounded-lg border border-border bg-surface p-5" aria-label="Registry snapshot">
+        <aside
+          className="rounded-lg border border-border bg-surface p-5"
+          aria-label="Registry snapshot"
+        >
           <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
             <div>
-              <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">registry snapshot</p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+                registry snapshot
+              </p>
               <p className="mt-1 text-sm font-medium">Canonical public projection</p>
             </div>
-            <img src="/agent-registry-mark.svg" alt="Agent Capability Catalogue registry aperture logo" className="size-9" />
+            <img
+              src="/agent-registry-mark.svg"
+              alt="Agent Capability Catalogue registry aperture logo"
+              className="size-9"
+            />
           </div>
           <dl className="divide-y divide-border">
             <RegistryRow label="records" value={String(catalogMeta.productCount)} />
@@ -91,14 +111,17 @@ function HomePage() {
       </section>
 
       {subcontracting ? (
-        <section className="mt-10 border-l-2 border-primary pl-5" aria-labelledby="subcontracting-heading">
+        <section
+          className="mt-10 border-l-2 border-primary pl-5"
+          aria-labelledby="subcontracting-heading"
+        >
           <h2 id="subcontracting-heading" className="text-base font-semibold">
             When an agent needs a human subcontractor
           </h2>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            The source-backed handoff record explains scoped website or repository work, quote-first custom
-            requests, and the separation of discovery, acceptance, payment and completion. This registry does
-            not accept or charge for work orders.
+            The source-backed handoff record explains scoped website or repository work, quote-first
+            custom requests, and the separation of discovery, acceptance, payment and completion.
+            This registry does not accept or charge for work orders.
           </p>
           <Link
             to="/products/$slug"
@@ -160,11 +183,25 @@ function HomePage() {
   );
 }
 
-function RegistryRow({ label, value, strong = false }: { label: string; value: string; strong?: boolean }) {
+function RegistryRow({
+  label,
+  value,
+  strong = false,
+}: {
+  label: string;
+  value: string;
+  strong?: boolean;
+}) {
   return (
     <div className="grid min-h-11 grid-cols-[6.5rem_1fr] items-center gap-4 py-3 text-sm">
-      <dt className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">{label}</dt>
-      <dd className={strong ? "font-mono font-medium text-primary" : "font-mono text-xs text-foreground"}>
+      <dt className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+        {label}
+      </dt>
+      <dd
+        className={
+          strong ? "font-mono font-medium text-primary" : "font-mono text-xs text-foreground"
+        }
+      >
         {value}
       </dd>
     </div>
