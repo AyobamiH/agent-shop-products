@@ -78,6 +78,57 @@ export function assessLiveParity(source, live, sitemap, solutionsHtml, agentsTxt
   return problems;
 }
 
+// Commerce is an independently governed contract, not a field on public skill
+// metadata. Read-only parity must detect missing/accidental offer publication
+// without claiming that a payment, delivery, installation or customer occurred.
+export function assessCommerceParity(source, live, kitHtml, completionHtml) {
+  const issues = [];
+  if (source?.schemaVersion !== 1 || !Array.isArray(source.offers) ||
+      live?.schemaVersion !== 1 || !Array.isArray(live.offers)) {
+    return ["Versioned canonical or public commerce projection is unavailable"];
+  }
+  if (source.offers.length !== live.offers.length) {
+    issues.push("Public private-kit offer count differs from canonical source");
+  }
+  const liveById = new Map(live.offers.map((item) => [item.id, item]));
+  for (const offer of source.offers) {
+    const deployed = liveById.get(offer.id);
+    if (!deployed) { issues.push("Missing public private kit: " + offer.id); continue }
+    for (const key of ["id", "productId", "title", "summary", "version", "currency", "buyerRequirements"]) {
+      if (JSON.stringify(offer[key]) !== JSON.stringify(deployed[key])) {
+        issues.push("Private-kit offer metadata drift: " + offer.id + "." + key);
+      }
+    }
+    for (const prohibited of ["assetKey", "priceId", "checkoutUrl", "claimToken", "stripeSecretKey"]) {
+      if (Object.hasOwn(deployed, prohibited)) {
+        issues.push("Sensitive or unapproved private-kit field is public: " + prohibited);
+      }
+    }
+    if (!live.commerceActive) {
+      if (deployed.availability !== "planned" ||
+          deployed.unitAmountPence !== undefined ||
+          deployed.termsUrl !== undefined ||
+          deployed.licenceUrl !== undefined ||
+          deployed.refundUrl !== undefined) {
+        issues.push("Unapproved private-kit price or licence published while commerce disabled");
+      }
+    } else if (deployed.availability !== "purchase_available" ||
+          !Number.isSafeInteger(deployed.unitAmountPence) || deployed.unitAmountPence < 100 ||
+          !["termsUrl", "licenceUrl", "refundUrl"].every((key) =>
+            typeof deployed[key] === "string" &&
+            /^https:\/\/(?:agents\.)?proofandstate\.com\/legal\/[a-z0-9-]+$/.test(deployed[key]))) {
+      issues.push("Active private-kit offer lacks a verifiable GBP amount or policy reference");
+    }
+  }
+  if (!kitHtml.includes("Private Production Agent Operating Kit")) {
+    issues.push("Private-kit public page is missing the original deliverable description");
+  }
+  if (!completionHtml.includes('name="robots"') || !completionHtml.includes("noindex")) {
+    issues.push("Buyer completion page has lost its noindex boundary");
+  }
+  return issues;
+}
+
 async function getText(path) {
   const url = ORIGIN + path;
   const response = await fetch(url, {
@@ -95,20 +146,33 @@ async function main() {
   const source = JSON.parse(
     await readFile(new URL("../../catalog/products.public.json", import.meta.url), "utf8"),
   );
-  const [catalogText, sitemap, guide, agents] = await Promise.all([
+  const offerSource = JSON.parse(
+    await readFile(new URL("../../commerce/offers.json", import.meta.url), "utf8"),
+  );
+  const [catalogText, sitemap, guide, agents, commerceText, kitHtml, completionHtml] = await Promise.all([
     getText("/catalog.json"),
     getText("/sitemap.xml"),
     getText("/solutions"),
     getText("/agents.txt"),
+    getText("/api/v1/commerce/offers"),
+    getText("/private-kits"),
+    getText("/private-kits/complete"),
   ]);
   const live = JSON.parse(catalogText);
-  const issues = assessLiveParity(source, live, sitemap, guide, agents);
+  const commerce = JSON.parse(commerceText);
+  const issues = [
+    ...assessLiveParity(source, live, sitemap, guide, agents),
+    ...assessCommerceParity(offerSource, commerce, kitHtml, completionHtml),
+  ];
   console.log(JSON.stringify({
     status: issues.length ? "DRIFT" : "ALIGNED",
     observedAt: new Date().toISOString(),
     gitRevision: process.env.GITHUB_SHA ?? "not_supplied",
     sourceProducts: source.products.length,
     liveProducts: live.productCount,
+    commerceOffer: commerce.offers?.[0]?.availability ?? "unavailable",
+    commerceActive: commerce.commerceActive === true,
+    paidPurchases: "not_evaluated_in_read_only_discovery_check",
     verifiedDomain: ORIGIN,
     issueCount: issues.length,
     issues: issues.slice(0, 60),

@@ -111,3 +111,14 @@ When Stripe delivers a signed refund before a delayed paid-session event, the pa
 ### Tax-aware payment reconciliation
 
 The approved GBP kit price is a **pre-tax, one-time, tax-exclusive** price. Before opening Stripe-hosted Checkout, the server verifies Stripe's Price really is active, the correct one-off amount/currency/mode and `tax_behavior=exclusive`. It requests Stripe automatic tax. Fulfilment reconciles `amount_subtotal` to the approved kit price, zero discounts and shipping, and `amount_total = amount_subtotal + total_details.amount_tax`. It would be unsafe to compare tax-inclusive `amount_total` directly to the pre-tax price: doing so could strand a legitimately taxed buyer's delivery after payment. Synthetic tests cover both correct tax additions and forged subtotals/tax/discounts.
+
+## Read-only continuous production parity
+
+The existing Agent Shop public-parity scheduled workflow also inspects the canonical
+private-kit intent and **live** public offer JSON, offer and completion HTML, price/term
+publication boundaries, R2 object-key secrecy and completion noindex. It logs
+`commerceActive` and `commerceOffer` even when aligned, but always reports
+`paidPurchases: not_evaluated_in_read_only_discovery_check`: uptime and active
+products are not paid customers. The workflow makes no checkout request,
+performs no database writes, and submits no indexing requests. A newly enabled
+public sale needs separate owner-approved merchant/test transaction evidence.
