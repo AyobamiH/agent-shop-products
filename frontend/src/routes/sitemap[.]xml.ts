@@ -9,6 +9,7 @@ const STATIC_ENTRIES: readonly SitemapEntry[] = [
   { path: "/" },
   { path: "/agents" },
   { path: "/shop" },
+  { path: "/solutions" },
   { path: "/problems" },
   { path: "/knowledge" },
   { path: "/capabilities" },
