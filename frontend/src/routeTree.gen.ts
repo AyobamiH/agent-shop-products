@@ -11,14 +11,21 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AgentsRouteImport } from './routes/agents'
+import { Route as AgentsDottxtRouteImport } from './routes/agents[.]txt'
+import { Route as CapabilitiesRouteImport } from './routes/capabilities'
+import { Route as CapabilitiesDotjsonRouteImport } from './routes/capabilities[.]json'
+import { Route as CapabilityBriefDotjsonRouteImport } from './routes/capability-brief[.]json'
 import { Route as CatalogDotjsonRouteImport } from './routes/catalog[.]json'
+import { Route as CodingBugsRouteImport } from './routes/coding-bugs'
+import { Route as CodingBugsDotjsonRouteImport } from './routes/coding-bugs[.]json'
 import { Route as KnowledgeRouteImport } from './routes/knowledge'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as ProblemsRouteImport } from './routes/problems'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as CapabilitiesIdRouteImport } from './routes/capabilities_.$id'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
-import { Route as RawProductsSplatRouteImport } from './routes/raw.products.$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -30,9 +37,39 @@ const AgentsRoute = AgentsRouteImport.update({
   path: '/agents',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AgentsDottxtRoute = AgentsDottxtRouteImport.update({
+  id: '/agents.txt',
+  path: '/agents.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CapabilitiesRoute = CapabilitiesRouteImport.update({
+  id: '/capabilities',
+  path: '/capabilities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CapabilitiesDotjsonRoute = CapabilitiesDotjsonRouteImport.update({
+  id: '/capabilities.json',
+  path: '/capabilities.json',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CapabilityBriefDotjsonRoute = CapabilityBriefDotjsonRouteImport.update({
+  id: '/capability-brief.json',
+  path: '/capability-brief.json',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CatalogDotjsonRoute = CatalogDotjsonRouteImport.update({
   id: '/catalog.json',
   path: '/catalog.json',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CodingBugsRoute = CodingBugsRouteImport.update({
+  id: '/coding-bugs',
+  path: '/coding-bugs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CodingBugsDotjsonRoute = CodingBugsDotjsonRouteImport.update({
+  id: '/coding-bugs.json',
+  path: '/coding-bugs.json',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KnowledgeRoute = KnowledgeRouteImport.update({
@@ -50,6 +87,11 @@ const ProblemsRoute = ProblemsRouteImport.update({
   path: '/problems',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
   path: '/shop',
@@ -60,104 +102,153 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CapabilitiesIdRoute = CapabilitiesIdRouteImport.update({
+  id: '/capabilities_/$id',
+  path: '/capabilities/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsSlugRoute = ProductsSlugRouteImport.update({
   id: '/products/$slug',
   path: '/products/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RawProductsSplatRoute = RawProductsSplatRouteImport.update({
-  id: '/raw/products/$',
-  path: '/raw/products/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/agents.txt': typeof AgentsDottxtRoute
+  '/capabilities': typeof CapabilitiesRoute
+  '/capabilities.json': typeof CapabilitiesDotjsonRoute
+  '/capability-brief.json': typeof CapabilityBriefDotjsonRoute
   '/catalog.json': typeof CatalogDotjsonRoute
+  '/coding-bugs': typeof CodingBugsRoute
+  '/coding-bugs.json': typeof CodingBugsDotjsonRoute
   '/knowledge': typeof KnowledgeRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/problems': typeof ProblemsRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/capabilities/$id': typeof CapabilitiesIdRoute
   '/products/$slug': typeof ProductsSlugRoute
-  '/raw/products/$': typeof RawProductsSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/agents.txt': typeof AgentsDottxtRoute
+  '/capabilities': typeof CapabilitiesRoute
+  '/capabilities.json': typeof CapabilitiesDotjsonRoute
+  '/capability-brief.json': typeof CapabilityBriefDotjsonRoute
   '/catalog.json': typeof CatalogDotjsonRoute
+  '/coding-bugs': typeof CodingBugsRoute
+  '/coding-bugs.json': typeof CodingBugsDotjsonRoute
   '/knowledge': typeof KnowledgeRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/problems': typeof ProblemsRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/capabilities/$id': typeof CapabilitiesIdRoute
   '/products/$slug': typeof ProductsSlugRoute
-  '/raw/products/$': typeof RawProductsSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/agents': typeof AgentsRoute
+  '/agents.txt': typeof AgentsDottxtRoute
+  '/capabilities': typeof CapabilitiesRoute
+  '/capabilities.json': typeof CapabilitiesDotjsonRoute
+  '/capability-brief.json': typeof CapabilityBriefDotjsonRoute
   '/catalog.json': typeof CatalogDotjsonRoute
+  '/coding-bugs': typeof CodingBugsRoute
+  '/coding-bugs.json': typeof CodingBugsDotjsonRoute
   '/knowledge': typeof KnowledgeRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/problems': typeof ProblemsRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/capabilities_/$id': typeof CapabilitiesIdRoute
   '/products/$slug': typeof ProductsSlugRoute
-  '/raw/products/$': typeof RawProductsSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/agents'
+    | '/agents.txt'
+    | '/capabilities'
+    | '/capabilities.json'
+    | '/capability-brief.json'
     | '/catalog.json'
+    | '/coding-bugs'
+    | '/coding-bugs.json'
     | '/knowledge'
     | '/llms.txt'
     | '/problems'
+    | '/robots.txt'
     | '/shop'
     | '/sitemap.xml'
+    | '/capabilities/$id'
     | '/products/$slug'
-    | '/raw/products/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/agents'
+    | '/agents.txt'
+    | '/capabilities'
+    | '/capabilities.json'
+    | '/capability-brief.json'
     | '/catalog.json'
+    | '/coding-bugs'
+    | '/coding-bugs.json'
     | '/knowledge'
     | '/llms.txt'
     | '/problems'
+    | '/robots.txt'
     | '/shop'
     | '/sitemap.xml'
+    | '/capabilities/$id'
     | '/products/$slug'
-    | '/raw/products/$'
   id:
     | '__root__'
     | '/'
     | '/agents'
+    | '/agents.txt'
+    | '/capabilities'
+    | '/capabilities.json'
+    | '/capability-brief.json'
     | '/catalog.json'
+    | '/coding-bugs'
+    | '/coding-bugs.json'
     | '/knowledge'
     | '/llms.txt'
     | '/problems'
+    | '/robots.txt'
     | '/shop'
     | '/sitemap.xml'
+    | '/capabilities_/$id'
     | '/products/$slug'
-    | '/raw/products/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AgentsRoute: typeof AgentsRoute
+  AgentsDottxtRoute: typeof AgentsDottxtRoute
+  CapabilitiesRoute: typeof CapabilitiesRoute
+  CapabilitiesDotjsonRoute: typeof CapabilitiesDotjsonRoute
+  CapabilityBriefDotjsonRoute: typeof CapabilityBriefDotjsonRoute
   CatalogDotjsonRoute: typeof CatalogDotjsonRoute
+  CodingBugsRoute: typeof CodingBugsRoute
+  CodingBugsDotjsonRoute: typeof CodingBugsDotjsonRoute
   KnowledgeRoute: typeof KnowledgeRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
   ProblemsRoute: typeof ProblemsRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
   ShopRoute: typeof ShopRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  CapabilitiesIdRoute: typeof CapabilitiesIdRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
-  RawProductsSplatRoute: typeof RawProductsSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -176,11 +267,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/agents.txt': {
+      id: '/agents.txt'
+      path: '/agents.txt'
+      fullPath: '/agents.txt'
+      preLoaderRoute: typeof AgentsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/capabilities': {
+      id: '/capabilities'
+      path: '/capabilities'
+      fullPath: '/capabilities'
+      preLoaderRoute: typeof CapabilitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/capabilities.json': {
+      id: '/capabilities.json'
+      path: '/capabilities.json'
+      fullPath: '/capabilities.json'
+      preLoaderRoute: typeof CapabilitiesDotjsonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/capability-brief.json': {
+      id: '/capability-brief.json'
+      path: '/capability-brief.json'
+      fullPath: '/capability-brief.json'
+      preLoaderRoute: typeof CapabilityBriefDotjsonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/catalog.json': {
       id: '/catalog.json'
       path: '/catalog.json'
       fullPath: '/catalog.json'
       preLoaderRoute: typeof CatalogDotjsonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coding-bugs': {
+      id: '/coding-bugs'
+      path: '/coding-bugs'
+      fullPath: '/coding-bugs'
+      preLoaderRoute: typeof CodingBugsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coding-bugs.json': {
+      id: '/coding-bugs.json'
+      path: '/coding-bugs.json'
+      fullPath: '/coding-bugs.json'
+      preLoaderRoute: typeof CodingBugsDotjsonRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/knowledge': {
@@ -204,6 +337,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProblemsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shop': {
       id: '/shop'
       path: '/shop'
@@ -218,18 +358,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/capabilities_/$id': {
+      id: '/capabilities_/$id'
+      path: '/capabilities/$id'
+      fullPath: '/capabilities/$id'
+      preLoaderRoute: typeof CapabilitiesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/$slug': {
       id: '/products/$slug'
       path: '/products/$slug'
       fullPath: '/products/$slug'
       preLoaderRoute: typeof ProductsSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/raw/products/$': {
-      id: '/raw/products/$'
-      path: '/raw/products/$'
-      fullPath: '/raw/products/$'
-      preLoaderRoute: typeof RawProductsSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -238,14 +378,21 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AgentsRoute: AgentsRoute,
+  AgentsDottxtRoute: AgentsDottxtRoute,
+  CapabilitiesRoute: CapabilitiesRoute,
+  CapabilitiesDotjsonRoute: CapabilitiesDotjsonRoute,
+  CapabilityBriefDotjsonRoute: CapabilityBriefDotjsonRoute,
   CatalogDotjsonRoute: CatalogDotjsonRoute,
+  CodingBugsRoute: CodingBugsRoute,
+  CodingBugsDotjsonRoute: CodingBugsDotjsonRoute,
   KnowledgeRoute: KnowledgeRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
   ProblemsRoute: ProblemsRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
   ShopRoute: ShopRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  CapabilitiesIdRoute: CapabilitiesIdRoute,
   ProductsSlugRoute: ProductsSlugRoute,
-  RawProductsSplatRoute: RawProductsSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

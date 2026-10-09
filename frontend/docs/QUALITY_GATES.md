@@ -61,3 +61,6 @@ For the current small static catalogue:
 - build derived indexes once.
 
 Optimise the architecture first; micro-optimise only with evidence.
+# Full registry and bug-index acceptance
+
+`bun run e2e` includes `e2e/capability_registry.py`: exact coverage of all 990 source names and sitemap IDs, representative detail/quote briefs for all three kinds, RUBE exclusion, unknown IDs, GET-only briefs, URL filters/pagination/back, scoped bug evidence and mobile overflow. Domain tests check all IDs, provider/kind filtering, HTML/JSON query parity, complete default JSON, incomplete quote templates, no prices and evidence qualifiers. `verify-registry-surface.mjs` extends production outside-in acceptance with exact name-set and bug-scope readback. No external provider is contacted by these checks.

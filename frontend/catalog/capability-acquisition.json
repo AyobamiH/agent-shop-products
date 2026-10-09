@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "recordKind": "capability-integration-acquisition-policy",
+  "reviewedOn": "2026-10-09",
+  "model": "quote-first-original-integration",
+  "providerName": "Tail Wagging Website Design Factory Northampton",
+  "providerGuide": "https://tailwaggingwebdesign.com/agents/",
+  "providerCatalogue": "https://tailwaggingwebdesign.com/agent-services.json",
+  "providerContractSource": "https://github.com/AyobamiH/wagging-web-wins/blob/main/public/agents.txt",
+  "requestEndpoint": "https://tailwaggingwebdesign.com/api/v1/agent/jobs",
+  "requestMethod": "POST",
+  "requestBodyLimitBytes": 16000,
+  "deliverables": [
+    "A scoped integration proposal identifying the requested capability and supported target runtime",
+    "Original adapter, workflow or configuration work explicitly accepted in the quote",
+    "Permission boundaries, installation instructions and acceptance evidence for the agreed outcome"
+  ],
+  "buyerRequirements": [
+    "A concrete outcome, target runtime and operator contact email",
+    "Buyer-controlled provider accounts, required subscriptions and separately granted permissions",
+    "Provider feasibility review and an accepted scope, price and delivery agreement before paid work"
+  ],
+  "boundaries": [
+    "The inventory records advertised names; it does not distribute external skill bodies or tool implementations",
+    "Provider access, account credentials, third-party licences and host orchestration privileges are not sold by these listings",
+    "A listing is not a promise that every capability can run in every environment",
+    "No price, checkout, installation, payment or accepted job is established by discovery",
+    "A received handoff is distinct from owner acceptance, payment, execution and completion"
+  ]
+}

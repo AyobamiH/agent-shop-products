@@ -175,3 +175,6 @@ Do not populate empty states with fabricated recommendations.
 - sanitize any future rich content;
 - external links use safe target/rel behaviour;
 - no dangerous HTML injection for product Markdown.
+# Capability registry and bug index extension
+
+Separate `domain/capabilities` and `domain/coding-bugs` repositories parse the three additional canonical metadata files once. Capability query functions are pure and shared by URL filters and JSON. Detail and brief lookups use indexed stable IDs. Registry and bug pages are modular routes; all data originates in root catalog files. Procurement policy and handoff templates contain no secrets and never execute POST requests. Original product authority remains unchanged.

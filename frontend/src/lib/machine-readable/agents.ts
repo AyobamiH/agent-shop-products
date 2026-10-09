@@ -1,7 +1,14 @@
 import { catalogMeta } from "@/domain/catalog/repository";
 import { catalogSource } from "@/domain/catalog/source";
 import { absoluteUrl, SITE_DESCRIPTOR } from "@/lib/site";
-import { SUBCONTRACTING_CAPABILITY_SLUG, SUBCONTRACTING_PROVIDER_NAME, SUBCONTRACTING_SERVICE_GUIDE, SUBCONTRACTING_SERVICE_CATALOGUE } from "@/features/agent-discovery/subcontracting-source";
+import {
+  SUBCONTRACTING_CAPABILITY_SLUG,
+  SUBCONTRACTING_PROVIDER_NAME,
+  SUBCONTRACTING_SERVICE_GUIDE,
+  SUBCONTRACTING_SERVICE_CATALOGUE,
+} from "@/features/agent-discovery/subcontracting-source";
+import { capabilityMeta } from "@/domain/capabilities/repository";
+import { listCodingBugs } from "@/domain/coding-bugs/repository";
 
 export function buildAgentsTxt(): string {
   const counts = Object.entries(catalogSource.productCountsByType)
@@ -23,11 +30,17 @@ export function buildAgentsTxt(): string {
     `metadata markdown template: ${absoluteUrl("/raw/products/{slug}.md")}`,
     `problems: ${absoluteUrl("/problems")}`,
     `knowledge: ${absoluteUrl("/knowledge")}`,
+    `external capability registry: ${absoluteUrl("/capabilities.json")}`,
+    `external detail template: ${absoluteUrl("/capabilities/{id}")}`,
+    `integration brief template: ${absoluteUrl("/capability-brief.json?id={id}")}`,
+    `coding bug index: ${absoluteUrl("/coding-bugs.json")}`,
     "",
     "## Inventory",
     `products: ${catalogMeta.productCount}`,
     `types: ${counts}`,
     `schemaVersion: ${catalogMeta.schemaVersion}`,
+    `external listings: ${capabilityMeta.count}; skills=${capabilityMeta.counts.uniqueSkills}, tools=${capabilityMeta.counts.advertisedTools}, orchestration controls=${capabilityMeta.counts.orchestrationControls}`,
+    `coding bugs and failure modes: ${listCodingBugs().length}`,
     "",
     "## Source boundary",
     `authority: https://github.com/${catalogSource.upstream.repository}`,
@@ -35,6 +48,9 @@ export function buildAgentsTxt(): string {
     "- Public records expose metadata only: summary, problem, outcomes, requirements, boundaries, tags and source pointers.",
     "- Full PROMPT.md and SKILL.md payload bodies are not exposed.",
     "- Missing price, rating, review, compatibility and evidence fields are omitted rather than invented.",
+    "- External listings expose exact advertised names and provider/surface metadata, not external implementations or guaranteed access.",
+    "- Integration briefs prepare quote-first original work. Supply buyer inputs, verify the provider's live contract, then obtain accepted scope and terms.",
+    "- Capability JSON without filters returns every listing. q, kind, provider and page use deterministic 40-record pagination when supplied.",
     "",
     "## Agent interface",
     "- Current: HTTP GET discovery surfaces listed above.",

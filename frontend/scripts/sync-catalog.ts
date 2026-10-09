@@ -9,10 +9,13 @@ const sourcePath = resolve(FRONTEND_ROOT, "catalog/source.json");
 
 const upstreamText = readFileSync(upstreamPath, "utf8");
 const localText = readFileSync(localPath, "utf8");
-const catalog = JSON.parse(upstreamText) as { products: Array<{ id: string; productType: string }> };
+const catalog = JSON.parse(upstreamText) as {
+  products: Array<{ id: string; productType: string }>;
+};
 const source = JSON.parse(readFileSync(sourcePath, "utf8")) as Record<string, unknown>;
 const counts: Record<string, number> = {};
-for (const product of catalog.products) counts[product.productType] = (counts[product.productType] ?? 0) + 1;
+for (const product of catalog.products)
+  counts[product.productType] = (counts[product.productType] ?? 0) + 1;
 
 if (JSON.stringify(JSON.parse(localText)) !== JSON.stringify(JSON.parse(upstreamText))) {
   source.syncedOn = new Date().toISOString().slice(0, 10);
@@ -23,4 +26,14 @@ source.productIds = catalog.products.map((product) => product.id).sort();
 
 writeFileSync(localPath, upstreamText);
 writeFileSync(sourcePath, JSON.stringify(source, null, 2));
+for (const file of [
+  "capability-inventory.json",
+  "capability-acquisition.json",
+  "agentic-coding-bugs.json",
+]) {
+  writeFileSync(
+    resolve(FRONTEND_ROOT, "catalog", file),
+    readFileSync(resolve(REPO_ROOT, "catalog", file), "utf8"),
+  );
+}
 console.log("catalog sync:", catalog.products.length, counts);

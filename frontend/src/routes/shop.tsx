@@ -8,6 +8,7 @@ import { buildItemListJsonLd } from "@/lib/jsonld/product";
 import { buildCollectionPageJsonLd } from "@/lib/jsonld/site";
 import { buildPageHead } from "@/lib/seo/meta";
 import { SITE_DESCRIPTOR } from "@/lib/site";
+import { RegistryLinks } from "@/features/capabilities/RegistryLinks";
 
 const TITLE = `Capability catalogue — ${SITE_DESCRIPTOR}`;
 const DESCRIPTION =
@@ -21,7 +22,11 @@ export const Route = createFileRoute("/shop")({
       description: DESCRIPTION,
       path: "/shop",
       jsonLd: [
-        buildCollectionPageJsonLd({ path: "/shop", name: "Capability catalogue", description: DESCRIPTION }),
+        buildCollectionPageJsonLd({
+          path: "/shop",
+          name: "Capability catalogue",
+          description: DESCRIPTION,
+        }),
         buildItemListJsonLd(listProducts(), "Agent capability catalogue"),
       ],
     }),
@@ -35,13 +40,15 @@ function ShopPage() {
     <PageShell>
       <SectionHeading
         as="h1"
-        eyebrow={`${catalogMeta.productCount} source-backed records`}
+        eyebrow={`${catalogMeta.productCount} original product records`}
         title="Capability catalogue"
         description={DESCRIPTION}
       />
       <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
-        Stable route: <code>/shop</code>. This is a discovery surface for agents, not a consumer checkout.
+        Inspect original workflows, explore every advertised external skill, tool and control, and
+        prepare an integration request for provider review.
       </p>
+      <RegistryLinks />
       <div className="mt-10">
         <CatalogBrowser products={products} />
       </div>

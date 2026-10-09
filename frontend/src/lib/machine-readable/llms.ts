@@ -2,6 +2,7 @@ import { catalogMeta, listCategories, listProducts } from "@/domain/catalog/repo
 import { catalogSource } from "@/domain/catalog/source";
 import { categoryLabel } from "@/domain/catalog/facets";
 import { absoluteUrl, PRODUCT_HEADLINE, SITE_DESCRIPTOR } from "@/lib/site";
+import { capabilityMeta } from "@/domain/capabilities/repository";
 
 export function buildLlmsTxt(): string {
   const counts = Object.entries(catalogSource.productCountsByType)
@@ -18,6 +19,9 @@ export function buildLlmsTxt(): string {
     `- agent guide: ${absoluteUrl("/agents")}`,
     `- agent discovery text: ${absoluteUrl("/agents.txt")}`,
     `- canonical catalogue: ${absoluteUrl("/catalog.json")}`,
+    `- all ${capabilityMeta.count} external skill/tool/control listings: ${absoluteUrl("/capabilities.json")}`,
+    `- quote-first integration brief: ${absoluteUrl("/capability-brief.json?id={id}")}`,
+    `- agentic coding bugs and scoped evidence: ${absoluteUrl("/coding-bugs.json")}`,
     `- per-product metadata: ${absoluteUrl("/raw/products/{slug}.md")}`,
     "",
     "## Catalogue",

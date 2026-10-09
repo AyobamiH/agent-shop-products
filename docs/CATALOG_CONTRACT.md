@@ -161,3 +161,6 @@ When repeated manual projection becomes a maintenance cost, add a small determin
 Keep parsing, validation, projection, and file emission in separate small modules. Do not build a monolithic catalogue script.
 
 LLMs may help draft editorial wording, but deterministic validation and source records remain authoritative.
+# External acquisition listings and coding bugs
+
+The 9 October owner instruction authorises all names in `capability-inventory.json` in Shop discovery. They remain external metadata, separate from original `products/*` payloads. `capability-acquisition.json` supplies quote-first original integration deliverables and boundaries. `agentic-coding-bugs.json` supplies sanitised stable bug/evidence IDs, failure mechanisms, regression checks and next acceptance. These records do not grant provider access or promote historical/candidate evidence into fresh production verification.

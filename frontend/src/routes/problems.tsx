@@ -19,7 +19,11 @@ export const Route = createFileRoute("/problems")({
       description: DESCRIPTION,
       path: "/problems",
       jsonLd: [
-        buildCollectionPageJsonLd({ path: "/problems", name: "Problem discovery", description: DESCRIPTION }),
+        buildCollectionPageJsonLd({
+          path: "/problems",
+          name: "Problem discovery",
+          description: DESCRIPTION,
+        }),
         buildItemListJsonLd(listProducts(), "Capabilities indexed by problem"),
       ],
     }),
@@ -31,16 +35,36 @@ function ProblemsPage() {
 
   return (
     <PageShell>
-      <SectionHeading as="h1" eyebrow="Problem-first routing" title="Discover by problem" description={DESCRIPTION} />
+      <SectionHeading
+        as="h1"
+        eyebrow="Problem-first routing"
+        title="Discover by problem"
+        description={DESCRIPTION}
+      />
+      <Link
+        to="/coding-bugs"
+        className="mt-5 inline-flex min-h-11 items-center text-sm text-primary underline"
+      >
+        Inspect the agentic coding bug index and regression checks
+      </Link>
       <div className="mt-10 space-y-12">
         {groups.map((group) => (
           <section key={group.category}>
-            <h2 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">{group.label}</h2>
+            <h2 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+              {group.label}
+            </h2>
             <ul className="mt-4 list-none space-y-3">
               {group.entries.map((entry) => (
-                <li key={entry.product.id} className="rounded-lg border border-border bg-surface p-5">
+                <li
+                  key={entry.product.id}
+                  className="rounded-lg border border-border bg-surface p-5"
+                >
                   <p className="text-sm leading-relaxed">{entry.problem}</p>
-                  <Link to="/products/$slug" params={{ slug: entry.product.slug }} className="mt-3 inline-block text-sm font-medium underline underline-offset-4">
+                  <Link
+                    to="/products/$slug"
+                    params={{ slug: entry.product.slug }}
+                    className="mt-3 inline-block text-sm font-medium underline underline-offset-4"
+                  >
                     Inspect {entry.product.name}
                   </Link>
                 </li>

@@ -25,3 +25,6 @@ Decide which model applies to each product:
 3. **Private product** — premium source is not committed publicly.
 
 This document does not resolve ownership or licensing. It records the issue so the frontend does not outrun the source strategy.
+# Owner-authorised integration acquisition, 9 October 2026
+
+The full external registry is now an authorised discovery collection alongside original products. Every advertised skill/tool/control receives an original procurement brief; owned workflow pages also link to custom integration assessment. Shared terms are canonical in `../../catalog/capability-acquisition.json`. Buyers request feasibility and quote review through Tail Wagging's existing custom-work route. No listing sells external account access, distributes unlicensed implementations, claims a configured checkout or guarantees installation. No handoff is submitted automatically. The owner-excluded RUBE provider remains visible as inventory evidence with its quote action withheld.

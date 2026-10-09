@@ -52,7 +52,7 @@ jobs:
       - name: Sync canonical catalogue
         run: |
           bun run sync:catalog
-          git diff --exit-code -- catalog/products.public.json catalog/source.json
+          git diff --exit-code -- catalog/products.public.json catalog/source.json catalog/capability-inventory.json catalog/capability-acquisition.json catalog/agentic-coding-bugs.json
       - name: Production build
         run: bun run build
       - name: Cloudflare Worker dry run

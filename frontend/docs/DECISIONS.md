@@ -86,3 +86,6 @@ Status: Active
 `frontend/DESIGN.md` is the visual-design authority for the Agent Shop frontend and is linted in CI with the pinned Google Labs `design.md` implementation. The current design reference is a standards registry crossed with a package index and laboratory instrument panel. The registry-aperture mark is intentionally name-independent because final branding remains undecided.
 
 The interface favours provenance, queryability, boundaries and machine routes over decorative marketplace conventions. Gradients, AI sparkles, fake ratings, invented verification badges and commerce decoration are prohibited unless a later evidence-backed product decision changes the contract.
+# DEC-011 — External capability registry and integration briefs
+
+The owner's 9 October 2026 instruction authorises searchable listings for every advertised external skill, tool and orchestration control and a public sanitised coding bug index. Keep their contracts separate from the original product projection. Provide deterministic GET discovery and quote-first integration briefs linking to the established external custom-work provider. Prices and accepted work remain provider-authoritative. The frontend does not submit requests, charge buyers, install capabilities or grant provider/runtime authority. CLI-first remains protected; no Shop MCP server is added.

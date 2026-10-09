@@ -78,3 +78,6 @@ Public skills follow the same evidence, provenance, no-mock-data, stable-ID, and
 A complete skill/tool discovery snapshot records external metadata separately from owned product payloads. Availability, connection, permission, execution, publication and customer outcomes require their own evidence.
 
 Owner-authorised extraction may publish original generalised procedures from reviewed work. It does not authorise copying third-party implementations, expose account or credential material, or reverse the CLI-first interface decision.
+# DEC-013 — Full capability discovery and quote-first integration
+
+On 9 October 2026 the owner explicitly requested all 111 external skills, 868 tools and 11 orchestration controls in the shop, plus an agentic coding bug index. Expose all 990 as source-backed acquisition listings separate from owned products. Offer original integration work through the existing provider's quote-first handoff; do not claim external implementation ownership, redistribution rights, ready installation or a fixed price. Record scoped historical bug evidence in a sanitised catalogue and extend the canonical private workbook in place.
