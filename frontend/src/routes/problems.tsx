@@ -41,6 +41,13 @@ function ProblemsPage() {
         title="Discover by problem"
         description={DESCRIPTION}
       />
+      <p className="mt-4 max-w-2xl text-sm text-muted-foreground">
+        For four common operational failure modes,{" "}
+        <Link to="/solutions" className="font-medium text-primary underline underline-offset-4">
+          inspect a worked decision path and the relevant verified-source capabilities
+        </Link>
+        .
+      </p>
       <Link
         to="/coding-bugs"
         className="mt-5 inline-flex min-h-11 items-center text-sm text-primary underline"
