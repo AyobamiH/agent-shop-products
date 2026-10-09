@@ -8,7 +8,7 @@ const SESSION = "cs_test_123456789012345";
 const INTENT = "pi_123456789012345";
 type Row = { state?: unknown; idempotency_key?: unknown; checkout_session_id?: unknown; checkout_url?: unknown; payment_intent_id?: unknown; last_download_at?: unknown; [key: string]: unknown };
 
-function fixture() {
+function fixture({ preventEntitlementInsert = false } = {}) {
   const orders = new Map<string, Row>();
   const entitlements = new Map<string, Row>();
   const events = new Set<string>();
@@ -30,6 +30,8 @@ function fixture() {
         value = orders.get(String(v[0])) || null;
       } else if (sql.startsWith("SELECT state,object_key FROM commerce_entitlements")) {
         value = entitlements.get(String(v[0])) || null;
+      } else if (sql.startsWith("SELECT payment_intent_id FROM commerce_refunds")) {
+        value = refunds.has(String(v[0])) ? { payment_intent_id: v[0] } : null;
       } else throw new Error("Unexpected fake D1 read: " + sql);
       return value as T | null;
     }
@@ -52,7 +54,7 @@ function fixture() {
         }
       } else if (s.startsWith("INSERT OR IGNORE INTO commerce_entitlements")) {
         const row=orders.get(String(v[0]));
-        if(row?.state==="paid"&&!refunds.has(String(v[5]))&&!entitlements.has(String(v[0])))
+        if(!preventEntitlementInsert && row?.state==="paid"&&!refunds.has(String(v[5]))&&!entitlements.has(String(v[0])))
           entitlements.set(String(v[0]),{state:"active",object_key:v[3]});
       } else if (s.startsWith("INSERT OR IGNORE INTO commerce_webhook_events")) {
         events.add(String(v[0]));
@@ -161,6 +163,24 @@ describe("Stripe-hosted private-kit integration without live customer effects", 
       id:SESSION,client_reference_id:data.orderId}),f.env,f.fakeStripe))?.status).toBe(200);
     expect(f.orders.get(data.orderId)?.state).toBe("revoked");
     expect(f.entitlements.get(data.orderId)?.state).toBe("revoked");
+  });
+  it("does not acknowledge paid events when D1 entitlement issuance silently changes zero rows", async () => {
+    const f = fixture({ preventEntitlementInsert: true });
+    const request = new Request(API + "checkout", { method: "POST", headers: {
+      origin: "https://agents.proofandstate.com", "Content-Type": "application/json",
+      "Idempotency-Key": crypto.randomUUID(),
+    }, body: JSON.stringify({ offerId: KIT }) });
+    const checkout = await handleCommerceRequest(request, f.env, f.fakeStripe);
+    expect(checkout?.status).toBe(201);
+    const receipt = await checkout!.json() as { orderId: string };
+    const callback = await f.signedEvent("checkout.session.completed", "evt_nogrant123456", {
+      id: SESSION, client_reference_id: receipt.orderId,
+    });
+    const outcome = await handleCommerceRequest(callback, f.env, f.fakeStripe);
+    expect(outcome?.status).toBe(503);
+    expect(f.orders.get(receipt.orderId)?.state).toBe("paid");
+    expect(f.entitlements.has(receipt.orderId)).toBe(false);
+    expect(f.events.size).toBe(0);
   });
   it("does not acknowledge an early genuine webhook while checkout is still creating", async () => {
     const f=fixture();

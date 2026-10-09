@@ -240,6 +240,9 @@ async function processWebhookEvent(event: StripeEvent, env: CommerceEnv, fetcher
     ]);
     return;
   }
+  if (order.state === "creating" || order.state === "failed") {
+    throw new CommerceFailure("ORDER_PENDING_RECONCILIATION", 503, true);
+  }
   const approved = offerOrFail(env, order.offer_id);
   const provider = await getStripeSession(env, sessionId, fetcher);
   if (provider.payment_status !== "paid") {
@@ -251,13 +254,34 @@ async function processWebhookEvent(event: StripeEvent, env: CommerceEnv, fetcher
   if (!await env.PRIVATE_KITS!.head(approved.assetKey)) {
     throw new CommerceFailure("PRIVATE_ASSET_UNAVAILABLE", 503, true);
   }
-  await db.batch([
+  // The state transition + entitlement are one atomic D1 batch. Record the
+  // event only AFTER verifying both durable readbacks; failed transitions stay
+  // retryable instead of being silently acknowledged.
+  const results = await db.batch([
     db.prepare("UPDATE commerce_orders SET state='paid',payment_intent_id=?,updated_at=? WHERE id=? AND state IN ('checkout_open','paid') AND NOT EXISTS (SELECT 1 FROM commerce_refunds WHERE payment_intent_id=?)")
       .bind(intent, timestamp, order.id, intent),
     db.prepare("INSERT OR IGNORE INTO commerce_entitlements (order_id,offer_id,offer_version,object_key,state,issued_at) SELECT ?,?,?,?,'active',? WHERE NOT EXISTS (SELECT 1 FROM commerce_refunds WHERE payment_intent_id=?) AND EXISTS (SELECT 1 FROM commerce_orders WHERE id=? AND state='paid')")
-      .bind(order.id, offerOrFail(env, order.offer_id).id, approved.version, approved.assetKey, timestamp, intent, order.id),
-    recordEvent,
+      .bind(order.id, approved.id, approved.version, approved.assetKey, timestamp, intent, order.id),
   ]);
+  if (results.some((result) => result.success === false)) {
+    throw new CommerceFailure("COMMERCE_STORAGE_UNAVAILABLE", 503, true);
+  }
+  const storedOrder = await db.prepare("SELECT * FROM commerce_orders WHERE id=?").bind(order.id).first<Order>();
+  const entitlement = await db.prepare("SELECT state,object_key FROM commerce_entitlements WHERE order_id=?")
+    .bind(order.id).first<Entitlement>();
+  const refund = await db.prepare("SELECT payment_intent_id FROM commerce_refunds WHERE payment_intent_id=?")
+    .bind(intent).first();
+  if (refund) {
+    if (storedOrder?.state !== "revoked" || entitlement?.state === "active") {
+      throw new CommerceFailure("PAYMENT_RECONCILIATION_FAILED", 503, true);
+    }
+  } else if (
+    storedOrder?.state !== "paid" || storedOrder.payment_intent_id !== intent ||
+    entitlement?.state !== "active" || entitlement.object_key !== approved.assetKey
+  ) {
+    throw new CommerceFailure("PAYMENT_RECONCILIATION_FAILED", 503, true);
+  }
+  await applied(recordEvent);
 }
 
 async function webhook(request: Request, env: CommerceEnv, fetcher: typeof fetch): Promise<Response> {
