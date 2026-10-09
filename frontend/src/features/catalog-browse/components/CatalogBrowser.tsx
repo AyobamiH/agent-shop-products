@@ -46,7 +46,7 @@ export function CatalogBrowser({ products }: { products: readonly Product[] }) {
   );
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[16rem_1fr] lg:gap-10">
+    <div className="grid min-w-0 grid-cols-1 gap-8 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-10">
       <aside aria-label="Catalogue filters" className="space-y-6 lg:sticky lg:top-20 lg:self-start">
         <FacetFilter
           legend="Product type"
@@ -73,7 +73,7 @@ export function CatalogBrowser({ products }: { products: readonly Product[] }) {
         ) : null}
       </aside>
 
-      <div>
+      <div className="min-w-0">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
           <div className="flex-1">
             <ProductSearch

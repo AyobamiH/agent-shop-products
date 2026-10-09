@@ -76,7 +76,14 @@ async def main():
         await page.set_viewport_size({"width": 390, "height": 844})
         for path in ["/shop", "/capabilities?kind=control", "/coding-bugs?q=hydration"]:
             await page.goto(ORIGIN + path)
-            assert await page.evaluate("document.documentElement.scrollWidth <= window.innerWidth"), path + " overflows mobile viewport"
+            fits = await page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
+            if not fits:
+                overflow = await page.evaluate("""() => Array.from(document.querySelectorAll('*')).map(el => {
+                    const r = el.getBoundingClientRect();
+                    return {tag: el.tagName, class: el.className, text: (el.innerText || '').slice(0, 90), left: r.left, right: r.right, width: r.width};
+                }).filter(r => r.right > window.innerWidth + 0.5 || r.left < -0.5).sort((a,b) => b.width-a.width).slice(0,12)""")
+                print(json.dumps({"path": path, "overflow": overflow}), flush=True)
+            assert fits, path + " overflows mobile viewport"
         assert not errors, errors
         await browser.close()
         print("PASS: 990 registry records, all sitemap IDs, quote boundaries, URL filters, 19 bugs and mobile layout")
