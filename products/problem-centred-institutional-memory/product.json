@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "problem-centred-institutional-memory",
+  "slug": "problem-centred-institutional-memory",
+  "name": "Problem-Centred Institutional Memory",
+  "productType": "skill",
+  "category": "agent-operations",
+  "summary": "Reconstruct scattered work as stable problems, dated attempts, qualified outcomes and reusable solutions while preserving source coverage and contradictory evidence.",
+  "problem": "Repeated recaps lose failed attempts, merge unrelated work and promote remembered completion into unsupported institutional knowledge.",
+  "coreOutcomes": [
+    "Stable problem and source identities across conversations",
+    "Chronological attempts and superseding evidence",
+    "Evidence-qualified outcomes and recurrence counts",
+    "A resumable retrieval queue with explicit coverage gaps"
+  ],
+  "requirements": [
+    "Authorised conversation excerpts, exports or handover records",
+    "Existing canonical index and its schema when available",
+    "Dates, context identities and source locators",
+    "A publication boundary for private history"
+  ],
+  "boundaries": [
+    "Search results and summaries are not complete transcripts",
+    "Historical requests do not become fresh execution authority",
+    "Assistant-only success claims remain unverified",
+    "Product opportunities require demonstrated procedures"
+  ],
+  "tags": [
+    "institutional-memory",
+    "history",
+    "provenance",
+    "chronology",
+    "evidence",
+    "continuation"
+  ],
+  "source": "SKILL.md"
+}

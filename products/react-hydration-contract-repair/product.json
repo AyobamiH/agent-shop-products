@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "react-hydration-contract-repair",
+  "slug": "react-hydration-contract-repair",
+  "name": "React Hydration Contract Repair",
+  "productType": "skill",
+  "category": "developer-tooling",
+  "summary": "Repair hydration races by preserving identical server and first-client snapshots across theme, auth and data providers, then verify the actual browser condition.",
+  "problem": "Arbitrary delays or suppressed warnings can hide provider state changes that make the first client render differ from server HTML, especially on mobile dark routes.",
+  "coreOutcomes": [
+    "Route and provider-specific mismatch reproduction",
+    "Stable initial React state and matching serialized data",
+    "Correct DOM versus React theme ownership",
+    "Browser evidence across themes, viewports and storage states"
+  ],
+  "requirements": [
+    "Exact server HTML and client source revision",
+    "Relevant provider initialization and external stores",
+    "Representative failing routes and browser observations",
+    "Repository-native build and browser acceptance checks"
+  ],
+  "boundaries": [
+    "A longer delay is not a hydration correctness guarantee",
+    "Do not suppress unexpected mismatch warnings as a repair",
+    "Hydrated UI is separate from downstream business acceptance",
+    "DOM ownership must be verified for the actual root"
+  ],
+  "tags": [
+    "react",
+    "ssr",
+    "hydration",
+    "theme",
+    "browser",
+    "providers"
+  ],
+  "source": "SKILL.md"
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "executable-operating-documentation",
+  "slug": "executable-operating-documentation",
+  "name": "Executable Operating Documentation",
+  "productType": "skill",
+  "category": "developer-tooling",
+  "summary": "Derive operator guidance and documentation from canonical warning semantics, a versioned data dictionary and executable examples, with CI rejecting drift.",
+  "problem": "Dashboards and runbooks can disagree about warnings, units, ownership and recovery, making unknown evidence appear healthy or automatic work appear manual.",
+  "coreOutcomes": [
+    "Canonical warning meanings and safe inspection actions",
+    "Versioned field types, units and unavailable semantics",
+    "Shared UI, CLI and generated documentation",
+    "Executable examples, drift checks and projection budgets"
+  ],
+  "requirements": [
+    "Actual UI and snapshot producers",
+    "Canonical semantic and schema contracts",
+    "Representative bounded or sanitised examples",
+    "Repository-native generation and validation workflow"
+  ],
+  "boundaries": [
+    "Documentation grants no mutation authority",
+    "Copying an inspection command is not execution",
+    "Optional disabled features are not automatically broken",
+    "Dashboard caching cannot authorise consequential work"
+  ],
+  "tags": [
+    "documentation",
+    "semantics",
+    "schema",
+    "dashboard",
+    "examples",
+    "drift"
+  ],
+  "source": "SKILL.md"
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "dual-principal-github-app-admission",
+  "slug": "dual-principal-github-app-admission",
+  "name": "Dual-Principal GitHub App Admission",
+  "productType": "skill",
+  "category": "developer-tooling",
+  "summary": "Require both selected GitHub App capability and the authenticated customer's actual repository authority before admitting an App-backed write objective.",
+  "problem": "Installation-token repository metadata can be mistaken for the customer's push permission, either rejecting valid work or letting App capability stand in for user authority.",
+  "coreOutcomes": [
+    "Explicit App and customer principal separation",
+    "Identity-bound current actor permission readback",
+    "Fail-closed role and API-error handling",
+    "Regression coverage and scoped fresh admission"
+  ],
+  "requirements": [
+    "Authenticated customer identity",
+    "Selected installation and exact repository",
+    "Validated App grants for the intended operation",
+    "Current collaborator-permission API contract"
+  ],
+  "boundaries": [
+    "App installation does not grant customer writer authority",
+    "Repository selection and read discovery do not prove objective admission",
+    "Missing or mismatched role evidence fails closed",
+    "This workflow never grants or broadens permissions"
+  ],
+  "tags": [
+    "github-app",
+    "admission",
+    "authority",
+    "identity",
+    "permissions",
+    "least-privilege"
+  ],
+  "source": "SKILL.md"
+}

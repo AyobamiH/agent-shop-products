@@ -1,44 +1,57 @@
 # Latest work review and continuation boundary
 
-Reviewed **9 October 2026**, using the newest owner checkpoint updated at **23:40 UTC on 8 October** and separately checked public repository/deployment records. This supersedes the earlier PR #37 review, merge, deployment and scanner blockers within their proved scope. It does not publish private operational evidence.
+Reviewed **9 October 2026**, using selected historical records through 8 October, the latest owner checkpoint updated at 04:59 UTC on 9 October and current public repository evidence. Earlier incomplete states are retained as history and superseded only within demonstrated scope. See [the multi-week review](MULTIWEEK_REVIEW.md) for retrieval depth.
 
-## What moved forward
+## Highest evidenced states
 
 | Workstream | Highest evidenced state | Still separate |
 | --- | --- | --- |
-| One Click public 1.0.2 | Owner-account connection and one actual synthetic brief test reported successful | Clean-account acceptance, project creation, deployment and owned-domain measurement |
-| One Click minimal-input repair | [PR #8](https://github.com/AyobamiH/oneclick-chatgpt-plugin/pull/8), head dd72e2dce1ca9e9dc4509d9069fefd4e32679d6e, has omitted/empty services regression evidence | Unmerged and not shown deployed at this checkpoint |
-| OpsTruth initial MCP draft | Ownership verification, 21 discovered tools and fresh native tool/privacy scans reported clear | Configured, not submitted and not published; live review cases and walkthrough remain unproved |
-| OpsTruth release | [PR #37](https://github.com/AyobamiH/opstruth-chatgpt-plugin/pull/37) normally merged to bf7a60f7ca37919071ef9f9c246ec18ec26b0d89; [exact-main deployment](https://github.com/AyobamiH/opstruth-chatgpt-plugin/actions/runs/37859964186) and smoke passed | Owner-directed exception is not independent human review or a formal security scan |
-| OpsTruth release governance | [Merged policy](https://github.com/AyobamiH/opstruth-chatgpt-plugin/blob/bf7a60f7ca37919071ef9f9c246ec18ec26b0d89/docs/release-readiness.md) records an explicit maintenance-only solo-owner exception while preserving required checks and protected merge | Wider authority changes remain outside the exception; bot powers were not expanded |
-| OpsTruth analytics helper | [PR #36](https://github.com/AyobamiH/opstruth-chatgpt-plugin/pull/36) merged at 65b6c619423858711a3d10748c6337cea78c6388 | Aggregate calls do not establish users, installs or attribution |
-| Agent Shop independent service discovery | [PR #20](https://github.com/AyobamiH/agent-shop-products/pull/20) and [production acceptance](PRODUCTION-SUBCONTRACTING-DISCOVERY-2026-10-09.md) record the 21-product release linking to Tail Wagging's separate guide/catalogue | New provider job-intake release/readback, payment, execution authority, indexing and this 25-product catalogue's deployment |
-| Native LinkedIn campaign | Prior native scheduling/readback and dated campaign ledger reviewed; queues unchanged in the latest release checkpoint | Full completion, fresh queue totals and active refill are not established here |
-| Current external capabilities | 109 names across 94 cloud and 88 executor entries; 868 tools and 11 separate controls enumerated | Advertised session metadata is not an operational acceptance result |
+| Agent Shop | The prior 25-product release is deployed and has [exact-source outside-in acceptance](AGENT-SHOP-25-PRODUCTION-ACCEPTANCE-2026-10-09.md); this extraction adds eight original skills for 33 canonical products | Expanded-storefront deployment/readback and Google indexing |
+| OpsTruth Verification initial MCP listing | Same-draft native submission succeeded; settled detail shows **In review** | Provider approval, publication and clean-account acceptance |
+| OpsTruth walkthrough | Actual 173-second exact-release local-runtime demonstration, public GitHub GET calls, five positive server calls and three boundary assertions; hosted bytes read back | ChatGPT conversational routing/refusal, production endpoint and production signer acceptance; static-route graph remains partial |
+| OpsTruth released repair | [PR #37](https://github.com/AyobamiH/opstruth-chatgpt-plugin/pull/37) merged/deployed at bf7a60f7ca37919071ef9f9c246ec18ec26b0d89; native tool/privacy scans clear in the owner record | Owner exception is not independent human review or a formal security scan |
+| One Click public listing | Published 1.0.2; owner connection and synthetic brief success reported | Clean-account journey, created project, deployment and owned-domain measurement |
+| One Click minimal-input repair | [PR #8](https://github.com/AyobamiH/oneclick-chatgpt-plugin/pull/8) remains open at dd72e2dce1ca9e9dc4509d9069fefd4e32679d6e | Merge, deployment and fresh public omitted/empty-input acceptance |
+| Post-Once runtime | 8 October record reports installed 391f5dfc, clean checkout, four active timers and zero critical/invalid entries | Current-main installation and all provider/editorial/measurement gates |
+| Post-Once supply and outcomes | Current source contains late-outcome recovery and semantic console contracts; dated outcome connector reports successful empty evidence | Empty evidence is not zero activity; PC-01–05 remain open and PC-06 partial in the 8 October ledger |
+| Tail Wagging outcomes | Current source includes duplicate-payment outcome reconciliation and signed attribution handling | Full contact-outbox durability, production fault injection, actual inbox acceptance and causal business attribution |
+| Tail Wagging UI | Matching initial theme state repair follows failed arbitrary-frame workaround; current source reviewed | Other provider initialization, full browser conditions and downstream business acceptance |
+| DoneState account erasure | Indexed customer cleanup/session rejection and synthetic admitted-write registry/vault fence acceptance have separate public evidence | External key/account revocation, unindexed-state completeness and independent verifier verdict |
+| DoneState App admission | Latest project state records merged/deployed dual-principal repair with 174 Worker tests and 11 admission cases | Current customer has read authority; no fresh objective, model run or complete customer journey |
+| Native LinkedIn campaign | Historical native queue and campaign-ledger evidence recovered | Fresh totals, active refill and full completion; this extraction did not change queues |
+| Current capability surface | 111 names across 105 cloud and 90 executor entries; 868 tools/38 providers and 11 controls | Connection, permission, execution and external skill implementation |
 
-The owner-led OpsTruth route did not fabricate a second reviewer. Its exception records owner direction, bounded eligibility, technical review, exact-head checks, normal guarded merge, rollback preparation and exact-main runtime acceptance. Fresh native scans now clear the actual findings. Earlier blockers remain historical evidence and must not be repeated as current requirements for that completed release.
+## Superseded blockers and continuing limits
 
-The One Click response uses output schema 1.0.1 while its public listing is 1.0.2. It reports projectCreated=false and deployed=false. Basic owner success clears that account's connection gap only.
+The OpsTruth missing-recording and not-submitted checkpoints are superseded. The recording is a labelled local demonstration, and the new listing is in review, not published. The original published skills-only OpsTruth and One Click listings remain distinct from the initial MCP submission.
 
-Agent Shop remains a GET-only catalogue and CLI-first roadmap. Tail Wagging owns its service discovery and business authority. Its newer durable-intake expansion has a separate release boundary; a discovery link alone does not prove a live job ledger.
+Submission was clicked once after current owner declarations. A stale list still showed not submitted; opening the same settled detail resolved the conflict before a retry. This is evidence about the completed action, not authority to submit another listing now.
 
-## Measurement conclusions
+The Post-Once 8 October runtime observation supersedes the earlier unconfirmed install/four-timer blocker within that dated scope. It does not clear missing saved collector observations, editorial deficits or comparable measurement. September natural publication/readback observations are useful historical evidence, not current host-health proof.
 
-The owner report includes One Click operational aggregates of four successes and four errors over 30 days, including two unknown-tool errors. A recent success is consistent with a controlled test without correlated attribution. OpsTruth's historical aggregates lack sufficient cause and test markers. These records do not establish people, installs or independent demand.
+DoneState's App repair checks actual identity-bound customer permission separately from installation grants. A read-only customer remains denied even after a successful release. Earlier account cleanup and published-policy fixes should not be repeated as current blockers for the shipped repair.
 
-The merged helper uses the legacy raw SQL interface and explicit sampling weights. The newer Analytics SQL API weights supported aggregates automatically. Follow the selected endpoint's contract to avoid double weighting.
+## Measurement and business evidence
 
-Website identity and consent remain distinct from operational telemetry. One Click owned-domain authority/cutover remains unresolved. Cache lifetime, storage retention, recipients and opt-out scope must match implementation. Intermediary forwarding remains unestablished even though the native privacy scan is now clear.
+Operational calls, website sessions, discovery, provider publication and business outcomes have separate identities and acceptance rules. Historical aggregates do not establish unique users, installs or independent demand. Transport acknowledgement does not prove tool success, inbox delivery or customer acceptance.
 
-## Next acceptance work
+One Click listing version 1.0.2 and output schema 1.0.1 are distinct. The tested response explicitly reported no project creation or deployment. Owned-domain authority/cutover and measurement remain unresolved in the reviewed record.
 
-1. For OpsTruth, run the five positive and three negative cases through supported live access, record the actual results and make a real accessible walkthrough. Reupload that recording metadata to the same draft, then complete provider submission/review/publication and separate clean-account acceptance.
-2. For One Click, reconcile owned-domain authority and the guarded delivery dependency. Release the reviewed repair, repeat omitted/empty input tests on the public tool and verify measurement on the intended origin. Keep clean-account acceptance separate.
-3. For the native campaign, refresh the ledger and queue readback before continuing from historical counts. Reconcile ambiguous scheduling consequences before retry; do not infer a fixed queue cap from one failure.
-4. For Agent Shop, validate and publish the original product additions, provenance and derived discovery surfaces. Existing source payloads, provider authority and CLI-first direction remain intact.
+The legacy Analytics raw SQL helper applies explicit sampling weights; newer endpoint contracts differ and must be refreshed before use. Identity, consent, recipients, retention and opt-out scope must match actual implementation. Native scanner clearance does not prove independent demand.
+
+For business outcomes, authenticated payment and signed attribution are separate. Reconcile a missing outcome independently of fulfilment; never repeat a charge, enquiry or social publication to recover evidence. Connected empty data is unknown activity, and identity correlation does not prove causation.
+
+## Next acceptance boundaries
+
+1. OpsTruth: wait for and verify provider review outcome, then follow the authorised publication path. Separately test supported conversational routing/refusal, production endpoint/signing and clean-account workflows.
+2. One Click: release the reviewed minimal-input repair through its guarded repository path, verify public omitted/empty inputs and resolve canonical-origin measurement authority.
+3. DoneState: use a genuinely authorised writer identity before a fresh App objective/customer journey; keep read discovery and funding/model execution distinct.
+4. Post-Once/Tail Wagging: obtain fresh relevant natural-cycle, collector, comparable-measurement and delayed-outcome evidence. Keep editorial deficits and contact durability explicit.
+5. Agent Shop: validate the 33-product source tree and derived discovery surfaces; expanded production deployment needs a separate exact-release outside-in record. Monitor indexing independently.
+6. History: continue from the saved stable index and retrieval queue. Original account chat/Project/archive access remains incomplete.
 
 ## Evidence limits
 
-Public PR/commit and workflow records support merge and release state. Native connection, scans, queue and website-test results are sanitised owner observations; this extraction did not repeat them. Account, draft, credential and host identifiers remain private.
+Public source and release records support inspectable implementation and release state. Native submission, scans, runtime and queue results are sanitised saved owner observations; this extraction did not repeat those actions. The walkthrough's detailed local test limitations are preserved.
 
-The [coverage record](../catalog/skill-coverage.json) maps procedures to owned products. The [inventory](../catalog/capability-inventory.json) records advertised names. Neither claims earlier shop-skill invocation, customer adoption or a deployment of these new catalogue products.
+No private transcripts, account/draft identifiers, credentials or host details are published. [Coverage](SKILL_COVERAGE.md) is a procedure mapping, and [the inventory](CAPABILITY_INVENTORY.md) is advertised metadata; neither proves historical product-skill invocation or customer adoption.

@@ -8,6 +8,42 @@
   },
   "products": [
     {
+      "id": "account-erasure-with-write-fencing",
+      "slug": "account-erasure-with-write-fencing",
+      "name": "Account Erasure with Write Fencing",
+      "productType": "skill",
+      "category": "developer-tooling",
+      "summary": "Erase an authorised account's indexed service data while invalidating stale sessions and fencing already admitted work from restoring deleted state.",
+      "problem": "Successful deletion or session rejection alone can leave older in-flight work able to recreate records or credentials after the account is erased.",
+      "coreOutcomes": [
+        "Scoped deletion with separate registry and credential fences",
+        "Consequence-time rejection of stale admitted writes",
+        "Receipts and fresh indexed-state readback",
+        "Synthetic race acceptance distinct from real customer cleanup"
+      ],
+      "requirements": [
+        "Explicit account-deletion authority and identity confirmation",
+        "Canonical indexed inventory and active-work state",
+        "Generation or equivalent durable write guards",
+        "Safe fixture isolation and post-deletion read access"
+      ],
+      "boundaries": [
+        "Session invalidation alone does not prove stale-write rejection",
+        "Indexed service deletion is not external-account or key revocation",
+        "Unknown unindexed records retain their documented limitation",
+        "A service receipt is not an independent verifier verdict"
+      ],
+      "tags": [
+        "erasure",
+        "account-lifecycle",
+        "fencing",
+        "race-conditions",
+        "generation",
+        "receipts"
+      ],
+      "sourcePath": "products/account-erasure-with-write-fencing/SKILL.md"
+    },
+    {
       "id": "agent-subcontracting-commercial-handoff",
       "slug": "agent-subcontracting-commercial-handoff",
       "name": "Agent Subcontracting Commercial Handoff",
@@ -378,6 +414,78 @@
       "sourcePath": "products/deterministic-social-publication/PROMPT.md"
     },
     {
+      "id": "dual-principal-github-app-admission",
+      "slug": "dual-principal-github-app-admission",
+      "name": "Dual-Principal GitHub App Admission",
+      "productType": "skill",
+      "category": "developer-tooling",
+      "summary": "Require both selected GitHub App capability and the authenticated customer's actual repository authority before admitting an App-backed write objective.",
+      "problem": "Installation-token repository metadata can be mistaken for the customer's push permission, either rejecting valid work or letting App capability stand in for user authority.",
+      "coreOutcomes": [
+        "Explicit App and customer principal separation",
+        "Identity-bound current actor permission readback",
+        "Fail-closed role and API-error handling",
+        "Regression coverage and scoped fresh admission"
+      ],
+      "requirements": [
+        "Authenticated customer identity",
+        "Selected installation and exact repository",
+        "Validated App grants for the intended operation",
+        "Current collaborator-permission API contract"
+      ],
+      "boundaries": [
+        "App installation does not grant customer writer authority",
+        "Repository selection and read discovery do not prove objective admission",
+        "Missing or mismatched role evidence fails closed",
+        "This workflow never grants or broadens permissions"
+      ],
+      "tags": [
+        "github-app",
+        "admission",
+        "authority",
+        "identity",
+        "permissions",
+        "least-privilege"
+      ],
+      "sourcePath": "products/dual-principal-github-app-admission/SKILL.md"
+    },
+    {
+      "id": "durable-business-outcome-reconciliation",
+      "slug": "durable-business-outcome-reconciliation",
+      "name": "Durable Business Outcome Reconciliation",
+      "productType": "skill",
+      "category": "agent-operations",
+      "summary": "Recover privacy-bounded enquiry and payment evidence independently of customer fulfilment, and reconcile delayed outcomes against exact verified publication identities.",
+      "problem": "A duplicate payment receipt or successful contact delivery can hide a failed outcome write, while early cursor advancement permanently loses delayed attribution evidence.",
+      "coreOutcomes": [
+        "Independent fulfilment and evidence idempotency",
+        "Durable recovery before advancing source cursors",
+        "Conflict-aware bounded fair replay",
+        "Verified descriptive attribution with currency separation"
+      ],
+      "requirements": [
+        "Authorised event sources and immutable fulfilment receipts",
+        "PII-minimised stable source/event identifiers",
+        "Durable holding or outbox storage",
+        "Exact publication identity and signed-link provenance"
+      ],
+      "boundaries": [
+        "Never repeat a charge, enquiry or social publication to recover evidence",
+        "A valid payment signature does not authenticate campaign provenance",
+        "An empty connected ledger is not zero business activity",
+        "Identity correlation does not prove causation"
+      ],
+      "tags": [
+        "outcomes",
+        "outbox",
+        "reconciliation",
+        "attribution",
+        "idempotency",
+        "privacy"
+      ],
+      "sourcePath": "products/durable-business-outcome-reconciliation/SKILL.md"
+    },
+    {
       "id": "evidence-backed-open-source-contribution",
       "slug": "evidence-backed-open-source-contribution",
       "name": "Evidence-Backed Open-Source Contribution",
@@ -456,6 +564,42 @@
         "reconciliation"
       ],
       "sourcePath": "products/evidence-first-live-diagnostic-repair/PROMPT.md"
+    },
+    {
+      "id": "executable-operating-documentation",
+      "slug": "executable-operating-documentation",
+      "name": "Executable Operating Documentation",
+      "productType": "skill",
+      "category": "developer-tooling",
+      "summary": "Derive operator guidance and documentation from canonical warning semantics, a versioned data dictionary and executable examples, with CI rejecting drift.",
+      "problem": "Dashboards and runbooks can disagree about warnings, units, ownership and recovery, making unknown evidence appear healthy or automatic work appear manual.",
+      "coreOutcomes": [
+        "Canonical warning meanings and safe inspection actions",
+        "Versioned field types, units and unavailable semantics",
+        "Shared UI, CLI and generated documentation",
+        "Executable examples, drift checks and projection budgets"
+      ],
+      "requirements": [
+        "Actual UI and snapshot producers",
+        "Canonical semantic and schema contracts",
+        "Representative bounded or sanitised examples",
+        "Repository-native generation and validation workflow"
+      ],
+      "boundaries": [
+        "Documentation grants no mutation authority",
+        "Copying an inspection command is not execution",
+        "Optional disabled features are not automatically broken",
+        "Dashboard caching cannot authorise consequential work"
+      ],
+      "tags": [
+        "documentation",
+        "semantics",
+        "schema",
+        "dashboard",
+        "examples",
+        "drift"
+      ],
+      "sourcePath": "products/executable-operating-documentation/SKILL.md"
     },
     {
       "id": "graph-native-agent-system-migration",
@@ -622,6 +766,42 @@
       "sourcePath": "products/machine-discovery-surface-engineering/SKILL.md"
     },
     {
+      "id": "measurement-gated-learning-admission",
+      "slug": "measurement-gated-learning-admission",
+      "name": "Measurement-Gated Learning Admission",
+      "productType": "skill",
+      "category": "agent-operations",
+      "summary": "Admit learning variants only after an exact verified predecessor and comparable measurements, retaining immutable receipts and bounded backlog controls.",
+      "problem": "A published or equivalent baseline can be mistaken for a measured baseline, allowing unsupported experiments or duplicate content into supply.",
+      "coreOutcomes": [
+        "Verified effect equivalence with stable lineage",
+        "Comparable baseline measurement as a separate gate",
+        "Explicit safe deferral and exclusion reasons",
+        "Bounded admission with immutable evidence"
+      ],
+      "requirements": [
+        "Frozen editorial identity and publication receipts",
+        "Provider/account-scoped lineage and payload hashes",
+        "Metrics with age, exposure and availability semantics",
+        "Existing admission pressure and resource policy"
+      ],
+      "boundaries": [
+        "Missing or low-exposure metrics are not zero performance",
+        "Equivalent publication does not prove comparable measurement",
+        "Sidecars do not rewrite original receipts",
+        "A safety ceiling is not a throughput target"
+      ],
+      "tags": [
+        "learning",
+        "measurement",
+        "admission",
+        "baseline",
+        "lineage",
+        "editorial"
+      ],
+      "sourcePath": "products/measurement-gated-learning-admission/SKILL.md"
+    },
+    {
       "id": "outside-in-agent-crawl-verification",
       "slug": "outside-in-agent-crawl-verification",
       "name": "Outside-In Agent Crawl Verification",
@@ -662,6 +842,42 @@
         "readback"
       ],
       "sourcePath": "products/outside-in-agent-crawl-verification/SKILL.md"
+    },
+    {
+      "id": "problem-centred-institutional-memory",
+      "slug": "problem-centred-institutional-memory",
+      "name": "Problem-Centred Institutional Memory",
+      "productType": "skill",
+      "category": "agent-operations",
+      "summary": "Reconstruct scattered work as stable problems, dated attempts, qualified outcomes and reusable solutions while preserving source coverage and contradictory evidence.",
+      "problem": "Repeated recaps lose failed attempts, merge unrelated work and promote remembered completion into unsupported institutional knowledge.",
+      "coreOutcomes": [
+        "Stable problem and source identities across conversations",
+        "Chronological attempts and superseding evidence",
+        "Evidence-qualified outcomes and recurrence counts",
+        "A resumable retrieval queue with explicit coverage gaps"
+      ],
+      "requirements": [
+        "Authorised conversation excerpts, exports or handover records",
+        "Existing canonical index and its schema when available",
+        "Dates, context identities and source locators",
+        "A publication boundary for private history"
+      ],
+      "boundaries": [
+        "Search results and summaries are not complete transcripts",
+        "Historical requests do not become fresh execution authority",
+        "Assistant-only success claims remain unverified",
+        "Product opportunities require demonstrated procedures"
+      ],
+      "tags": [
+        "institutional-memory",
+        "history",
+        "provenance",
+        "chronology",
+        "evidence",
+        "continuation"
+      ],
+      "sourcePath": "products/problem-centred-institutional-memory/SKILL.md"
     },
     {
       "id": "production-agent-operating-files",
@@ -743,6 +959,42 @@
         "red-green-evidence"
       ],
       "sourcePath": "products/published-package-contract-verification/SKILL.md"
+    },
+    {
+      "id": "react-hydration-contract-repair",
+      "slug": "react-hydration-contract-repair",
+      "name": "React Hydration Contract Repair",
+      "productType": "skill",
+      "category": "developer-tooling",
+      "summary": "Repair hydration races by preserving identical server and first-client snapshots across theme, auth and data providers, then verify the actual browser condition.",
+      "problem": "Arbitrary delays or suppressed warnings can hide provider state changes that make the first client render differ from server HTML, especially on mobile dark routes.",
+      "coreOutcomes": [
+        "Route and provider-specific mismatch reproduction",
+        "Stable initial React state and matching serialized data",
+        "Correct DOM versus React theme ownership",
+        "Browser evidence across themes, viewports and storage states"
+      ],
+      "requirements": [
+        "Exact server HTML and client source revision",
+        "Relevant provider initialization and external stores",
+        "Representative failing routes and browser observations",
+        "Repository-native build and browser acceptance checks"
+      ],
+      "boundaries": [
+        "A longer delay is not a hydration correctness guarantee",
+        "Do not suppress unexpected mismatch warnings as a repair",
+        "Hydrated UI is separate from downstream business acceptance",
+        "DOM ownership must be verified for the actual root"
+      ],
+      "tags": [
+        "react",
+        "ssr",
+        "hydration",
+        "theme",
+        "browser",
+        "providers"
+      ],
+      "sourcePath": "products/react-hydration-contract-repair/SKILL.md"
     },
     {
       "id": "read-only-production-reconnaissance",
@@ -950,6 +1202,42 @@
         "acceptance"
       ],
       "sourcePath": "products/staged-mcp-plugin-activation/SKILL.md"
+    },
+    {
+      "id": "stale-lease-recovery-and-single-flight",
+      "slug": "stale-lease-recovery-and-single-flight",
+      "name": "Stale Lease Recovery and Single Flight",
+      "productType": "skill",
+      "category": "agent-operations",
+      "summary": "Recover proven stale, effect-free graph work through targeted lifecycle transitions and coalesce equivalent live attempts without suppressing future natural work.",
+      "problem": "Dead parent runs can consume durable concurrency indefinitely, while time-bucket idempotency permits overlapping equivalent monitor jobs.",
+      "coreOutcomes": [
+        "Attempt and lease truth separated from raw parent status",
+        "Effect-aware targeted recovery with intact event history",
+        "Equivalence keys for live single-flight admission",
+        "Natural cadence and unaffected-state verification"
+      ],
+      "requirements": [
+        "Canonical run, attempt, lease, effect and receipt records",
+        "Existing recovery and admission APIs",
+        "Explicit scope for lifecycle changes",
+        "Backups and meaningful restart/concurrency regressions"
+      ],
+      "boundaries": [
+        "Expired time alone does not prove a side effect is absent",
+        "Passive discovery does not mutate history",
+        "Live or effect-ambiguous work cannot be terminalised blindly",
+        "Historical acceptance does not prove current runtime health"
+      ],
+      "tags": [
+        "leases",
+        "single-flight",
+        "concurrency",
+        "graph",
+        "recovery",
+        "idempotency"
+      ],
+      "sourcePath": "products/stale-lease-recovery-and-single-flight/SKILL.md"
     },
     {
       "id": "state-transition-evidence-contract",

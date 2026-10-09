@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "stale-lease-recovery-and-single-flight",
+  "slug": "stale-lease-recovery-and-single-flight",
+  "name": "Stale Lease Recovery and Single Flight",
+  "productType": "skill",
+  "category": "agent-operations",
+  "summary": "Recover proven stale, effect-free graph work through targeted lifecycle transitions and coalesce equivalent live attempts without suppressing future natural work.",
+  "problem": "Dead parent runs can consume durable concurrency indefinitely, while time-bucket idempotency permits overlapping equivalent monitor jobs.",
+  "coreOutcomes": [
+    "Attempt and lease truth separated from raw parent status",
+    "Effect-aware targeted recovery with intact event history",
+    "Equivalence keys for live single-flight admission",
+    "Natural cadence and unaffected-state verification"
+  ],
+  "requirements": [
+    "Canonical run, attempt, lease, effect and receipt records",
+    "Existing recovery and admission APIs",
+    "Explicit scope for lifecycle changes",
+    "Backups and meaningful restart/concurrency regressions"
+  ],
+  "boundaries": [
+    "Expired time alone does not prove a side effect is absent",
+    "Passive discovery does not mutate history",
+    "Live or effect-ambiguous work cannot be terminalised blindly",
+    "Historical acceptance does not prove current runtime health"
+  ],
+  "tags": [
+    "leases",
+    "single-flight",
+    "concurrency",
+    "graph",
+    "recovery",
+    "idempotency"
+  ],
+  "source": "SKILL.md"
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Executable Operating Documentation"
+  short_description: "Generate operating guidance from executable contracts"
+  default_prompt: "Use $executable-operating-documentation to complete the bounded workflow from current evidence."

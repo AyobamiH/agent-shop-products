@@ -1,46 +1,57 @@
 {
   "schemaVersion": "1.0.0",
   "recordKind": "session-capability-inventory",
-  "capturedOn": "2026-10-08",
+  "capturedOn": "2026-10-09",
   "scope": {
     "statement": "Metadata advertised to this review session: all cloud and executor skill catalogue pages, all entries in the tool registry, and separately declared orchestration controls.",
-    "completeness": "This is a session snapshot. It does not enumerate every remote MCP server, every tool available after a different connection, or every lifetime invocation.",
+    "completeness": "This is a session snapshot. It does not enumerate every remote MCP server, every tool available after a different connection, or every lifetime invocation. Cloud/executor surfaces were fully paginated on 9 October; surface-name changes are recorded without claiming implementation replacement.",
     "skillBodiesIncluded": false,
     "toolInstructionBodiesIncluded": false,
     "runtimeRule": "Advertised metadata does not establish connection, granted authority, successful execution, publication, or customer availability.",
     "publicationBoundary": "Names and provider surfaces only; no account identifiers, credentials, host paths, plugin IDs, private examples or third-party implementations."
   },
   "counts": {
-    "uniqueSkills": 109,
-    "skillSurfaceEntries": 182,
-    "cloudSkillEntries": 94,
-    "executorSkillEntries": 88,
+    "uniqueSkills": 111,
+    "skillSurfaceEntries": 195,
+    "cloudSkillEntries": 105,
+    "executorSkillEntries": 90,
     "advertisedTools": 868,
     "toolProviders": 38,
     "orchestrationControls": 11
   },
   "skills": [
     {
-      "name": "answers-charts",
+      "name": "answers-ask-user-input:answers-ask-user-input",
       "surfaces": [
+        "cloud",
         "executor"
       ]
     },
     {
-      "name": "answers-images",
+      "name": "answers-charts:answers-charts",
       "surfaces": [
+        "cloud",
         "executor"
       ]
     },
     {
-      "name": "answers-pronunciation",
+      "name": "answers-image-picker:answers-image-picker",
       "surfaces": [
+        "cloud",
         "executor"
       ]
     },
     {
-      "name": "answers-quizzes",
+      "name": "answers-images:answers-images",
       "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "answers-learning:answers-learning",
+      "surfaces": [
+        "cloud",
         "executor"
       ]
     },
@@ -440,8 +451,9 @@
       ]
     },
     {
-      "name": "personal-context",
+      "name": "personal-context:personal-context",
       "surfaces": [
+        "cloud",
         "executor"
       ]
     },
@@ -578,8 +590,9 @@
       ]
     },
     {
-      "name": "resolve-recipients",
+      "name": "resolve-recipients:resolve-recipients",
       "surfaces": [
+        "cloud",
         "executor"
       ]
     },
@@ -612,14 +625,15 @@
       ]
     },
     {
-      "name": "skill-creator",
+      "name": "Spreadsheets",
       "surfaces": [
         "executor"
       ]
     },
     {
-      "name": "Spreadsheets",
+      "name": "static-app-previews:static-app-previews",
       "surfaces": [
+        "cloud",
         "executor"
       ]
     },
@@ -715,12 +729,6 @@
       ]
     },
     {
-      "name": "visualize",
-      "surfaces": [
-        "executor"
-      ]
-    },
-    {
       "name": "work-pets:create-pet",
       "surfaces": [
         "cloud",
@@ -742,8 +750,23 @@
       ]
     },
     {
-      "name": "writing-blocks",
+      "name": "work-skill-creator:skill-creator",
       "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "work-visualize:visualize",
+      "surfaces": [
+        "cloud",
+        "executor"
+      ]
+    },
+    {
+      "name": "writing-blocks:writing-blocks",
+      "surfaces": [
+        "cloud",
         "executor"
       ]
     }

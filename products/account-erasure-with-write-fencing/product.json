@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "account-erasure-with-write-fencing",
+  "slug": "account-erasure-with-write-fencing",
+  "name": "Account Erasure with Write Fencing",
+  "productType": "skill",
+  "category": "developer-tooling",
+  "summary": "Erase an authorised account's indexed service data while invalidating stale sessions and fencing already admitted work from restoring deleted state.",
+  "problem": "Successful deletion or session rejection alone can leave older in-flight work able to recreate records or credentials after the account is erased.",
+  "coreOutcomes": [
+    "Scoped deletion with separate registry and credential fences",
+    "Consequence-time rejection of stale admitted writes",
+    "Receipts and fresh indexed-state readback",
+    "Synthetic race acceptance distinct from real customer cleanup"
+  ],
+  "requirements": [
+    "Explicit account-deletion authority and identity confirmation",
+    "Canonical indexed inventory and active-work state",
+    "Generation or equivalent durable write guards",
+    "Safe fixture isolation and post-deletion read access"
+  ],
+  "boundaries": [
+    "Session invalidation alone does not prove stale-write rejection",
+    "Indexed service deletion is not external-account or key revocation",
+    "Unknown unindexed records retain their documented limitation",
+    "A service receipt is not an independent verifier verdict"
+  ],
+  "tags": [
+    "erasure",
+    "account-lifecycle",
+    "fencing",
+    "race-conditions",
+    "generation",
+    "receipts"
+  ],
+  "source": "SKILL.md"
+}

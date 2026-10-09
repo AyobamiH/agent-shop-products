@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "durable-business-outcome-reconciliation",
+  "slug": "durable-business-outcome-reconciliation",
+  "name": "Durable Business Outcome Reconciliation",
+  "productType": "skill",
+  "category": "agent-operations",
+  "summary": "Recover privacy-bounded enquiry and payment evidence independently of customer fulfilment, and reconcile delayed outcomes against exact verified publication identities.",
+  "problem": "A duplicate payment receipt or successful contact delivery can hide a failed outcome write, while early cursor advancement permanently loses delayed attribution evidence.",
+  "coreOutcomes": [
+    "Independent fulfilment and evidence idempotency",
+    "Durable recovery before advancing source cursors",
+    "Conflict-aware bounded fair replay",
+    "Verified descriptive attribution with currency separation"
+  ],
+  "requirements": [
+    "Authorised event sources and immutable fulfilment receipts",
+    "PII-minimised stable source/event identifiers",
+    "Durable holding or outbox storage",
+    "Exact publication identity and signed-link provenance"
+  ],
+  "boundaries": [
+    "Never repeat a charge, enquiry or social publication to recover evidence",
+    "A valid payment signature does not authenticate campaign provenance",
+    "An empty connected ledger is not zero business activity",
+    "Identity correlation does not prove causation"
+  ],
+  "tags": [
+    "outcomes",
+    "outbox",
+    "reconciliation",
+    "attribution",
+    "idempotency",
+    "privacy"
+  ],
+  "source": "SKILL.md"
+}

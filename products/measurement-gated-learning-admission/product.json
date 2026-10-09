@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "measurement-gated-learning-admission",
+  "slug": "measurement-gated-learning-admission",
+  "name": "Measurement-Gated Learning Admission",
+  "productType": "skill",
+  "category": "agent-operations",
+  "summary": "Admit learning variants only after an exact verified predecessor and comparable measurements, retaining immutable receipts and bounded backlog controls.",
+  "problem": "A published or equivalent baseline can be mistaken for a measured baseline, allowing unsupported experiments or duplicate content into supply.",
+  "coreOutcomes": [
+    "Verified effect equivalence with stable lineage",
+    "Comparable baseline measurement as a separate gate",
+    "Explicit safe deferral and exclusion reasons",
+    "Bounded admission with immutable evidence"
+  ],
+  "requirements": [
+    "Frozen editorial identity and publication receipts",
+    "Provider/account-scoped lineage and payload hashes",
+    "Metrics with age, exposure and availability semantics",
+    "Existing admission pressure and resource policy"
+  ],
+  "boundaries": [
+    "Missing or low-exposure metrics are not zero performance",
+    "Equivalent publication does not prove comparable measurement",
+    "Sidecars do not rewrite original receipts",
+    "A safety ceiling is not a throughput target"
+  ],
+  "tags": [
+    "learning",
+    "measurement",
+    "admission",
+    "baseline",
+    "lineage",
+    "editorial"
+  ],
+  "source": "SKILL.md"
+}

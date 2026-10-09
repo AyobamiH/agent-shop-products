@@ -3,27 +3,50 @@
   "recordKind": "procedure-coverage",
   "reviewedOn": "2026-10-09",
   "scope": {
-    "statement": "Catalogue reusable procedures evidenced by the original recovered review and subsequent state/discovery, subcontracting, launch measurement and MCP activation work; account separately for all current advertised skills and tools.",
+    "statement": "Reconcile the original visible conversation, the multi-week saved history index, selected supporting records through 8 October, newer 9 October continuation evidence, current public source and the complete advertised capability metadata surface.",
     "reviewedVisibleMessageCount": 65,
     "baselineProductCount": 13,
     "newProductIds": [
+      "account-erasure-with-write-fencing",
       "agent-subcontracting-commercial-handoff",
       "bounded-google-docs-read-recovery",
       "bounded-solo-maintainer-release",
       "capability-surface-reconciliation",
       "consent-aware-plugin-measurement",
+      "dual-principal-github-app-admission",
+      "durable-business-outcome-reconciliation",
+      "executable-operating-documentation",
       "live-dashboard-update-verification",
       "machine-discovery-surface-engineering",
+      "measurement-gated-learning-admission",
       "outside-in-agent-crawl-verification",
+      "problem-centred-institutional-memory",
+      "react-hydration-contract-repair",
       "safe-scheduled-runtime-upgrade",
       "staged-mcp-plugin-activation",
+      "stale-lease-recovery-and-single-flight",
       "state-transition-evidence-contract",
       "temporary-authority-bridge-lifecycle"
     ],
-    "completeness": "Complete for the original 65-message review and explicitly cited follow-on evidence, including the latest bounded owner work record and this session's complete skill/tool metadata enumeration. This does not claim coverage of hidden content, all lifetime tool invocations or unreviewed work. Also includes the newer Agent Shop production-discovery record at main a77830e, recovered while reconciling the publication branch. The latest owner release checkpoint at 23:40 UTC supersedes PR #37 review, merge, deployment and scanner blockers while retaining later provider acceptance gates.",
+    "completeness": "The original 65-message transcript remains one directly recovered conversation. Broader account-history search failed; 429 saved text-file entries were enumerated, a complete RUN-0003 checkpoint dated 4 October was parsed, and 20 selected saved files were read (18 in full, two as bounded windows). The checkpoint indexes 82 problems, 118 attempts, 30 reusable patterns and 164 source records but explicitly has partial coverage; referenced sources are not all independently retrieved. Public repository records and the latest owner checkpoint supplement the history through 9 October. No complete account, Project or archive inventory or coverage percentage is claimed.",
     "publicationBoundary": "Original generalised workflows and sanitised evidence summaries only. Private source, shared-conversation links, raw transcripts, credentials, secret custody details, host identifiers and restricted implementation references are excluded.",
     "invocationRule": "A product mapping is a match to reusable procedure coverage, not evidence that its PROMPT.md or SKILL.md was loaded. Only supportingSkills records explicitly observed named platform-skill invocation.",
-    "latestCapabilitySnapshot": "catalog/capability-inventory.json"
+    "latestCapabilitySnapshot": "catalog/capability-inventory.json",
+    "retrieval": {
+      "requestedThrough": "2026-10-08",
+      "continuationAsOf": "2026-10-09",
+      "accountSearch": "failed",
+      "enumeratedTextFileEntries": 429,
+      "selectedSavedFilesRead": 20,
+      "completeSavedFileReads": 18,
+      "boundedSavedFileReads": 2,
+      "historyCheckpointDate": "2026-10-04",
+      "indexedProblems": 82,
+      "indexedAttempts": 118,
+      "indexedReusablePatterns": 30,
+      "indexedSources": 164,
+      "accountCoverage": "unknown"
+    }
   },
   "evidenceSources": [
     {
@@ -87,8 +110,8 @@
     {
       "id": "current-capability-extraction",
       "kind": "current-session-metadata-observation",
-      "description": "Complete cloud and executor skill catalogue pagination and current tool-registry enumeration, plus separately declared orchestration controls; captured on 8 October 2026.",
-      "limits": "Establishes 109 distinct skill names across 182 surface entries, 868 advertised registry tools and 11 separate controls. It does not prove that every capability is connected, authorised or operational. Third-party instruction bodies are excluded."
+      "description": "Complete cloud and executor skill catalogue pagination and current tool-registry enumeration, plus separately declared controls; refreshed on 9 October 2026.",
+      "limits": "Establishes 111 distinct skill names across 195 surface entries (105 cloud, 90 executor), 868 advertised registry tools across 38 providers and 11 separate controls. Metadata does not prove connection, authority or execution. External instruction bodies are excluded."
     },
     {
       "id": "launch-activation-owner-record",
@@ -108,7 +131,7 @@
       "kind": "public-repository",
       "description": "OpsTruth PR #37 was normally merged at bf7a60f7ca37919071ef9f9c246ec18ec26b0d89 after a recorded eligible owner-led release exception; it includes bounded external-reader annotations, compatibility checks and telemetry privacy repairs.",
       "url": "https://github.com/AyobamiH/opstruth-chatgpt-plugin/pull/37",
-      "limits": "Public source and deployment workflow success establish the recorded release. The owner exception is not independent human review. Live review cases, walkthrough and provider publication remain separate."
+      "limits": "Public release evidence establishes the recorded merge/deployment. The owner exception is not independent human review. A later local walkthrough and native submission have separate limitations; provider publication remains unproved."
     },
     {
       "id": "opstruth-analytics-query-repair",
@@ -129,14 +152,14 @@
       "kind": "public-repository-and-recorded-production-acceptance",
       "description": "New main commits link the owned subcontracting skill to the independent Tail Wagging service guide and record exact-source Worker and outside-in acceptance on 9 October 2026.",
       "url": "https://github.com/AyobamiH/agent-shop-products/commit/a77830eaae1753a39d6245632709b8d00a0f4167",
-      "limits": "The production record establishes 21-product service discovery at that release, not deployment of this extraction's 24-product catalogue. Provider work intake, commercial agreement, payment and execution remain separate. The newer Tail Wagging intake expansion has its own release boundary."
+      "limits": "The dated record establishes 21-product service discovery at that release. A separate later record proves the 25-product production release; deployment of this expanded 33-product catalogue remains separate. Intake, agreement, payment and execution retain independent authority."
     },
     {
       "id": "opstruth-owner-release-and-native-rescan",
       "kind": "public-release-and-sanitised-provider-observation",
       "description": "Exact-main production deployment and smoke passed for bf7a60f7ca37919071ef9f9c246ec18ec26b0d89. The latest owner checkpoint reports fresh native scans clearing all 21 tools and the privacy finding on the same draft.",
       "url": "https://github.com/AyobamiH/opstruth-chatgpt-plugin/commit/bf7a60f7ca37919071ef9f9c246ec18ec26b0d89",
-      "limits": "Merge and deployment were checked against public provider records. Native scanner results are sanitised owner observations. The draft remains configured, not submitted and not published; live review cases and recording remain unproven."
+      "limits": "This source describes the earlier release/rescan checkpoint. Its configured/not-submitted state was superseded by the later walkthrough and settled In review record. Provider approval, publication, conversation acceptance and production endpoint/signer acceptance remain separate."
     },
     {
       "id": "opstruth-bounded-owner-release-policy",
@@ -144,6 +167,91 @@
       "description": "The merged release-readiness policy records the explicitly owner-directed solo-maintainer exception, its maintenance-only eligibility and required exact-head checks, protected merge, rollback and readback.",
       "url": "https://github.com/AyobamiH/opstruth-chatgpt-plugin/blob/bf7a60f7ca37919071ef9f9c246ec18ec26b0d89/docs/release-readiness.md",
       "limits": "The exception adds no target-system writes, credential/signing authority, authentication scope, private storage, network destination or workflow/deployment authority. It does not impersonate independent review or grant autonomous policy-changing powers to the bot."
+    },
+    {
+      "id": "multiweek-history-index",
+      "kind": "sanitised-saved-index-review",
+      "description": "Complete RUN-0003 checkpoint dated 4 October: 82 problems, 118 attempts, 30 reusable solutions, 39 decisions, 76 open problems and 164 source records. It separates evidence-qualified outcomes from inherited assistant claims.",
+      "limits": "The checkpoint is a partial institutional index, not all original chats. Six inherited assistant-only verified labels were requalified as unresolved. Native spreadsheet integrity checks are reported by the saved checkpoint; this extraction parsed the saved record and did not rewrite the sheets."
+    },
+    {
+      "id": "multiweek-supporting-records",
+      "kind": "authorised-saved-record-review",
+      "description": "Selected historical and current saved records were read for stale recovery, learning gates, operating semantics, runtime evidence, downstream outcomes, upstream due diligence and continuation.",
+      "limits": "20 selected files were read, 18 completely and two in bounded windows. The 429-file figure is metadata enumeration only. One full transcript repeats the original 65-message source and is not a new independent occurrence. Raw transcripts and private locators are withheld."
+    },
+    {
+      "id": "august-stale-lease-recovery",
+      "kind": "sanitised-dated-acceptance-report",
+      "description": "9 August repair report records targeted effect-free stale-parent/orphan-child recovery, canonical attempt-based occupancy and unchanged unrelated state.",
+      "limits": "Historical reported tests and natural-cycle acceptance are not a fresh host-health result; unrelated process leaks were not independently established as the cause."
+    },
+    {
+      "id": "august-single-flight-repair",
+      "kind": "sanitised-dated-acceptance-report",
+      "description": "9 August workflow-monitor report records exact ingress handling followed by live equivalence coalescing under the durable graph admission path.",
+      "limits": "Coalescing applies only to equivalent currently owned unexpired attempts. Historical regression counts are not tests run by this extraction."
+    },
+    {
+      "id": "september-learning-gates",
+      "kind": "sanitised-dated-acceptance-and-runtime-records",
+      "description": "Learning admission, verified effect-equivalence and the later comparable-measurement gate were reviewed with 14 September publication/readback and deferral observations.",
+      "limits": "Verified publication, measurement maturity and challenger spacing are distinct. One provider had verified publication without a performance snapshot; another had no predecessor publication. These are dated observations, not current campaign status."
+    },
+    {
+      "id": "postonce-executable-console-contracts",
+      "kind": "public-repository-and-sanitised-acceptance-record",
+      "description": "Current canonical warning semantics, versioned console field dictionary, generated reference/examples and snapshot projection implementation were checked against saved acceptance records.",
+      "url": "https://github.com/AyobamiH/post-once/blob/530825de7b7f0200ed2244baf8e5ab63a6e8fc58/contracts/post-once-console-semantics.json",
+      "limits": "Console fixture performance does not establish provider throughput. Documented commands do not grant execution authority."
+    },
+    {
+      "id": "postonce-durable-outcome-recovery",
+      "kind": "public-repository",
+      "description": "Current late-outcome recovery validates privacy-bounded source/event identity, durable holding, cursor safety, conflict-aware ingestion and fair bounded replay against verified publication evidence.",
+      "url": "https://github.com/AyobamiH/post-once/blob/530825de7b7f0200ed2244baf8e5ab63a6e8fc58/src/ocpf_post/outcome_late_recovery.py",
+      "limits": "Implementation and recorded tests do not prove every production crash path or customer outcome; identity correlation is descriptive, not causal."
+    },
+    {
+      "id": "tail-business-outcome-boundaries",
+      "kind": "public-repository-and-sanitised-owner-record",
+      "description": "8 October audit identified independent fulfilment/evidence failures and unverified caller labels. Current public source contains duplicate-payment outcome reconciliation and signed attribution handling.",
+      "url": "https://github.com/AyobamiH/wagging-web-wins/blob/cd7c7be53c5941fb8fb4943dd6eec5dabd7ea884/worker/business-api.js",
+      "limits": "A payment signature does not authenticate campaign labels. Full contact-outbox durability and production fault-injection acceptance are not established by this review."
+    },
+    {
+      "id": "tail-react-hydration-repair",
+      "kind": "public-repository-and-sanitised-owner-record",
+      "description": "8 October work records the failed arbitrary-frame workaround and the matching server/first-client theme-state repair; current ThemeProvider source was read.",
+      "url": "https://github.com/AyobamiH/wagging-web-wins/commit/2892893dbed4f76980256b25e8fb1be91f341b0f",
+      "limits": "Browser results are reported observations. The verified document root boundary is application-specific; other providers and downstream business acceptance need their own checks."
+    },
+    {
+      "id": "donestate-account-erasure-fences",
+      "kind": "public-repository-evidence",
+      "description": "Public account-deletion evidence separates real authenticated account cleanup/session rejection from a synthetic production-storage admitted-write race with registry and credential fences.",
+      "url": "https://github.com/AyobamiH/donestate/blob/f5a00d20d70a41827911d8fb148590891bbaad42/evidence/account-deletion-20261003/production-fence.json",
+      "limits": "Indexed service cleanup is not external account/key revocation or an independent verifier verdict. Fixture acceptance does not replace each customer's deletion result."
+    },
+    {
+      "id": "donestate-dual-principal-admission",
+      "kind": "public-repository-state-and-implementation",
+      "description": "Latest project state records the merged/deployed App admission repair: customer permission is identity-bound and separate from installation capability; the current customer role remains read.",
+      "url": "https://github.com/AyobamiH/donestate/blob/f5a00d20d70a41827911d8fb148590891bbaad42/docs/PROJECT-STATE.md",
+      "limits": "174 Worker tests and 11 admission cases are recorded project results, not tests run by this extraction. No fresh objective/model run or completed customer journey is established."
+    },
+    {
+      "id": "opstruth-walkthrough-and-review-submission",
+      "kind": "sanitised-latest-owner-record",
+      "description": "Latest 9 October checkpoint supersedes missing-recording and not-submitted blockers: a 173-second labelled exact-release local walkthrough was hosted/read back, the same package received only recording metadata, and settled native detail shows In review.",
+      "limits": "Five positive server calls and three boundary assertions used a local runtime/test signer and real public GET reads. They are not ChatGPT conversational routing/refusal, production endpoint or production signer acceptance. The evidence graph remains partial and release readiness unproven; publication is still not established."
+    },
+    {
+      "id": "agent-shop-25-production-acceptance",
+      "kind": "public-repository-production-record",
+      "description": "The separately completed 25-product release records exact-main CI, Worker deployment and outside-in acceptance across all product routes, five machine surfaces and ten crawler identities.",
+      "url": "https://github.com/AyobamiH/agent-shop-products/blob/ee1a4592b822e65b0cc8cc550d16b5a8f1c698cd/docs/AGENT-SHOP-25-PRODUCTION-ACCEPTANCE-2026-10-09.md",
+      "limits": "The record proves the 25-product release, not deployment of this expanded 33-product catalogue. Sitemap acceptance is not indexing."
     }
   ],
   "procedures": [
@@ -550,6 +658,11 @@
           "sourceId": "agent-shop-production-discovery",
           "kind": "outside-in-provider-acceptance",
           "summary": "Caught and repaired a real root-routing defect after deploy, then verified all canonical routes, machine surfaces, crawler user agents, sitemap and provider discovery state."
+        },
+        {
+          "sourceId": "agent-shop-25-production-acceptance",
+          "kind": "dated-exact-release-acceptance",
+          "summary": "The separately deployed 25-product release passed outside-in route, metadata, machine-surface and crawler checks."
         }
       ],
       "limits": [
@@ -651,11 +764,16 @@
           "sourceId": "opstruth-owner-release-and-native-rescan",
           "kind": "recorded-release-and-native-readback",
           "summary": "The corrected runtime was merged/deployed, production smoke passed and fresh provider scans cleared the tool and privacy findings while the draft stayed unpublished."
+        },
+        {
+          "sourceId": "opstruth-walkthrough-and-review-submission",
+          "kind": "latest-provider-continuation",
+          "summary": "A labelled local walkthrough and settled In review state supersede the missing recording and not-submitted checkpoints."
         }
       ],
       "limits": [
-        "Provider discovery and native scan clearance do not establish current conversation exposure or completed live review cases.",
-        "A real walkthrough, provider submission/review/publication and clean-account acceptance remain incomplete.",
+        "Provider discovery and scanner clearance do not establish current conversation exposure or live conversational review acceptance.",
+        "The recording and native submission are reported completed; approval, publication, production endpoint/signer and clean-account acceptance remain separate.",
         "No new Agent Shop MCP server is introduced."
       ]
     },
@@ -874,9 +992,249 @@
         "Ineligible authority-expanding changes retain their normal review gate.",
         "Deployment and scanner success do not establish provider publication or customer outcomes."
       ]
+    },
+    {
+      "id": "reconcile-problem-centred-history",
+      "name": "Reconcile problems, attempts and evidence-qualified institutional memory",
+      "trigger": "Continuation requires multi-week history with duplicate summaries, contradictions and incomplete retrieval.",
+      "status": "demonstrated",
+      "productIds": [
+        "problem-centred-institutional-memory"
+      ],
+      "relationship": "standalone",
+      "evidence": [
+        {
+          "sourceId": "multiweek-history-index",
+          "kind": "saved-checkpoint-and-schema-review",
+          "summary": "Parsed the complete indexed checkpoint, preserved distinct problem/attempt/source concepts and its explicit requalification of unsupported inherited success labels."
+        },
+        {
+          "sourceId": "multiweek-supporting-records",
+          "kind": "bounded-source-retrieval",
+          "summary": "Compared selected dated records and newer public state without claiming all account chats were accessible."
+        }
+      ],
+      "limits": [
+        "Source references in an index do not establish direct retrieval of all original conversations.",
+        "Historical instructions do not authorise new operational actions."
+      ]
+    },
+    {
+      "id": "recover-stale-work-and-coalesce-live-attempts",
+      "name": "Recover proven stale capacity and coalesce equivalent live attempts",
+      "trigger": "Durable graph capacity disagrees with attempt/lease truth or periodic monitor jobs overlap.",
+      "status": "demonstrated",
+      "productIds": [
+        "stale-lease-recovery-and-single-flight"
+      ],
+      "relationship": "standalone",
+      "evidence": [
+        {
+          "sourceId": "august-stale-lease-recovery",
+          "kind": "historical-acceptance-report",
+          "summary": "Targeted stale effect-free recovery preserved event/checkpoint history and unrelated rows."
+        },
+        {
+          "sourceId": "august-single-flight-repair",
+          "kind": "historical-admission-regression",
+          "summary": "Live-equivalence admission followed exact ingress idempotency and did not suppress expired, failed or different-lane work."
+        }
+      ],
+      "limits": [
+        "Effect-ambiguous work cannot be terminalised or retried from lease expiry alone.",
+        "Historical natural-cycle acceptance is not current runtime acceptance."
+      ]
+    },
+    {
+      "id": "gate-learning-on-comparable-measurement",
+      "name": "Require verified exact predecessors and comparable baseline measurements",
+      "trigger": "A learning challenger has publication identity but lacks comparable measurement.",
+      "status": "demonstrated",
+      "productIds": [
+        "measurement-gated-learning-admission"
+      ],
+      "relationship": "standalone",
+      "evidence": [
+        {
+          "sourceId": "september-learning-gates",
+          "kind": "dated-acceptance-and-runtime-evidence",
+          "summary": "Compared verified-equivalence and later measurement-gate rules, immutable sidecars, missing/exposure semantics and actual publication-without-measurement deferrals."
+        }
+      ],
+      "limits": [
+        "Publication verification does not establish a measured baseline.",
+        "Backlog ceilings are safety bounds, not targets; unavailable zero is not zero performance."
+      ]
+    },
+    {
+      "id": "generate-operating-guidance-from-contracts",
+      "name": "Generate operating reference and examples from executable semantic contracts",
+      "trigger": "Dashboard, CLI and documentation disagree about warnings, field meaning or recovery ownership.",
+      "status": "demonstrated",
+      "productIds": [
+        "executable-operating-documentation",
+        "live-dashboard-update-verification"
+      ],
+      "relationship": "composition",
+      "evidence": [
+        {
+          "sourceId": "postonce-executable-console-contracts",
+          "kind": "public-contract-and-recorded-acceptance",
+          "summary": "Canonical warnings, field dictionary, generated reference/examples and bounded shared snapshot projections provide a consistent operator contract."
+        }
+      ],
+      "limits": [
+        "Documentation does not execute repairs or grant authority.",
+        "Dashboard caches cannot authorise consequence paths; fixture console performance does not establish publishing throughput."
+      ]
+    },
+    {
+      "id": "reconcile-durable-business-outcomes",
+      "name": "Recover durable outcome evidence without repeating customer fulfilment",
+      "trigger": "Fulfilment succeeds but evidence fails, or an outcome arrives before verified publication evidence.",
+      "status": "partially-demonstrated",
+      "productIds": [
+        "durable-business-outcome-reconciliation",
+        "state-transition-evidence-contract"
+      ],
+      "relationship": "composition",
+      "evidence": [
+        {
+          "sourceId": "postonce-durable-outcome-recovery",
+          "kind": "public-implementation",
+          "summary": "Checked privacy-bounded validation, holding/cursor ordering, conflict-aware ingestion and bounded fair recovery."
+        },
+        {
+          "sourceId": "tail-business-outcome-boundaries",
+          "kind": "audit-and-current-source",
+          "summary": "Reconciled earlier lost-evidence and unsigned-label findings with current duplicate-payment reconciliation and signed attribution handling."
+        }
+      ],
+      "limits": [
+        "Complete contact-outbox durability and production failure-injection acceptance remain unproved.",
+        "Connected empty evidence is not zero activity; authenticated payment is not campaign authentication or causal attribution."
+      ]
+    },
+    {
+      "id": "erase-accounts-with-stale-write-fences",
+      "name": "Fence registry and credential writes before erasing indexed account state",
+      "trigger": "Already admitted work could restore data after deletion.",
+      "status": "demonstrated",
+      "productIds": [
+        "account-erasure-with-write-fencing",
+        "state-transition-evidence-contract"
+      ],
+      "relationship": "composition",
+      "evidence": [
+        {
+          "sourceId": "donestate-account-erasure-fences",
+          "kind": "public-scoped-acceptance-record",
+          "summary": "Separated real account cleanup/session rejection from the synthetic admit-pause-delete-resume race and fresh registry/vault absence checks."
+        }
+      ],
+      "limits": [
+        "Session invalidation alone does not prove rejection of admitted work.",
+        "Service deletion, external revocation, fixture acceptance and independent verification are distinct."
+      ]
+    },
+    {
+      "id": "repair-matching-hydration-snapshots",
+      "name": "Repair server and first-client provider snapshot divergence",
+      "trigger": "Mobile, theme or provider initialization produces hydration errors.",
+      "status": "demonstrated",
+      "productIds": [
+        "react-hydration-contract-repair"
+      ],
+      "relationship": "standalone",
+      "evidence": [
+        {
+          "sourceId": "tail-react-hydration-repair",
+          "kind": "public-source-and-dated-browser-report",
+          "summary": "Recovered the ineffective frame-delay workaround and matching initial state with document-level preference application outside the verified root."
+        }
+      ],
+      "limits": [
+        "Arbitrary delays or warning suppression are not correctness guarantees.",
+        "The DOM ownership boundary is application-specific and other provider mismatches need separate acceptance."
+      ]
+    },
+    {
+      "id": "admit-app-work-with-both-principals",
+      "name": "Require App capability and identity-bound customer writer authority",
+      "trigger": "Installation metadata is being used as the customer's repository authority.",
+      "status": "demonstrated",
+      "productIds": [
+        "dual-principal-github-app-admission"
+      ],
+      "relationship": "standalone",
+      "evidence": [
+        {
+          "sourceId": "donestate-dual-principal-admission",
+          "kind": "public-implementation-and-release-state",
+          "summary": "Current admission reads the authenticated actor's collaborator base permission independently of App grants; latest state records merged/deployed tests with a read-only actor still gated."
+        }
+      ],
+      "limits": [
+        "Installation capability and repository selection do not grant customer write authority.",
+        "Merge/deployment is not a completed fresh customer journey; unknown, mismatched and API-error evidence fails closed."
+      ]
+    },
+    {
+      "id": "build-labelled-exact-release-walkthrough",
+      "name": "Create and submit a walkthrough with explicit local-runtime evidence limits",
+      "trigger": "A provider draft requires recorded evidence without claiming unsupported conversational or production acceptance.",
+      "status": "demonstrated",
+      "productIds": [
+        "staged-mcp-plugin-activation",
+        "state-transition-evidence-contract"
+      ],
+      "relationship": "composition",
+      "evidence": [
+        {
+          "sourceId": "opstruth-walkthrough-and-review-submission",
+          "kind": "reported-local-execution-and-hosted-readback",
+          "summary": "Recorded actual exact-release public GET server calls and boundary assertions, labelled ephemeral test signing, and verified the hosted recording's bytes."
+        }
+      ],
+      "limits": [
+        "A local walkthrough is not live ChatGPT routing/refusal or production endpoint/signer acceptance.",
+        "Static route coverage remained partial; a real video does not make the evidence graph complete."
+      ]
+    },
+    {
+      "id": "reconcile-same-draft-package-and-submission",
+      "name": "Reconcile byte-bound package changes and settled provider submission state",
+      "trigger": "An upload or submission result conflicts with a stale list view.",
+      "status": "demonstrated",
+      "productIds": [
+        "staged-mcp-plugin-activation",
+        "state-transition-evidence-contract"
+      ],
+      "relationship": "composition",
+      "evidence": [
+        {
+          "sourceId": "opstruth-walkthrough-and-review-submission",
+          "kind": "reported-package-and-native-detail-readback",
+          "summary": "Added only recording metadata to the same package, preserved archive identity evidence, submitted once under current owner declarations and inspected settled detail before considering any retry."
+        }
+      ],
+      "limits": [
+        "Historical owner declarations are not fresh permission to submit another draft.",
+        "In review is neither approval nor publication; stale-list retry can duplicate a consequence."
+      ]
     }
   ],
   "productCoverage": [
+    {
+      "productId": "account-erasure-with-write-fencing",
+      "catalogueState": "added",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "erase-accounts-with-stale-write-fences"
+      ],
+      "invocation": "not-established",
+      "note": "Original generalised workflow authored from reviewed evidence; historical invocation of this product payload is not established."
+    },
     {
       "productId": "agent-subcontracting-commercial-handoff",
       "catalogueState": "added",
@@ -976,6 +1334,26 @@
       "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
     },
     {
+      "productId": "dual-principal-github-app-admission",
+      "catalogueState": "added",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "admit-app-work-with-both-principals"
+      ],
+      "invocation": "not-established",
+      "note": "Original generalised workflow authored from reviewed evidence; historical invocation of this product payload is not established."
+    },
+    {
+      "productId": "durable-business-outcome-reconciliation",
+      "catalogueState": "added",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "reconcile-durable-business-outcomes"
+      ],
+      "invocation": "not-established",
+      "note": "Original generalised workflow authored from reviewed evidence; historical invocation of this product payload is not established."
+    },
+    {
       "productId": "evidence-backed-open-source-contribution",
       "catalogueState": "retained",
       "mapping": "procedure-coverage",
@@ -1006,6 +1384,16 @@
       "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
     },
     {
+      "productId": "executable-operating-documentation",
+      "catalogueState": "added",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "generate-operating-guidance-from-contracts"
+      ],
+      "invocation": "not-established",
+      "note": "Original generalised workflow authored from reviewed evidence; historical invocation of this product payload is not established."
+    },
+    {
       "productId": "graph-native-agent-system-migration",
       "catalogueState": "retained",
       "mapping": "not-established-in-reviewed-work",
@@ -1020,7 +1408,8 @@
       "procedureIds": [
         "reconcile-dashboard-evidence",
         "verify-streamed-dashboard-rendering",
-        "separate-launch-measurement-planes"
+        "separate-launch-measurement-planes",
+        "generate-operating-guidance-from-contracts"
       ],
       "invocation": "not-established",
       "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
@@ -1051,6 +1440,16 @@
       "note": "Added from demonstrated subsequent state/discovery work; consult procedure evidence and limits."
     },
     {
+      "productId": "measurement-gated-learning-admission",
+      "catalogueState": "added",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "gate-learning-on-comparable-measurement"
+      ],
+      "invocation": "not-established",
+      "note": "Original generalised workflow authored from reviewed evidence; historical invocation of this product payload is not established."
+    },
+    {
       "productId": "outside-in-agent-crawl-verification",
       "catalogueState": "added",
       "mapping": "procedure-coverage",
@@ -1060,6 +1459,16 @@
       ],
       "invocation": "not-established",
       "note": "Added from demonstrated subsequent state/discovery work; consult procedure evidence and limits."
+    },
+    {
+      "productId": "problem-centred-institutional-memory",
+      "catalogueState": "added",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "reconcile-problem-centred-history"
+      ],
+      "invocation": "not-established",
+      "note": "Original generalised workflow authored from reviewed evidence; historical invocation of this product payload is not established."
     },
     {
       "productId": "production-agent-operating-files",
@@ -1078,6 +1487,16 @@
       "procedureIds": [],
       "invocation": "not-established",
       "note": "Retained from the canonical catalogue. Its payload was not established as invoked in the reviewed work."
+    },
+    {
+      "productId": "react-hydration-contract-repair",
+      "catalogueState": "added",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "repair-matching-hydration-snapshots"
+      ],
+      "invocation": "not-established",
+      "note": "Original generalised workflow authored from reviewed evidence; historical invocation of this product payload is not established."
     },
     {
       "productId": "read-only-production-reconnaissance",
@@ -1131,10 +1550,22 @@
         "stage-initial-mcp-plugin-activation",
         "repair-bounded-mcp-annotations",
         "verify-public-brief-connection-and-semantics",
-        "release-under-bounded-owner-exception"
+        "release-under-bounded-owner-exception",
+        "build-labelled-exact-release-walkthrough",
+        "reconcile-same-draft-package-and-submission"
       ],
       "invocation": "not-established",
       "note": "Original public skill authored from the explicitly cited current review; its procedure evidence does not prove this product payload was invoked in earlier work."
+    },
+    {
+      "productId": "stale-lease-recovery-and-single-flight",
+      "catalogueState": "added",
+      "mapping": "procedure-coverage",
+      "procedureIds": [
+        "recover-stale-work-and-coalesce-live-attempts"
+      ],
+      "invocation": "not-established",
+      "note": "Original generalised workflow authored from reviewed evidence; historical invocation of this product payload is not established."
     },
     {
       "productId": "state-transition-evidence-contract",
@@ -1148,7 +1579,11 @@
         "separate-launch-measurement-planes",
         "reconcile-native-campaign-queue-evidence",
         "correct-capability-launch-claims",
-        "release-under-bounded-owner-exception"
+        "release-under-bounded-owner-exception",
+        "reconcile-durable-business-outcomes",
+        "erase-accounts-with-stale-write-fences",
+        "build-labelled-exact-release-walkthrough",
+        "reconcile-same-draft-package-and-submission"
       ],
       "invocation": "not-established",
       "note": "Added from demonstrated subsequent state/discovery work; consult procedure evidence and limits."
@@ -1182,7 +1617,8 @@
       "role": "Persist the recovered transcript and capture artefact.",
       "observedIn": [
         "continuity-capture",
-        "current-capability-extraction"
+        "current-capability-extraction",
+        "multiweek-supporting-records"
       ],
       "catalogueTreatment": "external-platform-dependency",
       "note": "Observed in the follow-on capture session, not asserted as invoked in the original thread. Its implementation is not republished."
@@ -1219,21 +1655,41 @@
       "name": "sites:sites-mcp",
       "role": "Understand the available hosted-MCP workflow and its connection boundary.",
       "observedIn": [
-        "current-capability-extraction"
+        "current-capability-extraction",
+        "multiweek-supporting-records"
       ],
       "catalogueTreatment": "external-platform-dependency",
       "note": "Instructions were inspected. No Site or Agent Shop MCP server was created."
+    },
+    {
+      "name": "personal-context:personal-context",
+      "role": "Attempt broad historical context retrieval before fallback to saved records.",
+      "observedIn": [
+        "multiweek-supporting-records"
+      ],
+      "catalogueTreatment": "external-platform-dependency",
+      "note": "The current namespaced skill was read and search attempted; the search returned an error. Full account-history access is not claimed."
+    },
+    {
+      "name": "work-skill-creator:skill-creator",
+      "role": "Author original skills, initialise interfaces and forward-test bounded applications.",
+      "observedIn": [
+        "catalogue-authoring",
+        "multiweek-supporting-records"
+      ],
+      "catalogueTreatment": "external-platform-dependency",
+      "note": "Current instructions applied to eight new repository-owned skills, including read-only fresh-agent application tests; no personal platform installation is claimed."
     }
   ],
   "carryForward": [
     {
       "id": "final-runtime-acceptance",
-      "state": "unconfirmed",
+      "state": "dated-scope-confirmed",
       "relatedProductIds": [
         "safe-scheduled-runtime-upgrade",
         "local-first-verification-cli"
       ],
-      "summary": "Final installation, running revision, restored scheduling and live console acceptance still require fresh host evidence."
+      "summary": "The 8 October owner record reports runtime 391f5dfc, a clean checkout, four active timers and zero critical/invalid entries. This supersedes the earlier install/scheduling blocker within that dated scope; it does not prove current main is installed or every provider/editorial acceptance gate passes."
     },
     {
       "id": "fresh-scheduled-observation",
@@ -1242,7 +1698,7 @@
         "bounded-google-docs-read-recovery",
         "local-first-verification-cli"
       ],
-      "summary": "Read-only preview success must be followed by an observed saved scheduled result before ongoing recovery is claimed."
+      "summary": "Dated September records prove specific natural timer/publication/readback observations. They do not resolve the earlier October saved-vault/collector acceptance gap without a fresh relevant observation."
     },
     {
       "id": "collector-budget-and-provider-recovery",
@@ -1268,7 +1724,7 @@
         "deterministic-social-publication",
         "self-identifying-product-campaign"
       ],
-      "summary": "Editorial checks, usable supply and normal scheduled publication acceptance remain separate from transport and UI recovery."
+      "summary": "The 8 October acceptance ledger still reports PC-01–05 open, PC-06 partial, blocked editorial checks and supply deficits. Runtime health and connected outcome evidence do not establish normal usable supply or comparable measurement."
     },
     {
       "id": "windows-git-bridge",
@@ -1293,12 +1749,12 @@
     },
     {
       "id": "opstruth-initial-mcp-review",
-      "state": "pending",
+      "state": "in-review",
       "relatedProductIds": [
         "staged-mcp-plugin-activation",
         "state-transition-evidence-contract"
       ],
-      "summary": "The eligible owner-led release is merged and deployed; native tool and privacy scans are clear. Execute the live review cases, provide the actual walkthrough and complete provider submission/review/publication and separate clean-account acceptance."
+      "summary": "Latest 9 October settled detail shows In review after the actual hosted local walkthrough and same-draft submission. Approval/publication, live conversational routing/refusal, production endpoint/signer and clean-account acceptance remain separate; the local graph is partial."
     },
     {
       "id": "oneclick-minimal-brief-deployment",
@@ -1335,6 +1791,45 @@
         "self-identifying-product-campaign"
       ],
       "summary": "Historical operational aggregates have no sufficient test, user or error-cause markers to establish unique people, installs, independent demand or causal attribution."
+    },
+    {
+      "id": "donestate-fresh-app-customer-journey",
+      "state": "authority-gated",
+      "relatedProductIds": [
+        "dual-principal-github-app-admission"
+      ],
+      "summary": "The App admission repair is recorded merged/deployed; the current authenticated customer has read authority, so no fresh objective or model run is established. Obtain genuine qualifying customer authority through the normal owner path before testing a write journey."
+    },
+    {
+      "id": "durable-outcome-production-acceptance",
+      "state": "partial",
+      "relatedProductIds": [
+        "durable-business-outcome-reconciliation"
+      ],
+      "summary": "Repository reconciliation and signed attribution repairs are visible, but complete contact-outbox durability and production fault-injection/late-event acceptance remain separate. Delivery acknowledgement does not prove inbox acceptance or business causation."
+    },
+    {
+      "id": "expanded-agent-shop-release",
+      "state": "repository-candidate",
+      "relatedProductIds": [
+        "problem-centred-institutional-memory",
+        "stale-lease-recovery-and-single-flight",
+        "measurement-gated-learning-admission",
+        "executable-operating-documentation",
+        "durable-business-outcome-reconciliation",
+        "account-erasure-with-write-fencing",
+        "react-hydration-contract-repair",
+        "dual-principal-github-app-admission"
+      ],
+      "summary": "The 25-product storefront release is independently recorded live. This extraction expands canonical source to 33 products; deployment and outside-in acceptance of the expanded storefront require their own release record."
+    },
+    {
+      "id": "complete-account-history-retrieval",
+      "state": "unknown-coverage",
+      "relatedProductIds": [
+        "problem-centred-institutional-memory"
+      ],
+      "summary": "Personal Context search failed. The complete saved checkpoint and selected records support bounded continuation, but full account chat/Project/archive enumeration and original source retrieval remain unavailable."
     }
   ]
 }
