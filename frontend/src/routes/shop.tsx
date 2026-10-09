@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import { catalogMeta, listProducts } from "@/domain/catalog/repository";
@@ -55,6 +55,13 @@ function ShopPage() {
         <a href="/integration-services" className="text-primary underline underline-offset-4">
           see professional integration
         </a>
+        .
+      </p>
+      <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
+        Not sure which capability to inspect?{" "}
+        <Link to="/solutions" className="font-medium text-primary underline underline-offset-4">
+          Start with the problem and a practical verification checklist
+        </Link>
         .
       </p>
       <div className="mt-10">
