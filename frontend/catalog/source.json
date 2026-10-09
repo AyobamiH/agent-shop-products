@@ -2,8 +2,8 @@
   "schemaVersion": "1.0.0",
   "recordKind": "catalogue-sync-record",
   "localRole": "synced-projection",
-  "syncedOn": "2026-10-08",
-  "productCount": 25,
+  "syncedOn": "2026-10-09",
+  "productCount": 33,
   "upstream": {
     "repository": "AyobamiH/agent-shop-products",
     "branch": "main",
@@ -22,9 +22,10 @@
   ],
   "productCountsByType": {
     "prompt": 11,
-    "skill": 14
+    "skill": 22
   },
   "productIds": [
+    "account-erasure-with-write-fencing",
     "agent-subcontracting-commercial-handoff",
     "autonomous-coding-workflow",
     "bounded-google-docs-read-recovery",
@@ -34,20 +35,27 @@
     "consent-aware-plugin-measurement",
     "continuous-business-operations-graph",
     "deterministic-social-publication",
+    "dual-principal-github-app-admission",
+    "durable-business-outcome-reconciliation",
     "evidence-backed-open-source-contribution",
     "evidence-first-live-diagnostic-repair",
+    "executable-operating-documentation",
     "graph-native-agent-system-migration",
     "live-dashboard-update-verification",
     "local-first-verification-cli",
     "machine-discovery-surface-engineering",
+    "measurement-gated-learning-admission",
     "outside-in-agent-crawl-verification",
+    "problem-centred-institutional-memory",
     "production-agent-operating-files",
     "published-package-contract-verification",
+    "react-hydration-contract-repair",
     "read-only-production-reconnaissance",
     "safe-scheduled-runtime-upgrade",
     "self-identifying-product-campaign",
     "signed-agent-action-receipts",
     "staged-mcp-plugin-activation",
+    "stale-lease-recovery-and-single-flight",
     "state-transition-evidence-contract",
     "temporary-authority-bridge-lifecycle"
   ]

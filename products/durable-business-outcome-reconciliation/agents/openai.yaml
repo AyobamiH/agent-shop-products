@@ -1,0 +1,4 @@
+interface:
+  display_name: "Durable Business Outcome Reconciliation"
+  short_description: "Recover outcome evidence without repeating fulfilment"
+  default_prompt: "Use $durable-business-outcome-reconciliation to complete the bounded workflow from current evidence."

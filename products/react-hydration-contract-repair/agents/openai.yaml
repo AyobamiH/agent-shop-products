@@ -1,0 +1,4 @@
+interface:
+  display_name: "React Hydration Contract Repair"
+  short_description: "Repair hydration through matching initial snapshots"
+  default_prompt: "Use $react-hydration-contract-repair to complete the bounded workflow from current evidence."

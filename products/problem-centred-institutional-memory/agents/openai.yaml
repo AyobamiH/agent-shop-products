@@ -1,0 +1,4 @@
+interface:
+  display_name: "Problem-Centred Institutional Memory"
+  short_description: "Reconcile history into evidence-qualified knowledge"
+  default_prompt: "Use $problem-centred-institutional-memory to complete the bounded workflow from current evidence."

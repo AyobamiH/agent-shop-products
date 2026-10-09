@@ -3,6 +3,19 @@
   "canonicalRepository": "AyobamiH/agent-shop-products",
   "products": [
     {
+      "id": "account-erasure-with-write-fencing",
+      "canonical": {
+        "path": "products/account-erasure-with-write-fencing/SKILL.md",
+        "blobSha": "11ec45b563d8f95198b0a6858442eeb5afd6e1a2"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/multiweek-knowledge-extraction",
+        "path": "products/account-erasure-with-write-fencing/SKILL.md",
+        "blobSha": "11ec45b563d8f95198b0a6858442eeb5afd6e1a2"
+      }
+    },
+    {
       "id": "agent-subcontracting-commercial-handoff",
       "canonical": {
         "path": "products/agent-subcontracting-commercial-handoff/SKILL.md",
@@ -120,6 +133,32 @@
       }
     },
     {
+      "id": "dual-principal-github-app-admission",
+      "canonical": {
+        "path": "products/dual-principal-github-app-admission/SKILL.md",
+        "blobSha": "307a194147952fcb4de56b7e65191a6acde3836d"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/multiweek-knowledge-extraction",
+        "path": "products/dual-principal-github-app-admission/SKILL.md",
+        "blobSha": "307a194147952fcb4de56b7e65191a6acde3836d"
+      }
+    },
+    {
+      "id": "durable-business-outcome-reconciliation",
+      "canonical": {
+        "path": "products/durable-business-outcome-reconciliation/SKILL.md",
+        "blobSha": "9af4a41a2b404e31e650e172b510e0d0a82214ea"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/multiweek-knowledge-extraction",
+        "path": "products/durable-business-outcome-reconciliation/SKILL.md",
+        "blobSha": "9af4a41a2b404e31e650e172b510e0d0a82214ea"
+      }
+    },
+    {
       "id": "evidence-backed-open-source-contribution",
       "canonical": {
         "path": "products/evidence-backed-open-source-contribution/SKILL.md",
@@ -143,6 +182,19 @@
         "branch": "agent/evidence-first-live-diagnostic-repair",
         "path": "engineering/evidence-first-live-diagnostic-repair.md",
         "blobSha": "ce958f0045af1adf57d880fbe615c37a60996f30"
+      }
+    },
+    {
+      "id": "executable-operating-documentation",
+      "canonical": {
+        "path": "products/executable-operating-documentation/SKILL.md",
+        "blobSha": "1276d5fd1ec3489d56516f4b83d11749cdf36f3f"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/multiweek-knowledge-extraction",
+        "path": "products/executable-operating-documentation/SKILL.md",
+        "blobSha": "1276d5fd1ec3489d56516f4b83d11749cdf36f3f"
       }
     },
     {
@@ -198,6 +250,19 @@
       }
     },
     {
+      "id": "measurement-gated-learning-admission",
+      "canonical": {
+        "path": "products/measurement-gated-learning-admission/SKILL.md",
+        "blobSha": "eb35e155557ed93ec9e0cf8b8fd2498f34a53c27"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/multiweek-knowledge-extraction",
+        "path": "products/measurement-gated-learning-admission/SKILL.md",
+        "blobSha": "eb35e155557ed93ec9e0cf8b8fd2498f34a53c27"
+      }
+    },
+    {
       "id": "outside-in-agent-crawl-verification",
       "canonical": {
         "path": "products/outside-in-agent-crawl-verification/SKILL.md",
@@ -208,6 +273,19 @@
         "branch": "feat/state-discovery-operational-skills",
         "path": "products/outside-in-agent-crawl-verification/SKILL.md",
         "blobSha": "28b3395d3c99e52e3c30259e47784c5eb05bb558"
+      }
+    },
+    {
+      "id": "problem-centred-institutional-memory",
+      "canonical": {
+        "path": "products/problem-centred-institutional-memory/SKILL.md",
+        "blobSha": "c2dac1f143d36ce08118583a6c6b9517d22ed9bf"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/multiweek-knowledge-extraction",
+        "path": "products/problem-centred-institutional-memory/SKILL.md",
+        "blobSha": "c2dac1f143d36ce08118583a6c6b9517d22ed9bf"
       }
     },
     {
@@ -234,6 +312,19 @@
         "branch": "feat/public-package-verification-skills",
         "path": "products/published-package-contract-verification/SKILL.md",
         "blobSha": "89d5e356697041593ee31dfe15876f63b44843c1"
+      }
+    },
+    {
+      "id": "react-hydration-contract-repair",
+      "canonical": {
+        "path": "products/react-hydration-contract-repair/SKILL.md",
+        "blobSha": "2a3c29f3d16e5cc86402de5c62f0e642d932f2e8"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/multiweek-knowledge-extraction",
+        "path": "products/react-hydration-contract-repair/SKILL.md",
+        "blobSha": "2a3c29f3d16e5cc86402de5c62f0e642d932f2e8"
       }
     },
     {
@@ -299,6 +390,19 @@
         "branch": "feat/current-capability-extraction",
         "path": "products/staged-mcp-plugin-activation/SKILL.md",
         "blobSha": "76ba19e3f51e73d885af02eac1be336ed2bf0102"
+      }
+    },
+    {
+      "id": "stale-lease-recovery-and-single-flight",
+      "canonical": {
+        "path": "products/stale-lease-recovery-and-single-flight/SKILL.md",
+        "blobSha": "cd9dd3a73f8608bf25b467eb5549ca839347271d"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/multiweek-knowledge-extraction",
+        "path": "products/stale-lease-recovery-and-single-flight/SKILL.md",
+        "blobSha": "cd9dd3a73f8608bf25b467eb5549ca839347271d"
       }
     },
     {

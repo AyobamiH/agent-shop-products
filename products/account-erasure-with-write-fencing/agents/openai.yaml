@@ -1,0 +1,4 @@
+interface:
+  display_name: "Account Erasure with Write Fencing"
+  short_description: "Erase accounts without stale work restoring state"
+  default_prompt: "Use $account-erasure-with-write-fencing to complete the bounded workflow from current evidence."

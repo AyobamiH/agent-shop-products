@@ -4,9 +4,11 @@ Canonical source repository for AyobamiH prompt and skill products used by the a
 
 ## Catalogue
 
-The catalogue contains **25 products: 11 prompts and 14 skills**. The [complete skills and work-coverage index](docs/SKILL_COVERAGE.md) maps 28 reviewed procedures to their sources and records observed platform dependencies and unfinished acceptance checks.
+The catalogue contains **33 products: 11 prompts and 22 skills**. The [skills and work-coverage index](docs/SKILL_COVERAGE.md) maps **38 reviewed procedures**, their evidence limits and eight explicitly observed dependency names.
 
-The [current capability inventory](docs/CAPABILITY_INVENTORY.md) records 109 distinct external skill names, 868 advertised tools and 11 separate orchestration controls as a dated metadata snapshot. Listed capabilities are not proof of connection or execution. The [latest work review](docs/LATEST_WORK_REVIEW.md) preserves the newer activation, measurement and campaign evidence.
+The [multi-week review](docs/MULTIWEEK_REVIEW.md) reconciles the saved history checkpoint, selected supporting records and newer continuation evidence through 9 October. The [latest work review](docs/LATEST_WORK_REVIEW.md) identifies the highest evidenced states and remaining acceptance gates.
+
+The [capability inventory](docs/CAPABILITY_INVENTORY.md) records **111 distinct external skill names, 868 advertised tools across 38 providers and 11 separate orchestration controls**. These are dated metadata, not installation or execution claims.
 
 - [Product manifest](catalog/manifest.json)
 - [Public discovery projection](catalog/products.public.json)
@@ -18,20 +20,23 @@ Run `python3 scripts/validate_catalog.py` and `python3 scripts/validate_capabili
 
 ## Principles
 
-- Products are source-backed; no mock product inventory.
-- Public catalogue metadata is separated from full product payloads.
-- Product claims must not exceed their source evidence.
+- Products are original and source-backed; no mock product inventory.
+- Public discovery metadata is separated from full payloads.
+- Product claims stay within their requirements and evidence limits.
+- External capabilities remain dependencies; their instruction bodies are not copied.
 - Future agent commerce is CLI-first.
 - Product files remain modular and independently versionable.
 
 ## Repository layout
 
 ```text
-products/       Source product payloads
-catalog/        Machine-readable catalogue projections
-docs/           Product and catalogue governance
+products/       Canonical payloads and discovery metadata
+catalog/        Machine-readable indexes and projections
+docs/           Governance, evidence and continuation records
 scripts/        Read-only catalogue validation
 AGENTS.md       Repository operating contract
 ```
 
-This repository contains public prompt products migrated from original AyobamiH-authored branches and evidence-backed public skills created from demonstrated work. Future premium-only payloads must not be added to this public repository without an explicit publication decision.
+The existing 25-product storefront release has a separate [production acceptance record](docs/AGENT-SHOP-25-PRODUCTION-ACCEPTANCE-2026-10-09.md). This expanded catalogue does not itself prove a 33-product production deployment.
+
+Existing public prompts preserve their migration provenance. New public skills contain original generalised procedures and sanitised evidence. Future premium-only payloads require an explicit publication decision.

@@ -2,6 +2,10 @@
   "schemaVersion": "1.0.0",
   "products": [
     {
+      "id": "account-erasure-with-write-fencing",
+      "metadata": "products/account-erasure-with-write-fencing/product.json"
+    },
+    {
       "id": "agent-subcontracting-commercial-handoff",
       "metadata": "products/agent-subcontracting-commercial-handoff/product.json"
     },
@@ -38,12 +42,24 @@
       "metadata": "products/deterministic-social-publication/product.json"
     },
     {
+      "id": "dual-principal-github-app-admission",
+      "metadata": "products/dual-principal-github-app-admission/product.json"
+    },
+    {
+      "id": "durable-business-outcome-reconciliation",
+      "metadata": "products/durable-business-outcome-reconciliation/product.json"
+    },
+    {
       "id": "evidence-backed-open-source-contribution",
       "metadata": "products/evidence-backed-open-source-contribution/product.json"
     },
     {
       "id": "evidence-first-live-diagnostic-repair",
       "metadata": "products/evidence-first-live-diagnostic-repair/product.json"
+    },
+    {
+      "id": "executable-operating-documentation",
+      "metadata": "products/executable-operating-documentation/product.json"
     },
     {
       "id": "graph-native-agent-system-migration",
@@ -62,8 +78,16 @@
       "metadata": "products/machine-discovery-surface-engineering/product.json"
     },
     {
+      "id": "measurement-gated-learning-admission",
+      "metadata": "products/measurement-gated-learning-admission/product.json"
+    },
+    {
       "id": "outside-in-agent-crawl-verification",
       "metadata": "products/outside-in-agent-crawl-verification/product.json"
+    },
+    {
+      "id": "problem-centred-institutional-memory",
+      "metadata": "products/problem-centred-institutional-memory/product.json"
     },
     {
       "id": "production-agent-operating-files",
@@ -72,6 +96,10 @@
     {
       "id": "published-package-contract-verification",
       "metadata": "products/published-package-contract-verification/product.json"
+    },
+    {
+      "id": "react-hydration-contract-repair",
+      "metadata": "products/react-hydration-contract-repair/product.json"
     },
     {
       "id": "read-only-production-reconnaissance",
@@ -92,6 +120,10 @@
     {
       "id": "staged-mcp-plugin-activation",
       "metadata": "products/staged-mcp-plugin-activation/product.json"
+    },
+    {
+      "id": "stale-lease-recovery-and-single-flight",
+      "metadata": "products/stale-lease-recovery-and-single-flight/product.json"
     },
     {
       "id": "state-transition-evidence-contract",

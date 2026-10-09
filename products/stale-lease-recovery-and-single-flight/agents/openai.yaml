@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stale Lease Recovery and Single Flight"
+  short_description: "Recover stale work and coalesce live equivalents"
+  default_prompt: "Use $stale-lease-recovery-and-single-flight to complete the bounded workflow from current evidence."

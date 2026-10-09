@@ -1,0 +1,4 @@
+interface:
+  display_name: "Measurement-Gated Learning Admission"
+  short_description: "Gate learning on verified comparable measurements"
+  default_prompt: "Use $measurement-gated-learning-admission to complete the bounded workflow from current evidence."

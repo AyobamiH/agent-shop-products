@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dual-Principal GitHub App Admission"
+  short_description: "Require App capability and customer write authority"
+  default_prompt: "Use $dual-principal-github-app-admission to complete the bounded workflow from current evidence."
