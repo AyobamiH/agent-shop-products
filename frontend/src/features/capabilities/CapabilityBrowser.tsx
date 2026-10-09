@@ -14,7 +14,7 @@ function pageHref(query: CapabilityQuery, page: number) {
 
 export function CapabilityBrowser({ query }: { query: CapabilityQuery }) {
   const result = queryCapabilities(listCapabilities(), query);
-  const fieldClass = "mt-2 min-h-11 w-full rounded border border-border bg-background px-3 text-sm";
+  const fieldClass = "mt-2 min-h-11 min-w-0 w-full rounded border border-border bg-background px-3 text-sm";
   return (
     <div className="mt-8">
       <form
@@ -23,28 +23,45 @@ export function CapabilityBrowser({ query }: { query: CapabilityQuery }) {
         action="/capabilities"
         className="grid items-end gap-4 rounded-lg border border-border p-5 md:grid-cols-[2fr_1fr_1fr_auto]"
       >
-        <label className="text-sm">
-          Search capability names
+        <div className="min-w-0">
+          <label htmlFor="capability-query" className="text-sm">
+            Search capability names
+          </label>
           <input
+            id="capability-query"
             name="q"
             type="search"
             maxLength={200}
             defaultValue={query.q ?? ""}
             className={fieldClass}
           />
-        </label>
-        <label className="text-sm">
-          Capability kind
-          <select name="kind" defaultValue={query.kind ?? ""} className={fieldClass}>
+        </div>
+        <div className="min-w-0">
+          <label htmlFor="capability-kind" className="text-sm">
+            Capability kind
+          </label>
+          <select
+            id="capability-kind"
+            name="kind"
+            defaultValue={query.kind ?? ""}
+            className={fieldClass}
+          >
             <option value="">All kinds</option>
             <option value="skill">External skills</option>
             <option value="tool">Tools</option>
             <option value="control">Orchestration controls</option>
           </select>
-        </label>
-        <label className="text-sm">
-          Provider or namespace
-          <select name="provider" defaultValue={query.provider ?? ""} className={fieldClass}>
+        </div>
+        <div className="min-w-0">
+          <label htmlFor="capability-provider" className="text-sm">
+            Provider or namespace
+          </label>
+          <select
+            id="capability-provider"
+            name="provider"
+            defaultValue={query.provider ?? ""}
+            className={fieldClass}
+          >
             <option value="">All providers</option>
             {capabilityProviders.map((provider) => (
               <option key={provider} value={provider}>
@@ -52,7 +69,7 @@ export function CapabilityBrowser({ query }: { query: CapabilityQuery }) {
               </option>
             ))}
           </select>
-        </label>
+        </div>
         <button
           type="submit"
           className="min-h-11 rounded bg-primary px-5 text-sm font-medium text-primary-foreground"
