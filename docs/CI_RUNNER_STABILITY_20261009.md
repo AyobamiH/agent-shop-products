@@ -1,0 +1,9 @@
+# GitHub Actions runner stability — 9 October 2026
+
+GitHub announced that `ubuntu-latest` will switch from Ubuntu 24.04 to 26.04 between 19 October and 19 November 2026. It may change preinstalled tools, Python, browser and package-manager dependencies without a repository commit. The Agent Shop's source validation, Chromium browser E2E and daily public parity are operational acceptance controls, not opportunistic demos.
+
+Pin all three Agent Shop workflows to `ubuntu-24.04` until a dedicated 26.04 compatibility PR demonstrates equivalent source, browser, Cloudflare bundle and public-parity results. Upgrade first-party `actions/checkout` and `actions/setup-node` runners from Node20-based v4 to Node24-based v6. Keep `setup-node` at Node 24, preserve `persist-credentials: false` on external design reference checkout and read-only parity, and keep the existing pinned design.md ref and bounded workflow permissions. `actions/checkout@v6` and `actions/setup-node@v6` require a supported recent hosted runner and should be validated by GitHub's own exact-head CI before merge.
+
+Operational recovery: use `gh run view` to distinguish missing tool dependencies, browser E2E regressions, DNS/edge readback failures and genuine drift; do not retry failures without diagnosis. After this PR merges, dispatch only the existing read-only `live-discovery-parity.yml` and observe exact-main success. The production deploy workflow remains separately guarded by missing Cloudflare secrets; upgrading its action/runner does not establish a deployment credential or approval. The presently accepted Cloudflare production Worker is not changed by this workflow-only maintenance.
+
+References: GitHub Changelog "Ubuntu 26 generally available and latest migration" (2026-09-17); actions/checkout release docs; actions/setup-node release docs.
