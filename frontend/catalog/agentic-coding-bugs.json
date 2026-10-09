@@ -440,6 +440,29 @@
         "scope": "CI run 37901366579 observed POST returning 200. The repair then passed all twelve method/surface checks on the local Node preview on 9 October. Production deployment remains unverified."
       },
       "indexedOn": "2026-10-09"
+    },
+    {
+      "id": "BUG-0020",
+      "title": "Long metadata expands catalogue beyond phone width",
+      "project": "Agent Shop",
+      "category": "UI and contracts",
+      "trigger": "The catalogue renders long source paths inside nested grids at a 390-pixel phone viewport.",
+      "symptom": "The shop has horizontal page overflow despite metadata text using truncation.",
+      "rootCause": "Grid tracks and cards retain automatic minimum content sizing; long metadata can impose its intrinsic width before truncation applies.",
+      "consequence": "Agent operators cannot inspect the complete catalogue within the phone viewport.",
+      "repair": "Use explicit single-column mobile tracks and minmax(0,1fr), and allow catalogue content and cards to shrink with min-w-0.",
+      "regressionCheck": "At phone width, document scrollWidth must not exceed window innerWidth on shop, controls and bug routes; preserve desktop grids and source-path truncation.",
+      "status": "Implementation reviewed",
+      "skillId": "live-dashboard-update-verification",
+      "nextAcceptance": "Verify phone-width catalogue pages against the exact deployed release.",
+      "evidence": {
+        "id": "BEV-0020",
+        "sourceId": "agent-shop-mobile-grid-overflow",
+        "basis": "Public implementation and dated report",
+        "sourceUrl": "https://github.com/AyobamiH/agent-shop-products/pull/26",
+        "scope": "CI run 37902732121 observed shop overflow at 390 pixels. The grid/card sizing repair passed full browser acceptance in run 37903191137 at head 79b1d784. Production deployment remains unverified."
+      },
+      "indexedOn": "2026-10-09"
     }
   ]
 }
