@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { assessLiveParity } from "./live-discovery-parity.mjs";
+import { assessCommerceParity, assessLiveParity } from "./live-discovery-parity.mjs";
 
 const product = {
   id: "source-backed-example",
@@ -72,4 +72,45 @@ test("rejects incomplete live discovery, not an invented empty catalogue", () =>
     assessLiveParity({ products: [product] }, {}, sitemap, solutionsHtml, agentsTxt),
     ["Canonical or public catalogue products array is unavailable"],
   );
+});
+
+const sourceKit = {
+  schemaVersion: 1,
+  offers: [{
+    id: "private-production-agent-operating-kit",
+    productId: "production-agent-operating-files",
+    title: "Private Production Agent Operating Kit", summary: "Original private reference kit",
+    version: "2026.10.1", currency: "gbp", buyerRequirements: ["explicit operator authority"],
+  }],
+};
+const plannedKit = { schemaVersion: 1, commerceActive: false,
+  offers: [{ ...sourceKit.offers[0], availability: "planned" }] };
+const kitHtml = '<h1>Private Production Agent Operating Kit</h1>';
+const completeHtml = '<meta name="robots" content="noindex, follow">';
+
+test("read-only commercial parity reports aligned planned offer without declaring revenue", () => {
+  assert.deepEqual(assessCommerceParity(sourceKit, plannedKit, kitHtml, completeHtml), []);
+});
+
+test("detects a priced kit silently published without commerce approval", () => {
+  const issues = assessCommerceParity(sourceKit, {
+    ...plannedKit, offers: [{ ...plannedKit.offers[0], unitAmountPence: 4900 }],
+  }, kitHtml, completeHtml);
+  assert.ok(issues.some((issue) => issue.includes("Unapproved private-kit price")));
+});
+
+test("detects missing legal refs on an active offer and never claims a purchase", () => {
+  const issues = assessCommerceParity(sourceKit, {
+    ...plannedKit, commerceActive: true,
+    offers: [{ ...plannedKit.offers[0], availability: "purchase_available", unitAmountPence: 4900 }],
+  }, kitHtml, completeHtml);
+  assert.ok(issues.some((issue) => issue.includes("Active private-kit offer lacks")));
+});
+
+test("requires an unindexed buyer-completion page and no private asset keys in public offers", () => {
+  const issues = assessCommerceParity(sourceKit, {
+    ...plannedKit, offers: [{ ...plannedKit.offers[0], assetKey: "private/R2/file.zip" }],
+  }, kitHtml, '<meta name="robots" content="index, follow">');
+  assert.ok(issues.some((issue) => issue.includes("Sensitive or unapproved")));
+  assert.ok(issues.some((issue) => issue.includes("noindex")));
 });
