@@ -4,6 +4,8 @@ import { verifyRegistrySurface } from "./verify-registry-surface.mjs";
 
 const origin = (process.env.ACCEPTANCE_ORIGIN ?? "").replace(/\/+$/, "");
 if (!origin) throw new Error("ACCEPTANCE_ORIGIN is required");
+// Version URL requests target ACCEPTANCE_ORIGIN, metadata must be canonical.
+const canonicalOrigin = (process.env.CANONICAL_ORIGIN ?? origin).replace(/\/+$/, "");
 
 const root = resolve(import.meta.dirname, "..");
 const catalogue = JSON.parse(readFileSync(resolve(root, "catalog/products.public.json"), "utf8"));
@@ -53,11 +55,38 @@ const llmsTxt = await expectStatus("/llms.txt");
 const robots = await expectStatus("/robots.txt");
 const sitemap = await expectStatus("/sitemap.xml");
 
+const commerceResult = await expectStatus("/api/v1/commerce/offers");
+const privateKitPage = await expectStatus("/private-kits");
+const privateKitComplete = await expectStatus("/private-kits/complete");
+const commerce = JSON.parse(commerceResult.text);
+requireValue(commerce.schemaVersion === 1 && Array.isArray(commerce.offers),
+  "commerce offer projection must have a versioned validated schema");
+requireValue(commerce.offers.length === 1 &&
+  commerce.offers[0].id === "private-production-agent-operating-kit",
+  "private-kit commercial inventory drift");
+requireValue(privateKitPage.text.includes("Private Production Agent Operating Kit"),
+  "private kit detail route missing original kit description");
+requireValue(privateKitComplete.text.includes("noindex"),
+  "order completion route must not be indexed");
+if (commerce.commerceActive === false) {
+  requireValue(commerce.offers[0].availability === "planned" &&
+    commerce.offers[0].unitAmountPence === undefined &&
+    commerce.offers[0].priceId === undefined,
+  "disabled private kit must not expose a price or checkout");
+} else {
+  requireValue(commerce.commerceActive === true &&
+    commerce.offers[0].availability === "purchase_available" &&
+    Number.isSafeInteger(commerce.offers[0].unitAmountPence) &&
+    ["termsUrl", "licenceUrl", "refundUrl"].every((key) =>
+      typeof commerce.offers[0][key] === "string"),
+  "enabled kit must have approved amount and published terms");
+}
+
 const remoteCatalogue = JSON.parse(catalogueResult.text);
 requireValue(remoteCatalogue.productCount === products.length, "catalogue product count drift");
 requireValue(
-  agentsPage.text.includes(`href="${origin}/agents"`) ||
-    agentsPage.text.includes(`href=\"${origin}/agents\"`),
+  agentsPage.text.includes(`href="${canonicalOrigin}/agents"`) ||
+    agentsPage.text.includes(`href=\"${canonicalOrigin}/agents\"`),
   "agents page canonical origin mismatch",
 );
 
@@ -67,7 +96,7 @@ for (const agent of declaredRobotsAgents) {
 requireValue(robots.text.includes("User-agent: *"), "robots missing wildcard agent");
 requireValue(robots.text.includes("Allow: /"), "robots does not broadly allow crawling");
 requireValue(
-  robots.text.includes(`Sitemap: ${origin}/sitemap.xml`),
+  robots.text.includes(`Sitemap: ${canonicalOrigin}/sitemap.xml`),
   "robots sitemap origin mismatch",
 );
 
@@ -82,7 +111,7 @@ for (const product of products) {
   const page = await expectStatus(`/products/${product.slug}`);
   requireValue(page.text.includes(product.name), `${product.slug}: detail page missing name`);
   requireValue(
-    page.text.includes(`${origin}/products/${product.slug}`),
+    page.text.includes(`${canonicalOrigin}/products/${product.slug}`),
     `${product.slug}: canonical/structured URL mismatch`,
   );
 
@@ -97,7 +126,7 @@ for (const product of products) {
   }
 
   requireValue(
-    sitemap.text.includes(`${origin}/products/${product.slug}`),
+    sitemap.text.includes(`${canonicalOrigin}/products/${product.slug}`),
     `${product.slug}: missing from sitemap`,
   );
 }
@@ -121,7 +150,10 @@ console.log(
   JSON.stringify({
     status: "PASS",
     origin,
+    canonicalOrigin,
     products: products.length,
+    privateKitOffer: commerce.offers[0].availability,
+    commerceActive: commerce.commerceActive,
     ...registryAcceptance,
     crawlerAgentsChecked: crawlerAgents.length,
     machineSurfaces: ["/catalog.json", "/agents.txt", "/llms.txt", "/robots.txt", "/sitemap.xml"],

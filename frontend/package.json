@@ -12,7 +12,7 @@
     "format": "prettier --write .",
     "validate:catalog": "bun run scripts/validate-catalog.ts",
     "test": "vitest run",
-    "e2e": "python3 e2e/shop_url_filters.py && python3 e2e/product_surfaces.py && python3 e2e/capability_registry.py",
+    "e2e": "python3 e2e/shop_url_filters.py && python3 e2e/product_surfaces.py && python3 e2e/capability_registry.py && python3 e2e/private_kit_commerce.py",
     "sync:catalog": "bun run scripts/sync-catalog.ts",
     "generate:metadata": "bun run scripts/generate-public-metadata.ts"
   },

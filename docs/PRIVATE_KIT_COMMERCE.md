@@ -64,3 +64,38 @@ Maintain the previously accepted Worker Version ID. Turn off `COMMERCE_ENABLED` 
 - Stripe: hosted Checkout Sessions, raw webhook signature validation, retry/idempotency and payment-state fulfilment.
 - Cloudflare: D1 prepared statements and atomic `batch` transactions; private R2 bindings and deny-public bucket configuration; Workers rate-limits.
 - Repository: `commerce/offers.json`, `commerce/migrations/0001_commerce.sql`, `frontend/src/server/commerce/`, `frontend/src/routes/private-kits*.tsx`.
+
+## Nitro binding incident and permanent regression gate
+
+The 9 October version candidate at `bc65dad` returned HTTP 503 for
+`/api/v1/commerce/offers` despite healthy catalogue routes. The inner
+TanStack SSR service invoked `src/server.ts` without passing the outer
+Cloudflare `env` argument; Nitro's generated Cloudflare entry sets
+`globalThis.__env__` at the outer request boundary. The fix resolves the
+runtime binding on each request, never captures it during module loading,
+and falls back to empty/disabled for a missing environment. This is
+covered by server-entry unit tests, browser smoke checks and the
+source-to-public verifier. If the Nitro integration changes, the
+`/api/v1/commerce/offers` canary must pass before promotion; a
+`COMMERCE_DEPENDENCY_ERROR` is **not** an acceptable pass.
+
+The current source uses Nitro's observed `globalThis.__env__` contract.
+At the next framework upgrade, reassess against Cloudflare's documented
+`cloudflare:workers` env import and require a new deployed canary.
+
+## Candidate release acceptance, 9 October 2026 (no commerce activation)
+
+The Nitro `__env__` recovery is independently accepted at a version URL:
+`https://preview-commerce-nitro-env-agent-shop.woeinvests.workers.dev`
+(Worker version `8a67c930-c208-4b48-a86d-06b207486f8a`). The
+source-to-public verifier reported **PASS** for 33 owned products, 990
+advertised external capabilities, 20 coding bugs, 10 crawler agents,
+`/private-kits`, disabled `/api/v1/commerce/offers`, protected order lookup,
+correct canonical `https://agents.proofandstate.com`, and agent discovery
+surfaces. An earlier version returning HTTP 503 for the harmless offers GET
+was rejected before promotion.
+
+Versioned Worker URLs use configured production resources. No checkout was
+activated, no payment call was made and no customer entitlement was created.
+A source revision and a successful candidate are not equivalent to a merged
+main commit, production promotion or a verified paid purchase.
