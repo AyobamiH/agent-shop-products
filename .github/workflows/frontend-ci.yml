@@ -64,7 +64,7 @@ jobs:
       - name: Unit tests
         run: bun run test
       - name: Read-only live parity contract unit tests
-        run: node --test scripts/live-discovery-parity.test.mjs
+        run: node --test scripts/live-discovery-parity.node-check.mjs
       - name: Browser dependencies
         run: |
           python3 -m pip install playwright
