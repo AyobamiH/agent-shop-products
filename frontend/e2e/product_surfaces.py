@@ -119,8 +119,10 @@ async def main() -> None:
             f"found={len(detail_urls)}",
         )
         check(
-            "/sitemap.xml lists machine surfaces",
-            "/catalog.json" in sitemap_body and "/llms.txt" in sitemap_body,
+            "/sitemap.xml contains only indexable HTML, not machine metadata",
+            "/catalog.json" not in sitemap_body
+            and "/llms.txt" not in sitemap_body
+            and "/raw/products/" not in sitemap_body,
         )
 
         for product in PRODUCTS:

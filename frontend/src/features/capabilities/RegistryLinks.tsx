@@ -20,6 +20,13 @@ export function RegistryLinks() {
         {capabilityMeta.count} skills, tools & controls
       </Link>
       <Link
+        to="/integration-services"
+        className="rounded border border-border px-4 py-3 hover:bg-surface"
+        activeProps={{ className: "border-primary text-primary" }}
+      >
+        Scoped integration service
+      </Link>
+      <Link
         to="/coding-bugs"
         className="rounded border border-border px-4 py-3 hover:bg-surface"
         activeProps={{ className: "border-primary text-primary" }}

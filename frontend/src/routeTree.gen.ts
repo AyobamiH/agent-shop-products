@@ -18,6 +18,7 @@ import { Route as CapabilityBriefDotjsonRouteImport } from './routes/capability-
 import { Route as CatalogDotjsonRouteImport } from './routes/catalog[.]json'
 import { Route as CodingBugsRouteImport } from './routes/coding-bugs'
 import { Route as CodingBugsDotjsonRouteImport } from './routes/coding-bugs[.]json'
+import { Route as IntegrationServicesRouteImport } from './routes/integration-services'
 import { Route as KnowledgeRouteImport } from './routes/knowledge'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as ProblemsRouteImport } from './routes/problems'
@@ -72,6 +73,11 @@ const CodingBugsDotjsonRoute = CodingBugsDotjsonRouteImport.update({
   path: '/coding-bugs.json',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IntegrationServicesRoute = IntegrationServicesRouteImport.update({
+  id: '/integration-services',
+  path: '/integration-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KnowledgeRoute = KnowledgeRouteImport.update({
   id: '/knowledge',
   path: '/knowledge',
@@ -123,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/catalog.json': typeof CatalogDotjsonRoute
   '/coding-bugs': typeof CodingBugsRoute
   '/coding-bugs.json': typeof CodingBugsDotjsonRoute
+  '/integration-services': typeof IntegrationServicesRoute
   '/knowledge': typeof KnowledgeRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/problems': typeof ProblemsRoute
@@ -142,6 +149,7 @@ export interface FileRoutesByTo {
   '/catalog.json': typeof CatalogDotjsonRoute
   '/coding-bugs': typeof CodingBugsRoute
   '/coding-bugs.json': typeof CodingBugsDotjsonRoute
+  '/integration-services': typeof IntegrationServicesRoute
   '/knowledge': typeof KnowledgeRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/problems': typeof ProblemsRoute
@@ -162,6 +170,7 @@ export interface FileRoutesById {
   '/catalog.json': typeof CatalogDotjsonRoute
   '/coding-bugs': typeof CodingBugsRoute
   '/coding-bugs.json': typeof CodingBugsDotjsonRoute
+  '/integration-services': typeof IntegrationServicesRoute
   '/knowledge': typeof KnowledgeRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/problems': typeof ProblemsRoute
@@ -183,6 +192,7 @@ export interface FileRouteTypes {
     | '/catalog.json'
     | '/coding-bugs'
     | '/coding-bugs.json'
+    | '/integration-services'
     | '/knowledge'
     | '/llms.txt'
     | '/problems'
@@ -202,6 +212,7 @@ export interface FileRouteTypes {
     | '/catalog.json'
     | '/coding-bugs'
     | '/coding-bugs.json'
+    | '/integration-services'
     | '/knowledge'
     | '/llms.txt'
     | '/problems'
@@ -221,6 +232,7 @@ export interface FileRouteTypes {
     | '/catalog.json'
     | '/coding-bugs'
     | '/coding-bugs.json'
+    | '/integration-services'
     | '/knowledge'
     | '/llms.txt'
     | '/problems'
@@ -241,6 +253,7 @@ export interface RootRouteChildren {
   CatalogDotjsonRoute: typeof CatalogDotjsonRoute
   CodingBugsRoute: typeof CodingBugsRoute
   CodingBugsDotjsonRoute: typeof CodingBugsDotjsonRoute
+  IntegrationServicesRoute: typeof IntegrationServicesRoute
   KnowledgeRoute: typeof KnowledgeRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
   ProblemsRoute: typeof ProblemsRoute
@@ -316,6 +329,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CodingBugsDotjsonRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/integration-services': {
+      id: '/integration-services'
+      path: '/integration-services'
+      fullPath: '/integration-services'
+      preLoaderRoute: typeof IntegrationServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/knowledge': {
       id: '/knowledge'
       path: '/knowledge'
@@ -385,6 +405,7 @@ const rootRouteChildren: RootRouteChildren = {
   CatalogDotjsonRoute: CatalogDotjsonRoute,
   CodingBugsRoute: CodingBugsRoute,
   CodingBugsDotjsonRoute: CodingBugsDotjsonRoute,
+  IntegrationServicesRoute: IntegrationServicesRoute,
   KnowledgeRoute: KnowledgeRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
   ProblemsRoute: ProblemsRoute,

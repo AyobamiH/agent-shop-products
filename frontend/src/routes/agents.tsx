@@ -135,6 +135,11 @@ function AgentsPage() {
         </p>
       </section>
 
+      <p className="mt-4 text-sm">
+        <a href="/integration-services" className="text-primary underline underline-offset-4">
+          Read the quote-first integration and fulfilment boundaries
+        </a>
+      </p>
       <section className="mt-14">
         <h2 className="text-xl font-semibold">Future CLI contract</h2>
         <p className="mt-1 max-w-2xl text-sm text-muted-foreground">

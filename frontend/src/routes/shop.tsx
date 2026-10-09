@@ -49,6 +49,14 @@ function ShopPage() {
         prepare an integration request for provider review.
       </p>
       <RegistryLinks />
+      <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+        Public records are inspectable but are not paid licences or installed tools. For reviewed
+        implementation work and quote-first commercial terms,{" "}
+        <a href="/integration-services" className="text-primary underline underline-offset-4">
+          see professional integration
+        </a>
+        .
+      </p>
       <div className="mt-10">
         <CatalogBrowser products={products} />
       </div>

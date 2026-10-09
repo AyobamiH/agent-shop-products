@@ -14,7 +14,7 @@ Supporting discovery surfaces:
 - `/agents.txt` — site-specific text discovery map
 - `/llms.txt` — convenience language-model index; not claimed as a universal standard
 - `/raw/products/{slug}.md` — metadata-only per-capability Markdown
-- `/sitemap.xml` — canonical route enumeration
+- `/sitemap.xml` — indexable original HTML URLs only: the eight collection/service pages and canonical owned product pages. Machine JSON/text/Markdown and names-only external detail pages remain accessible through discovery links, but are excluded from the search sitemap.
 - `/robots.txt` — broad public crawl permission
 
 All derive from the same bundled projection, which is synced from the repository-root canonical catalogue before builds.
@@ -30,6 +30,12 @@ Public canonical HTML routes use `index, follow`, unique titles/descriptions and
 ## Payload boundary
 
 Public discovery may expose metadata, summaries, problems, outcomes, requirements, boundaries, tags and source pointers. It must not expose complete PROMPT.md or SKILL.md payload bodies, secrets, private evidence or invented commerce claims.
+
+## Commercial discovery and indexed content
+
+The external capability registry contains 990 **advertised names**, not owned, verified or licensed products. Its individual names-only detail pages are accessible via GET and marked `noindex, follow` until original, verified, useful editorial value warrants search indexing. The collection index and the original source-backed product pages remain indexable.
+
+A real quote-first integration introduction is published at `/integration-services`, linking to Tail Wagging's independently governed service catalogue and work-order intake. It has no Agent Shop checkout or claimed price. A work-order receipt is not acceptance, payment, repository authority or completion. Publicly readable source does not establish resale or redistribution rights.
 
 ## Future CLI
 
