@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "offers": [
+    {
+      "id": "private-production-agent-operating-kit",
+      "productId": "production-agent-operating-files",
+      "title": "Private Production Agent Operating Kit",
+      "summary": "A planned, private set of implementation fixtures, verification harnesses and rollback-ready operating templates that goes beyond the openly readable agent operating-files prompt.",
+      "deliverableType": "versioned_private_execution_kit",
+      "fulfilment": "private_r2_download",
+      "version": "2026.10.1",
+      "assetKey": "private-kits/production-agent-operating-files/2026.10.1/kit.zip",
+      "status": "planned",
+      "currency": "gbp",
+      "priceId": null,
+      "unitAmountPence": null,
+      "termsVersion": null,
+      "licenceVersion": null,
+      "refundPolicyVersion": null,
+      "updates": "A precise update/support period has not yet been approved.",
+      "buyerRequirements": [
+        "An explicitly authorised repository or runtime",
+        "Operator review before applying any generated change",
+        "No delegated live-merge, production deploy or billing authority"
+      ]
+    }
+  ]
+}

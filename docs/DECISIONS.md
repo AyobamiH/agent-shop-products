@@ -81,3 +81,9 @@ Owner-authorised extraction may publish original generalised procedures from rev
 # DEC-013 — Full capability discovery and quote-first integration
 
 On 9 October 2026 the owner explicitly requested all 111 external skills, 868 tools and 11 orchestration controls in the shop, plus an agentic coding bug index. Expose all 990 as source-backed acquisition listings separate from owned products. Offer original integration work through the existing provider's quote-first handoff; do not claim external implementation ownership, redistribution rights, ready installation or a fixed price. Record scoped historical bug evidence in a sanitised catalogue and extend the canonical private workbook in place.
+
+## DEC-014 — Agent Shop private-kit commercial boundary (9 October 2026)
+
+Public capability metadata and public prompts remain freely discoverable. Commercial offers belong in a separately governed catalogue and must not be inferred from public source. A genuinely private versioned execution kit may be supplied only through a separately approved merchant, GBP offer, buyer-facing licence, refund/cancellation/tax wording and controlled entitlement delivery. Quote-first bespoke implementation remains a different product from fixed digital checkout.
+
+The first private kit is **planned, not offered for sale**. D1 order/entitlement state, Stripe Checkout reconciliation, webhook signature verification, replay and refund tombstones, authenticated delivery and private R2 storage must fail closed. No live Stripe checkout or price is approved by this decision. All synthetic test payments and private asset proofs are distinct from a real sale. See `docs/PRIVATE_KIT_COMMERCE.md` and `commerce/offers.json`.

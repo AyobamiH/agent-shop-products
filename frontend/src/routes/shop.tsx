@@ -50,6 +50,12 @@ function ShopPage() {
       </p>
       <RegistryLinks />
       <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+        Interested in a differentiated private implementation kit?{" "}
+        <a href="/private-kits" className="text-primary underline underline-offset-4">
+          Check private-kit availability and commercial boundaries
+        </a>. Public skills remain freely inspectable.
+      </p>
+      <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
         Public records are inspectable but are not paid licences or installed tools. For reviewed
         implementation work and quote-first commercial terms,{" "}
         <a href="/integration-services" className="text-primary underline underline-offset-4">
