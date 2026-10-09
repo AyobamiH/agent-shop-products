@@ -7,6 +7,7 @@ import { IDENTITY_STATUS, SITE_DESCRIPTOR } from "@/lib/site";
 const NAV_ITEMS = [
   { to: "/agents", label: "Agent discovery" },
   { to: "/shop", label: "Capabilities" },
+  { to: "/solutions", label: "Find a solution" },
   { to: "/problems", label: "Problems" },
   { to: "/knowledge", label: "Knowledge" },
 ] as const;

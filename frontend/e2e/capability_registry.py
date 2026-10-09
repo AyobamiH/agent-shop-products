@@ -31,6 +31,7 @@ async def main():
         assert "/capabilities</loc>" in sitemap
         assert "/coding-bugs</loc>" in sitemap
         assert "/integration-services</loc>" in sitemap
+        assert "/solutions</loc>" in sitemap
         assert "/capabilities/" not in sitemap
         assert "/capabilities.json" not in sitemap
         assert "/raw/products/" not in sitemap
@@ -66,6 +67,19 @@ async def main():
         assert '"offers":' not in html
         assert "not yet offered" in html
 
+        await page.goto(ORIGIN + "/solutions")
+        await expect(page.get_by_role("heading", name="When an agent gets stuck, choose the smallest provable next step")).to_be_visible()
+        assert await page.locator('a[href^="/products/"]').count() >= 12
+        assert await page.get_by_text("Not currently for sale", exact=True).count() == 2
+        assert await page.get_by_role("link", name="Need hands-on help? Scope an independent implementation quote").count() == 4
+        assert await page.get_by_role("link", name="Browse current source-backed capabilities").count() == 1
+        assert await page.get_by_role("link", name="Request a scoped implementation quote").count() == 1
+        solution_html = await page.content()
+        assert '"@type":"CollectionPage"' in solution_html
+        assert '"offers":' not in solution_html
+        agents_guide = await (await page.request.get(ORIGIN + "/agents.txt")).text()
+        assert "/solutions" in agents_guide
+
         await page.goto(ORIGIN + "/capabilities")
         await expect(page.get_by_test_id("capability-count")).to_contain_text("990 matching capabilities")
         assert await page.get_by_test_id("capability-row").count() == 40
@@ -93,7 +107,7 @@ async def main():
         assert bugs["bugCount"] == len(BUGS)
 
         await page.set_viewport_size({"width": 390, "height": 844})
-        for path in ["/shop", "/capabilities?kind=control", "/coding-bugs?q=hydration", "/integration-services"]:
+        for path in ["/shop", "/solutions", "/capabilities?kind=control", "/coding-bugs?q=hydration", "/integration-services"]:
             await page.goto(ORIGIN + path)
             fits = await page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
             if not fits:
