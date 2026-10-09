@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "recordKind": "sanitised-agentic-coding-bug-index",
   "indexedOn": "2026-10-09",
-  "scope": "Documented historical defects and preventive failure modes recovered from reviewed work. This indexing pass does not freshly reproduce them or certify current production health.",
+  "scope": "Historical defects and preventive patterns recovered from reviewed work, plus current failures caught by acceptance checks. Each record qualifies its observation and repair evidence; production health requires separate verification.",
   "bugs": [
     {
       "id": "BUG-0001",
@@ -415,6 +415,29 @@
         "basis": "Reviewed preventive pattern",
         "sourceUrl": "https://github.com/AyobamiH/agent-shop-products/blob/main/docs/LATEST_WORK_REVIEW.md",
         "scope": "Cross-project continuation pattern; not a newly reproduced defect or proof every agent made the error."
+      },
+      "indexedOn": "2026-10-09"
+    },
+    {
+      "id": "BUG-0019",
+      "title": "Unsupported API write falls through to HTML success",
+      "project": "Agent Shop",
+      "category": "UI and contracts",
+      "trigger": "An agent sends POST, PUT, PATCH or DELETE to a GET-only discovery endpoint.",
+      "symptom": "The framework returns HTML with HTTP 200 instead of rejecting the unsupported method.",
+      "rootCause": "A missing method handler falls through to the application renderer; declaring GET alone does not enforce HTTP method rejection.",
+      "consequence": "Agent clients can mistake a successful HTTP response for an accepted write or handoff.",
+      "repair": "Declare explicit write-method handlers returning 405 with Allow: GET on each read-only JSON route.",
+      "regressionCheck": "Check POST, PUT, PATCH and DELETE against registry, integration brief and coding bug JSON: all twelve pairs must return 405 and Allow: GET.",
+      "status": "Implementation reviewed",
+      "skillId": "machine-discovery-surface-engineering",
+      "nextAcceptance": "Verify method rejection on the exact deployed origin after release.",
+      "evidence": {
+        "id": "BEV-0019",
+        "sourceId": "agent-shop-http-method-fallback",
+        "basis": "Public implementation and dated report",
+        "sourceUrl": "https://github.com/AyobamiH/agent-shop-products/pull/26",
+        "scope": "CI run 37901366579 observed POST returning 200. The repair then passed all twelve method/surface checks on the local Node preview on 9 October. Production deployment remains unverified."
       },
       "indexedOn": "2026-10-09"
     }

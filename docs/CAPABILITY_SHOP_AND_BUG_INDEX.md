@@ -8,6 +8,6 @@ Each external listing has a stable kind/name identifier, provider or surface met
 
 The existing private institutional workbook was read live: 82 problems, 118 attempts and 30 reusable solutions. Two new native table tabs hold the agentic coding bug index and scoped evidence. Its original eleven tabs and records are preserved. The public sanitised seed lives in `catalog/agentic-coding-bugs.json`; it contains no private workbook URL, transcript, customer data or credentials.
 
-The first 18 entries capture documented failure modes and preventive checks. Historical reports, public implementation review and open candidate repairs have separate evidence states. None is labelled freshly reproduced by this indexing pass. Stable bug/evidence IDs permit later attempts, revalidation and supersession without overwriting earlier evidence.
+The first 18 entries capture recovered failure modes and preventive checks. Historical reports, implementation review and open candidate repairs have separate evidence states. Those historical entries were not freshly reproduced by this indexing pass. A nineteenth entry records the actual unsupported-method defect caught by this change's browser CI and the twelve-pair local regression acceptance of its repair. Stable bug/evidence IDs permit later attempts, revalidation and supersession without overwriting earlier evidence.
 
 Production publication requires the existing Cloudflare deployment connection. A repository merge, build or local readback alone does not establish that the public origin serves the new registry.

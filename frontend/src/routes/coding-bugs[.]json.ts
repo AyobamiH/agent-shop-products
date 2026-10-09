@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { codingBugIndex } from "@/domain/coding-bugs/repository";
 import { absoluteUrl } from "@/lib/site";
+import { readOnlyWriteHandlers } from "@/lib/machine-readable/read-only";
 export const Route = createFileRoute("/coding-bugs.json")({
   server: {
     handlers: {
+      ...readOnlyWriteHandlers,
       GET: () =>
         Response.json(
           {

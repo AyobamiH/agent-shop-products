@@ -84,8 +84,8 @@ describe("complete external acquisition catalogue", () => {
   });
   it("keeps scoped bug evidence linked and avoids fresh-production claims", () => {
     const bugs = listCodingBugs();
-    expect(bugs).toHaveLength(18);
-    expect(new Set(bugs.map((b) => b.evidence.id)).size).toBe(18);
+    expect(bugs).toHaveLength(19);
+    expect(new Set(bugs.map((b) => b.evidence.id)).size).toBe(19);
     expect(
       bugs.every((b) => Boolean(b.evidence.scope && b.nextAcceptance && b.regressionCheck)),
     ).toBe(true);

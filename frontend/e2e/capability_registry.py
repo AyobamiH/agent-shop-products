@@ -41,7 +41,11 @@ async def main():
         assert await page.get_by_role("link", name="Request an integration quote").count() == 0
         assert (await page.request.get(ORIGIN + "/capability-brief.json?id=missing")).status == 404
         assert (await page.request.get(ORIGIN + "/capabilities/missing")).status == 404
-        assert (await page.request.post(ORIGIN + "/capability-brief.json", data="{}" )).status >= 400
+        for path in ["/capabilities.json", "/capability-brief.json", "/coding-bugs.json"]:
+            for method in ["POST", "PUT", "PATCH", "DELETE"]:
+                write = await page.request.fetch(ORIGIN + path, method=method, data="{}")
+                assert write.status == 405, (path, method, write.status)
+                assert write.headers["allow"] == "GET"
 
         await page.goto(ORIGIN + "/capabilities")
         await expect(page.get_by_test_id("capability-count")).to_contain_text("990 matching capabilities")
@@ -60,14 +64,14 @@ async def main():
         assert await page.get_by_test_id("capability-row").count() == len(api["capabilities"])
 
         await page.goto(ORIGIN + "/coding-bugs")
-        assert await page.get_by_test_id("coding-bug").count() == 18
+        assert await page.get_by_test_id("coding-bug").count() == 19
         await page.get_by_label("Search bugs and repair patterns", exact=True).fill("hydration")
         await page.get_by_role("button", name="Search", exact=True).click()
         assert await page.get_by_test_id("coding-bug").count() == 1
         await page.locator("summary").click()
         await expect(page.get_by_role("link", name="Inspect supporting source")).to_be_visible()
         bugs = await (await page.request.get(ORIGIN + "/coding-bugs.json")).json()
-        assert bugs["bugCount"] == 18
+        assert bugs["bugCount"] == 19
 
         await page.set_viewport_size({"width": 390, "height": 844})
         for path in ["/shop", "/capabilities?kind=control", "/coding-bugs?q=hydration"]:
@@ -75,7 +79,7 @@ async def main():
             assert await page.evaluate("document.documentElement.scrollWidth <= window.innerWidth"), path + " overflows mobile viewport"
         assert not errors, errors
         await browser.close()
-        print("PASS: 990 registry records, all sitemap IDs, quote boundaries, URL filters, 18 bugs and mobile layout")
+        print("PASS: 990 registry records, all sitemap IDs, quote boundaries, URL filters, 19 bugs and mobile layout")
 
 
 asyncio.run(main())
