@@ -68,7 +68,9 @@ describe("Private kit gated commerce", () => {
     const order = { id: "order-123", checkout_session_id: "cs_test_123456789012",
       offer_id: offer.id, offer_version: offer.version, amount_pence: 4900, currency: "gbp" };
     const session = { id: order.checkout_session_id, client_reference_id: order.id, mode: "payment",
-      livemode: false, payment_status: "paid", amount_total: 4900, currency: "gbp",
+      livemode: false, payment_status: "paid", amount_subtotal: 4900,
+      amount_total: 5880, total_details: { amount_tax: 980, amount_discount: 0, amount_shipping: 0 },
+      currency: "gbp",
       payment_intent: "pi_123456789012",
       metadata: { agent_shop_order_id: order.id, offer_id: KIT, offer_version: offer.version },
       line_items: { data: [{ price: { id: offer.priceId }, quantity: 1 }] } };
@@ -76,6 +78,9 @@ describe("Private kit gated commerce", () => {
     for (const bad of [
       { amount_total: 100 }, { payment_status: "unpaid" }, { livemode: true },
       { currency: "usd" }, { line_items: { data: [] } },
+      { amount_subtotal: 4800 }, { amount_total: 4900 },
+      { total_details: { amount_tax: 980, amount_discount: 100, amount_shipping: 0 } },
+      { total_details: null },
     ]) expect(() => verifyPaidSession({ ...session, ...bad }, offer, order)).toThrow();
   });
   it("refuses Checkout when Stripe's actual price conflicts with approved displayed amount", async () => {

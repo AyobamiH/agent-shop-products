@@ -118,7 +118,8 @@ function PrivateKitsPage() {
                 <>
                   <p className="text-lg font-semibold">{price}</p>
                   <p className="mt-2 text-xs text-muted-foreground">
-                    One-off digital delivery. Taxes are calculated in the approved Stripe checkout.
+                    One-off digital delivery. The displayed GBP amount excludes applicable taxes,
+                    which are calculated during the approved Stripe checkout.
                     Review the governing documents before purchasing.
                   </p>
                   <div className="mt-3 flex flex-wrap gap-4 text-sm">

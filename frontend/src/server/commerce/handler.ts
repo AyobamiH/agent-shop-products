@@ -41,9 +41,14 @@ function offerOrFail(env: CommerceEnv, id: string): ApprovedOffer {
   if (!offer) throw new CommerceFailure("OFFER_UNAVAILABLE", 409);
   return offer;
 }
-async function applied(statement: ReturnType<CommerceD1["prepare"]>): Promise<void> {
+async function applied(
+  statement: ReturnType<CommerceD1["prepare"]>, expectedChanges?: number,
+): Promise<void> {
   const result = await statement.run();
-  if (result.success === false) throw new CommerceFailure("COMMERCE_STORAGE_UNAVAILABLE", 503, true);
+  if (result.success === false ||
+      (expectedChanges !== undefined && result.meta?.changes !== expectedChanges)) {
+    throw new CommerceFailure("COMMERCE_STORAGE_UNAVAILABLE", 503, true);
+  }
 }
 function verifyClientJSON(input: unknown): { offerId: string } {
   if (!input || typeof input !== "object" || Array.isArray(input)) throw new CommerceFailure("INVALID_REQUEST", 400);
@@ -90,7 +95,7 @@ async function checkout(request: Request, env: CommerceEnv, fetcher: typeof fetc
     await applied(db.prepare(
       "INSERT INTO commerce_orders (id,offer_id,offer_version,currency,amount_pence,terms_version,state,claim_token_hash,idempotency_key,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?)"
     ).bind(orderId, approved.id, approved.version, approved.currency, approved.unitAmountPence,
-      approved.termsVersion, "creating", claimHash, nonce, created, created));
+      approved.termsVersion, "creating", claimHash, nonce, created, created), 1);
   } catch (error) {
     // Unique idempotency collisions never create a second Stripe checkout.
     if (String(error).includes("UNIQUE") || String(error).includes("constraint")) {
@@ -108,7 +113,7 @@ async function checkout(request: Request, env: CommerceEnv, fetcher: typeof fetc
   }
   await applied(db.prepare(
     "UPDATE commerce_orders SET state='checkout_open',checkout_session_id=?,checkout_url=?,updated_at=? WHERE id=? AND state='creating'"
-  ).bind(session.id, session.url, now(), orderId));
+  ).bind(session.id, session.url, now(), orderId), 1);
   // This high-entropy secret is returned once. Keep it in same-tab sessionStorage, never the Stripe URL.
   return reply({ orderId, checkoutUrl: session.url, claimToken, state: "checkout_open" }, 201);
 }
@@ -253,6 +258,33 @@ async function processWebhookEvent(event: StripeEvent, env: CommerceEnv, fetcher
   if (event.livemode !== (approved.mode === "live")) throw new CommerceFailure("PAYMENT_RECONCILIATION_FAILED", 409);
   if (!await env.PRIVATE_KITS!.head(approved.assetKey)) {
     throw new CommerceFailure("PRIVATE_ASSET_UNAVAILABLE", 503, true);
+  }
+  // Stripe does not guarantee webhook order. A refund may arrive before the
+  // matching paid-session event. Honour its tombstone rather than retrying
+  // forever or temporarily granting a kit that was already refunded.
+  const priorRefund = await db.prepare(
+    "SELECT payment_intent_id FROM commerce_refunds WHERE payment_intent_id=?",
+  ).bind(intent).first();
+  if (priorRefund) {
+    const revoked = await db.batch([
+      db.prepare("UPDATE commerce_orders SET state='revoked',payment_intent_id=?,updated_at=? WHERE id=? AND state IN ('checkout_open','paid','revoked')")
+        .bind(intent, timestamp, order.id),
+      db.prepare("UPDATE commerce_entitlements SET state='revoked',revoked_at=? WHERE order_id=? AND state='active'")
+        .bind(timestamp, order.id),
+    ]);
+    if (revoked.some((row) => row.success === false)) {
+      throw new CommerceFailure("COMMERCE_STORAGE_UNAVAILABLE", 503, true);
+    }
+    const finalOrder = await db.prepare("SELECT * FROM commerce_orders WHERE id=?")
+      .bind(order.id).first<Order>();
+    const finalEntitlement = await db.prepare("SELECT state,object_key FROM commerce_entitlements WHERE order_id=?")
+      .bind(order.id).first<Entitlement>();
+    if (finalOrder?.state !== "revoked" || finalOrder.payment_intent_id !== intent ||
+        finalEntitlement?.state === "active") {
+      throw new CommerceFailure("PAYMENT_RECONCILIATION_FAILED", 503, true);
+    }
+    await applied(recordEvent);
+    return;
   }
   // The state transition + entitlement are one atomic D1 batch. Record the
   // event only AFTER verifying both durable readbacks; failed transitions stay

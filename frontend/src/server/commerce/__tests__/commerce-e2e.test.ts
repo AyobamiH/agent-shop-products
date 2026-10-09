@@ -61,10 +61,23 @@ function fixture({ preventEntitlementInsert = false } = {}) {
       } else if (s.startsWith("INSERT OR IGNORE INTO commerce_refunds")) {
         refunds.add(String(v[0]));
       } else if (s.includes("SET state='revoked'") && s.includes("UPDATE commerce_orders")) {
-        for (const row of orders.values()) if(row.payment_intent_id===v[1])row.state="revoked";
+        if (s.includes("WHERE id=?")) {
+          const row = orders.get(String(v[2]));
+          if (row && ["checkout_open", "paid", "revoked"].includes(String(row.state))) {
+            row.state = "revoked";
+            row.payment_intent_id = v[0];
+          }
+        } else {
+          for (const row of orders.values()) if(row.payment_intent_id===v[1])row.state="revoked";
+        }
       } else if (s.includes("SET state='revoked'") && s.includes("UPDATE commerce_entitlements")) {
-        for(const [id, row] of orders) if(row.payment_intent_id===v[1]) {
-          const ent=entitlements.get(id);if(ent)ent.state="revoked";
+        if (s.includes("WHERE order_id=?")) {
+          const entitlement=entitlements.get(String(v[1]));
+          if (entitlement?.state === "active") entitlement.state = "revoked";
+        } else {
+          for(const [id, row] of orders) if(row.payment_intent_id===v[1]) {
+            const ent=entitlements.get(id);if(ent)ent.state="revoked";
+          }
         }
       } else if (s.startsWith("UPDATE commerce_entitlements SET last_download_at")) {
         const ent=entitlements.get(String(v[1]));if(ent)ent.last_download_at=v[0];
@@ -99,16 +112,18 @@ function fixture({ preventEntitlementInsert = false } = {}) {
     const url=new URL(String(input));
     if(url.pathname.endsWith("/prices/price_123456789012")) {
       return new Response(JSON.stringify({id:"price_123456789012",active:true,
-        currency:"gbp",unit_amount:4900,type:"one_time",recurring:null,livemode:false}),{status:200});
+        currency:"gbp",unit_amount:4900,type:"one_time",tax_behavior:"exclusive",recurring:null,livemode:false}),{status:200});
     }
     if(url.pathname.endsWith("/checkout/sessions")&&init?.method==="POST"){
       const body=new URLSearchParams(String(init.body));
+      if(body.get("automatic_tax[enabled]") !== "true") throw Error("Stripe Tax must be active");
       return new Response(JSON.stringify({id:SESSION,url:"https://checkout.stripe.com/pay/"+SESSION,
         livemode:false,mode:"payment",client_reference_id:body.get("client_reference_id")}),{status:200});
     }
     if(url.pathname.endsWith("/checkout/sessions/"+SESSION))return new Response(JSON.stringify({
       id:SESSION,livemode:false,mode:"payment",payment_status:"paid",
-      amount_total:4900,currency:"gbp",payment_intent:INTENT,client_reference_id:currentOrderId,
+      amount_subtotal:4900, amount_total:5880, total_details:{amount_tax:980,amount_discount:0,amount_shipping:0},
+      currency:"gbp",payment_intent:INTENT,client_reference_id:currentOrderId,
       metadata:{agent_shop_order_id:currentOrderId,offer_id:KIT,offer_version:"2026.10.1"},
       line_items:{data:[{price:{id:"price_123456789012"},quantity:1}]},
     }),{status:200});
@@ -181,6 +196,30 @@ describe("Stripe-hosted private-kit integration without live customer effects", 
     expect(f.orders.get(receipt.orderId)?.state).toBe("paid");
     expect(f.entitlements.has(receipt.orderId)).toBe(false);
     expect(f.events.size).toBe(0);
+  });
+  it("records a refund before a delayed paid event without ever granting private access", async () => {
+    const f = fixture();
+    const orderAttempt = new Request(API + "checkout", { method: "POST", headers: {
+      origin: "https://agents.proofandstate.com", "Content-Type": "application/json",
+      "Idempotency-Key": crypto.randomUUID(),
+    }, body: JSON.stringify({ offerId: KIT }) });
+    const session = await handleCommerceRequest(orderAttempt, f.env, f.fakeStripe);
+    expect(session?.status).toBe(201);
+    const { orderId, claimToken } = await session!.json() as { orderId: string; claimToken: string };
+    const refund = await f.signedEvent("charge.refunded", "evt_refundfirst123456", { payment_intent: INTENT });
+    expect((await handleCommerceRequest(refund, f.env, f.fakeStripe))?.status).toBe(200);
+    expect(f.orders.get(orderId)?.state).toBe("checkout_open");
+    const paid = await f.signedEvent("checkout.session.completed", "evt_paidlate123456", {
+      id: SESSION, client_reference_id: orderId,
+    });
+    expect((await handleCommerceRequest(paid, f.env, f.fakeStripe))?.status).toBe(200);
+    expect(f.orders.get(orderId)?.state).toBe("revoked");
+    expect(f.entitlements.get(orderId)?.state).not.toBe("active");
+    const denied = await handleCommerceRequest(new Request(API + "download/" + orderId, {
+      headers: { Authorization: "Bearer " + claimToken },
+    }), f.env);
+    expect(denied?.status).toBe(409);
+    expect(f.events.size).toBe(2);
   });
   it("does not acknowledge an early genuine webhook while checkout is still creating", async () => {
     const f=fixture();

@@ -4,6 +4,8 @@ import { CommerceFailure } from "./config";
 export type StripeSession = {
   id: string; url?: string | null; livemode?: boolean; mode?: string;
   payment_status?: string; currency?: string | null; amount_total?: number | null;
+  amount_subtotal?: number | null;
+  total_details?: { amount_tax?: number | null; amount_discount?: number | null; amount_shipping?: number | null } | null;
   client_reference_id?: string | null; metadata?: Record<string, string>;
   payment_intent?: string | { id?: string } | null;
   line_items?: { data?: Array<{ price?: { id?: string }; quantity?: number }> };
@@ -56,6 +58,7 @@ export async function verifyStripePrice(
     price["currency"] !== offer.currency ||
     price["unit_amount"] !== offer.unitAmountPence ||
     price["type"] !== "one_time" ||
+    price["tax_behavior"] !== "exclusive" ||
     (price["recurring"] !== null && price["recurring"] !== undefined)
   ) throw new CommerceFailure("PAYMENT_PRICE_MISMATCH", 409);
 }
@@ -77,6 +80,8 @@ export async function createStripeSession(
     "success_url": "https://agents.proofandstate.com/private-kits/complete?session_id={CHECKOUT_SESSION_ID}",
     "cancel_url": "https://agents.proofandstate.com/private-kits?checkout=cancelled",
     "billing_address_collection": "required",
+    // Requires an owner-approved Stripe Tax configuration. Fails closed if unavailable.
+    "automatic_tax[enabled]": "true",
   });
   const result = await stripeRequest(env.STRIPE_SECRET_KEY!, "/checkout/sessions", {
     method: "POST", body, idempotencyKey: "agent-shop-v1-" + orderId,
@@ -115,7 +120,14 @@ export function verifyPaidSession(
     session.livemode !== (offer.mode === "live") ||
     session.payment_status !== "paid" ||
     session.currency !== offer.currency ||
-    session.amount_total !== offer.unitAmountPence ||
+    // Stripe Tax can add tax on top of the approved GBP base amount. Reconcile
+    // the original line subtotal AND the exact tax-inclusive charged total.
+    session.amount_subtotal !== offer.unitAmountPence ||
+    !Number.isSafeInteger(session.total_details?.amount_tax) ||
+    Number(session.total_details?.amount_tax) < 0 ||
+    session.total_details?.amount_discount !== 0 ||
+    session.total_details?.amount_shipping !== 0 ||
+    session.amount_total !== offer.unitAmountPence + Number(session.total_details.amount_tax) ||
     order.amount_pence !== offer.unitAmountPence ||
     order.currency !== offer.currency ||
     order.offer_id !== offer.id ||

@@ -99,3 +99,15 @@ Versioned Worker URLs use configured production resources. No checkout was
 activated, no payment call was made and no customer entitlement was created.
 A source revision and a successful candidate are not equivalent to a merged
 main commit, production promotion or a verified paid purchase.
+
+## Commercial tax and checkout safety
+
+Checkout requires Stripe's `automatic_tax[enabled]=true`; the approved merchant must configure Stripe Tax and complete its tax/VAT assessment before activation. If tax computation is unavailable, session creation is rejected rather than silently making a tax-free claim. The D1 creating-row insert and checkout session persistence each require exactly one affected row before returning a purchase URL. An interrupted or ambiguous provider/network response is a recovery case, not permission to issue a second charge.
+
+### Out-of-order refunds
+
+When Stripe delivers a signed refund before a delayed paid-session event, the payment-intent refund tombstone is durable. The subsequent paid event reconciles provider payment details, atomically marks the order revoked and leaves no active download entitlement. Only after an independent state readback is the webhook event acknowledged. Synthetic tests cover both refund-before-paid and paid-before-refund ordering.
+
+### Tax-aware payment reconciliation
+
+The approved GBP kit price is a **pre-tax, one-time, tax-exclusive** price. Before opening Stripe-hosted Checkout, the server verifies Stripe's Price really is active, the correct one-off amount/currency/mode and `tax_behavior=exclusive`. It requests Stripe automatic tax. Fulfilment reconciles `amount_subtotal` to the approved kit price, zero discounts and shipping, and `amount_total = amount_subtotal + total_details.amount_tax`. It would be unsafe to compare tax-inclusive `amount_total` directly to the pre-tax price: doing so could strand a legitimately taxed buyer's delivery after payment. Synthetic tests cover both correct tax additions and forged subtotals/tax/discounts.
