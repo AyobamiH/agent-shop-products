@@ -30,3 +30,35 @@ The app's actual `handleCommerceRequest` and remote EU Cloudflare D1/R2 were exe
 **Stripe-owned, real test-mode payment and refund are PASS.** The **remaining joined boundary** is that the authentic Stripe-signed `checkout.session.completed` event for the paid Agent Shop test Session must reach the isolated Cloudflare D1/R2 receiver using its own reviewed test webhook signing secret and the approved test-only provider key. Then verify **that exact order** receives a D1 entitlement, matches the private R2 ZIP digest, survives duplicate delivery, and is revoked by a genuine Stripe test refund event (including out-of-order delivery). A signed event's mere presence in Stripe's event inventory is not proof that the application processed it. Use a test payment method only. Never perform an actual card payment, live-mode charge, legal tax registration, or grant a buyer entitlement in production as part of this test. If an authenticated Stripe webhook listener cannot place its one-time signing secret into the isolated receiver through an authorised protected path, the webhook acceptance remains open.
 
 Stripe's own automated-testing guidance warns that hosted payment interfaces employ measures that can prevent browser automation. Prefer provider-sanctioned Stripe CLI fixtures and API readbacks over brittle browser automation; the successful test used Stripe CLI's documented fixtures mechanism and supported test token, not a browser automation bypass. A session **created** or a success-page redirect is not evidence of a paid Session; only authenticated Stripe readback and durable server reconciliation are authoritative.
+
+## Real Stripe-signed callback of the exact Agent Shop £49 test SKU — verified
+
+I reran the approved test-only Price with a fresh Stripe CLI fixture (official `tok_visa` test token), while a Stripe CLI webhook listener forwarded authentic Stripe-signed test-mode events to a local receiver importing the **actual production `verifyStripeSignature`** implementation. The receiver read the ephemeral CLI listener signing secret locally, did not print it, verified the **raw request body and Stripe-Signature HMAC**, stored sanitized type/mode/verdict only, then returned HTTP 200 to Stripe CLI. No payment credentials, webhook secrets or customer data were sent to GitHub or the public Cloudflare Worker.
+
+Independent Stripe provider readback of the new *Agent Shop SKU* test purchase:
+
+- `cs_test_a1ql73nZOFwejxrJLAaUwQWuQdclvxWTaPOhSVmXhJzQJ8Scvg39X8yBof`: `livemode=false`, `status=complete`, `payment_status=paid`, `currency=gbp`, amount 4,900 pence, Stripe automatic tax **complete**, metadata `application=agent-shop` and exact offer/version/Price.
+- PaymentIntent `pi_3UOp6yGbPfXt7ec501MPEZ26`: authentic test-mode payment against this Session. Refund `re_3UOp6yGbPfXt7ec50vbA6M2K`: succeeded, 4,900 pence, **test mode only**.
+- The live Stripe CLI webhook feed reached the local receiver with a **genuine Stripe-signed** `checkout.session.completed` event (`livemode=false`, `payment_status=paid`, `merchantRefPresent=true`) and then a genuine signed `charge.refunded` event for the same test run. Both were accepted by production signature-verification code. Private receipt of the signed events is under `~/.config/woe-ops/agent-shop-sandbox-20261010/stripe-authentic-webhook-receiver.private.ndjson`; no secrets are in this repository. Listener and receiver were stopped after the controlled run.
+
+The price, genuine paid Stripe Session, genuine matching test refund and **authentic signed ingress** are now proved for the *same Agent Shop test SKU*. They are not yet proof that this exact real Stripe event was received by the **isolated Cloudflare D1/R2 Worker** and issued its entitlement, because the temporary signed receiver ran locally and had **no D1/R2 write bindings**. The separate EU Cloudflare Worker end-to-end order/payment/R2/refund proof used a synthetic Stripe backend. Keep the joined Stripe→Cloudflare fulfilment acceptance gate open. A webhook signature verifier returning 200 without durable fulfilment must never be recorded as a delivered kit.
+
+## Genuine test card decline — first-buyer negative case
+
+Another Stripe-owned test-only Checkout used the exact approved sandbox Price with `tok_chargeDeclined` through the documented CLI fixture procedure. As expected, payment confirmation failed with Stripe `card_declined`. Stripe's independent Checkout readback showed `livemode=false`, `status=open`, `payment_status=unpaid`, tax status complete, GBP subtotal 4,900 pence; the corresponding real test PaymentIntent remained `requires_payment_method`, with `last_payment_error.code=card_declined` and `decline_code=generic_decline`. No `checkout.session.completed` paid event or private entitlement was issued for that test. A card-declined buyer must be offered a safe retry inside Stripe Checkout; no fake purchase success or ZIP access is allowed. This is a **negative acceptance PASS**, not a Checkout failure incident requiring a production change.
+
+## Scope ledger after provider proof
+
+| Boundary | Evidence status |
+| --- | --- |
+| Own test Product and tax-exclusive GBP one-time Price | PASS — authentic Stripe sandbox objects |
+| Payment attempt and customer-facing Stripe-hosted Checkout | PASS — authentic test mode, no buyer |
+| Provider status `paid`, exact amount/Price/mode/metadata, completed tax | PASS — independent Stripe API readback |
+| Real sandbox refund and matching charge refund event | PASS — independent Stripe API readback |
+| Authentic signed callback accepted by production HMAC verifier | PASS — local Stripe CLI forwarding, exact SKU |
+| Real card-decline negative test | PASS — `requires_payment_method`, no paid event |
+| Durable EU D1/R2 order→entitlement→ZIP→refund | PASS — separate controlled synthetic-provider test |
+| The SAME real signed Stripe event issuing/revoking a Cloudflare D1 entitlement | NOT YET VERIFIED — separate trust boundary |
+| Real sale, customer payment, UK terms/tax approval, customer support fulfilment | NOT ENABLED |
+
+The next paid-commerce gate is to securely configure the **dedicated** Cloudflare sandbox Stripe test runtime key and a Stripe webhook signing secret for the *exact* isolated endpoint, rerun a test Checkout before activating any live buyer, and independently confirm event-to-D1-to-R2-to-refund reconciliation. Never turn production checkout on just because this table has multiple green cells.
