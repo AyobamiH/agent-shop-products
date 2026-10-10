@@ -27,8 +27,8 @@ The joined £9 test payment, private fulfilment, genuine refund and direct deplo
 | Item | Current evidence | Required resolution |
 | --- | --- | --- |
 | Public geographical business address | No approved non-home address found in prior context; home publication prohibited | Owner supplies a legitimate non-home business address authorised for customer-facing disclosure |
-| Working purchase/support email | Previously published hello@proofandstate.com; Stripe business support email empty | Verify a monitored mailbox or provide the existing working support address |
-| Merchant profile | Existing UK individual Stripe merchant and its test account verified; public business-profile fields empty | Align live merchant legal seller, public support details and statement descriptor using verified facts |
+| Working purchase/support email | Previously published hello@proofandstate.com; Test-account support email empty; live profile not independently read | Verify a monitored mailbox or provide the existing working support address |
+| Merchant profile | Existing UK individual Stripe merchant and its test account verified; tested account business-profile fields empty. The existing restricted live credential returned 403 on account-profile read, so the live profile is unverified | Align live merchant legal seller, public support details and statement descriptor using verified facts |
 | Tax treatment | Test account had no Stripe tax registrations | Assess applicable UK/worldwide tax responsibilities; configure only genuinely required/authorised registrations and buyer location handling |
 | Contract/licence/refunds/support | Concrete proposed terms above | Record the approved exact terms version; publish durable purchase, licence, refund and privacy documents |
 | Live runtime | Application technical tests passed; checkout remains closed | Bind the verified live Price, keys and permanent restricted webhook after commercial inputs resolve; verify exact-source CI and production readbacks |
