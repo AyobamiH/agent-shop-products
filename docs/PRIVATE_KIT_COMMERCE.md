@@ -136,3 +136,11 @@ Isolated remote Cloudflare D1/R2 lifecycle evidence and its distinction from act
 ### Provider-key least privilege
 
 Provider runtime credentials may be either `rk_test_`/`rk_live_` **restricted** keys or full `sk_test_`/`sk_live_` secrets. Select a least-privilege restricted key with Price read, Checkout Session create and retrieve plus relevant refund/charge read permissions. Never use an operator key for runtime settlement, never accept mode mismatch, and never expose API keys in logs or R2. Stripe still checks actual account and permission authority on each call.
+
+### October 2026 Stripe Checkout API compatibility
+
+Stripe's current Checkout API rejects the formerly supported `payment_method_types` argument in Checkout Session creation; the merchant's Dashboard payment-method configuration is the current authority. The test-mode integration was directly exercised against Stripe's connected sandbox: the legacy parameter returned HTTP 400, while removal allowed an authentic `cs_test_` hosted Session to be created with tax enabled and the original GBP amount. Production must never disable its automatic-tax or exact-price safeguards merely to obtain a test result. See `docs/STRIPE_SANDBOX_REHEARSAL_20261010.md` for the distinctly labelled paid-fixture and still-unpaid Agent Shop Session evidence.
+
+### Completed real test-mode Stripe payment and refund (10 October 2026)
+
+Before accepting any first buyer, a Stripe-owned test-only Product and tax-exclusive £49 Price were created via the connected **test-mode** account, and Stripe's documented CLI fixtures/test-token flow completed a **genuine paid GBP Checkout Session** with exact offer/version/Price metadata. Stripe's independently retrieved Session showed `payment_status=paid` and `automatic_tax.status=complete`; the PaymentIntent succeeded, and a full test-mode refund produced Stripe's matching `charge.refunded` event. No buyer or live-money transaction was involved. Anonymised real provider shapes are now regression-tested in source. This proves the Stripe payment-processing boundary but does **not** automatically verify a Stripe-signed event crossing into the isolated D1/R2 Worker. That joined webhook/entitlement/refund gate stays open pending protected sandbox signing-key placement and independent runtime readback. Source: `docs/STRIPE_SANDBOX_REHEARSAL_20261010.md`.

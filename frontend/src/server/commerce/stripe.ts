@@ -5,6 +5,7 @@ export type StripeSession = {
   id: string; url?: string | null; livemode?: boolean; mode?: string;
   payment_status?: string; currency?: string | null; amount_total?: number | null;
   amount_subtotal?: number | null;
+  automatic_tax?: { enabled?: boolean; status?: string | null } | null;
   total_details?: { amount_tax?: number | null; amount_discount?: number | null; amount_shipping?: number | null } | null;
   client_reference_id?: string | null; metadata?: Record<string, string>;
   payment_intent?: string | { id?: string } | null;
@@ -71,7 +72,9 @@ export async function createStripeSession(
     mode: "payment",
     "line_items[0][price]": offer.priceId,
     "line_items[0][quantity]": "1",
-    "payment_method_types[0]": "card",
+    // Stripe Checkout now derives allowed payment methods from the merchant's
+    // Dashboard configuration. Legacy `payment_method_types` rejects sessions
+    // on Stripe's current 2026 API. Keep the policy on the merchant side.
     "client_reference_id": orderId,
     "metadata[agent_shop_order_id]": orderId,
     "metadata[offer_id]": offer.id,
@@ -119,6 +122,10 @@ export function verifyPaidSession(
     session.mode !== "payment" ||
     session.livemode !== (offer.mode === "live") ||
     session.payment_status !== "paid" ||
+    // Checkout must have actually completed Stripe Tax calculation; a 0 tax
+    // result is acceptable, but disabled or unresolved automatic tax is not.
+    session.automatic_tax?.enabled !== true ||
+    session.automatic_tax.status !== "complete" ||
     session.currency !== offer.currency ||
     // Stripe Tax can add tax on top of the approved GBP base amount. Reconcile
     // the original line subtotal AND the exact tax-inclusive charged total.

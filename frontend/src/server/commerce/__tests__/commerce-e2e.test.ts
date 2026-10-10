@@ -123,12 +123,16 @@ function fixture({ preventEntitlementInsert = false,
     if(url.pathname.endsWith("/checkout/sessions")&&init?.method==="POST"){
       const body=new URLSearchParams(String(init.body));
       if(body.get("automatic_tax[enabled]") !== "true") throw Error("Stripe Tax must be active");
+      if(body.has("payment_method_types[0]") || body.has("payment_method_types")) {
+        throw Error("Stripe 2026 Checkout rejects legacy payment_method_types");
+      }
       if (stripeCommittedButTimedOut) throw new Error("synthetic Stripe transport loss after session commit");
       return new Response(JSON.stringify({id:SESSION,url:"https://checkout.stripe.com/pay/"+SESSION,
         livemode:false,mode:"payment",client_reference_id:body.get("client_reference_id")}),{status:200});
     }
     if(url.pathname.endsWith("/checkout/sessions/"+SESSION))return new Response(JSON.stringify({
       id:SESSION,livemode:false,mode:"payment",payment_status:"paid",
+      automatic_tax:{enabled:true,status:"complete"},
       amount_subtotal:4900, amount_total:5880, total_details:{amount_tax:980,amount_discount:0,amount_shipping:0},
       currency:"gbp",payment_intent:INTENT,client_reference_id:currentOrderId,
       metadata:{agent_shop_order_id:currentOrderId,offer_id:KIT,offer_version:"2026.10.1"},
