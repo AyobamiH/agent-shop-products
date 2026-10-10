@@ -42,6 +42,7 @@ export function activeVersion(deployments) {
 
 export async function guardedPromote({
   sha, versionId, accountId, token, fetcher = fetch, publicVerifier,
+  expectedPreviousVersion,
   delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
 }) {
   if (!SHA_RE.test(sha) || !ID_RE.test(versionId) ||
@@ -70,6 +71,9 @@ export async function guardedPromote({
   verifyCandidateMetadata(version, sha);
   const deployments = await api("GET", "/deployments");
   const prior = activeVersion(deployments);
+  if (expectedPreviousVersion && prior !== expectedPreviousVersion) {
+    throw Error("PRODUCTION_CHANGED_DURING_RELEASE");
+  }
   if (prior === versionId) {
     const observed = await publicVerifier(ORIGIN);
     if (observed.status !== "PASS" || observed.commerceActive !== false ||
