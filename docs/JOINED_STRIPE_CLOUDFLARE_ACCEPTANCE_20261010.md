@@ -1,5 +1,7 @@
 # Joined Stripe-to-Cloudflare private-kit acceptance — 10 October 2026
 
+> Update, 10 October 13:33 UTC: direct Stripe delivery to a deployed Cloudflare HTTPS webhook also passed. See [deployed endpoint acceptance](DEPLOYED_STRIPE_ACCEPTANCE_20261010.md).
+
 **PASS at 12:18:54 UTC.** Tested production commerce source `21bcfa75a49abb3b5c6fa859c0e5224b352764ca` with authentic Stripe test-mode payments and signed callbacks, isolated remote EU Cloudflare D1 and private EU R2. No real buyer or live money was involved.
 
 This closes the previously unverified **same-payment Stripe → signed callback → D1 entitlement → private R2 download → genuine refund → revocation** technical gate. It supersedes the open joined-boundary statements in the earlier Stripe and synthetic sandbox reports. It does not activate production sales.
