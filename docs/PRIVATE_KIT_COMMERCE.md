@@ -136,3 +136,7 @@ Isolated remote Cloudflare D1/R2 lifecycle evidence and its distinction from act
 ### Provider-key least privilege
 
 Provider runtime credentials may be either `rk_test_`/`rk_live_` **restricted** keys or full `sk_test_`/`sk_live_` secrets. Select a least-privilege restricted key with Price read, Checkout Session create and retrieve plus relevant refund/charge read permissions. Never use an operator key for runtime settlement, never accept mode mismatch, and never expose API keys in logs or R2. Stripe still checks actual account and permission authority on each call.
+
+### October 2026 Stripe Checkout API compatibility
+
+Stripe's current Checkout API rejects the formerly supported `payment_method_types` argument in Checkout Session creation; the merchant's Dashboard payment-method configuration is the current authority. The test-mode integration was directly exercised against Stripe's connected sandbox: the legacy parameter returned HTTP 400, while removal allowed an authentic `cs_test_` hosted Session to be created with tax enabled and the original GBP amount. Production must never disable its automatic-tax or exact-price safeguards merely to obtain a test result. See `docs/STRIPE_SANDBOX_REHEARSAL_20261010.md` for the distinctly labelled paid-fixture and still-unpaid Agent Shop Session evidence.

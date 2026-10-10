@@ -71,7 +71,9 @@ export async function createStripeSession(
     mode: "payment",
     "line_items[0][price]": offer.priceId,
     "line_items[0][quantity]": "1",
-    "payment_method_types[0]": "card",
+    // Stripe Checkout now derives allowed payment methods from the merchant's
+    // Dashboard configuration. Legacy `payment_method_types` rejects sessions
+    // on Stripe's current 2026 API. Keep the policy on the merchant side.
     "client_reference_id": orderId,
     "metadata[agent_shop_order_id]": orderId,
     "metadata[offer_id]": offer.id,
