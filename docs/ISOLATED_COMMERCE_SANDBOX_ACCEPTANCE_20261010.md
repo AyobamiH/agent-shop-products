@@ -1,5 +1,7 @@
 # Agent Shop private-kit sandbox acceptance — 10 October 2026
 
+> Update, 10 October 12:18 UTC: the authentic £9 Stripe-to-remote-Cloudflare joined payment, private delivery and refund run has now passed. See [joined acceptance](JOINED_STRIPE_CLOUDFLARE_ACCEPTANCE_20261010.md). Earlier evidence and limits below are historical; production sales remain disabled.
+
 **Result: Cloudflare-integrated synthetic payment lifecycle PASS. This is not a live or Stripe test-mode paid transaction.** Do not classify it as a buyer acceptance or Stripe-hosted Checkout acceptance.
 
 ## Isolated infrastructure and evidence

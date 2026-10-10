@@ -1,5 +1,7 @@
 # Stripe-hosted Checkout and event rehearsal — 10 October 2026
 
+> Update, 10 October 12:18 UTC: the authentic £9 Stripe-to-remote-Cloudflare joined payment, private delivery and refund run has now passed. See [joined acceptance](JOINED_STRIPE_CLOUDFLARE_ACCEPTANCE_20261010.md). Earlier evidence and limits below are historical; production sales remain disabled.
+
 **Account and environment:** Verified UK merchant test-mode account `acct_1QNKKrGbPfXt7ec5`, `livemode=false`. No real card or buyer is used, and no real money is moved. This proof is *not* approval for live sales, UK VAT registration, cancellation terms, private licences or final support/updates.
 
 ## Provider-owned test objects
