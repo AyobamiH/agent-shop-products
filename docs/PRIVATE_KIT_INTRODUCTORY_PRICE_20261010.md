@@ -1,5 +1,7 @@
 # Agent Shop introductory pricing — 10 October 2026
 
+> Update, 10 October 12:18 UTC: the authentic £9 Stripe-to-remote-Cloudflare joined payment, private delivery and refund run has now passed. See [joined acceptance](JOINED_STRIPE_CLOUDFLARE_ACCEPTANCE_20261010.md). Earlier evidence and limits below are historical; production sales remain disabled.
+
 **Owner direction:** The earlier £49 Stripe sandbox Price was too high for the small original reference implementation currently delivered. Reposition the first differentiated private execution kit to **£9 one-off** (900 pence), excluding any correctly calculated applicable tax. This is an introductory low-friction price, not a recurring subscription, permanent price guarantee, inflated value claim, or promise of future free upgrades. The 33 source-backed original public products and 990 names-only external capability records remain FREE to discover; no publicly available prompt is turned into a paid item.
 
 The available deliverable is an original 3,967-byte versioned private reference archive, with a fail-closed signed-grant example, 17 positive/negative Node tests and a documented failure/rollback matrix. Present it accurately as a *reference implementation* rather than a complete turnkey agent product or guaranteed production integration. Paid bundling and higher tiers are **not live products** until genuinely distinct, larger, independently verified assets exist. Private client-specific engineering/integration remains quote-first rather than a hidden checkout upsell.
