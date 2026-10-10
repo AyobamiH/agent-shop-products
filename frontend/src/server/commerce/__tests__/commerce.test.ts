@@ -1,9 +1,10 @@
 import { describe, expect, it, vi } from "vitest";
-import { approvedOffer, publicOffers } from "../config";
+import { approvedOffer, publicOffers, settlementOffer } from "../config";
 import type { CommerceEnv } from "../config";
 import { claimTokenHash, newClaimToken, verifyStripeSignature } from "../crypto";
 import { verifyPaidSession, verifyStripePrice } from "../stripe";
 import { handleCommerceRequest } from "../handler";
+import realIntroductorySession from "./fixtures/stripe-nine-pound-sandbox-20261010.json";
 
 type Overrides = { [K in keyof CommerceEnv]?: CommerceEnv[K] | undefined };
 function ready(overrides: Overrides = {}): CommerceEnv {
@@ -11,7 +12,7 @@ function ready(overrides: Overrides = {}): CommerceEnv {
     COMMERCE_ENABLED: "true", COMMERCE_MODE: "test",
     COMMERCE_OFFER_APPROVAL: JSON.stringify({
       offerId: "private-production-agent-operating-kit", version: "2026.10.1",
-      priceId: "price_123456789012", unitAmountPence: 4900, currency: "gbp",
+      priceId: "price_123456789012", unitAmountPence: 900, currency: "gbp",
       termsVersion: "terms.v1", licenceVersion: "licence.v1",
       refundPolicyVersion: "refund.v1", commercialDecisionId: "approval.v1",
       termsUrl: "https://agents.proofandstate.com/legal/kit-terms",
@@ -34,7 +35,7 @@ describe("Private kit gated commerce", () => {
     expect(approvedOffer({}, KIT)).toBeNull();
   });
   it("requires explicit offer, legal, mode, storage, rate limit and live approval", () => {
-    expect(approvedOffer(ready(), KIT)).toMatchObject({ mode: "test", unitAmountPence: 4900 });
+    expect(approvedOffer(ready(), KIT)).toMatchObject({ mode: "test", unitAmountPence: 900 });
     expect(approvedOffer(ready({ COMMERCE_DB: undefined }), KIT)).toBeNull();
     expect(approvedOffer(ready({ PRIVATE_KITS: undefined }), KIT)).toBeNull();
     expect(approvedOffer(ready({ COMMERCE_RATE_LIMITER: undefined }), KIT)).toBeNull();
@@ -46,6 +47,26 @@ describe("Private kit gated commerce", () => {
     expect(approvedOffer(ready({ COMMERCE_MODE: "live", STRIPE_SECRET_KEY: "sk_live_example",
       COMMERCE_LIVE_APPROVED: "yes:approval.v1" }), KIT)).toMatchObject({ mode: "live" });
     expect(approvedOffer(ready({ COMMERCE_OFFER_APPROVAL: "{broken" }), KIT)).toBeNull();
+    const overpricedApproval = ready({
+      COMMERCE_OFFER_APPROVAL: ready().COMMERCE_OFFER_APPROVAL!.replace('"unitAmountPence":900','"unitAmountPence":4900'),
+    });
+    // The old £49 engineering fixture is not permission to charge £49 live.
+    expect(approvedOffer(overpricedApproval, KIT)).toBeNull();
+    // But a historic signed £49 payment must remain individually settleable.
+    expect(settlementOffer(overpricedApproval, KIT)?.unitAmountPence).toBe(4900);
+  });
+  it("does not misrepresent a genuine £9 Stripe test Checkout as paid before confirmation", () => {
+    expect(realIntroductorySession.livemode).toBe(false);
+    expect(realIntroductorySession.amount_subtotal).toBe(900);
+    expect(realIntroductorySession.currency).toBe("gbp");
+    expect(realIntroductorySession.line_items.data).toEqual([{
+      price: { id: "price_1UOp7qGbPfXt7ec5XHftnGUj" }, quantity: 1,
+    }]);
+    expect(realIntroductorySession.status).toBe("open");
+    expect(realIntroductorySession.payment_status).toBe("unpaid");
+    expect(realIntroductorySession.payment_intent).toBeNull();
+    expect(realIntroductorySession.automatic_tax.enabled).toBe(true);
+    expect(realIntroductorySession.automatic_tax.status).toBe("requires_location_inputs");
   });
   it("issues distinct 256-bit claims and hashes", async () => {
     const a = newClaimToken(), b = newClaimToken();
@@ -69,11 +90,11 @@ describe("Private kit gated commerce", () => {
   it("reconciles real payment status, price, amount, currency, intent and mode", () => {
     const offer = approvedOffer(ready(), KIT)!;
     const order = { id: "order-123", checkout_session_id: "cs_test_123456789012",
-      offer_id: offer.id, offer_version: offer.version, amount_pence: 4900, currency: "gbp" };
+      offer_id: offer.id, offer_version: offer.version, amount_pence: 900, currency: "gbp" };
     const session = { id: order.checkout_session_id, client_reference_id: order.id, mode: "payment",
       livemode: false, payment_status: "paid", automatic_tax: { enabled: true, status: "complete" },
-      amount_subtotal: 4900,
-      amount_total: 5880, total_details: { amount_tax: 980, amount_discount: 0, amount_shipping: 0 },
+      amount_subtotal: 900,
+      amount_total: 1080, total_details: { amount_tax: 180, amount_discount: 0, amount_shipping: 0 },
       currency: "gbp",
       payment_intent: "pi_123456789012",
       metadata: { agent_shop_order_id: order.id, offer_id: KIT, offer_version: offer.version },
@@ -82,8 +103,8 @@ describe("Private kit gated commerce", () => {
     for (const bad of [
       { amount_total: 100 }, { payment_status: "unpaid" }, { livemode: true },
       { currency: "usd" }, { line_items: { data: [] } },
-      { amount_subtotal: 4800 }, { amount_total: 4900 },
-      { total_details: { amount_tax: 980, amount_discount: 100, amount_shipping: 0 } },
+      { amount_subtotal: 800 }, { amount_total: 900 },
+      { total_details: { amount_tax: 180, amount_discount: 100, amount_shipping: 0 } },
       { total_details: null },
       { automatic_tax: { enabled: false, status: "complete" } },
       { automatic_tax: { enabled: true, status: "requires_location_inputs" } },

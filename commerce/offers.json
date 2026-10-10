@@ -22,7 +22,10 @@
         "An explicitly authorised repository or runtime",
         "Operator review before applying any generated change",
         "No delegated live-merge, production deploy or billing authority"
-      ]
+      ],
+      "introductoryUnitAmountPence": 900,
+      "introductoryPriceStatus": "approved_pricing_direction_pending_merchant_legal_and_webhook_acceptance",
+      "purchaseType": "one_off_no_subscription"
     }
   ]
 }

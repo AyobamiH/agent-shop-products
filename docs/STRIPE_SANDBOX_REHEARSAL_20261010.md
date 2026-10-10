@@ -62,3 +62,9 @@ Another Stripe-owned test-only Checkout used the exact approved sandbox Price wi
 | Real sale, customer payment, UK terms/tax approval, customer support fulfilment | NOT ENABLED |
 
 The next paid-commerce gate is to securely configure the **dedicated** Cloudflare sandbox Stripe test runtime key and a Stripe webhook signing secret for the *exact* isolated endpoint, rerun a test Checkout before activating any live buyer, and independently confirm event-to-D1-to-R2-to-refund reconciliation. Never turn production checkout on just because this table has multiple green cells.
+
+## Lower introductory £9 sandbox price (10 October 2026)
+
+The owner rejected £49 as a launch price for this small reference kit. Dedicated new **Stripe test-mode** Price `price_1UOp7qGbPfXt7ec5XHftnGUj` for the same product was created: GBP 900 pence, one-time, tax-exclusive, `livemode=false`, `environment=isolated-sandbox`. A genuine Stripe-hosted Checkout Session `cs_test_a1A205uc7w5daiez3SjOv6DGZtxDkscYhPzb57tdtu644PM3F21wVEEi3Z` was successfully created with one £9 item and Stripe Tax enabled. It remained `status=open`, `payment_status=unpaid`, with no real money movement. The previous £49 fully paid/refunded Stripe test is retained as historical provider evidence. **Do not claim that the new £9 session has been paid or that an authentic £9 signed webhook reached Cloudflare D1.** The source config blocks accidental new £49 charges after the reviewed £9 introductory direction.
+
+See `docs/PRIVATE_KIT_INTRODUCTORY_PRICE_20261010.md` for the offer, code admission rule, fee context, legal gate and conversion instrumentation.

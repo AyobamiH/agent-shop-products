@@ -99,7 +99,7 @@ function fixture({ preventEntitlementInsert = false,
     COMMERCE_ENABLED: "true", COMMERCE_MODE: "test",
     COMMERCE_OFFER_APPROVAL: JSON.stringify({
       offerId:KIT,version:"2026.10.1",priceId:"price_123456789012",
-      unitAmountPence:4900,currency:"gbp",termsVersion:"terms.v1",
+      unitAmountPence:900,currency:"gbp",termsVersion:"terms.v1",
       licenceVersion:"licence.v1",refundPolicyVersion:"refund.v1",commercialDecisionId:"approval.v1",
       termsUrl:"https://agents.proofandstate.com/legal/kit-terms",
       licenceUrl:"https://agents.proofandstate.com/legal/kit-licence",
@@ -118,7 +118,7 @@ function fixture({ preventEntitlementInsert = false,
     const url=new URL(String(input));
     if(url.pathname.endsWith("/prices/price_123456789012")) {
       return new Response(JSON.stringify({id:"price_123456789012",active:true,
-        currency:"gbp",unit_amount:4900,type:"one_time",tax_behavior:"exclusive",recurring:null,livemode:false}),{status:200});
+        currency:"gbp",unit_amount:900,type:"one_time",tax_behavior:"exclusive",recurring:null,livemode:false}),{status:200});
     }
     if(url.pathname.endsWith("/checkout/sessions")&&init?.method==="POST"){
       const body=new URLSearchParams(String(init.body));
@@ -133,7 +133,7 @@ function fixture({ preventEntitlementInsert = false,
     if(url.pathname.endsWith("/checkout/sessions/"+SESSION))return new Response(JSON.stringify({
       id:SESSION,livemode:false,mode:"payment",payment_status:"paid",
       automatic_tax:{enabled:true,status:"complete"},
-      amount_subtotal:4900, amount_total:5880, total_details:{amount_tax:980,amount_discount:0,amount_shipping:0},
+      amount_subtotal:900, amount_total:1080, total_details:{amount_tax:180,amount_discount:0,amount_shipping:0},
       currency:"gbp",payment_intent:INTENT,client_reference_id:currentOrderId,
       metadata:{agent_shop_order_id:currentOrderId,offer_id:KIT,offer_version:"2026.10.1"},
       line_items:{data:[{price:{id:tamperRecoverySession?"price_999999999999":"price_123456789012"},quantity:1}]},

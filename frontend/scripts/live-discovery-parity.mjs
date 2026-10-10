@@ -92,6 +92,11 @@ export function assessCommerceParity(source, live, kitHtml, completionHtml) {
   }
   const liveById = new Map(live.offers.map((item) => [item.id, item]));
   for (const offer of source.offers) {
+    const plannedAmount = offer.introductoryUnitAmountPence;
+    if (!Number.isSafeInteger(plannedAmount) || plannedAmount < 100 ||
+        plannedAmount > 100_000 || offer.currency !== "gbp") {
+      issues.push("Invalid planned entry price for: " + offer.id);
+    }
     const deployed = liveById.get(offer.id);
     if (!deployed) { issues.push("Missing public private kit: " + offer.id); continue }
     for (const key of ["id", "productId", "title", "summary", "version", "currency", "buyerRequirements"]) {
@@ -113,7 +118,8 @@ export function assessCommerceParity(source, live, kitHtml, completionHtml) {
         issues.push("Unapproved private-kit price or licence published while commerce disabled");
       }
     } else if (deployed.availability !== "purchase_available" ||
-          !Number.isSafeInteger(deployed.unitAmountPence) || deployed.unitAmountPence < 100 ||
+          !Number.isSafeInteger(deployed.unitAmountPence) ||
+          deployed.unitAmountPence !== plannedAmount || deployed.unitAmountPence < 100 ||
           !["termsUrl", "licenceUrl", "refundUrl"].every((key) =>
             typeof deployed[key] === "string" &&
             /^https:\/\/(?:agents\.)?proofandstate\.com\/legal\/[a-z0-9-]+$/.test(deployed[key]))) {

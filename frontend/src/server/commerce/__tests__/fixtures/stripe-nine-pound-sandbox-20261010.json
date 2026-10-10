@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "source": "real Stripe connected account sandbox; anonymized",
+  "id": "cs_test_ninepound_open_unpaid_20261010",
+  "status": "open",
+  "payment_status": "unpaid",
+  "livemode": false,
+  "mode": "payment",
+  "currency": "gbp",
+  "amount_subtotal": 900,
+  "amount_total": 900,
+  "automatic_tax": {
+    "enabled": true,
+    "status": "requires_location_inputs"
+  },
+  "line_items": {
+    "data": [
+      {
+        "price": {
+          "id": "price_1UOp7qGbPfXt7ec5XHftnGUj"
+        },
+        "quantity": 1
+      }
+    ]
+  },
+  "payment_intent": null,
+  "metadata": {
+    "application": "agent-shop",
+    "environment": "isolated-sandbox",
+    "offer_id": "private-production-agent-operating-kit",
+    "offer_version": "2026.10.1",
+    "introductory_price": "GBP_9_one_off"
+  }
+}

@@ -80,7 +80,8 @@ const sourceKit = {
     id: "private-production-agent-operating-kit",
     productId: "production-agent-operating-files",
     title: "Private Production Agent Operating Kit", summary: "Original private reference kit",
-    version: "2026.10.1", currency: "gbp", buyerRequirements: ["explicit operator authority"],
+    version: "2026.10.1", currency: "gbp", introductoryUnitAmountPence: 900,
+    buyerRequirements: ["explicit operator authority"],
   }],
 };
 const plannedKit = { schemaVersion: 1, commerceActive: false,
@@ -105,6 +106,16 @@ test("detects missing legal refs on an active offer and never claims a purchase"
     offers: [{ ...plannedKit.offers[0], availability: "purchase_available", unitAmountPence: 4900 }],
   }, kitHtml, completeHtml);
   assert.ok(issues.some((issue) => issue.includes("Active private-kit offer lacks")));
+});
+
+test("detects an active Stripe price above approved £9 entry level", () => {
+  const live = { ...plannedKit, commerceActive: true,
+    offers: [{ ...plannedKit.offers[0], availability: "purchase_available",
+      unitAmountPence: 4900, termsUrl: "https://agents.proofandstate.com/legal/kit-terms",
+      licenceUrl: "https://agents.proofandstate.com/legal/kit-licence",
+      refundUrl: "https://agents.proofandstate.com/legal/kit-refunds" }] };
+  const issues = assessCommerceParity(sourceKit, live, kitHtml, completeHtml);
+  assert.ok(issues.some((message) => message.includes("Active private-kit offer lacks")));
 });
 
 test("requires an unindexed buyer-completion page and no private asset keys in public offers", () => {
