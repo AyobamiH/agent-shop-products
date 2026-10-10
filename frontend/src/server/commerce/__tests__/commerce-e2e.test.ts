@@ -132,6 +132,7 @@ function fixture({ preventEntitlementInsert = false,
     }
     if(url.pathname.endsWith("/checkout/sessions/"+SESSION))return new Response(JSON.stringify({
       id:SESSION,livemode:false,mode:"payment",payment_status:"paid",
+      automatic_tax:{enabled:true,status:"complete"},
       amount_subtotal:4900, amount_total:5880, total_details:{amount_tax:980,amount_discount:0,amount_shipping:0},
       currency:"gbp",payment_intent:INTENT,client_reference_id:currentOrderId,
       metadata:{agent_shop_order_id:currentOrderId,offer_id:KIT,offer_version:"2026.10.1"},

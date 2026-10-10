@@ -5,6 +5,7 @@ export type StripeSession = {
   id: string; url?: string | null; livemode?: boolean; mode?: string;
   payment_status?: string; currency?: string | null; amount_total?: number | null;
   amount_subtotal?: number | null;
+  automatic_tax?: { enabled?: boolean; status?: string | null } | null;
   total_details?: { amount_tax?: number | null; amount_discount?: number | null; amount_shipping?: number | null } | null;
   client_reference_id?: string | null; metadata?: Record<string, string>;
   payment_intent?: string | { id?: string } | null;
@@ -121,6 +122,10 @@ export function verifyPaidSession(
     session.mode !== "payment" ||
     session.livemode !== (offer.mode === "live") ||
     session.payment_status !== "paid" ||
+    // Checkout must have actually completed Stripe Tax calculation; a 0 tax
+    // result is acceptable, but disabled or unresolved automatic tax is not.
+    session.automatic_tax?.enabled !== true ||
+    session.automatic_tax.status !== "complete" ||
     session.currency !== offer.currency ||
     // Stripe Tax can add tax on top of the approved GBP base amount. Reconcile
     // the original line subtotal AND the exact tax-inclusive charged total.

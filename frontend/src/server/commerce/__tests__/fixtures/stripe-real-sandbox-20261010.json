@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "origin": "2026-10-10 Stripe test-mode provider objects with all provider, customer, URL and real payment identifiers replaced",
+  "session": {
+    "id": "cs_test_RealSandboxProof012345678901",
+    "client_reference_id": "2fec5529-9768-4b30-9f1d-100100000002",
+    "livemode": false,
+    "status": "complete",
+    "payment_status": "paid",
+    "mode": "payment",
+    "currency": "gbp",
+    "amount_subtotal": 4900,
+    "amount_total": 4900,
+    "total_details": {
+      "amount_discount": 0,
+      "amount_shipping": 0,
+      "amount_tax": 0
+    },
+    "automatic_tax": {
+      "enabled": true,
+      "liability": {
+        "type": "self"
+      },
+      "provider": "stripe",
+      "status": "complete"
+    },
+    "payment_intent": "pi_RealSandboxProof01234567890",
+    "metadata": {
+      "agent_shop_order_id": "2fec5529-9768-4b30-9f1d-100100000002",
+      "offer_id": "private-production-agent-operating-kit",
+      "offer_version": "2026.10.1",
+      "application": "agent-shop",
+      "environment": "isolated-sandbox"
+    },
+    "line_items": {
+      "data": [
+        {
+          "price": {
+            "id": "price_1UOoeoGbPfXt7ec5mf0iN5OQ"
+          },
+          "quantity": 1
+        }
+      ]
+    }
+  },
+  "refund": {
+    "type": "charge.refunded",
+    "livemode": false,
+    "object": {
+      "payment_intent": "pi_RealSandboxProof01234567890",
+      "refunded": true,
+      "amount_refunded": 4900
+    }
+  },
+  "evidence": {
+    "realProviderTestMode": true,
+    "realTestCheckoutPaid": true,
+    "realTestRefund": true,
+    "realMoneyMoved": false,
+    "connectedCustomer": false
+  }
+}
