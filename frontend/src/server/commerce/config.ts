@@ -32,6 +32,8 @@ export type SourceOffer = {
   version: string; assetKey: string; status: string;
   deliverableType: string; fulfilment: string; currency: string;
   buyerRequirements: string[];
+  introductoryUnitAmountPence: number;
+  introductoryPriceStatus: string;
 };
 export type ApprovedOffer = SourceOffer & {
   priceId: string; unitAmountPence: number; termsVersion: string;
@@ -76,7 +78,12 @@ export function publicOffers(env: CommerceEnv): Record<string, unknown>[] {
 // The complete merchant-approved record lives in an owner-controlled runtime setting.
 export function approvedOffer(env: CommerceEnv, id: string): ApprovedOffer | null {
   if (env.COMMERCE_ENABLED !== "true") return null;
-  return configuredOffer(env, id);
+  const offer = configuredOffer(env, id);
+  // No hidden price increase: new Checkout may only use the reviewed,
+  // explicitly versioned entry amount. Historic transactions keep their
+  // original approved amount through settlementOffer and stored D1 receipts.
+  if (!offer || offer.unitAmountPence !== offer.introductoryUnitAmountPence) return null;
+  return offer;
 }
 
 // Existing orders must remain settleable if an incident closes new checkouts.

@@ -136,7 +136,9 @@ function PrivateKitsPage() {
                 <>
                   <p className="font-medium">Private-kit checkout is not yet open</p>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    No price, paid licence, download entitlement or guaranteed delivery is currently offered.
+                    The intended entry price is £9 one-off, excluding applicable tax, when the
+                    verified purchase flow and buyer terms are ready. Checkout is closed;
+                    no paid licence, entitlement or guaranteed delivery is currently offered.
                     Public skills remain accessible without purchase.
                   </p>
                   <a className="mt-4 inline-flex min-h-11 items-center rounded-md border border-border px-4 text-sm underline"

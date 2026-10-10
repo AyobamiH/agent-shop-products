@@ -17,6 +17,7 @@ async def main():
         await page.goto(BASE + '/private-kits', wait_until='domcontentloaded')
         await expect(page.get_by_role('heading', name='Private execution kits, not repackaged public prompts')).to_be_visible()
         await expect(page.get_by_text('Private-kit checkout is not yet open')).to_be_visible()
+        await expect(page.get_by_text('£9 one-off', exact=False)).to_be_visible()
         assert await page.get_by_role('button', name='Continue to secure checkout').count() == 0
         assert await page.get_by_role('link', name='Check private-kit availability and commercial boundaries').count() == 0
 
