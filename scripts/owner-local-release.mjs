@@ -156,6 +156,14 @@ export async function runLocalRelease({ verifyOnly = false } = {}) {
 
   const bun = availableBun();
   const buildEnv = { ...process.env, VITE_SITE_ORIGIN: origin };
+  // Build hooks and test runners are not authorised to receive deploy, Stripe,
+  // GitHub or bootstrap credentials. The narrowly scoped managed token is
+  // supplied ONLY to the Wrangler candidate upload and Cloudflare API calls.
+  for (const key of Object.keys(buildEnv)) {
+    if (/^(?:CLOUDFLARE_|STRIPE_|GITHUB_TOKEN$|GH_TOKEN$)/.test(key)) {
+      delete buildEnv[key];
+    }
+  }
   execute(bun, ["install", "--frozen-lockfile"], { cwd: storefront, env: buildEnv });
   execute(bun, ["run", "test"], { cwd: storefront, env: buildEnv });
   execute(bun, ["x", "tsc", "--noEmit"], { cwd: storefront, env: buildEnv });
