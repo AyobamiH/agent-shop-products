@@ -23,6 +23,19 @@ export function confirmLocalRelease({ branch, clean, localSha, remoteSha, ciRuns
   return requireExactMainCI(localSha, "refs/heads/main", remoteSha, ciRuns);
 }
 
+export function sanitizedBuildEnvironment(parentEnv, bunBinary) {
+  const environment = { ...parentEnv, VITE_SITE_ORIGIN: origin };
+  for (const key of Object.keys(environment)) {
+    if (/^(?:CLOUDFLARE_|STRIPE_|GITHUB_TOKEN$|GH_TOKEN$)/.test(key)) {
+      delete environment[key];
+    }
+  }
+  // Bun's package scripts invoke `bun` by name even when the outer executable
+  // was resolved through a full path. Put its directory on the child's PATH.
+  environment.PATH = path.dirname(bunBinary) + path.delimiter + (environment.PATH || "");
+  return environment;
+}
+
 export function managedCredentialFromFile(filename) {
   const stats = statSync(filename);
   if (!stats.isFile() || (stats.mode & 0o077) !== 0) throw Error("TOKEN_FILE_PERMISSION_UNSAFE");
@@ -155,15 +168,7 @@ export async function runLocalRelease({ verifyOnly = false } = {}) {
   }
 
   const bun = availableBun();
-  const buildEnv = { ...process.env, VITE_SITE_ORIGIN: origin };
-  // Build hooks and test runners are not authorised to receive deploy, Stripe,
-  // GitHub or bootstrap credentials. The narrowly scoped managed token is
-  // supplied ONLY to the Wrangler candidate upload and Cloudflare API calls.
-  for (const key of Object.keys(buildEnv)) {
-    if (/^(?:CLOUDFLARE_|STRIPE_|GITHUB_TOKEN$|GH_TOKEN$)/.test(key)) {
-      delete buildEnv[key];
-    }
-  }
+  const buildEnv = sanitizedBuildEnvironment(process.env, bun);
   execute(bun, ["install", "--frozen-lockfile"], { cwd: storefront, env: buildEnv });
   execute(bun, ["run", "test"], { cwd: storefront, env: buildEnv });
   execute(bun, ["x", "tsc", "--noEmit"], { cwd: storefront, env: buildEnv });

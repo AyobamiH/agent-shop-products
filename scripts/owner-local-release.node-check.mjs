@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import os from "node:os";
 import path from "node:path";
 import { mkdtempSync, writeFileSync, chmodSync, rmSync } from "node:fs";
-import { confirmLocalRelease, localMainAdmission, managedCredentialFromFile } from "./owner-local-release.mjs";
+import { confirmLocalRelease, localMainAdmission, managedCredentialFromFile, sanitizedBuildEnvironment } from "./owner-local-release.mjs";
 
 const sha = "d".repeat(40);
 const run = {
@@ -69,4 +69,20 @@ test("managed account token must be present, correctly scoped and chmod 0600", (
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
+});
+
+test("Bun build subprocess resolves nested bun scripts and receives no Cloudflare, Stripe or GitHub secrets", () => {
+  const source = {
+    PATH: "/usr/bin", GITHUB_TOKEN: "test-synthetic-secret", GH_TOKEN: "test-other-secret",
+    CLOUDFLARE_API_TOKEN: "test-deployment-secret", STRIPE_SECRET_KEY: "test-payment-secret",
+    APP_SETTING: "allowed",
+  };
+  const child = sanitizedBuildEnvironment(source, "/secure/local/bin/bun");
+  assert.equal(child.PATH?.split(path.delimiter)[0], "/secure/local/bin");
+  assert.equal(child.VITE_SITE_ORIGIN, "https://agents.proofandstate.com");
+  assert.equal(child.APP_SETTING, "allowed");
+  for (const forbidden of ["GITHUB_TOKEN", "GH_TOKEN", "CLOUDFLARE_API_TOKEN", "STRIPE_SECRET_KEY"]) {
+    assert.equal(child[forbidden], undefined);
+  }
+  assert.equal(source.CLOUDFLARE_API_TOKEN, "test-deployment-secret");
 });
