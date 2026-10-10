@@ -108,3 +108,11 @@ test("does not roll back a different operator's concurrent promotion",async()=>{
   assert.equal(f.active,"33333333-3333-4333-8333-333333333333");
   assert.deepEqual(f.writes,[next]);
 });
+
+test("refuses to promote after production changed since the owner-local preflight",async()=>{
+  const f=mock();
+  await assert.rejects(()=>guardedPromote({...f.args, expectedPreviousVersion:next}),
+    /PRODUCTION_CHANGED_DURING_RELEASE/);
+  assert.deepEqual(f.writes,[]);
+  assert.equal(f.active,old);
+});
