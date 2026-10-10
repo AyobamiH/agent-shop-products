@@ -29,7 +29,7 @@ function fixture({ preventEntitlementInsert = false,
         value = orders.get(String(v[0])) || null;
       } else if (sql.startsWith("SELECT id,state FROM commerce_orders")) {
         value = orders.get(String(v[0])) || null;
-      } else if (sql.startsWith("SELECT state,object_key FROM commerce_entitlements")) {
+      } else if (sql.startsWith("SELECT state,object_key")) {
         value = entitlements.get(String(v[0])) || null;
       } else if (sql.startsWith("SELECT payment_intent_id FROM commerce_refunds")) {
         value = refunds.has(String(v[0])) ? { payment_intent_id: v[0] } : null;
@@ -61,7 +61,7 @@ function fixture({ preventEntitlementInsert = false,
       } else if (s.startsWith("INSERT OR IGNORE INTO commerce_entitlements")) {
         const row=orders.get(String(v[0]));
         if(!preventEntitlementInsert && row?.state==="paid"&&!refunds.has(String(v[5]))&&!entitlements.has(String(v[0])))
-          entitlements.set(String(v[0]),{state:"active",object_key:v[3]});
+          entitlements.set(String(v[0]),{state:"active",object_key:v[3],offer_id:v[1],offer_version:v[2]});
       } else if (s.startsWith("INSERT OR IGNORE INTO commerce_webhook_events")) {
         events.add(String(v[0]));
       } else if (s.startsWith("INSERT OR IGNORE INTO commerce_refunds")) {
@@ -166,6 +166,11 @@ describe("Stripe-hosted private-kit integration without live customer effects", 
     expect((await statusBefore!.json()).fulfilment).toBe("unavailable");
     const denied=await handleCommerceRequest(new Request(API+"download/"+data.orderId,{headers}),f.env);
     expect(denied?.status).toBe(409);
+    // An operator incident closes new purchases, but signed events for an
+    // already-created paid session must still settle against the original order.
+    f.env.COMMERCE_ENABLED = "false";
+    const closed = await handleCommerceRequest(new Request(API + "offers"), f.env);
+    expect((await closed!.json()).commerceActive).toBe(false);
     const webhook=await f.signedEvent("checkout.session.completed","evt_purchase123456",{id:SESSION,client_reference_id:data.orderId});
     expect((await handleCommerceRequest(webhook,f.env,f.fakeStripe))?.status).toBe(200);
     expect(f.orders.get(data.orderId)?.state).toBe("paid");
@@ -173,8 +178,16 @@ describe("Stripe-hosted private-kit integration without live customer effects", 
     const wrong=await handleCommerceRequest(new Request(API+"download/"+data.orderId,{headers:{
       Authorization:"Bearer "+("A".repeat(data.claimToken.length))}}),f.env);
     expect(wrong?.status).toBe(404);
+    // A settled digital licence is durable, even if new sales are suspended and
+    // the provider keys are withheld during a commercial incident.
+    const savedApproval=f.env.COMMERCE_OFFER_APPROVAL;
+    const savedKey=f.env.STRIPE_SECRET_KEY;
+    delete f.env.COMMERCE_OFFER_APPROVAL;
+    delete f.env.STRIPE_SECRET_KEY;
     const delivered=await handleCommerceRequest(new Request(API+"download/"+data.orderId,{headers}),f.env);
     expect(delivered?.status).toBe(200);
+    f.env.COMMERCE_OFFER_APPROVAL=savedApproval!;
+    f.env.STRIPE_SECRET_KEY=savedKey!;
     expect(await delivered?.text()).toBe("private fixture bytes");
     const refund=await f.signedEvent("charge.refunded","evt_refund123456",{payment_intent:INTENT});
     expect((await handleCommerceRequest(refund,f.env,f.fakeStripe))?.status).toBe(200);
@@ -234,7 +247,7 @@ describe("Stripe-hosted private-kit integration without live customer effects", 
     f.orders.set(id,{id,state:"creating"});
     const response=await handleCommerceRequest(await f.signedEvent("checkout.session.completed",
       "evt_early123456",{id:SESSION,client_reference_id:id}),f.env,f.fakeStripe);
-    expect(response?.status).toBe(409);
+    expect(response?.status).toBe(503);
     expect(f.events.size).toBe(0);
   });
 

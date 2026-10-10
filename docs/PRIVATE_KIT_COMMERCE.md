@@ -126,3 +126,13 @@ public sale needs separate owner-approved merchant/test transaction evidence.
 ## Stripe ambiguous checkout-session recovery
 
 A Stripe Checkout create request can succeed at the provider before a response reaches the Worker. Transport failures must preserve the creating order, not falsely mark it failed. On a later signed Stripe event, the Worker re-fetches the Checkout Session directly from Stripe, verifies all order, price, amount, metadata and merchant-mode links, conditionally records the session against that one creating order and follows standard payment and entitlement reconciliation. Invalid claims do not issue entitlements; no duplicate checkout is started. Browser claim loss requires authorised manual recovery. Synthetic tests cover a committed Stripe request followed by transport loss and a mismatched session; live Stripe test-mode acceptance remains separate.
+
+## Closing checkout must not erase a paid obligation
+
+`COMMERCE_ENABLED=false` is a gate for **new** Checkout Sessions and public offer availability, not a deletion of issued digital rights. Previously initiated orders can still be reconciled from valid Stripe-signed events against their original approved offer with the required provider credentials. Once an entitlement is durable, the authenticated claimant can download the original versioned R2 object even if new purchases are disabled or the current Stripe key is withheld. Download verifies the persisted order/entitlement ID and version against the reviewed manifest, not the current sale flag. Refund tombstones continue to revoke entitlement. All cases have deterministic negative and lifecycle tests. Preserve historical version manifests before future SKU archival.
+
+Isolated remote Cloudflare D1/R2 lifecycle evidence and its distinction from actual Stripe sandbox settlement are documented in `docs/ISOLATED_COMMERCE_SANDBOX_ACCEPTANCE_20261010.md`.
+
+### Provider-key least privilege
+
+Provider runtime credentials may be either `rk_test_`/`rk_live_` **restricted** keys or full `sk_test_`/`sk_live_` secrets. Select a least-privilege restricted key with Price read, Checkout Session create and retrieve plus relevant refund/charge read permissions. Never use an operator key for runtime settlement, never accept mode mismatch, and never expose API keys in logs or R2. Stripe still checks actual account and permission authority on each call.

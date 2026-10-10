@@ -1,4 +1,4 @@
-import { approvedOffer, CommerceFailure, publicOffers } from "./config";
+import { approvedOffer, CommerceFailure, publicOffers, recordedDeliveryKey, settlementOffer } from "./config";
 import type { ApprovedOffer, CommerceD1, CommerceEnv } from "./config";
 import { assertBrowserOrigin, checkBodySize, claimTokenHash, newClaimToken, verifyStripeSignature } from "./crypto";
 import { createStripeSession, getStripeSession, verifyPaidSession } from "./stripe";
@@ -22,7 +22,7 @@ type Order = {
   currency: string; amount_pence: number; terms_version: string;
   claim_token_hash: string; checkout_session_id: string; payment_intent_id: string | null;
 };
-type Entitlement = { state: string; object_key: string };
+type Entitlement = { state: string; object_key: string; offer_id: string; offer_version: string };
 
 function reply(data: unknown, status = 200, extra: Record<string, string> = {}): Response {
   return new Response(JSON.stringify(data), { status, headers: { ...headers, ...extra } });
@@ -40,6 +40,11 @@ function offerOrFail(env: CommerceEnv, id: string): ApprovedOffer {
   const offer = approvedOffer(env, id);
   if (!offer) throw new CommerceFailure("OFFER_UNAVAILABLE", 409);
   return offer;
+}
+function settlementOrFail(env: CommerceEnv, id: string): ApprovedOffer {
+  const configured = settlementOffer(env, id);
+  if (!configured) throw new CommerceFailure("ORDER_SETTLEMENT_CONFIGURATION_UNAVAILABLE", 503, true);
+  return configured;
 }
 async function applied(
   statement: ReturnType<CommerceD1["prepare"]>, expectedChanges?: number,
@@ -148,7 +153,7 @@ async function authorisedOrder(request: Request, env: CommerceEnv, orderId: stri
 async function orderStatus(request: Request, env: CommerceEnv, id: string): Promise<Response> {
   const order = await authorisedOrder(request, env, id);
   const entitlement = await database(env).prepare(
-    "SELECT state,object_key FROM commerce_entitlements WHERE order_id=?"
+    "SELECT state,object_key,offer_id,offer_version FROM commerce_entitlements WHERE order_id=?"
   ).bind(order.id).first<Entitlement>();
   return reply({
     orderId: order.id,
@@ -160,14 +165,17 @@ async function download(request: Request, env: CommerceEnv, id: string): Promise
   const order = await authorisedOrder(request, env, id);
   const db = database(env);
   const ent = await db.prepare(
-    "SELECT state,object_key FROM commerce_entitlements WHERE order_id=?"
+    "SELECT state,object_key,offer_id,offer_version FROM commerce_entitlements WHERE order_id=?"
   ).bind(order.id).first<Entitlement>();
   if (order.state !== "paid" || ent?.state !== "active") throw new CommerceFailure("DELIVERY_NOT_AVAILABLE", 409);
-  const offer = approvedOffer(env, order.offer_id);
-  if (!offer || offer.version !== order.offer_version || ent.object_key !== offer.assetKey) {
+  // Honor already-paid durable entitlements when commerce is paused.
+  // Never require a current Checkout price or live Stripe secret to download.
+  const verifiedKey = recordedDeliveryKey(order.offer_id, order.offer_version, ent.object_key);
+  if (!verifiedKey || ent.offer_id !== order.offer_id ||
+      ent.offer_version !== order.offer_version || !env.PRIVATE_KITS?.get) {
     throw new CommerceFailure("DELIVERY_CONFIGURATION_UNAVAILABLE", 503, true);
   }
-  const file = await env.PRIVATE_KITS!.get(ent.object_key);
+  const file = await env.PRIVATE_KITS.get(verifiedKey);
   if (!file?.body) throw new CommerceFailure("DELIVERY_NOT_AVAILABLE", 503, true);
   await applied(db.prepare(
     "UPDATE commerce_entitlements SET last_download_at=? WHERE order_id=? AND state='active'"
@@ -243,7 +251,7 @@ async function processWebhookEvent(event: StripeEvent, env: CommerceEnv, fetcher
       const creating = await db.prepare("SELECT * FROM commerce_orders WHERE id=?")
         .bind(ref).first<Order>();
       if (creating?.state === "creating" && !creating.checkout_session_id) {
-        const approved = offerOrFail(env, creating.offer_id);
+        const approved = settlementOrFail(env, creating.offer_id);
         const provider = await getStripeSession(env, sessionId, fetcher);
         if (
           provider.client_reference_id !== creating.id ||
@@ -284,7 +292,7 @@ async function processWebhookEvent(event: StripeEvent, env: CommerceEnv, fetcher
   if (order.state === "creating" || order.state === "failed") {
     throw new CommerceFailure("ORDER_PENDING_RECONCILIATION", 503, true);
   }
-  const approved = offerOrFail(env, order.offer_id);
+  const approved = settlementOrFail(env, order.offer_id);
   const provider = await getStripeSession(env, sessionId, fetcher);
   if (provider.payment_status !== "paid") {
     await applied(recordEvent);

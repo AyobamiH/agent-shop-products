@@ -75,8 +75,27 @@ export function publicOffers(env: CommerceEnv): Record<string, unknown>[] {
 // A public source record NEVER turns into a live offer just because it has a price-looking field.
 // The complete merchant-approved record lives in an owner-controlled runtime setting.
 export function approvedOffer(env: CommerceEnv, id: string): ApprovedOffer | null {
+  if (env.COMMERCE_ENABLED !== "true") return null;
+  return configuredOffer(env, id);
+}
+
+// Existing orders must remain settleable if an incident closes new checkouts.
+// This never enables the public Buy button and still requires configured
+// provider credentials, exact merchant mode, legal contract, D1 and R2.
+export function settlementOffer(env: CommerceEnv, id: string): ApprovedOffer | null {
+  return configuredOffer(env, id);
+}
+
+export function recordedDeliveryKey(
+  id: string, version: string, candidate: string,
+): string | null {
+  const matched = offers.find((offer) => offer.id === id && offer.version === version);
+  return matched?.assetKey === candidate ? candidate : null;
+}
+
+function configuredOffer(env: CommerceEnv, id: string): ApprovedOffer | null {
   const entry = offers.find((o) => o.id === id && o.status === "planned");
-  if (!entry || env.COMMERCE_ENABLED !== "true" || !env.COMMERCE_OFFER_APPROVAL) return null;
+  if (!entry || !env.COMMERCE_OFFER_APPROVAL) return null;
   let value: Record<string, unknown>;
   try {
     value = JSON.parse(env.COMMERCE_OFFER_APPROVAL) as Record<string, unknown>;
@@ -99,9 +118,9 @@ export function approvedOffer(env: CommerceEnv, id: string): ApprovedOffer | nul
     !approvedLegalUrl(value["licenceUrl"]) ||
     !approvedLegalUrl(value["refundUrl"]) ||
     (mode !== "test" && mode !== "live") ||
-    (mode === "test" && !env.STRIPE_SECRET_KEY?.startsWith("sk_test_")) ||
+    (mode === "test" && !/^(?:sk|rk)_test_/.test(env.STRIPE_SECRET_KEY ?? "")) ||
     (mode === "live" &&
-      (!env.STRIPE_SECRET_KEY?.startsWith("sk_live_") ||
+      (!/^(?:sk|rk)_live_/.test(env.STRIPE_SECRET_KEY ?? "") ||
        env.COMMERCE_LIVE_APPROVED !== "yes:" + value["commercialDecisionId"])) ||
     !env.STRIPE_WEBHOOK_SECRET?.startsWith("whsec_") ||
     !env.COMMERCE_DB?.prepare || !env.COMMERCE_DB.batch ||

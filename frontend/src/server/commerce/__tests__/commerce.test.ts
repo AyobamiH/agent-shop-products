@@ -39,6 +39,9 @@ describe("Private kit gated commerce", () => {
     expect(approvedOffer(ready({ PRIVATE_KITS: undefined }), KIT)).toBeNull();
     expect(approvedOffer(ready({ COMMERCE_RATE_LIMITER: undefined }), KIT)).toBeNull();
     expect(approvedOffer(ready({ STRIPE_SECRET_KEY: "sk_live_wrong" }), KIT)).toBeNull();
+    expect(approvedOffer(ready({ STRIPE_SECRET_KEY: "rk_test_scoped_permissions" }), KIT))
+      .toMatchObject({ mode: "test" });
+    expect(approvedOffer(ready({ STRIPE_SECRET_KEY: "rk_live_wrong_mode" }), KIT)).toBeNull();
     expect(approvedOffer(ready({ COMMERCE_MODE: "live", STRIPE_SECRET_KEY: "sk_live_example" }), KIT)).toBeNull();
     expect(approvedOffer(ready({ COMMERCE_MODE: "live", STRIPE_SECRET_KEY: "sk_live_example",
       COMMERCE_LIVE_APPROVED: "yes:approval.v1" }), KIT)).toMatchObject({ mode: "live" });
