@@ -58,6 +58,10 @@ export function SiteFooter() {
           Source-backed metadata only. Full PROMPT.md and SKILL.md payload bodies, invented commerce data and unsupported claims are excluded.
         </p>
       </div>
+      <div className="mx-auto max-w-6xl px-4 pb-8 text-sm leading-relaxed text-muted-foreground sm:px-6">
+        <p>Built by <a href="https://tailwaggingwebdesign.com/" className="underline underline-offset-4">TAIL WAGGING WEBSITES DESIGN FACTORY NORTHAMPTON</a>.</p>
+        <p>Northampton, Northamptonshire, UK, NN4 6LZ · <a href="tel:+447402342694" className="underline underline-offset-4">07402342694</a></p>
+      </div>
     </footer>
   );
 }

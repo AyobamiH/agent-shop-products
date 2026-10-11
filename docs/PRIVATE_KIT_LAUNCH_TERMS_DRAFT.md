@@ -4,7 +4,7 @@
 
 ## Established decisions
 
-Seller: **Ayobami John Haastrup, a UK sole trader trading as Proof & State**. Public location: Northampton, Northamptonshire, UK. Owner-approved territory direction: worldwide where legally permitted. Home address and UTR must remain private.
+Seller: **Ayobami John Haastrup, a UK sole trader trading as TAIL-WAGGING WEBSITES DESIGN FACTORY NORTHAMPTON**. Public location: Northampton, Northamptonshire, UK, NN4 6LZ. Public contact number: **07402342694**. The owner stated on 11 October 2026 that this business is **not VAT registered**. Owner-approved territory direction: worldwide where legally permitted. Home address and UTR must remain private.
 
 First offer: Private Production Agent Operating Kit, version **2026.10.1**, **£9 one-off**, with no subscription or automatic renewal. This is an original small reference implementation, not a turnkey agent or professional installation. Current private archive: 3,967 bytes, signed-grant example, 17 executable positive/negative Node tests, documented failure/rollback matrix. Public prompts and the 990 third-party capability listings remain free to discover.
 
@@ -26,10 +26,10 @@ The joined £9 test payment, private fulfilment, genuine refund and direct deplo
 
 | Item | Current evidence | Required resolution |
 | --- | --- | --- |
-| Public geographical business address | No approved non-home address found in prior context; home publication prohibited | Owner supplies a legitimate non-home business address authorised for customer-facing disclosure |
+| Public geographical business address | Owner authorised Northampton, Northamptonshire, UK, NN4 6LZ on 11 October 2026; no full street address newly authorised; home publication prohibited | Owner supplies a legitimate non-home business address authorised for customer-facing disclosure |
 | Working purchase/support email | Previously published hello@proofandstate.com; Test-account support email empty; live profile not independently read | Verify a monitored mailbox or provide the existing working support address |
 | Merchant profile | Existing UK individual Stripe merchant and its test account verified; tested account business-profile fields empty. The existing restricted live credential returned 403 on account-profile read, so the live profile is unverified | Align live merchant legal seller, public support details and statement descriptor using verified facts |
-| Tax treatment | Test account had no Stripe tax registrations | Assess applicable UK/worldwide tax responsibilities; configure only genuinely required/authorised registrations and buyer location handling |
+| Tax treatment | Owner states not VAT registered; test account had no Stripe tax registrations | Assess applicable UK/worldwide tax responsibilities; configure only genuinely required/authorised registrations and buyer location handling |
 | Contract/licence/refunds/support | Concrete proposed terms above | Record the approved exact terms version; publish durable purchase, licence, refund and privacy documents |
 | Live runtime | Application technical tests passed; checkout remains closed | Bind the verified live Price, keys and permanent restricted webhook after commercial inputs resolve; verify exact-source CI and production readbacks |
 
