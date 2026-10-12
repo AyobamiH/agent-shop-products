@@ -18,6 +18,7 @@ import { Route as CapabilityBriefDotjsonRouteImport } from './routes/capability-
 import { Route as CatalogDotjsonRouteImport } from './routes/catalog[.]json'
 import { Route as CodingBugsRouteImport } from './routes/coding-bugs'
 import { Route as CodingBugsDotjsonRouteImport } from './routes/coding-bugs[.]json'
+import { Route as IntegrationPackagesDotjsonRouteImport } from './routes/integration-packages[.]json'
 import { Route as IntegrationServicesRouteImport } from './routes/integration-services'
 import { Route as KnowledgeRouteImport } from './routes/knowledge'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
@@ -77,6 +78,12 @@ const CodingBugsDotjsonRoute = CodingBugsDotjsonRouteImport.update({
   path: '/coding-bugs.json',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IntegrationPackagesDotjsonRoute =
+  IntegrationPackagesDotjsonRouteImport.update({
+    id: '/integration-packages.json',
+    path: '/integration-packages.json',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const IntegrationServicesRoute = IntegrationServicesRouteImport.update({
   id: '/integration-services',
   path: '/integration-services',
@@ -153,6 +160,7 @@ export interface FileRoutesByFullPath {
   '/catalog.json': typeof CatalogDotjsonRoute
   '/coding-bugs': typeof CodingBugsRoute
   '/coding-bugs.json': typeof CodingBugsDotjsonRoute
+  '/integration-packages.json': typeof IntegrationPackagesDotjsonRoute
   '/integration-services': typeof IntegrationServicesRoute
   '/knowledge': typeof KnowledgeRoute
   '/llms.txt': typeof LlmsDottxtRoute
@@ -177,6 +185,7 @@ export interface FileRoutesByTo {
   '/catalog.json': typeof CatalogDotjsonRoute
   '/coding-bugs': typeof CodingBugsRoute
   '/coding-bugs.json': typeof CodingBugsDotjsonRoute
+  '/integration-packages.json': typeof IntegrationPackagesDotjsonRoute
   '/integration-services': typeof IntegrationServicesRoute
   '/knowledge': typeof KnowledgeRoute
   '/llms.txt': typeof LlmsDottxtRoute
@@ -202,6 +211,7 @@ export interface FileRoutesById {
   '/catalog.json': typeof CatalogDotjsonRoute
   '/coding-bugs': typeof CodingBugsRoute
   '/coding-bugs.json': typeof CodingBugsDotjsonRoute
+  '/integration-packages.json': typeof IntegrationPackagesDotjsonRoute
   '/integration-services': typeof IntegrationServicesRoute
   '/knowledge': typeof KnowledgeRoute
   '/llms.txt': typeof LlmsDottxtRoute
@@ -228,6 +238,7 @@ export interface FileRouteTypes {
     | '/catalog.json'
     | '/coding-bugs'
     | '/coding-bugs.json'
+    | '/integration-packages.json'
     | '/integration-services'
     | '/knowledge'
     | '/llms.txt'
@@ -252,6 +263,7 @@ export interface FileRouteTypes {
     | '/catalog.json'
     | '/coding-bugs'
     | '/coding-bugs.json'
+    | '/integration-packages.json'
     | '/integration-services'
     | '/knowledge'
     | '/llms.txt'
@@ -276,6 +288,7 @@ export interface FileRouteTypes {
     | '/catalog.json'
     | '/coding-bugs'
     | '/coding-bugs.json'
+    | '/integration-packages.json'
     | '/integration-services'
     | '/knowledge'
     | '/llms.txt'
@@ -301,6 +314,7 @@ export interface RootRouteChildren {
   CatalogDotjsonRoute: typeof CatalogDotjsonRoute
   CodingBugsRoute: typeof CodingBugsRoute
   CodingBugsDotjsonRoute: typeof CodingBugsDotjsonRoute
+  IntegrationPackagesDotjsonRoute: typeof IntegrationPackagesDotjsonRoute
   IntegrationServicesRoute: typeof IntegrationServicesRoute
   KnowledgeRoute: typeof KnowledgeRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
@@ -378,6 +392,13 @@ declare module '@tanstack/react-router' {
       path: '/coding-bugs.json'
       fullPath: '/coding-bugs.json'
       preLoaderRoute: typeof CodingBugsDotjsonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/integration-packages.json': {
+      id: '/integration-packages.json'
+      path: '/integration-packages.json'
+      fullPath: '/integration-packages.json'
+      preLoaderRoute: typeof IntegrationPackagesDotjsonRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/integration-services': {
@@ -496,6 +517,7 @@ const rootRouteChildren: RootRouteChildren = {
   CatalogDotjsonRoute: CatalogDotjsonRoute,
   CodingBugsRoute: CodingBugsRoute,
   CodingBugsDotjsonRoute: CodingBugsDotjsonRoute,
+  IntegrationPackagesDotjsonRoute: IntegrationPackagesDotjsonRoute,
   IntegrationServicesRoute: IntegrationServicesRoute,
   KnowledgeRoute: KnowledgeRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,

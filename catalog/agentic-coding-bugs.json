@@ -532,6 +532,29 @@
         "scope": "Merged PR 46 and live readback on 12 October verified the repaired completion route. No customer loss is inferred."
       },
       "indexedOn": "2026-10-12"
+    },
+    {
+      "id": "BUG-0024",
+      "title": "Loose industry matching contaminates generated website instructions",
+      "project": "OneClick",
+      "category": "UI and contracts",
+      "trigger": "A website-design brief contains short keyword fragments used as industry classifiers.",
+      "symptom": "The handoff selects the wrong industry and includes unsupported trust, performance and business-detail instructions.",
+      "rootCause": "Substring classification and unconditional template suggestions remain authoritative even when later prose qualifies them.",
+      "consequence": "Generated implementations can misrepresent a business or publish unapproved details.",
+      "repair": "Match complete industry terms, qualify suggestions at their source, omit unapproved business details and test the complete generated handoff.",
+      "regressionCheck": "Exercise website-design briefs and verify classification, permissioned trust content, current performance metrics and separately optional marketing consent.",
+      "status": "Candidate fix open",
+      "skillId": "state-transition-evidence-contract",
+      "nextAcceptance": "Preserve generator assertions through native-host save and production migration acceptance; candidate tests do not establish production cutover.",
+      "evidence": {
+        "id": "BEV-0024",
+        "sourceId": "oneclick-generator-review-20261012",
+        "basis": "Candidate source and isolated review",
+        "sourceUrl": "https://github.com/AyobamiH/agent-shop-products/blob/main/docs/GENERATOR_BUG_REVIEW_20261012.md",
+        "scope": "The 12 October candidate passed 51 targeted web tests and 62 native tests. Isolated review readback was reported after deployment; production migration and publisher acceptance remain separate."
+      },
+      "indexedOn": "2026-10-12"
     }
   ]
 }

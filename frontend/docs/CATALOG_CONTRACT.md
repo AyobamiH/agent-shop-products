@@ -82,3 +82,7 @@ The owner-authorised registry has three additional canonical inputs: `catalog/ca
 ## Active commercial separation
 
 The owner-authorised bounded commerce implementation uses root `commerce/offers.json`, not public product metadata. Published policies do not enable purchases. Live availability depends on runtime approval plus separately verified merchant facts. See DEC-018 and `../../docs/LAUNCH_CLOSEOUT_20261012.md`.
+
+## Original private package discovery
+
+commerce/integration-packages.json is metadata-only authority for original reference components. The build copies it without transformation into frontend/catalog. No private payload, signed download URL, buyer information or third-party implementation is included. A quote request is not an accepted order.

@@ -37,3 +37,8 @@ for (const file of [
   );
 }
 console.log("catalog sync:", catalog.products.length, counts);
+
+writeFileSync(
+  resolve(FRONTEND_ROOT, "catalog/integration-packages.json"),
+  readFileSync(resolve(REPO_ROOT, "commerce/integration-packages.json"), "utf8"),
+);

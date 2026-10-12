@@ -99,7 +99,7 @@ jobs:
           const result = JSON.parse(readFileSync(process.env.RUNNER_TEMP + "/agent-shop-candidate-parity.json", "utf8"));
           if (result.status !== "PASS" || result.commerceActive !== false ||
               result.privateKitOffer !== "planned" || result.products !== 33 ||
-              result.externalCapabilities !== 990 || result.codingBugs !== 23) {
+              result.externalCapabilities !== 990 || result.codingBugs !== 24) {
             throw Error("UNAPPROVED_OR_UNVERIFIED_COMMERCIAL_CANDIDATE");
           }
           console.log("Verified preview: source backed, disabled commerce, D1/R2 bindings required.");

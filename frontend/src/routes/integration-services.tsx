@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { IntegrationPackages } from "@/features/commercial/IntegrationPackages";
 import { PageShell } from "@/components/layout/PageShell";
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import {
@@ -94,6 +95,8 @@ function IntegrationServicesPage() {
           </a>
         </div>
       </div>
+
+      <IntegrationPackages />
 
       <section className="mt-16" aria-labelledby="example-scopes">
         <h2 id="example-scopes" className="text-xl font-semibold">

@@ -131,7 +131,7 @@ function checkPublic(targetOrigin) {
   try { result = JSON.parse(data.trim()); }
   catch { throw Error("PUBLIC_ACCEPTANCE_NOT_JSON"); }
   if (result.status !== "PASS" || result.products !== 33 ||
-      result.externalCapabilities !== 990 || result.codingBugs !== 23 ||
+      result.externalCapabilities !== 990 || result.codingBugs !== 24 ||
       result.commerceActive !== false || result.privateKitOffer !== "planned") {
     throw Error("PUBLIC_ACCEPTANCE_REJECTED");
   }

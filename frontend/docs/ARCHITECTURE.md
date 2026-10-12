@@ -182,3 +182,7 @@ Separate `domain/capabilities` and `domain/coding-bugs` repositories parse the t
 ## Private-kit commerce boundary
 
 `src/server/commerce` owns checkout, webhook reconciliation and private delivery. `commerce/offers.json` is commercial source, separate from product metadata. `launch-readiness.ts` admits new live sales only with verified merchant facts; it never gates historical settlement. `domain/commerce/policies.ts` is the versioned public policy authority; the legal route renders it without HTML injection. The sitemap and footer expose buyer documents without asserting purchase availability.
+
+## Original integration package boundary
+
+Root commerce/integration-packages.json authors package discovery, independent of public prompt metadata and Stripe offers. The domain/commercial package repository validates its synced frontend projection. Integration services and the read-only integration-packages.json route share that repository. scripts/integration-request.mjs validates canonical external names and exclusions, then writes a private request file without network submission.

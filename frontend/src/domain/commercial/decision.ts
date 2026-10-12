@@ -8,7 +8,8 @@ export const COMMERCIAL_PATHS = [
     id: "public-reference",
     title: "Public prompt or skill reference",
     availability: "available_reference",
-    description: "Inspect the published problem, requirements and limitations before using an openly accessible source.",
+    description:
+      "Inspect the published problem, requirements and limitations before using an openly accessible source.",
     actionPath: "/shop",
     actionLabel: "Browse current source-backed capabilities",
   },
@@ -16,19 +17,22 @@ export const COMMERCIAL_PATHS = [
     id: "execution-kit",
     title: "Enhanced private execution kit",
     availability: "not_for_sale",
-    description: "A future distinct deliverable would need private reusable assets, supported version, acceptance tests, recovery notes and an explicit licence. It is not currently available to purchase.",
+    description:
+      "Original private reference packages now include versioned code, tests and recovery boundaries. They can inform a separately scoped integration quote; fixed-price digital purchase remains unavailable.",
   },
   {
     id: "workflow-bundle",
     title: "Curated workflow bundle",
     availability: "not_for_sale",
-    description: "A future bundle would need documented interoperability, all included versions, a deliverable, support scope and commercial terms. No bundle price or checkout is active.",
+    description:
+      "A future bundle would need documented interoperability, all included versions, a deliverable, support scope and commercial terms. No bundle price or checkout is active.",
   },
   {
     id: "professional-integration",
     title: "Professional integration and repair",
     availability: "quote_first",
-    description: "A separate provider can assess a bounded repository fix, workflow integration or verification task. Feasibility, authority and price are agreed before work or payment.",
+    description:
+      "A separate provider can assess a bounded repository fix, workflow integration or verification task. Feasibility, authority and price are agreed before work or payment.",
     actionPath: "/integration-services",
     actionLabel: "Request a scoped implementation quote",
   },
@@ -52,7 +56,8 @@ export const SOLUTION_TRACKS = [
       "state-transition-evidence-contract",
       "outside-in-agent-crawl-verification",
     ],
-    scopingQuestion: "Which one claimed outcome can be independently checked against a specific revision?",
+    scopingQuestion:
+      "Which one claimed outcome can be independently checked against a specific revision?",
   },
   {
     id: "install-agent-integration",
@@ -108,6 +113,7 @@ export const SOLUTION_TRACKS = [
       "bounded-solo-maintainer-release",
       "evidence-backed-open-source-contribution",
     ],
-    scopingQuestion: "What is the smallest deliverable and independent acceptance check worth commissioning?",
+    scopingQuestion:
+      "What is the smallest deliverable and independent acceptance check worth commissioning?",
   },
 ] as const;
