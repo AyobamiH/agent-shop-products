@@ -57,3 +57,7 @@ When changed:
 3. update architecture/catalog contracts;
 4. then update implementation;
 5. report the decision delta in the handoff.
+
+## Authorised original package discovery, 12 October 2026
+
+DEC-019 adds metadata-only original integration package listings and offline request preparation. All premium code stays private. Public listings do not establish live adapters, external licences, sale availability or outcomes.

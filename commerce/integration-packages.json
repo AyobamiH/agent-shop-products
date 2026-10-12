@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.0.0",
+  "recordKind": "original-private-integration-packages",
+  "releasedOn": "2026-10-12",
+  "implementationSourceRevision": "e547c862ab90383d195e6d8d6653e49d7eb992b1",
+  "packages": [
+    {
+      "id": "govern-service-delivery",
+      "version": "2026.10.12",
+      "files": 5,
+      "bytes": 5092,
+      "sha256": "d916456cea845c17b02f5a37e7c8fda62afbea51663da3852e3a6eadf8ab5965",
+      "title": "Governed Service Delivery",
+      "summary": "Keep request receipt, accepted quote, verified payment, resource authority and delivery evidence distinct.",
+      "boundary": "Reference state machine; requires authenticated provider adapters and transactional persistence.",
+      "runtime": "Node.js 24",
+      "availability": "quote_first_integration",
+      "verification": "Packaged automated checks and independent skill forward-review; no production provider acceptance."
+    },
+    {
+      "id": "recover-durable-effects",
+      "version": "2026.10.12",
+      "files": 5,
+      "bytes": 4628,
+      "sha256": "ba745962138f4e44b01da0319b4f84ca8d0c942c2df609e9ab7bf06b4ace910a",
+      "title": "Durable Effect Recovery",
+      "summary": "Record an operation before execution and block blind retries after crashes or uncertain provider responses.",
+      "boundary": "Single-host SQLite reference; requires provider idempotency and independent recovery readback.",
+      "runtime": "Node.js 24",
+      "availability": "quote_first_integration",
+      "verification": "Packaged automated checks and independent skill forward-review; no production provider acceptance."
+    },
+    {
+      "id": "verify-capability-access",
+      "version": "2026.10.12",
+      "files": 5,
+      "bytes": 3921,
+      "sha256": "ad3ae224d5727d30d7ecb39d94169572f54e18bd65c91edf55f2455e47205817",
+      "title": "Capability Access Preflight",
+      "summary": "Turn a capability listing into a review of current connection, licence, permissions and scoped authority.",
+      "boundary": "Offline evidence validation; authenticating provider evidence requires an adapter.",
+      "runtime": "Node.js 24",
+      "availability": "quote_first_integration",
+      "verification": "Packaged automated checks and independent skill forward-review; no production provider acceptance."
+    }
+  ]
+}

@@ -97,3 +97,7 @@ The owner authorised autonomous completion of the remaining launch work. The app
 The public catalogue at agents.proofandstate.com is Agent Shop, with Proof & State as parent. Retire the neutral Agent Capability Catalogue placeholder in visible copy and alternative text. This is a discovery and branding decision, not a change to legal seller or payment authority.
 
 Keep public skills freely inspectable. The approved introductory £9 private-kit price is a planned future one-off offer, not an active charge until independent live merchant checks pass. Commercial state remains separated from product-source metadata. Quote-first professional integration remains under the independently operated Tail Wagging service.
+
+## DEC-017 — Original integration packages and offline request preparation (12 October 2026)
+
+Owner approval extends implementation to original private execution packages and a CLI that prepares bounded provider requests. Public commerce/integration-packages.json contains descriptions, actual versions and archive digests only. Payloads remain in a private repository. These packages are reference components for quote-first integration, not 990 provider implementations or active digital offers. No new prices, Shop MCP, live execution authority or merchant facts are inferred.

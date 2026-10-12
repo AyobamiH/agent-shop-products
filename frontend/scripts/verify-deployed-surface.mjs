@@ -47,6 +47,16 @@ async function expectStatus(path, status = 200) {
   return result;
 }
 
+const packageSource = JSON.parse(readFileSync(resolve(root, "catalog/integration-packages.json"), "utf8"));
+const packageResult = await expectStatus("/integration-packages.json");
+requireValue(JSON.stringify(JSON.parse(packageResult.text)) === JSON.stringify(packageSource), "Integration package metadata drift");
+const integrationPage = await expectStatus("/integration-services");
+for (const item of packageSource.packages) requireValue(integrationPage.text.includes(item.title), "Missing integration package " + item.id);
+for (const method of ["POST", "PUT", "PATCH", "DELETE"]) {
+  const result = await request("/integration-packages.json", { method });
+  requireValue(result.response.status === 405 && result.response.headers.get("allow") === "GET", "Integration packages must reject " + method);
+}
+
 const rootPage = await expectStatus("/");
 const agentsPage = await expectStatus("/agents");
 const catalogueResult = await expectStatus("/catalog.json");
