@@ -8,8 +8,8 @@
       "evidence": null
     },
     "monitoredSupportEmail": {
-      "status": "unverified",
-      "evidence": null
+      "status": "verified",
+      "evidence": "https://github.com/AyobamiH/agent-shop-products/blob/3a14ead00c69bc95d8b2286a2679147d881d7d4b/docs/CUSTOMER_CONTACT_VERIFICATION_20261012.md"
     },
     "taxTreatment": {
       "status": "conflict",
