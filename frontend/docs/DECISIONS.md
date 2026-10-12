@@ -49,10 +49,10 @@ Status: Active
 
 Do not create filler knowledge articles. Knowledge content must derive from a real product source, verified project evidence, or an explicitly authored source.
 
-## DEC-010 — No final brand invention
-Status: Active
+## DEC-010 — Approved public identity
+Status: Superseded by root DEC-016 (12 October 2026)
 
-Use a restrained temporary identity until the user explicitly chooses the final brand.
+Use Agent Shop as the public name with Proof & State as parent. Legal seller identity remains separate.
 
 ## DEC-011 — Performance by architecture, not cleanup
 Status: Active
@@ -83,7 +83,7 @@ The frontend source now lives under `frontend/` in `AyobamiH/agent-shop-products
 ## DEC-016 — Google DESIGN.md governs visual identity
 Status: Active
 
-`frontend/DESIGN.md` is the visual-design authority for the Agent Shop frontend and is linted in CI with the pinned Google Labs `design.md` implementation. The current design reference is a standards registry crossed with a package index and laboratory instrument panel. The registry-aperture mark is intentionally name-independent because final branding remains undecided.
+`frontend/DESIGN.md` is the visual-design authority for the Agent Shop frontend and is linted in CI with the pinned Google Labs `design.md` implementation. The current design reference is a standards registry crossed with a package index and laboratory instrument panel. The registry-aperture mark is retained under the approved Agent Shop identity.
 
 The interface favours provenance, queryability, boundaries and machine routes over decorative marketplace conventions. Gradients, AI sparkles, fake ratings, invented verification badges and commerce decoration are prohibited unless a later evidence-backed product decision changes the contract.
 # DEC-017 — External capability registry and integration briefs
