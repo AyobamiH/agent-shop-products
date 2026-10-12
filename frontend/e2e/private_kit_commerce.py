@@ -1,4 +1,4 @@
-"""Browser acceptance: no charged order, pricing claim or private file is created.
+"""Browser acceptance: no charge, falsely ACTIVE price or private file is created.
 
 The private-kit route is deliberately visible but the purchase flow stays
 closed until its owner-approved merchant, legal text and delivery acceptance.
@@ -14,8 +14,18 @@ async def main():
     async with async_playwright() as playwright:
         browser = await playwright.chromium.launch(headless=True)
         page = await browser.new_page(viewport={'width': 390, 'height': 844})
+        initial = await page.request.get(BASE + '/private-kits')
+        assert initial.status == 200
+        initial_html = await initial.text()
+        assert 'Planned introductory price: £9 one-off.' in initial_html
+        assert 'What is different from the free public reference?' in initial_html
+        assert 'Continue to secure checkout' not in initial_html
+
         await page.goto(BASE + '/private-kits', wait_until='domcontentloaded')
         await expect(page.get_by_role('heading', name='Private execution kits', exact=True)).to_be_visible()
+        assert 'Agent Shop' in await page.title()
+        await expect(page.get_by_role('heading', name='What is different from the free public reference?')).to_be_visible()
+
         await expect(page.get_by_text('Private-kit checkout is not yet open')).to_be_visible()
         await expect(page.get_by_text('£9 one-off', exact=False)).to_be_visible()
         assert await page.get_by_role('button', name='Continue to secure checkout').count() == 0

@@ -91,3 +91,9 @@ The first private kit is **planned, not offered for sale**. D1 order/entitlement
 ## DEC-015 — Authorised commerce closeout (12 October 2026)
 
 The owner authorised autonomous completion of the remaining launch work. The approved direction is £9 once for the private reference kit, with versioned pre-launch terms, 14-day full refunds including after download and 30-day bounded support. This supersedes DEC-014 only as to implementation authority; checkout remains closed until factual merchant, support, address, tax and runtime requirements are evidenced. `commerce/launch-readiness.json` records the independent merchant gates. Existing paid orders remain settleable during a new-checkout pause. See `docs/LAUNCH_CLOSEOUT_20261012.md`.
+
+## DEC-016 — Agent Shop public identity (12 October 2026)
+
+The public catalogue at agents.proofandstate.com is Agent Shop, with Proof & State as parent. Retire the neutral Agent Capability Catalogue placeholder in visible copy and alternative text. This is a discovery and branding decision, not a change to legal seller or payment authority.
+
+Keep public skills freely inspectable. The approved introductory £9 private-kit price is a planned future one-off offer, not an active charge until independent live merchant checks pass. Commercial state remains separated from product-source metadata. Quote-first professional integration remains under the independently operated Tail Wagging service.

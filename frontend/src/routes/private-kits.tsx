@@ -15,6 +15,7 @@ type Catalogue = { offers: KitOffer[]; commerceActive: boolean };
 type CheckoutReceipt = { orderId: string; claimToken: string; checkoutUrl: string };
 const OFFER_URL = "/api/v1/commerce/offers";
 const KIT_ID = "private-production-agent-operating-kit";
+const PLANNED_PRICE_LABEL = "Planned introductory price: £9 one-off.";
 
 export const Route = createFileRoute("/private-kits")({
   head: () => buildPageHead({
@@ -118,7 +119,17 @@ function PrivateKitsPage() {
             </a>.
           </p>
           <div className="mt-5 border-t border-border pt-5">
-            {loading ? <p role="status">Checking availability…</p> : (
+            {loading ? (
+              <div>
+                <p className="font-medium">{PLANNED_PRICE_LABEL}</p>
+                <p role="status" className="mt-2 text-sm text-muted-foreground">
+                  Checking whether online orders are open. No payment has been started.
+                </p>
+                <a href="/integration-services" className="mt-4 inline-block text-sm text-primary underline underline-offset-4">
+                  Enquire about professional integration
+                </a>
+              </div>
+            ) : (
               available ? (
                 <>
                   <p className="text-lg font-semibold">{price}</p>
@@ -140,7 +151,7 @@ function PrivateKitsPage() {
                 <>
                   <p className="font-medium">Private-kit checkout is not yet open</p>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Planned price: £9 one-off. Online purchases are currently unavailable.
+                    {PLANNED_PRICE_LABEL} Online purchases are currently unavailable.
                     Browse the public skills or contact us about integration work.
                   </p>
                   <a className="mt-4 inline-flex min-h-11 items-center rounded-md border border-border px-4 text-sm underline"
@@ -150,6 +161,22 @@ function PrivateKitsPage() {
             )}
             {error && <p role="alert" className="mt-4 text-sm text-destructive">{error}</p>}
           </div>
+        </section>
+        <section aria-labelledby="private-kit-value" className="mt-8 border-t border-border pt-8">
+          <h2 id="private-kit-value" className="text-lg font-semibold">
+            What is different from the free public reference?
+          </h2>
+          <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted-foreground">
+            <li>Private, versioned runtime guard and integration fixtures, not a paid copy of the public prompt.</li>
+            <li>Executable verification and failure-handling cases for authorised agent workflows.</li>
+            <li>Rollback and recovery worksheets for reviewing changes before applying them.</li>
+          </ul>
+          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+            Once purchases open, delivery is for the purchased version with 30 days of bounded
+            archive-access and documented-test assistance. No automatic upgrade or deployment
+            authority is included. The stated refund policy allows 14-day full refunds, including
+            after download.
+          </p>
         </section>
         <nav aria-label="Buyer information" className="mt-6 flex flex-wrap gap-4 text-sm">
           <a href="/legal/kit-terms" className="underline">Purchase terms</a>

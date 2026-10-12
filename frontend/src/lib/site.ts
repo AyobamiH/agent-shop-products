@@ -1,8 +1,8 @@
 /**
  * Neutral site descriptor + canonical origin.
- * The public brand is intentionally undecided.
+ * The public name is Agent Shop, under Proof & State.
  */
-export const SITE_DESCRIPTOR = "Agent Capability Catalogue";
+export const SITE_DESCRIPTOR = "Agent Shop";
 
 function normalizeOrigin(value: string): string {
   return value.replace(/\/+$/, "");

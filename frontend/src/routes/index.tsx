@@ -101,7 +101,7 @@ function HomePage() {
             </div>
             <img
               src="/agent-registry-mark.svg"
-              alt="Agent Capability Catalogue registry aperture logo"
+              alt="Agent Shop registry aperture mark"
               className="size-9"
             />
           </div>

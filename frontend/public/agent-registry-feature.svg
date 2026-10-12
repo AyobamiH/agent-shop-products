@@ -15,7 +15,7 @@
     </g>
     <rect x="45" y="45" width="22" height="22" rx="3" fill="#FFFFFF"/>
   </g>
-  <text x="116" y="300" fill="#111827" font-family="IBM Plex Sans, Arial, sans-serif" font-size="54" font-weight="600" letter-spacing="-1.8">Agent Capability Catalogue</text>
+  <text x="116" y="300" fill="#111827" font-family="IBM Plex Sans, Arial, sans-serif" font-size="54" font-weight="600" letter-spacing="-1.8">Agent Shop</text>
   <text x="116" y="356" fill="#667085" font-family="IBM Plex Sans, Arial, sans-serif" font-size="24">Source-backed capabilities for autonomous agents.</text>
   <g font-family="IBM Plex Mono, ui-monospace, monospace" font-size="17">
     <rect x="116" y="414" width="246" height="52" rx="7" fill="#EFF6FF" stroke="#BFDBFE"/>

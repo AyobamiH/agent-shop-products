@@ -26,7 +26,7 @@ export function SiteHeader() {
         >
           <img
             src="/agent-registry-mark.svg"
-            alt="Agent Capability Catalogue registry aperture logo"
+            alt="Agent Shop registry aperture mark"
             width={30}
             height={30}
             className="size-7 shrink-0"
