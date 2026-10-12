@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { IDENTITY_STATUS, PRODUCT_HEADLINE, SITE_DESCRIPTOR } from "@/lib/site";
+import { PRODUCT_HEADLINE, SITE_DESCRIPTOR } from "@/lib/site";
+
+import { SUPPORT_EMAIL, SUPPORT_EMAIL_HREF } from "@/lib/contact";
 
 const CATALOG_LINKS = [
   { to: "/agents", label: "Agent discovery" },
@@ -29,9 +31,6 @@ export function SiteFooter() {
             <img src="/agent-registry-mark.svg" alt="Agent Capability Catalogue registry aperture logo" className="size-8" />
             <div>
               <p className="text-sm font-semibold">{SITE_DESCRIPTOR}</p>
-              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
-                {IDENTITY_STATUS}
-              </p>
             </div>
           </div>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">{PRODUCT_HEADLINE}</p>
@@ -59,7 +58,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-border">
         <p className="mx-auto max-w-[74rem] px-4 py-6 font-mono text-xs leading-relaxed text-muted-foreground sm:px-6">
-          Source-backed metadata only. Full PROMPT.md and SKILL.md payload bodies, invented commerce data and unsupported claims are excluded.
+          Explore prompts, skills, capability references and integration services for agent development.
         </p>
       </div>
       <nav aria-label="Legal information" className="mx-auto flex max-w-6xl flex-wrap gap-4 px-4 pb-6 text-sm sm:px-6">
@@ -71,6 +70,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-4 pb-8 text-sm leading-relaxed text-muted-foreground sm:px-6">
         <p>Built by <a href="https://tailwaggingwebdesign.com/" className="underline underline-offset-4">TAIL WAGGING WEBSITES DESIGN FACTORY NORTHAMPTON</a>.</p>
         <p>Northampton, Northamptonshire, UK, NN4 6LZ · <a href="tel:+447402342694" className="underline underline-offset-4">07402342694</a></p>
+        <p><a href={SUPPORT_EMAIL_HREF} className="break-all underline underline-offset-4">{SUPPORT_EMAIL}</a></p>
       </div>
     </footer>
   );

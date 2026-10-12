@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
 import { buildPageHead } from "@/lib/seo/meta";
+import { SUPPORT_EMAIL, SUPPORT_EMAIL_HREF } from "@/lib/contact";
 
 type OrderStatus = {
   orderId: string;
@@ -11,7 +12,7 @@ type OrderStatus = {
 export const Route = createFileRoute("/private-kits/complete")({
   head: () => buildPageHead({
     title: "Private kit order status — Agent Shop",
-    description: "Check payment-verified private-kit delivery without treating Stripe redirect parameters as proof of purchase.",
+    description: "Check your private kit order and download availability.",
     path: "/private-kits/complete",
     indexable: false,
   }),
@@ -40,7 +41,7 @@ function CompletionPage() {
       if (!response.ok) throw new Error("STATUS_NOT_AVAILABLE");
       setRecord(await response.json() as OrderStatus);
     } catch {
-      setError("Payment status could not be verified with the local order claim. A checkout redirect alone does not grant access.");
+      setError("We could not retrieve your order in this browser. Try again, or contact us with your order reference.");
     } finally {
       setWorking(false);
     }
@@ -70,27 +71,26 @@ function CompletionPage() {
         anchor.remove();
       } finally { URL.revokeObjectURL(url); }
     } catch {
-      setError("Verified delivery is unavailable. The order remains recoverable through authorised support.");
+      setError("Your download is currently unavailable. Please try again or contact us with your order reference.");
     } finally { setWorking(false); }
   }
 
   return (
     <PageShell>
       <div className="max-w-2xl">
-        <p className="text-xs uppercase tracking-wide text-muted-foreground">Private kit · secure fulfilment</p>
-        <h1 className="mt-4 text-3xl font-semibold">Verify your kit order</h1>
+        <p className="text-xs uppercase tracking-wide text-muted-foreground">Private kit order</p>
+        <h1 className="mt-4 text-3xl font-semibold">Your kit order</h1>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-          Payment and entitlement are verified server-side. Returning from Stripe does not mean
-          the order was paid or that delivery is available.
+          Check your payment status and download your kit once payment is confirmed.
         </p>
         <div className="mt-8 rounded-xl border border-border bg-surface p-6">
           <p role="status" className="font-medium">
-            {record ? "Order state: " + record.state : "Awaiting an authenticated order readback"}
+            {record ? "Order state: " + record.state : "Your order status is not available yet"}
           </p>
           {record?.fulfilment === "available" && (
             <button className="mt-4 min-h-11 rounded-md bg-primary px-4 text-white disabled:opacity-60"
               type="button" disabled={working} onClick={downloadKit}>
-              Download verified private kit
+              Download your kit
             </button>
           )}
           <button className="mt-4 ml-3 min-h-11 rounded-md border border-border px-4 disabled:opacity-60"
@@ -100,9 +100,10 @@ function CompletionPage() {
           {error && <p role="alert" className="mt-4 text-sm text-destructive">{error}</p>}
         </div>
         <p className="mt-6 text-sm text-muted-foreground">
-          If you changed browsers or devices, the local order claim will not be available here.
-          Contact the provider with your Stripe receipt to request a controlled recovery.
-          Never paste payment card details into an enquiry.
+          If you changed browsers or devices, email{" "}
+          <a href={SUPPORT_EMAIL_HREF} className="break-all underline">{SUPPORT_EMAIL}</a>{" "}
+          with your order reference or Stripe receipt for help recovering access.
+          Do not include payment card details in your enquiry.
         </p>
         <Link className="mt-6 inline-flex underline underline-offset-4" to="/shop">Return to catalogue</Link>
       </div>

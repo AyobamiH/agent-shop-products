@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useMatchRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import { buildPageHead } from "@/lib/seo/meta";
@@ -19,11 +19,16 @@ const KIT_ID = "private-production-agent-operating-kit";
 export const Route = createFileRoute("/private-kits")({
   head: () => buildPageHead({
     title: "Private execution kits — Agent Shop",
-    description: "Separate original paid execution kits from free public skills. Commercial access opens only after verified delivery, licensed terms and checkout are available.",
+    description: "Explore the Private Production Agent Operating Kit, its contents, licence, support and availability.",
     path: "/private-kits",
   }),
-  component: PrivateKitsPage,
+  component: PrivateKitsLayout,
 });
+
+function PrivateKitsLayout() {
+  const matchRoute = useMatchRoute();
+  return matchRoute({ to: "/private-kits/complete" }) ? <Outlet /> : <PrivateKitsPage />;
+}
 
 function PrivateKitsPage() {
   const [offer, setOffer] = useState<KitOffer | null>(null);
@@ -44,7 +49,7 @@ function PrivateKitsPage() {
       })
       .catch(() => {
         if (!abort.signal.aborted) {
-          setError("Commerce status is temporarily unavailable. No payment has been started.");
+          setError("Availability is temporarily unavailable. Please try again. No payment has been started.");
           setLoading(false);
         }
       });
@@ -79,7 +84,7 @@ function PrivateKitsPage() {
       sessionStorage.setItem("agent-shop:commerce-claim", data.claimToken);
       window.location.assign(redirect.toString());
     } catch {
-      setError("Checkout could not be started safely. No delivery entitlement has been granted.");
+      setError("Checkout could not be opened. Please try again or contact us for help.");
       setBusy(false);
     }
   }
@@ -95,9 +100,9 @@ function PrivateKitsPage() {
         <div className="mt-8">
           <SectionHeading
             as="h1"
-            eyebrow="Separate commercial product"
-            title="Private execution kits, not repackaged public prompts"
-            description="Review the public operating-files skill first. A paid offer, if released, is an independently versioned implementation kit with its own licence, update boundary and verified delivery."
+            eyebrow="Original implementation kit"
+            title="Private execution kits"
+            description="Explore reference examples, runtime verification cases and failure-handling guidance for building agent systems."
           />
         </div>
         <section className="mt-8 rounded-xl border border-border bg-surface p-6" aria-label="Private kit offer">
@@ -113,14 +118,13 @@ function PrivateKitsPage() {
             </a>.
           </p>
           <div className="mt-5 border-t border-border pt-5">
-            {loading ? <p role="status">Checking verified commerce availability…</p> : (
+            {loading ? <p role="status">Checking availability…</p> : (
               available ? (
                 <>
                   <p className="text-lg font-semibold">{price}</p>
                   <p className="mt-2 text-xs text-muted-foreground">
-                    One-off digital delivery. The displayed GBP amount excludes applicable taxes,
-                    which are calculated during the approved Stripe checkout.
-                    Review the governing documents before purchasing.
+                    One-off digital delivery. Any applicable tax and the final total are
+                    shown before you pay. Review the purchase terms before continuing.
                   </p>
                   <div className="mt-3 flex flex-wrap gap-4 text-sm">
                     <a href={offer?.termsUrl} className="underline">Purchase terms</a>
@@ -136,31 +140,29 @@ function PrivateKitsPage() {
                 <>
                   <p className="font-medium">Private-kit checkout is not yet open</p>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    The intended entry price is £9 one-off, excluding applicable tax, when the
-                    verified purchase flow and buyer terms are ready. Checkout is closed;
-                    no paid licence, entitlement or guaranteed delivery is currently offered.
-                    Public skills remain accessible without purchase.
+                    Planned price: £9 one-off. Online purchases are currently unavailable.
+                    Browse the public skills or contact us about integration work.
                   </p>
                   <a className="mt-4 inline-flex min-h-11 items-center rounded-md border border-border px-4 text-sm underline"
-                    href="/integration-services">Request a scoped integration instead</a>
+                    href="/integration-services">Enquire about integration</a>
                 </>
               )
             )}
             {error && <p role="alert" className="mt-4 text-sm text-destructive">{error}</p>}
           </div>
         </section>
-        <nav aria-label="Pre-launch buyer information" className="mt-6 flex flex-wrap gap-4 text-sm">
+        <nav aria-label="Buyer information" className="mt-6 flex flex-wrap gap-4 text-sm">
           <a href="/legal/kit-terms" className="underline">Purchase terms</a>
           <a href="/legal/kit-licence" className="underline">Licence</a>
           <a href="/legal/kit-refunds" className="underline">Refunds</a>
           <a href="/legal/kit-privacy" className="underline">Privacy</a>
         </nav>
         <section className="mt-10 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          <h2 className="text-lg font-semibold text-foreground">What purchase will not authorise</h2>
+          <h2 className="text-lg font-semibold text-foreground">Using the kit</h2>
           <p className="mt-3">
-            A kit purchase does not grant access to your repositories, Cloudflare, Stripe or third-party
-            provider accounts. Execution, deployment, billing and production changes remain separately
-            authorised and independently verified.
+            Review and adapt the examples for your environment before running them. You are
+            responsible for obtaining the permissions needed to connect accounts, change
+            repositories, deploy code or incur charges.
           </p>
         </section>
       </div>

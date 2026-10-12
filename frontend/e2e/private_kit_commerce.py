@@ -15,7 +15,7 @@ async def main():
         browser = await playwright.chromium.launch(headless=True)
         page = await browser.new_page(viewport={'width': 390, 'height': 844})
         await page.goto(BASE + '/private-kits', wait_until='domcontentloaded')
-        await expect(page.get_by_role('heading', name='Private execution kits, not repackaged public prompts')).to_be_visible()
+        await expect(page.get_by_role('heading', name='Private execution kits', exact=True)).to_be_visible()
         await expect(page.get_by_text('Private-kit checkout is not yet open')).to_be_visible()
         await expect(page.get_by_text('£9 one-off', exact=False)).to_be_visible()
         assert await page.get_by_role('button', name='Continue to secure checkout').count() == 0
@@ -48,6 +48,9 @@ async def main():
         complete = await page.request.get(BASE + '/private-kits/complete')
         assert complete.status == 200
         assert 'noindex' in await complete.text()
+        await page.goto(BASE + '/private-kits/complete', wait_until='domcontentloaded')
+        await expect(page.get_by_role('heading', name='Your kit order', exact=True)).to_be_visible()
+        await expect(page.locator('main').get_by_role('link', name='heryourbarme@live.com')).to_be_visible()
         print('PASS: mobile private-kit planned availability, no Buy button, no price, denied checkout, denied order read, noindex completion')
         await browser.close()
 

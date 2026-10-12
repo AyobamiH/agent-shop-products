@@ -1,7 +1,7 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
 import { buildPageHead } from "@/lib/seo/meta";
-import { getPolicy, policies, POLICY_STATUS, POLICY_VERSION } from "@/domain/commerce/policies";
+import { getPolicy, policies, POLICY_VERSION } from "@/domain/commerce/policies";
 
 export const Route = createFileRoute("/legal/$document")({
   loader: ({ params }) => {
@@ -25,8 +25,8 @@ function PolicyPage() {
       <article className="max-w-3xl">
         <a href="/private-kits" className="text-sm underline underline-offset-4">Private execution kits</a>
         <h1 className="mt-8 text-3xl font-semibold">{policy.title}</h1>
-        <p className="mt-3 text-sm text-muted-foreground">Version {POLICY_VERSION} · {POLICY_STATUS}</p>
-        <p className="mt-4 text-sm">Save or print this page for your records. These published terms do not activate checkout.</p>
+        <p className="mt-3 text-sm text-muted-foreground">Version {POLICY_VERSION}</p>
+        <p className="mt-4 text-sm">Save or print this page for your records.</p>
         {policy.sections.map(([heading, body]) => (
           <section key={heading} className="mt-8">
             <h2 className="text-xl font-semibold">{heading}</h2>
