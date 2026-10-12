@@ -41,6 +41,8 @@ scripts/        Read-only catalogue validation
 AGENTS.md       Repository operating contract
 ```
 
-The existing 25-product storefront release has a separate [production acceptance record](docs/AGENT-SHOP-25-PRODUCTION-ACCEPTANCE-2026-10-09.md). The 33-product, 990-external-listing and 20-bug source change requires its own deployment/readback. Current validation does not establish production publication.
+The 25-product release remains preserved as a dated [historical acceptance record](docs/AGENT-SHOP-25-PRODUCTION-ACCEPTANCE-2026-10-09.md). **Current production has advanced:** the authorised Cloudflare Worker deploy for exact main b31b2ecce47eb8931814ea7f02521e817b70fa45 was read back on 12 October at version 10f6e2f7-f59d-4610-a0a8-65c1554f1c02. The live public endpoints show **33 owned products, 990 external metadata listings and 23 coding bugs**. The new brand and private-kit search-copy changes require their own reviewed deployment and readback.
+
+The distinct £9 private kit has passed real Stripe test-mode payment, signed webhook, exact private delivery, refund and buyer-record recovery acceptance. **Live Checkout remains disabled** until the seller address, merchant profile and tax-registration mismatch are independently resolved. Consult [buyer-operation acceptance](docs/BUYER_OPERATIONS_ACCEPTANCE_20261012.md), [launch readiness](commerce/launch-readiness.json) and the [latest launch closeout](docs/LAUNCH_CLOSEOUT_20261012.md). A successfully deployed catalogue is not evidence of a live paid sale.
 
 Existing public prompts preserve their migration provenance. New public skills contain original generalised procedures and sanitised evidence. Future premium-only payloads require an explicit publication decision.

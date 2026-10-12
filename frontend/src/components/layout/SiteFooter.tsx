@@ -28,7 +28,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-[74rem] gap-8 px-4 py-12 sm:px-6 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-3">
-            <img src="/agent-registry-mark.svg" alt="Agent Capability Catalogue registry aperture logo" className="size-8" />
+            <img src="/agent-registry-mark.svg" alt="Agent Shop registry aperture mark" className="size-8" />
             <div>
               <p className="text-sm font-semibold">{SITE_DESCRIPTOR}</p>
             </div>
