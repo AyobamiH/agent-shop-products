@@ -45,6 +45,9 @@ describe("Private kit gated commerce", () => {
     expect(approvedOffer(ready({ STRIPE_SECRET_KEY: "rk_live_wrong_mode" }), KIT)).toBeNull();
     expect(approvedOffer(ready({ COMMERCE_MODE: "live", STRIPE_SECRET_KEY: "sk_live_example" }), KIT)).toBeNull();
     expect(approvedOffer(ready({ COMMERCE_MODE: "live", STRIPE_SECRET_KEY: "sk_live_example",
+      COMMERCE_LIVE_APPROVED: "yes:approval.v1" }), KIT)).toBeNull();
+    // Closing new live sales must not strand a previously approved paid order.
+    expect(settlementOffer(ready({ COMMERCE_MODE: "live", STRIPE_SECRET_KEY: "sk_live_example",
       COMMERCE_LIVE_APPROVED: "yes:approval.v1" }), KIT)).toMatchObject({ mode: "live" });
     expect(approvedOffer(ready({ COMMERCE_OFFER_APPROVAL: "{broken" }), KIT)).toBeNull();
     const overpricedApproval = ready({

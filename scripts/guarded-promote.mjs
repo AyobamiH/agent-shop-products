@@ -78,7 +78,7 @@ export async function guardedPromote({
     const observed = await publicVerifier(ORIGIN);
     if (observed.status !== "PASS" || observed.commerceActive !== false ||
         observed.privateKitOffer !== "planned" || observed.products !== 33 ||
-        observed.externalCapabilities !== 990 || observed.codingBugs !== 20) {
+        observed.externalCapabilities !== 990 || observed.codingBugs !== 22) {
       throw Error("ACTIVE_VERSION_PUBLIC_ACCEPTANCE_FAILED");
     }
     return { status: "ALREADY_ACTIVE", sha, versionId, previousVersionId: prior, publicAcceptance: observed };
@@ -96,7 +96,7 @@ export async function guardedPromote({
         const observed = await publicVerifier(ORIGIN);
         if (observed?.status === "PASS" && observed.commerceActive === false &&
           observed.privateKitOffer === "planned" && observed.products === 33 &&
-          observed.externalCapabilities === 990 && observed.codingBugs === 20) {
+          observed.externalCapabilities === 990 && observed.codingBugs === 22) {
           return { ...observed, acceptedAttempt: attempt };
         }
       } catch { /* Only bounded redacted acceptance failures leave this scope. */ }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "recordKind": "sanitised-agentic-coding-bug-index",
-  "indexedOn": "2026-10-09",
+  "indexedOn": "2026-10-12",
   "scope": "Historical defects and preventive patterns recovered from reviewed work, plus current failures caught by acceptance checks. Each record qualifies its observation and repair evidence; production health requires separate verification.",
   "bugs": [
     {
@@ -69,7 +69,7 @@
         "sourceId": "september-learning-gates",
         "basis": "Dated acceptance report",
         "sourceUrl": "https://github.com/AyobamiH/agent-shop-products/blob/main/docs/MULTIWEEK_REVIEW.md",
-        "scope": "13\u201314 September observations, not current campaign performance."
+        "scope": "13–14 September observations, not current campaign performance."
       },
       "indexedOn": "2026-10-09"
     },
@@ -463,6 +463,52 @@
         "scope": "CI run 37902732121 observed shop overflow at 390 pixels. The grid/card sizing repair passed full browser acceptance in run 37903191137 at head 79b1d784. Production deployment remains unverified."
       },
       "indexedOn": "2026-10-09"
+    },
+    {
+      "id": "BUG-0021",
+      "title": "Automatic tax completion is mistaken for merchant readiness",
+      "project": "Agent Shop",
+      "category": "Commerce",
+      "trigger": "A successful tax calculation is treated as evidence that merchant tax settings match the seller’s actual registration.",
+      "symptom": "New checkout could be enabled despite unresolved registration facts.",
+      "rootCause": "Provider calculation state and legal merchant readiness were not independently gated.",
+      "consequence": "An incorrectly configured account can apply the wrong tax treatment.",
+      "repair": "Gate new live sales on independently evidenced merchant facts while preserving historic settlement.",
+      "regressionCheck": "Reject missing/conflicting merchant checks even with live keys and approval; retain historical settlement.",
+      "status": "Implementation reviewed",
+      "skillId": "production-agent-operating-files",
+      "nextAcceptance": "Verify the exact merged deployment; do not infer merchant launch readiness or Google indexing from these code checks.",
+      "evidence": {
+        "id": "BEV-0021",
+        "sourceId": "launch-closeout-20261012",
+        "basis": "Source inspection and provider readback",
+        "sourceUrl": "https://github.com/AyobamiH/agent-shop-products/blob/main/docs/LAUNCH_CLOSEOUT_20261012.md",
+        "scope": "Observed 12 October; preventive admission repair and discovery correction, not a customer loss or completed live sale."
+      },
+      "indexedOn": "2026-10-12"
+    },
+    {
+      "id": "BUG-0022",
+      "title": "Commercial landing page is absent from discovery sitemap",
+      "project": "Agent Shop",
+      "category": "Discovery",
+      "trigger": "A new private-kit route is added without the collection sitemap and primary footer links.",
+      "symptom": "The commercial page is reachable directly but missing from crawler discovery paths.",
+      "rootCause": "Route implementation and discovery manifests evolved independently.",
+      "consequence": "Potential buyers and crawlers have fewer routes to discover the offer.",
+      "repair": "Add private-kit and policy routes to the sitemap and link the commercial route in the footer.",
+      "regressionCheck": "Assert collection sitemap parity and inspect the deployed sitemap and canonical legal routes.",
+      "status": "Implementation reviewed",
+      "skillId": "machine-discovery-surface-engineering",
+      "nextAcceptance": "Verify the exact merged deployment; do not infer merchant launch readiness or Google indexing from these code checks.",
+      "evidence": {
+        "id": "BEV-0022",
+        "sourceId": "launch-closeout-20261012",
+        "basis": "Source inspection and provider readback",
+        "sourceUrl": "https://github.com/AyobamiH/agent-shop-products/blob/main/docs/LAUNCH_CLOSEOUT_20261012.md",
+        "scope": "Observed 12 October; preventive admission repair and discovery correction, not a customer loss or completed live sale."
+      },
+      "indexedOn": "2026-10-12"
     }
   ]
 }

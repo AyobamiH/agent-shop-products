@@ -1,3 +1,5 @@
+> Current checkpoint: [12 October launch closeout](LAUNCH_CLOSEOUT_20261012.md). The dated material below is preserved as historical design/acceptance evidence. Public pre-launch policies now live in `frontend/src/domain/commerce/policies.ts`; checkout remains closed.
+
 # Agent Shop — private execution kit commercial boundary (v1)
 
 **Source:** `AyobamiH/agent-shop-products`; **business status:** quote-first services available, private kit unpriced and unavailable for purchase until approved. Code and tests are NOT evidence of a real paid transaction.

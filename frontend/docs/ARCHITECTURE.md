@@ -178,3 +178,7 @@ Do not populate empty states with fabricated recommendations.
 # Capability registry and bug index extension
 
 Separate `domain/capabilities` and `domain/coding-bugs` repositories parse the three additional canonical metadata files once. Capability query functions are pure and shared by URL filters and JSON. Detail and brief lookups use indexed stable IDs. Registry and bug pages are modular routes; all data originates in root catalog files. Procurement policy and handoff templates contain no secrets and never execute POST requests. Original product authority remains unchanged.
+
+## Private-kit commerce boundary
+
+`src/server/commerce` owns checkout, webhook reconciliation and private delivery. `commerce/offers.json` is commercial source, separate from product metadata. `launch-readiness.ts` admits new live sales only with verified merchant facts; it never gates historical settlement. `domain/commerce/policies.ts` is the versioned public policy authority; the legal route renders it without HTML injection. The sitemap and footer expose buyer documents without asserting purchase availability.

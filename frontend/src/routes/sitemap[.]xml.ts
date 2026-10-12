@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { listProducts } from "@/domain/catalog/repository";
+import { policyPaths } from "@/domain/commerce/policies";
 import { absoluteUrl } from "@/lib/site";
 
 type SitemapEntry = { readonly path: string };
@@ -15,6 +16,8 @@ const STATIC_ENTRIES: readonly SitemapEntry[] = [
   { path: "/capabilities" },
   { path: "/coding-bugs" },
   { path: "/integration-services" },
+  { path: "/private-kits" },
+  ...policyPaths.map((path) => ({ path })),
 ];
 
 /**

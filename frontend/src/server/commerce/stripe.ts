@@ -83,7 +83,8 @@ export async function createStripeSession(
     "success_url": "https://agents.proofandstate.com/private-kits/complete?session_id={CHECKOUT_SESSION_ID}",
     "cancel_url": "https://agents.proofandstate.com/private-kits?checkout=cancelled",
     "billing_address_collection": "required",
-    // Requires an owner-approved Stripe Tax configuration. Fails closed if unavailable.
+    // Requires an owner-approved Stripe Tax configuration. A completed calculation alone does not prove tax registration;
+    // merchant readiness is checked separately before new live sales.
     "automatic_tax[enabled]": "true",
   });
   const result = await stripeRequest(env.STRIPE_SECRET_KEY!, "/checkout/sessions", {
