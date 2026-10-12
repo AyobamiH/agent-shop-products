@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { IDENTITY_STATUS, SITE_DESCRIPTOR } from "@/lib/site";
+import { SITE_DESCRIPTOR } from "@/lib/site";
 
 const NAV_ITEMS = [
   { to: "/agents", label: "Agent discovery" },
@@ -33,9 +33,6 @@ export function SiteHeader() {
           />
           <span className="min-w-0">
             <span className="block truncate text-sm font-semibold tracking-tight">{SITE_DESCRIPTOR}</span>
-            <span className="hidden font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground sm:block">
-              {IDENTITY_STATUS}
-            </span>
           </span>
         </Link>
 

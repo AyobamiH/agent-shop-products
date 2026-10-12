@@ -65,8 +65,16 @@ for (const path of ["/private-kits", ...legalPaths]) {
   requireValue(page.text.includes(canonicalOrigin + path), path + ": missing canonical URL");
   requireValue(rootPage.text.includes('href="' + path + '"'), path + ": missing footer link");
   if (path.startsWith("/legal/")) {
-    requireValue(page.text.includes("2026-10-12") && page.text.includes("checkout remains closed"),
-      path + ": missing versioned pre-launch boundary");
+    requireValue(page.text.includes("2026-10-12.1") && page.text.includes('href="mailto:heryourbarme@live.com"'),
+      path + ": missing policy version or customer contact");
+  }
+}
+for (const [path, page] of [["/", rootPage], ["/private-kits", privateKitPage], ["/private-kits/complete", privateKitComplete],
+  ...await Promise.all(legalPaths.map(async (path) => [path, await request(path)]))]) {
+  for (const phrase of ["Approved pre-launch", "checkout remains closed", "authenticated order readback",
+    "must be verified before sales", "Tax treatment is being verified", "must be completed before launch",
+    "invented commerce data", "descriptor — brand not chosen"]) {
+    requireValue(!page.text.includes(phrase), path + ": internal workflow text in public page");
   }
 }
 await expectStatus("/legal/not-a-policy", 404);
@@ -78,6 +86,8 @@ requireValue(commerce.offers.length === 1 &&
   "private-kit commercial inventory drift");
 requireValue(privateKitPage.text.includes("Private Production Agent Operating Kit"),
   "private kit detail route missing original kit description");
+requireValue(privateKitComplete.text.includes("Your kit order"),
+  "order completion route must render order help instead of its parent catalogue");
 requireValue(privateKitComplete.text.includes("noindex"),
   "order completion route must not be indexed");
 if (commerce.commerceActive === false) {

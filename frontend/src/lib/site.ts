@@ -3,7 +3,6 @@
  * The public brand is intentionally undecided.
  */
 export const SITE_DESCRIPTOR = "Agent Capability Catalogue";
-export const IDENTITY_STATUS = "descriptor — brand not chosen";
 
 function normalizeOrigin(value: string): string {
   return value.replace(/\/+$/, "");

@@ -24,7 +24,7 @@ The £9 Stripe sandbox checkout → real deployed webhook → durable order/enti
 | Gate | Observed 12 October | Required evidence |
 | --- | --- | --- |
 | Customer-facing business address | Approved public location only; no legitimate non-home full address supplied | Authorised address suitable for customer disclosure; never publish home address or UTR |
-| Monitored support email | Proposed public email unverified; connected live merchant support-email field unset | Working monitored route and recovery procedure |
+| Customer support email | Existing customer contact reused and inbound delivery checked; see [contact verification](CUSTOMER_CONTACT_VERIFICATION_20261012.md). Connected live merchant support-email field remains unset | Align merchant profile; complete order-recovery acceptance |
 | Tax treatment | Owner states non-VAT-registered; connected live Stripe account has an active GB tax-registration setting | Resolve the factual mismatch before accepting live payment; do not silently change shared registrations |
 | Merchant profile | Individual account; charges and payouts enabled; no currently due requirements; public phone matches; support address/email unset | Align verified public merchant details |
 | Buyer record | Pre-launch documents published; retention schedule and durable per-order contract delivery still need completion | Actual saved contract/confirmation and supported recovery acceptance |
