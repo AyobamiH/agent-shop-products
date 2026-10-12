@@ -8,6 +8,7 @@ export type StripeSession = {
   automatic_tax?: { enabled?: boolean; status?: string | null } | null;
   total_details?: { amount_tax?: number | null; amount_discount?: number | null; amount_shipping?: number | null } | null;
   client_reference_id?: string | null; metadata?: Record<string, string>;
+  customer_details?: { email?: string | null } | null;
   payment_intent?: string | { id?: string } | null;
   line_items?: { data?: Array<{ price?: { id?: string }; quantity?: number }> };
 };

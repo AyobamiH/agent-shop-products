@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { OrderRecoveryForm } from "@/components/commerce/OrderRecoveryForm";
 import { PageShell } from "@/components/layout/PageShell";
 import { buildPageHead } from "@/lib/seo/meta";
 import { SUPPORT_EMAIL, SUPPORT_EMAIL_HREF } from "@/lib/contact";
@@ -7,6 +8,7 @@ import { SUPPORT_EMAIL, SUPPORT_EMAIL_HREF } from "@/lib/contact";
 type OrderStatus = {
   orderId: string;
   state: "creating" | "checkout_open" | "paid" | "failed" | "revoked";
+  purchaseRecordAvailable?: boolean; purchaseRecordSaved?: boolean;
   fulfilment: "available" | "unavailable";
 };
 export const Route = createFileRoute("/private-kits/complete")({
@@ -48,13 +50,13 @@ function CompletionPage() {
   }
   useEffect(() => { void readStatus(); }, []);
 
-  async function downloadKit() {
+  async function downloadKit(purchaseRecord = false) {
     const identity = credentials();
-    if (!identity || working || record?.fulfilment !== "available") return;
+    if (!identity || working || (!purchaseRecord && record?.fulfilment !== "available")) return;
     setError("");
     setWorking(true);
     try {
-      const response = await fetch("/api/v1/commerce/download/" + encodeURIComponent(identity.id), {
+      const response = await fetch("/api/v1/commerce/" + (purchaseRecord ? "purchase-record/" : "download/") + encodeURIComponent(identity.id), {
         headers: { Authorization: "Bearer " + identity.claim },
         cache: "no-store",
       });
@@ -65,11 +67,12 @@ function CompletionPage() {
       try {
         const anchor = document.createElement("a");
         anchor.href = url;
-        anchor.download = "private-agent-execution-kit.zip";
+        anchor.download = purchaseRecord ? "agent-shop-purchase-record.txt" : "private-agent-execution-kit.zip";
         document.body.appendChild(anchor);
         anchor.click();
         anchor.remove();
       } finally { URL.revokeObjectURL(url); }
+      if (purchaseRecord) await readStatus();
     } catch {
       setError("Your download is currently unavailable. Please try again or contact us with your order reference.");
     } finally { setWorking(false); }
@@ -87,9 +90,18 @@ function CompletionPage() {
           <p role="status" className="font-medium">
             {record ? "Order state: " + record.state : "Your order status is not available yet"}
           </p>
+          {record?.purchaseRecordAvailable && (
+            <button className="mt-4 min-h-11 rounded-md border border-border px-4 disabled:opacity-60"
+              type="button" disabled={working} onClick={() => void downloadKit(true)}>
+              Save purchase record
+            </button>
+          )}
+          {record?.purchaseRecordAvailable && !record.purchaseRecordSaved && (
+            <p className="mt-3 text-sm">Save your purchase record before downloading the kit. It includes your terms and payment total.</p>
+          )}
           {record?.fulfilment === "available" && (
             <button className="mt-4 min-h-11 rounded-md bg-primary px-4 text-white disabled:opacity-60"
-              type="button" disabled={working} onClick={downloadKit}>
+              type="button" disabled={working || (record.purchaseRecordAvailable && !record.purchaseRecordSaved)} onClick={() => void downloadKit()}>
               Download your kit
             </button>
           )}
@@ -105,6 +117,7 @@ function CompletionPage() {
           with your order reference or Stripe receipt for help recovering access.
           Do not include payment card details in your enquiry.
         </p>
+        <OrderRecoveryForm onRestore={readStatus} />
         <Link className="mt-6 inline-flex underline underline-offset-4" to="/shop">Return to catalogue</Link>
       </div>
     </PageShell>

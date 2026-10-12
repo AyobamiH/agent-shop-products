@@ -65,7 +65,7 @@ for (const path of ["/private-kits", ...legalPaths]) {
   requireValue(page.text.includes(canonicalOrigin + path), path + ": missing canonical URL");
   requireValue(rootPage.text.includes('href="' + path + '"'), path + ": missing footer link");
   if (path.startsWith("/legal/")) {
-    requireValue(page.text.includes("2026-10-12.1") && page.text.includes('href="mailto:heryourbarme@live.com"'),
+    requireValue(page.text.includes("2026-10-12.2") && page.text.includes('href="mailto:heryourbarme@live.com"'),
       path + ": missing policy version or customer contact");
   }
 }

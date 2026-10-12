@@ -47,7 +47,7 @@ function mock({ verified=true, malformedBinding=false, ambiguousPost=false,
         if (concurrentPromotion && publicAttempts===1) active="33333333-3333-4333-8333-333333333333";
         return {status: (verified && publicAttempts>transientPublicFailures)?"PASS":"FAIL",
           commerceActive:false,privateKitOffer:"planned",products:33,
-          externalCapabilities:990,codingBugs:22};
+          externalCapabilities:990,codingBugs:23};
       }},
     get active(){return active},get writes(){return [...written]},
     get publicAttempts(){return publicAttempts},

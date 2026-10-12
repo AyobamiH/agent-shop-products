@@ -38,6 +38,9 @@ jobs:
           ref: 9bf8eae67128b6cc55ad9bf86665767deb4c11cd
           path: .design-reference
           persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
