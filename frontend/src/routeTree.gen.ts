@@ -28,6 +28,7 @@ import { Route as ShopRouteImport } from './routes/shop'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as CapabilitiesIdRouteImport } from './routes/capabilities_.$id'
+import { Route as LegalDocumentRouteImport } from './routes/legal.$document'
 import { Route as PrivateKitsCompleteRouteImport } from './routes/private-kits.complete'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 
@@ -126,6 +127,11 @@ const CapabilitiesIdRoute = CapabilitiesIdRouteImport.update({
   path: '/capabilities/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LegalDocumentRoute = LegalDocumentRouteImport.update({
+  id: '/legal/$document',
+  path: '/legal/$document',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivateKitsCompleteRoute = PrivateKitsCompleteRouteImport.update({
   id: '/complete',
   path: '/complete',
@@ -157,6 +163,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solutions': typeof SolutionsRoute
   '/capabilities/$id': typeof CapabilitiesIdRoute
+  '/legal/$document': typeof LegalDocumentRoute
   '/private-kits/complete': typeof PrivateKitsCompleteRoute
   '/products/$slug': typeof ProductsSlugRoute
 }
@@ -180,6 +187,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solutions': typeof SolutionsRoute
   '/capabilities/$id': typeof CapabilitiesIdRoute
+  '/legal/$document': typeof LegalDocumentRoute
   '/private-kits/complete': typeof PrivateKitsCompleteRoute
   '/products/$slug': typeof ProductsSlugRoute
 }
@@ -204,6 +212,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solutions': typeof SolutionsRoute
   '/capabilities_/$id': typeof CapabilitiesIdRoute
+  '/legal/$document': typeof LegalDocumentRoute
   '/private-kits/complete': typeof PrivateKitsCompleteRoute
   '/products/$slug': typeof ProductsSlugRoute
 }
@@ -229,6 +238,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solutions'
     | '/capabilities/$id'
+    | '/legal/$document'
     | '/private-kits/complete'
     | '/products/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -252,6 +262,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solutions'
     | '/capabilities/$id'
+    | '/legal/$document'
     | '/private-kits/complete'
     | '/products/$slug'
   id:
@@ -275,6 +286,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solutions'
     | '/capabilities_/$id'
+    | '/legal/$document'
     | '/private-kits/complete'
     | '/products/$slug'
   fileRoutesById: FileRoutesById
@@ -299,6 +311,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolutionsRoute: typeof SolutionsRoute
   CapabilitiesIdRoute: typeof CapabilitiesIdRoute
+  LegalDocumentRoute: typeof LegalDocumentRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
 }
 
@@ -437,6 +450,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CapabilitiesIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/legal/$document': {
+      id: '/legal/$document'
+      path: '/legal/$document'
+      fullPath: '/legal/$document'
+      preLoaderRoute: typeof LegalDocumentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/private-kits/complete': {
       id: '/private-kits/complete'
       path: '/complete'
@@ -486,6 +506,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolutionsRoute: SolutionsRoute,
   CapabilitiesIdRoute: CapabilitiesIdRoute,
+  LegalDocumentRoute: LegalDocumentRoute,
   ProductsSlugRoute: ProductsSlugRoute,
 }
 export const routeTree = rootRouteImport

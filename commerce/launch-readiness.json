@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-10-12",
+  "offerId": "private-production-agent-operating-kit",
+  "checks": {
+    "publicBusinessAddress": {
+      "status": "missing",
+      "evidence": null
+    },
+    "monitoredSupportEmail": {
+      "status": "unverified",
+      "evidence": null
+    },
+    "taxTreatment": {
+      "status": "conflict",
+      "evidence": null
+    },
+    "liveMerchantProfile": {
+      "status": "incomplete",
+      "evidence": null
+    },
+    "buyerContractAndRecovery": {
+      "status": "unverified",
+      "evidence": null
+    },
+    "retentionPolicy": {
+      "status": "unverified",
+      "evidence": null
+    }
+  },
+  "note": "Technical test acceptance and owner authorisation do not supply missing business facts. Evidence URLs must describe completed checks; no private identifiers belong here."
+}

@@ -149,6 +149,12 @@ function PrivateKitsPage() {
             {error && <p role="alert" className="mt-4 text-sm text-destructive">{error}</p>}
           </div>
         </section>
+        <nav aria-label="Pre-launch buyer information" className="mt-6 flex flex-wrap gap-4 text-sm">
+          <a href="/legal/kit-terms" className="underline">Purchase terms</a>
+          <a href="/legal/kit-licence" className="underline">Licence</a>
+          <a href="/legal/kit-refunds" className="underline">Refunds</a>
+          <a href="/legal/kit-privacy" className="underline">Privacy</a>
+        </nav>
         <section className="mt-10 max-w-2xl text-sm leading-relaxed text-muted-foreground">
           <h2 className="text-lg font-semibold text-foreground">What purchase will not authorise</h2>
           <p className="mt-3">

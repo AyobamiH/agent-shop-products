@@ -5,6 +5,7 @@ on:
     paths:
       - "frontend/**"
       - "catalog/**"
+      - "commerce/**"
       - "products/**"
       - "scripts/**"
       - "docs/**"
@@ -15,6 +16,7 @@ on:
     paths:
       - "frontend/**"
       - "catalog/**"
+      - "commerce/**"
       - "products/**"
       - "scripts/**"
       - "docs/**"

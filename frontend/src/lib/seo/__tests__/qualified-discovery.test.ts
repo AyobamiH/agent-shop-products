@@ -21,6 +21,11 @@ describe("qualified discovery", () => {
       "/coding-bugs",
       "/integration-services",
       "/solutions",
+      "/private-kits",
+      "/legal/kit-terms",
+      "/legal/kit-licence",
+      "/legal/kit-refunds",
+      "/legal/kit-privacy",
     ];
     for (const path of approvedCollections) {
       expect(paths).toContain(path);

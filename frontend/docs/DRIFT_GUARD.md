@@ -1,8 +1,12 @@
 # Drift Guard
 
+## Authorised scope extension, 12 October 2026
+
+DEC-018 permits the existing bounded private-kit checkout, signed webhook settlement and entitlement delivery, plus versioned buyer information. Merchant facts and private payload boundaries remain mandatory. This supersedes the frontend-only prohibition only for that service.
+
 ## Authorised scope extension, 9 October 2026
 
-DEC-011 authorises the full names-only external capability registry, original integration briefs and a sanitised agentic coding bug index. Quote requests are prepared as GET documents and handed to the existing provider; the frontend does not execute transactions. External registry entries do not become owned product payloads. The limits below continue to govern prices, permissions and execution.
+DEC-017 authorises the full names-only external capability registry, original integration briefs and a sanitised agentic coding bug index. Quote requests are prepared as GET documents and handed to the existing provider; the frontend does not execute transactions. External registry entries do not become owned product payloads. The limits below continue to govern prices, permissions and execution.
 
 ## Explicitly out of scope for the current frontend phase
 
@@ -16,8 +20,8 @@ DEC-011 authorises the full names-only external capability registry, original in
 - AdCP
 - autonomous purchasing
 - agent wallets
-- backend marketplace
-- payment processing
+- general backend marketplace
+- payment processing outside the bounded DEC-018 private-kit service
 - authentication/account system
 - prompt generator
 - generic chatbot

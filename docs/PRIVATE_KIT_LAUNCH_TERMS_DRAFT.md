@@ -1,3 +1,5 @@
+> Current checkpoint: [12 October launch closeout](LAUNCH_CLOSEOUT_20261012.md). The dated material below is preserved as historical design/acceptance evidence. Public pre-launch policies now live in `frontend/src/domain/commerce/policies.ts`; checkout remains closed.
+
 # Private kit launch terms — reviewable draft
 
 **DRAFT — not an active purchase contract.** No public charge is enabled by this document. The proposals below are concrete defaults for review; unknown facts are not populated with invented values.

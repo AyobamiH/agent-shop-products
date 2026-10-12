@@ -58,6 +58,18 @@ const sitemap = await expectStatus("/sitemap.xml");
 const commerceResult = await expectStatus("/api/v1/commerce/offers");
 const privateKitPage = await expectStatus("/private-kits");
 const privateKitComplete = await expectStatus("/private-kits/complete");
+const legalPaths = ["kit-terms", "kit-licence", "kit-refunds", "kit-privacy"].map((slug) => "/legal/" + slug);
+for (const path of ["/private-kits", ...legalPaths]) {
+  const page = await expectStatus(path);
+  requireValue(sitemap.text.includes(canonicalOrigin + path), path + ": missing sitemap entry");
+  requireValue(page.text.includes(canonicalOrigin + path), path + ": missing canonical URL");
+  requireValue(rootPage.text.includes('href="' + path + '"'), path + ": missing footer link");
+  if (path.startsWith("/legal/")) {
+    requireValue(page.text.includes("2026-10-12") && page.text.includes("checkout remains closed"),
+      path + ": missing versioned pre-launch boundary");
+  }
+}
+await expectStatus("/legal/not-a-policy", 404);
 const commerce = JSON.parse(commerceResult.text);
 requireValue(commerce.schemaVersion === 1 && Array.isArray(commerce.offers),
   "commerce offer projection must have a versioned validated schema");

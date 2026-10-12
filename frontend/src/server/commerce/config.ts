@@ -1,4 +1,6 @@
 import source from "../../../../commerce/offers.json";
+import { merchantReady } from "./launch-readiness";
+import { POLICY_VERSION } from "../../domain/commerce/policies";
 
 export type D1Result = { meta?: { changes?: number }; success?: boolean };
 export type D1Statement = {
@@ -83,6 +85,9 @@ export function approvedOffer(env: CommerceEnv, id: string): ApprovedOffer | nul
   // explicitly versioned entry amount. Historic transactions keep their
   // original approved amount through settlementOffer and stored D1 receipts.
   if (!offer || offer.unitAmountPence !== offer.introductoryUnitAmountPence) return null;
+  if (offer.mode === "live" && (!merchantReady() ||
+      offer.termsVersion !== POLICY_VERSION || offer.licenceVersion !== POLICY_VERSION ||
+      offer.refundPolicyVersion !== POLICY_VERSION)) return null;
   return offer;
 }
 

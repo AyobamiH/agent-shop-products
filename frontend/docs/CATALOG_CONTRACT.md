@@ -78,3 +78,7 @@ The frontend now lives at `frontend/` in the same GitHub repository as the canon
 # External capability and coding bug contracts
 
 The owner-authorised registry has three additional canonical inputs: `catalog/capability-inventory.json`, `catalog/capability-acquisition.json` and `catalog/agentic-coding-bugs.json`. They are synced into `frontend/catalog` and consumed through separate domain repositories. All 990 advertised capability names must have unique stable IDs, detail URLs and GET integration briefs. These metadata listings are not owned product payloads, executable tool schemas, external skill downloads or ready installations. Quote-first integration requires provider feasibility and accepted commercial terms. Bug entries preserve source, evidence scope, next acceptance and historical/candidate status.
+
+## Active commercial separation
+
+The owner-authorised bounded commerce implementation uses root `commerce/offers.json`, not public product metadata. Published policies do not enable purchases. Live availability depends on runtime approval plus separately verified merchant facts. See DEC-018 and `../../docs/LAUNCH_CLOSEOUT_20261012.md`.
