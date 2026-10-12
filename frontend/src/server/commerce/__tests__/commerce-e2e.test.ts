@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { CommerceD1, CommerceD1 as Database, CommerceEnv } from "../config";
+import { POLICY_VERSION } from "../../../domain/commerce/policies";
 import { handleCommerceRequest } from "../handler";
 
 const KIT = "private-production-agent-operating-kit";
@@ -10,6 +11,7 @@ type Row = { state?: unknown; idempotency_key?: unknown; checkout_session_id?: u
 
 function fixture({ preventEntitlementInsert = false,
   stripeCommittedButTimedOut = false, tamperRecoverySession = false } = {}) {
+  const contracts = new Map<string, Row>();
   const orders = new Map<string, Row>();
   const entitlements = new Map<string, Row>();
   const events = new Set<string>();
@@ -22,7 +24,8 @@ function fixture({ preventEntitlementInsert = false,
     async first<T>() {
       const sql = this.sql, v = this.values;
       let value: Row | null = null;
-      if (sql.startsWith("SELECT event_id")) value = events.has(String(v[0])) ? { event_id: v[0] } : null;
+      if (sql.startsWith("SELECT * FROM commerce_contracts")) value = contracts.get(String(v[0])) || null;
+      else if (sql.startsWith("SELECT event_id")) value = events.has(String(v[0])) ? { event_id: v[0] } : null;
       else if (sql.startsWith("SELECT * FROM commerce_orders WHERE checkout_session_id")) {
         value = [...orders.values()].find((o) => o.checkout_session_id === v[0]) || null;
       } else if (sql.startsWith("SELECT * FROM commerce_orders WHERE id")) {
@@ -38,7 +41,13 @@ function fixture({ preventEntitlementInsert = false,
     }
     async run() {
       const s = this.sql, v = this.values;
-      if (s.startsWith("INSERT INTO commerce_orders")) {
+      if (s.startsWith("INSERT INTO commerce_contracts")) {
+        contracts.set(String(v[0]),{order_id:v[0],body:v[1],sha256:v[2],created_at:v[3]});
+      } else if (s.startsWith("UPDATE commerce_contracts SET paid_total_pence")) {
+        const c=contracts.get(String(v[4])); if(c && !c["confirmed_at"]) Object.assign(c,{paid_total_pence:v[0],tax_pence:v[1],confirmed_at:v[2],financial_retain_until:v[3]});
+      } else if (s.startsWith("UPDATE commerce_contracts SET document_accessed_at")) {
+        const c=contracts.get(String(v[1])); if(c)c["document_accessed_at"]=v[0];
+      } else if (s.startsWith("INSERT INTO commerce_orders")) {
         const [id,offer_id,offer_version,currency,amount_pence,terms_version,state,claim_token_hash,idempotency_key,created_at,updated_at] = v;
         if ([...orders.values()].some(o=>o.idempotency_key===idempotency_key)) throw Error("UNIQUE constraint");
         orders.set(String(id),{ id,offer_id,offer_version,currency,amount_pence,terms_version,state,
@@ -99,8 +108,8 @@ function fixture({ preventEntitlementInsert = false,
     COMMERCE_ENABLED: "true", COMMERCE_MODE: "test",
     COMMERCE_OFFER_APPROVAL: JSON.stringify({
       offerId:KIT,version:"2026.10.1",priceId:"price_123456789012",
-      unitAmountPence:900,currency:"gbp",termsVersion:"terms.v1",
-      licenceVersion:"licence.v1",refundPolicyVersion:"refund.v1",commercialDecisionId:"approval.v1",
+      unitAmountPence:900,currency:"gbp",termsVersion:POLICY_VERSION,
+      licenceVersion:POLICY_VERSION,refundPolicyVersion:POLICY_VERSION,commercialDecisionId:"approval.v1",
       termsUrl:"https://agents.proofandstate.com/legal/kit-terms",
       licenceUrl:"https://agents.proofandstate.com/legal/kit-licence",
       refundUrl:"https://agents.proofandstate.com/legal/kit-refunds",
@@ -188,6 +197,8 @@ describe("Stripe-hosted private-kit integration without live customer effects", 
     const savedKey=f.env.STRIPE_SECRET_KEY;
     delete f.env.COMMERCE_OFFER_APPROVAL;
     delete f.env.STRIPE_SECRET_KEY;
+    const receiptDownload=await handleCommerceRequest(new Request(API+"purchase-record/"+data.orderId,{headers}),f.env);
+    expect(receiptDownload?.status).toBe(200);
     const delivered=await handleCommerceRequest(new Request(API+"download/"+data.orderId,{headers}),f.env);
     expect(delivered?.status).toBe(200);
     f.env.COMMERCE_OFFER_APPROVAL=savedApproval!;

@@ -509,6 +509,29 @@
         "scope": "Observed 12 October; preventive admission repair and discovery correction, not a customer loss or completed live sale."
       },
       "indexedOn": "2026-10-12"
+    },
+    {
+      "id": "BUG-0023",
+      "title": "Nested completion route renders its parent listing",
+      "project": "Agent Shop",
+      "category": "Routing",
+      "trigger": "An order-completion child route is added beneath a catalogue route that does not render an outlet.",
+      "symptom": "The completion URL returns HTTP 200 and correct metadata but displays the kit listing instead of order help.",
+      "rootCause": "Route acceptance checked status and noindex metadata without checking the visible child content.",
+      "consequence": "Customers cannot reach the expected order status and recovery instructions.",
+      "repair": "Render the child outlet on the completion route and assert its order-help heading and contact link in browser acceptance.",
+      "regressionCheck": "Check the exact completion content at mobile and desktop widths, alongside authentication and noindex behaviour.",
+      "status": "Implementation reviewed",
+      "skillId": "machine-discovery-surface-engineering",
+      "nextAcceptance": "Keep the completion-content assertion in CI and deployed verification after router changes.",
+      "evidence": {
+        "id": "BEV-0023",
+        "sourceId": "customer-copy-release-20261012",
+        "basis": "Public merged repair",
+        "sourceUrl": "https://github.com/AyobamiH/agent-shop-products/blob/910ea7b1e1a9ada679b5ddb698dde86e22bd853d/docs/CUSTOMER_CONTACT_VERIFICATION_20261012.md",
+        "scope": "Merged PR 46 and live readback on 12 October verified the repaired completion route. No customer loss is inferred."
+      },
+      "indexedOn": "2026-10-12"
     }
   ]
 }
