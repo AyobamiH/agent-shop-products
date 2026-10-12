@@ -20,12 +20,12 @@
       "evidence": null
     },
     "buyerContractAndRecovery": {
-      "status": "unverified",
-      "evidence": null
+      "status": "verified",
+      "evidence": "https://github.com/AyobamiH/agent-shop-products/blob/64c7ee757dee247b82b28fcdc1bf0c5952f2d374/docs/BUYER_OPERATIONS_ACCEPTANCE_20261012.md"
     },
     "retentionPolicy": {
-      "status": "unverified",
-      "evidence": null
+      "status": "verified",
+      "evidence": "https://github.com/AyobamiH/agent-shop-products/blob/64c7ee757dee247b82b28fcdc1bf0c5952f2d374/docs/BUYER_OPERATIONS_ACCEPTANCE_20261012.md"
     }
   },
   "note": "Technical test acceptance and owner authorisation do not supply missing business facts. Evidence URLs must describe completed checks; no private identifiers belong here."

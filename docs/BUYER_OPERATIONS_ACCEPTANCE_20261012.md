@@ -18,7 +18,7 @@ Cleanup removes only failed attempts that never reached a payment session after 
 - A genuine Stripe test refund revoked access. Replay and declined-card checks passed. No live-money payment occurred.
 - Mobile and desktop browser checks verified support-code entry, code removal from the form, purchase-record download and the download prerequisite.
 
-The acceptance used the isolated working candidate; release requires an immutable commit, CI, the additive production migration, guarded promotion and live readback. No production merchant fact is inferred from sandbox success.
+The isolated candidate was committed in afd7643a479966d5f87975a1abef3d6a4d9c4ddc and merged by PR 47 as bf2fa858f19118a52b7c9e47425f4dbb3170933c. Exact-main CI passed. The additive production migration preserved the existing order and entitlement counts (both zero). Guarded preview and production acceptance passed on Cloudflare version 190df97a-d8fe-46ff-bd42-988b1c347e70 at 19:56 UTC. Checkout remains disabled. No production merchant fact is inferred from sandbox success.
 
 ## Operator commands
 
@@ -34,7 +34,7 @@ Configuration is permission-0600 JSON containing accountId, databaseId, mode and
 
 Recovery input contains requestId (UUID), orderId, customerEmail and verifiedCustomerControl=true. Use a new request ID only after investigating a failed operation; never retry blindly after token rotation. Deliver the new code only through the already verified customer channel. Do not place credentials or customer input in Git, command arguments, chat or support logs.
 
-The daily retention job must use the dedicated Shop credential and reviewed main checkout. Record each result as counts only; inspect failures and financial review counts. It must not alter unrelated runtime services.
+The dedicated agent-shop-commerce-retention user service and daily timer are installed using the scoped Shop infrastructure credential and reviewed main checkout. The first production run completed with exit 0 and zero changes; the next timer event was verified for 13 October around 03:47 Europe/London. Results contain operation counts only. Financial reviews due: zero. The job preserves paid records and licences and does not alter unrelated runtime services. Inspect failures and financial review counts.
 
 ## Sources
 
