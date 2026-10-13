@@ -41,7 +41,13 @@ async def main():
             await expect(page.get_by_role("heading", name=record["name"], exact=True)).to_be_visible()
             robots = await page.locator('meta[name="robots"]').get_attribute("content")
             assert robots and "noindex" in robots and "follow" in robots
-            await expect(page.get_by_role("link", name="Request an integration quote")).to_have_attribute("href", "https://tailwaggingwebdesign.com/agents/")
+            await expect(page.get_by_role("link", name="Request an integration quote")).to_have_attribute(
+                "href",
+                "https://tailwaggingwebdesign.com/contact/?utm_source=agent_shop&utm_medium=referral&utm_campaign=capability_brief",
+            )
+            await expect(page.get_by_role("link", name="Read the agent work-order guide")).to_have_attribute(
+                "href", "https://tailwaggingwebdesign.com/agents/"
+            )
             brief = await (await page.request.get(ORIGIN + "/capability-brief.json?id=" + record["id"])).json()
             assert brief["handoff"]["templateIsIncomplete"] is True
             assert "contactEmail" not in brief["handoff"]["requestTemplate"]
@@ -60,8 +66,11 @@ async def main():
         await page.goto(ORIGIN + "/integration-services")
         await expect(page.get_by_role("heading", name="When an agent workflow needs an experienced implementer")).to_be_visible()
         quote = page.get_by_role("link", name="Request a scoped integration quote")
-        assert (await quote.get_attribute("href")).startswith("https://tailwaggingwebdesign.com/agents/")
+        assert (await quote.get_attribute("href")).startswith("https://tailwaggingwebdesign.com/contact/")
         assert "utm_source=agent_shop" in (await quote.get_attribute("href"))
+        await expect(page.get_by_role("link", name="Inspect the agent work-order guide")).to_have_attribute(
+            "href", "https://tailwaggingwebdesign.com/agents/"
+        )
         html = await page.content()
         assert '"@type":"Service"' in html
         assert '"offers":' not in html

@@ -6,6 +6,7 @@ import {
   SUBCONTRACTING_PROVIDER_NAME,
   SUBCONTRACTING_SERVICE_CATALOGUE,
   SUBCONTRACTING_SERVICE_GUIDE,
+  SUBCONTRACTING_INTEGRATION_QUOTE_URL,
 } from "@/features/agent-discovery/subcontracting-source";
 import { buildPageHead } from "@/lib/seo/meta";
 import { absoluteUrl } from "@/lib/site";
@@ -13,9 +14,6 @@ import { absoluteUrl } from "@/lib/site";
 const TITLE = "Agent workflow integration and repository fixes — Agent Shop";
 const DESCRIPTION =
   "Need a workflow installed or a repository issue repaired? Inspect public skills, then request a scoped quote from the independent implementation provider.";
-const TRACKED_PROVIDER_GUIDE =
-  SUBCONTRACTING_SERVICE_GUIDE +
-  "?utm_source=agent_shop&utm_medium=referral&utm_campaign=integration_services";
 
 export const Route = createFileRoute("/integration-services")({
   head: () =>
@@ -82,7 +80,7 @@ function IntegrationServicesPage() {
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <a
-            href={TRACKED_PROVIDER_GUIDE}
+            href={SUBCONTRACTING_INTEGRATION_QUOTE_URL}
             className="inline-flex min-h-11 items-center rounded-md bg-primary px-5 py-3 text-sm font-medium text-white hover:bg-primary/90"
           >
             Request a scoped integration quote
@@ -92,6 +90,12 @@ function IntegrationServicesPage() {
             className="inline-flex min-h-11 items-center rounded-md border border-border px-5 py-3 text-sm font-medium hover:bg-surface"
           >
             Inspect the live service contract
+          </a>
+          <a
+            href={SUBCONTRACTING_SERVICE_GUIDE}
+            className="inline-flex min-h-11 items-center px-2 py-3 text-sm font-medium text-primary underline underline-offset-4"
+          >
+            Inspect the agent work-order guide
           </a>
         </div>
       </div>
