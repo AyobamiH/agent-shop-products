@@ -1,4 +1,5 @@
 import { acquisitionPolicy } from "@/domain/capabilities/repository";
+import { SUBCONTRACTING_CAPABILITY_QUOTE_URL } from "@/features/agent-discovery/subcontracting-source";
 
 export function IntegrationNotice({
   briefUrl,
@@ -21,7 +22,7 @@ export function IntegrationNotice({
         </p>
       ) : (
         <a
-          href={acquisitionPolicy.providerGuide}
+          href={SUBCONTRACTING_CAPABILITY_QUOTE_URL}
           className="mt-4 inline-flex min-h-11 items-center rounded bg-primary px-4 text-sm font-medium text-primary-foreground"
         >
           Request an integration quote
@@ -46,6 +47,12 @@ export function IntegrationNotice({
         request is subject to feasibility and acceptance; discovery establishes no purchase or
         installation.
       </p>
+      <a
+        href={acquisitionPolicy.providerGuide}
+        className="mt-3 block text-xs text-primary underline underline-offset-4"
+      >
+        Read the agent work-order guide
+      </a>
       <a
         href={acquisitionPolicy.providerCatalogue}
         className="mt-3 block text-xs underline underline-offset-4"
