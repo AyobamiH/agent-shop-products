@@ -186,3 +186,7 @@ Separate `domain/capabilities` and `domain/coding-bugs` repositories parse the t
 ## Original integration package boundary
 
 Root commerce/integration-packages.json authors package discovery, independent of public prompt metadata and Stripe offers. The domain/commercial package repository validates its synced frontend projection. Integration services and the read-only integration-packages.json route share that repository. scripts/integration-request.mjs validates canonical external names and exclusions, then writes a private request file without network submission.
+
+## Discovery measurement boundary
+
+`lib/analytics` separates public configuration admission, consent storage, canonical event projection, runtime state and Google transport. `features/analytics` composes the optional preferences UI and router lifecycle; inactive deployments lazy-load no measurement runtime. Domain repositories validate public IDs before event construction. Unsafe paths or parameters deny measurement rather than entering analytics. The website `/privacy` notice is versioned independently from commercial policies. See the root discovery measurement runbook for activation and funnel-evidence requirements.

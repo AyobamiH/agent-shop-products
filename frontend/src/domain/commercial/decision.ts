@@ -19,6 +19,8 @@ export const COMMERCIAL_PATHS = [
     availability: "not_for_sale",
     description:
       "Original private reference packages now include versioned code, tests and recovery boundaries. They can inform a separately scoped integration quote; fixed-price digital purchase remains unavailable.",
+    actionPath: "/private-kits",
+    actionLabel: "Inspect private-kit contents, limits and planned availability",
   },
   {
     id: "workflow-bundle",

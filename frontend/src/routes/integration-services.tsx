@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { QuoteScopeExample } from "@/features/commercial/QuoteScopeExample";
 import { IntegrationPackages } from "@/features/commercial/IntegrationPackages";
 import { PageShell } from "@/components/layout/PageShell";
 import { SectionHeading } from "@/components/layout/SectionHeading";
@@ -81,6 +82,7 @@ function IntegrationServicesPage() {
         <div className="mt-6 flex flex-wrap gap-3">
           <a
             href={SUBCONTRACTING_INTEGRATION_QUOTE_URL}
+            data-discovery-event="quote_click"
             className="inline-flex min-h-11 items-center rounded-md bg-primary px-5 py-3 text-sm font-medium text-white hover:bg-primary/90"
           >
             Request a scoped integration quote
@@ -101,6 +103,7 @@ function IntegrationServicesPage() {
       </div>
 
       <IntegrationPackages />
+      <QuoteScopeExample />
 
       <section className="mt-16" aria-labelledby="example-scopes">
         <h2 id="example-scopes" className="text-xl font-semibold">
