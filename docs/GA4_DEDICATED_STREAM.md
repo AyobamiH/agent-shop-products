@@ -26,7 +26,7 @@ copies of this operator overlapping, not an atomic lock on Google's entire accou
 The target disables all eight enhanced-measurement switches, disables Google
 Signals, uses two-month event/user retention without resetting user retention,
 enables email and specified query-parameter redaction, and adds six event-scoped
-bounded discovery dimensions. Google Ads links must be absent. It does not mark
+bounded discovery dimensions. The user-scoped-only disallowAdsPersonalization field is not sent for event dimensions; advertising is disabled at the property/tag boundary instead. Google Ads links must be absent. It does not mark
 quote clicks as qualified leads or purchases. The detailed evidence is saved in
 the private operator directory. The website remains unchanged and tracking stays
 off until a separate reviewed configuration and browser/ingestion acceptance.

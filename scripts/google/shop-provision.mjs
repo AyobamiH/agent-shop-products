@@ -38,7 +38,12 @@ export function checkStream(stream, property) {
 const mask = fields => Object.keys(fields).map(k=>k.replace(/[A-Z]/g,x=>'_'+x.toLowerCase())).join(',');
 export async function ensureSingleton(session, endpoint, desired) {
   let actual=await session.request(endpoint);
-  const matches = () => Object.entries(desired).every(([k,v]) => JSON.stringify(actual[k])===JSON.stringify(v));
+  const resource = new URL(endpoint).pathname.replace(/^\/v1(?:alpha|beta)\//,'');
+  const matches = () => actual.name === resource && Object.entries(desired).every(([k,v]) => {
+    // Google protobuf JSON can omit a boolean whose default value is false.
+    if(v === false) return actual[k] === false || actual[k] === undefined;
+    return JSON.stringify(actual[k]) === JSON.stringify(v);
+  });
   if(!matches()) {
     await session.request(endpoint+'?updateMask='+encodeURIComponent(mask(desired)), {method:'PATCH',body:desired});
     actual=await session.request(endpoint);
@@ -95,7 +100,7 @@ export async function provisionShop({session, account, expectedHash, journal={},
     if(!found.length) {
       if(journal.dimensionAttempts?.includes(parameterName)) throw Error('DIMENSION_CREATION_UNRESOLVED_NO_RETRY');
       await record({dimensionAttempts:[...(journal.dimensionAttempts||[]),parameterName]});
-      await session.request(ADMIN+property.name+'/customDimensions',{method:'POST',body:{parameterName,displayName,scope:'EVENT',disallowAdsPersonalization:true}});
+      await session.request(ADMIN+property.name+'/customDimensions',{method:'POST',body:{parameterName,displayName,scope:'EVENT'}});
     }
   }
   const finalDimensions=await paged(session,ADMIN+property.name+'/customDimensions','customDimensions');

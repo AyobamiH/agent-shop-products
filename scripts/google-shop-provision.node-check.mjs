@@ -44,6 +44,7 @@ test('creates one dedicated property/stream with independently verified privacy 
  const f=fixture();const r=await provisionShop(f.args);
  assert.equal(r.status,'provisioned_verified');assert.equal(r.websiteCollectionEnabled,false);assert.equal(r.stream,stream);
  assert.equal(r.customDimensions.length,Object.keys(DIMENSIONS).length);
+ assert.ok(f.calls.filter(c=>c.method==='POST'&&c.p.endsWith('/customDimensions')).every(c=>!('disallowAdsPersonalization' in c.body)));
  assert.equal(f.calls.filter(c=>c.method==='POST'&&c.p==='properties').length,1);
  assert.equal(f.calls.filter(c=>c.method==='POST'&&c.p===property+'/dataStreams').length,1);
  assert.ok(f.calls.every(c=>c.p==='properties'||c.p===account||c.p.startsWith(property)));
