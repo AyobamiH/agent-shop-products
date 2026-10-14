@@ -48,3 +48,31 @@ Entry: `node scripts/owner-local-release.mjs` in a clean, freshly synchronised `
 The controller uses `gh api` and the canonical `requireExactMainCI` contract to verify the remote main ref, one successful exact-head push run, clean checkout and local revision. It checks those conditions **again immediately before production mutation**. The preview candidate must report 33 original products, 990 third-party capability names, 20 coding bugs, crawler and sitemap compliance and commerce `planned`/disabled. Version annotations and exact D1/R2/rate-limiter identities are checked. The candidate promotion also fences against a different active Worker Version observed at preflight. On transient edge convergence, retries are bounded; ambiguous API writes are reconciled against Cloudflare's control plane, and rollback may restore **only the version this operation changed**, never a third party's newer promotion. The local route is not a way to bypass CI or approved commercial terms.
 
 This route does **not** provide GitHub Actions secret rotation, automatic scheduled releases, a Stripe test merchant or real-money acceptance. A local owner release cannot be described as a successful GitHub Actions production workflow; the receipt includes `channel: owner-local-scoped-cloudflare` and `githubEnvironmentSecretUsed: false`. Web receipts and search indexing are separate from real paid outcomes. Future operators should prefer least-privilege GitHub Environment secrets only when a supported, explicitly authorised credential-custody path exists.
+
+
+## Control-plane convergence repair — 14 October 2026
+
+The former guard read the deployment pointer immediately after POST. A briefly
+stale prior pointer could trigger failure and rollback despite successful upload
+and candidate acceptance. Four new tests reproduced delayed promotion, ambiguous
+writes with delayed visibility, delayed rollback, and another operator redeploying
+the same code version. They failed before the repair and pass after it.
+
+The guard now polls at most eight times with 1.5-second gaps. It tolerates only
+explicitly witnessed older deployment identities. Both version and deployment ID
+are checked. A different operator's new deployment, including the same code version,
+is not treated as stale. An ambiguous POST is reconciled through reads and never
+automatically replayed. Public acceptance and before/after deployment checks remain.
+Rollback requires the exact candidate deployment still to be current and confirms
+a new restoration record, rather than accepting a stale pre-release record.
+Unresolved control-plane state is failure/unknown, not proof that no effect occurred.
+
+This is optimistic concurrency protection, not an atomic compare-and-swap: a
+provider change can still occur between the final read and write. The implementation
+does not claim to eliminate that provider API race. Exact source, main CI, account,
+bindings, commerce-disabled and outside-in gates remain mandatory. All credential-
+free release regressions now run in ordinary PR/main CI and the deploy workflow.
+
+No payment, tax setting or private asset is changed by this repair. The P1 source
+from #54 still requires a separately accepted production release. See #53 for the
+actual merged SHA, Worker version and independent production-readback receipt.
