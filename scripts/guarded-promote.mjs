@@ -1,3 +1,4 @@
+import { deploymentState, awaitDeployment, rollbackOwnedDeployment } from "./deployment-convergence.mjs";
 import { spawn } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -70,7 +71,9 @@ export async function guardedPromote({
   const version = await api("GET", "/versions/" + versionId);
   verifyCandidateMetadata(version, sha);
   const deployments = await api("GET", "/deployments");
-  const prior = activeVersion(deployments);
+  const priorState = deploymentState(deployments, activeVersion);
+  const prior = priorState.versionId;
+  const readDeployment = async () => deploymentState(await api("GET", "/deployments"), activeVersion);
   if (expectedPreviousVersion && prior !== expectedPreviousVersion) {
     throw Error("PRODUCTION_CHANGED_DURING_RELEASE");
   }
@@ -81,6 +84,10 @@ export async function guardedPromote({
         observed.externalCapabilities !== 990 || observed.codingBugs !== 24) {
       throw Error("ACTIVE_VERSION_PUBLIC_ACCEPTANCE_FAILED");
     }
+    const after = await readDeployment();
+    if (after.id !== priorState.id || after.versionId !== prior) {
+      throw Error("PRODUCTION_CHANGED_AFTER_READBACK");
+    }
     return { status: "ALREADY_ACTIVE", sha, versionId, previousVersionId: prior, publicAcceptance: observed };
   }
 
@@ -89,9 +96,8 @@ export async function guardedPromote({
   // Every retry confirms that no other operator has replaced our candidate.
   async function verifyConvergedPublic() {
     for (let attempt = 1; attempt <= 5; attempt++) {
-      if (activeVersion(await api("GET", "/deployments")) !== versionId) {
-        throw Error("PRODUCTION_CHANGED_DURING_CONVERGENCE");
-      }
+      await awaitDeployment({ read: readDeployment, versionId, deploymentId,
+        stale: [priorState], delay });
       try {
         const observed = await publicVerifier(ORIGIN);
         if (observed?.status === "PASS" && observed.commerceActive === false &&
@@ -115,33 +121,27 @@ export async function guardedPromote({
     try {
       const created = await api("POST", "/deployments", payload(versionId, "protected Agent Shop release " + sha + " commerce disabled"));
       deploymentId = created?.id || "";
-    } catch (error) {
-      // The POST may have committed before a transient network failure.
-      // Never POST again until the control-plane state has been reconciled.
-      if (activeVersion(await api("GET", "/deployments")) !== versionId) throw error;
+    } catch {
+      // A timeout can follow a committed write. Reconcile with bounded reads;
+      // never automatically replay the production mutation.
     }
-    if (activeVersion(await api("GET", "/deployments")) !== versionId) {
-      throw Error("CANDIDATE_PROMOTION_NOT_CONVERGED");
-    }
+    const converged = await awaitDeployment({ read: readDeployment, versionId,
+      deploymentId, stale: [priorState], delay });
+    deploymentId = converged.id;
     const observed = await verifyConvergedPublic();
-    if (activeVersion(await api("GET", "/deployments")) !== versionId) {
-      throw Error("PRODUCTION_CHANGED_AFTER_READBACK");
-    }
+    await awaitDeployment({ read: readDeployment, versionId, deploymentId,
+      stale: [priorState], delay });
     return {
       status: "PASS", sha, versionId, previousVersionId: prior,
-      deploymentId, publicAcceptance: observed,
+      deploymentId, controlPlaneAttempts: converged.attempts, publicAcceptance: observed,
     };
   } catch (error) {
     let rollbackResult = "not_safe_or_unverified";
     try {
-      if (activeVersion(await api("GET", "/deployments")) === versionId) {
-        try { await api("POST", "/deployments", payload(prior, "rollback failed Agent Shop release " + sha)); }
-        catch { /* An ambiguous POST is verified by fresh control-plane readback. */ }
-        rollbackResult = activeVersion(await api("GET", "/deployments")) === prior
-          ? "verified_previous_version_restored" : "rollback_not_confirmed";
-      } else {
-        rollbackResult = "candidate_not_active_no_rollback_required";
-      }
+      rollbackResult = await rollbackOwnedDeployment({
+        read: readDeployment, candidate: { id: deploymentId, versionId }, prior: priorState, delay,
+        write: () => api("POST", "/deployments", payload(prior, "rollback failed Agent Shop release " + sha)),
+      });
     } catch { rollbackResult = "rollback_status_unavailable"; }
     const code = error instanceof Error ? error.message : "UNKNOWN";
     throw Error("RELEASE_FAILED_" + code + "_ROLLBACK_" + rollbackResult);

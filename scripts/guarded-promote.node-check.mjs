@@ -16,9 +16,14 @@ const good = {
   resources: {bindings},
 };
 function mock({ verified=true, malformedBinding=false, ambiguousPost=false,
-  transientPublicFailures=0, concurrentPromotion=false }={}) {
+  transientPublicFailures=0, concurrentPromotion=false, concurrentSameVersion=false,
+  promotionLagReads=0, rollbackLagReads=0, neverConverges=false }={}) {
   let active = old;
   let publicAttempts = 0;
+  let deploymentId = "deployment-initial";
+  let stale = null;
+  let lagRemaining = 0;
+  let readsAfterWrite = 0;
   const written = [];
   const fetcher = async (url, options={}) => {
     let result;
@@ -27,12 +32,18 @@ function mock({ verified=true, malformedBinding=false, ambiguousPost=false,
     } else if (url.endsWith("/deployments")) {
       if (options.method === "POST") {
         const data = JSON.parse(options.body);
+        stale = {id:deploymentId, version:active};
         active = data.versions[0].version_id;
+        deploymentId = "deployment-write-" + (written.length + 1);
+        lagRemaining = written.length === 0 ? promotionLagReads : rollbackLagReads;
         written.push(active);
         if (ambiguousPost && written.length===1) throw Error("simulated timeout AFTER Cloudflare committed");
-        result = {id:"deployment-test-id",versions:data.versions};
+        result = {id:deploymentId,versions:data.versions};
       } else {
-        result = {deployments:[{versions:[{version_id:active,percentage:100}]}]};
+        if (written.length) readsAfterWrite++;
+        const visible = stale && (lagRemaining-- > 0 || neverConverges)
+          ? stale : {id:deploymentId,version:active};
+        result = {deployments:[{id:visible.id,versions:[{version_id:visible.version,percentage:100}]}]};
       }
     } else throw Error("UNEXPECTED_MOCK_ENDPOINT");
     return new Response(JSON.stringify({success:true,result}),{
@@ -44,13 +55,17 @@ function mock({ verified=true, malformedBinding=false, ambiguousPost=false,
       fetcher,delay:async()=>{},
       publicVerifier:async()=>{
         publicAttempts++;
-        if (concurrentPromotion && publicAttempts===1) active="33333333-3333-4333-8333-333333333333";
+        if ((concurrentPromotion || concurrentSameVersion) && publicAttempts===1) {
+          active=concurrentSameVersion?next:"33333333-3333-4333-8333-333333333333";
+          deploymentId="deployment-other-operator";
+        }
         return {status: (verified && publicAttempts>transientPublicFailures)?"PASS":"FAIL",
           commerceActive:false,privateKitOffer:"planned",products:33,
           externalCapabilities:990,codingBugs:24};
       }},
     get active(){return active},get writes(){return [...written]},
     get publicAttempts(){return publicAttempts},
+    get readsAfterWrite(){return readsAfterWrite},
   };
 }
 test("checks candidate immutable SHA, resource identity and D1/R2 boundaries",()=>{
@@ -115,4 +130,36 @@ test("refuses to promote after production changed since the owner-local prefligh
     /PRODUCTION_CHANGED_DURING_RELEASE/);
   assert.deepEqual(f.writes,[]);
   assert.equal(f.active,old);
+});
+
+
+test("waits for a delayed deployment pointer without a false rollback", async()=>{
+  const f=mock({promotionLagReads:3});
+  const result=await guardedPromote(f.args);
+  assert.equal(result.status,"PASS");
+  assert.equal(result.deploymentId,"deployment-write-1");
+  assert.deepEqual(f.writes,[next]);
+});
+test("a timed-out promotion with delayed visibility is reconciled without another POST", async()=>{
+  const f=mock({ambiguousPost:true,promotionLagReads:3});
+  const result=await guardedPromote(f.args);
+  assert.equal(result.status,"PASS");
+  assert.deepEqual(f.writes,[next]);
+});
+test("rollback waits for its own new deployment record to become visible", async()=>{
+  const f=mock({verified:false,rollbackLagReads:3});
+  await assert.rejects(()=>guardedPromote(f.args),/ROLLBACK_verified_previous_version_restored/);
+  assert.deepEqual(f.writes,[next,old]);
+});
+test("another operator redeploying the same version is not overwritten", async()=>{
+  const f=mock({concurrentSameVersion:true,transientPublicFailures:1});
+  await assert.rejects(()=>guardedPromote(f.args),/PRODUCTION_CHANGED_DURING_CONVERGENCE/);
+  assert.deepEqual(f.writes,[next]);
+});
+test("permanently stale control-plane state is bounded and never treated as success", async()=>{
+  const f=mock({neverConverges:true});
+  await assert.rejects(()=>guardedPromote(f.args),/NOT_CONVERGED/);
+  assert.deepEqual(f.writes,[next]);
+  assert.equal(f.publicAttempts,0);
+  assert.ok(f.readsAfterWrite<=17);
 });

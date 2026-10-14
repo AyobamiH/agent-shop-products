@@ -57,10 +57,7 @@ jobs:
       - name: Verify immutable release and rollback regression contracts
         working-directory: .
         run: |
-          node --test \
-            scripts/check-release-ci.node-check.mjs \
-            scripts/parse-candidate-upload.node-check.mjs \
-            scripts/guarded-promote.node-check.mjs
+          node --test scripts/*.node-check.mjs
 
       - name: Install frozen dependencies without deployment credentials
         run: bun install --frozen-lockfile
