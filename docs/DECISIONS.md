@@ -114,3 +114,7 @@ The owner explicitly requests direct GA4 and Search Console access without GSC W
 ## DEC-020 — Dedicated Shop analytics provisioning (14 October 2026)
 
 Following successful owner consent and direct account inventory, the approved GA4 setup may create or reuse one dedicated Agent Shop property/stream under the observed business Analytics account. Use the reviewed-hash, private-journal provisioning path described in `docs/GA4_DEDICATED_STREAM.md`. Scope excludes unrelated properties, billing, advertising enablement, real customer charges and automatic visitor consent. Website activation and actual ingestion remain separately verified.
+
+## DEC-021 — Actual stream activation and separately labelled diagnostics
+
+The owner-approved dedicated Shop stream is verified through Google directly. The reviewed website configuration may offer optional measurement under renewed consent version 2026-10-14.2. No SDK or event before consent; private URLs and unknown query values remain excluded. Operator tests use a distinct diagnostic event name excluded from native business reports, with transport acceptance and provider reporting recorded separately. See `docs/GA4_ACTIVATION_20261014.md`. This does not authorise live commerce or infer external demand.

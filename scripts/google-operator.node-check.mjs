@@ -159,3 +159,20 @@ test('API-disabled errors retain their bounded classification without provider m
   } catch (error) { failure = safeError(error); }
   assert.equal(failure, 'GOOGLE_API_DISABLED_ANALYTICSADMIN_GOOGLEAPIS_COM');
 });
+
+
+test('ordinary reports exclude operator diagnostics and diagnostics require an explicit report choice',async()=>{
+ const {realtimeReport,BUSINESS_EVENTS,DIAGNOSTIC_EVENT}=await import('./google/reports.mjs');
+ const calls=[];const session={request:async(url,options={})=>{
+  calls.push({url,options});
+  if(url.endsWith('/dataStreams/2'))return{name:'properties/1/dataStreams/2',type:'WEB_DATA_STREAM',webStreamData:{defaultUri:SHOP_ORIGIN}};
+  return{rows:[]};
+ }};
+ await analyticsReport(session,'properties/1','2','2026-09-14','2026-10-11');
+ assert.deepEqual(calls.at(-1).options.body.dimensionFilter.andGroup.expressions.find(x=>x.filter.fieldName==='eventName').filter.inListFilter.values,BUSINESS_EVENTS);
+ await realtimeReport(session,'properties/1','2');
+ assert.deepEqual(calls.at(-1).options.body.metrics,[{name:'eventCount'}]);
+ assert.deepEqual(calls.at(-1).options.body.dimensionFilter.andGroup.expressions[1].filter.inListFilter.values,BUSINESS_EVENTS);
+ await realtimeReport(session,'properties/1','2',{diagnostic:true});
+ assert.deepEqual(calls.at(-1).options.body.dimensionFilter.andGroup.expressions[1].filter.inListFilter.values,[DIAGNOSTIC_EVENT]);
+});

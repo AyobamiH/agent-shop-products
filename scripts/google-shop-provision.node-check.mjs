@@ -19,7 +19,7 @@ function fixture({existing=false,unknownProperty=false,foreignStream=false,wrong
     if(p===property+'/dataStreams'&&method==='POST'){st={name:stream,...options.body,webStreamData:{...options.body.webStreamData,measurementId:'G-TESTONLY00'}};return st;}
     if(p===stream)return st;
     if(/Settings$/.test(p)){
-      if(method==='PATCH')settings.set(p,{name:p,...options.body});
+      if(method==='PATCH')settings.set(p,{name:p,...options.body,...(options.body.queryParameterKeys?{queryParameterKeys:options.body.queryParameterKeys.map(key=>key.toLowerCase())}:{})});
       return settings.get(p)||{name:p};
     }
     if(p===property+'/customDimensions'){
@@ -74,3 +74,5 @@ test('resource identity mismatch after a saved journal cannot reach privacy writ
  const f=fixture({existing:true,wrongName:true});f.journal.property=property;
  await assert.rejects(()=>provisionShop(f.args),/PROPERTY_IDENTITY_MISMATCH/);assert.ok(!f.calls.some(c=>c.method==='PATCH'));
 });
+
+test('case-insensitive provider-normalised redaction keys do not falsely fail privacy acceptance',async()=>{const f=fixture();const r=await provisionShop(f.args);assert.ok(r.redaction.queryParameterKeys.includes('claimtoken'));assert.ok(r.redaction.queryParameterKeys.includes('orderid'));assert.equal(r.status,'provisioned_verified');});

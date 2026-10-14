@@ -72,32 +72,9 @@ async def run():
             assert await page.locator("#agent-shop-analytics").count() == 0
             assert len(google_requests) == 1 and not unexpected
             await page.close()
-            # Actual application build: unconfigured means no tag, even with stale stored consent.
-            page = await browser.new_page()
-            calls = []
-            page.on("request", lambda request: calls.append(request.url) if any(host in request.url for host in ["googletagmanager.com", "google-analytics.com", "doubleclick.net"]) else None)
-            await page.add_init_script("localStorage.setItem('agent-shop:analytics-consent', JSON.stringify({version:'2026-10-14.1',choice:'granted',timestamp:Date.now()}))")
-            for width in [390, 1440]:
-                await page.set_viewport_size({"width":width,"height":900})
-                await page.goto(BASE + "/privacy", wait_until="networkidle")
-                await expect(page.get_by_role("heading", name="Website privacy and optional analytics", exact=True)).to_be_visible()
-                await expect(page.get_by_text("Google Analytics is off.", exact=False)).to_be_visible()
-                await page.get_by_role("button", name="Analytics settings", exact=True).first.click()
-                await expect(page.get_by_role("region", name="Analytics preferences")).to_be_visible()
-                assert await page.get_by_role("button", name="Allow analytics").count() == 0
-                assert await page.evaluate("document.documentElement.scrollWidth <= innerWidth")
-                await page.get_by_role("button", name="Close settings").click()
-            for path, heading in [("/solutions", "How to verify an AI-generated pull request before accepting the work"),
-                                  ("/integration-services", "Turn a broken workflow into a quoteable repository fix")]:
-                initial = await page.request.get(BASE + path)
-                assert heading in await initial.text()
-                await page.goto(BASE + path, wait_until="networkidle")
-                await expect(page.get_by_role("heading", name=heading)).to_be_visible()
-            await page.goto(BASE + "/solutions?email=private@example.com#private-receipt", wait_until="networkidle")
-            assert not calls
-            offers = await page.request.get(BASE + "/api/v1/commerce/offers")
-            assert (await offers.json())["commerceActive"] is False
+            from analytics_application import application_acceptance
+            await application_acceptance(browser)
             await browser.close()
-    print("PASS: consent denial/grant/withdrawal, scoped-cookie removal, safe events, private-route exclusion, inactive production config, crawlable content, phone/desktop; no Google or customer transaction")
+    print("PASS: consent denial/grant/withdrawal, scoped-cookie removal, safe events, private-route exclusion, enabled consent-bound application and separated diagnostic events, crawlable content, phone/desktop; no Google or customer transaction")
 
 asyncio.run(run())

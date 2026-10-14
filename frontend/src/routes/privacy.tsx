@@ -55,7 +55,7 @@ function WebsitePrivacy() {
           </button>
         </section>
         <section>
-          <h2 className="text-xl font-semibold">What optional measurement would collect</h2>
+          <h2 className="text-xl font-semibold">What optional measurement collects</h2>
           <p className="mt-3">
             With consent and an enabled stream, Google Analytics measures public page views,
             selections of publicly listed capabilities and clicks to request an integration quote.
@@ -68,10 +68,10 @@ function WebsitePrivacy() {
             Google Analytics uses a pseudonymous browser identifier and processes device and network
             information to provide reports. It is not anonymous merely because we omit your name.
             Advertising features, Google Signals, cross-domain linking and automatic enhanced
-            measurement are not part of this setup. Our activation gate requires two-month
-            event-data retention and a correctly owned Agent Shop stream. Consent cookies have an
-            Agent Shop-specific prefix and expire within 180 days; withdrawing consent clears these
-            cookies and stops collection.
+            measurement are not part of this setup. Event-level and user-level retention is set to
+            two months, without restarting the period when someone returns. Analytics cookies have
+            an Agent Shop-specific prefix and expire within 180 days; withdrawing consent clears
+            these cookies and stops collection.
           </p>
         </section>
         <section>

@@ -22,6 +22,13 @@ const enabled: AnalyticsConfig = {
   advertisingFeaturesDisabled: true,
   retentionMonths: 2,
 };
+const disabled: AnalyticsConfig = {
+  ...analyticsConfig,
+  enabled: false,
+  propertyId: null,
+  streamId: null,
+  measurementId: null,
+};
 const origin = ANALYTICS_ORIGIN;
 function storage() {
   let value: string | null = null;
@@ -37,10 +44,11 @@ function fixture(config = enabled) {
   return { runtime: new DiscoveryRuntime(config, transport), transport };
 }
 describe("analytics configuration admission", () => {
-  it("ships off without inventing a property or stream", () => {
-    expect(analyticsConfig.enabled).toBe(false);
-    expect(analyticsConfig.measurementId).toBeNull();
-    expect(configuredMeasurementId(analyticsConfig)).toBeNull();
+  it("binds the independently observed Shop stream while preserving disabled admission", () => {
+    expect(analyticsConfig.propertyId).toBe("properties/559055643");
+    expect(analyticsConfig.streamId).toBe("16129921164");
+    expect(configuredMeasurementId(analyticsConfig)).toBe("G-9LH3DJYS4B");
+    expect(configuredMeasurementId(disabled)).toBeNull();
   });
   it("requires independent ownership, origin, enhanced-measurement, ad and retention gates", () => {
     expect(configuredMeasurementId(enabled)).toBe("G-TESTONLY00");
@@ -148,7 +156,7 @@ describe("public discovery event boundary", () => {
 });
 describe("consent runtime", () => {
   it("never starts or queues Google without explicit valid consent and configuration", () => {
-    for (const config of [analyticsConfig, enabled]) {
+    for (const config of [disabled, enabled]) {
       const { runtime, transport } = fixture(config);
       runtime.update(origin + "/solutions", null);
       runtime.event(origin + "/integration-services", "denied", "quote_click");

@@ -1,5 +1,7 @@
 import { SHOP_HOST, SHOP_ORIGIN, GSC_PROPERTY, numericResource } from './constants.mjs';
 import { ADMIN, DATA } from './inventory.mjs';
+export const BUSINESS_EVENTS = ['page_view', 'select_capability', 'quote_click'];
+export const DIAGNOSTIC_EVENT = 'agent_shop_diagnostic';
 export function dateWindow(start, end) {
   for (const date of [start, end]) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(date || '') || !Number.isFinite(Date.parse(date)) ||
@@ -40,6 +42,7 @@ export async function analyticsReport(session, property, streamId, start, end) {
     metrics: [{ name: 'eventCount' }, { name: 'sessions' }],
     dimensionFilter: { andGroup: { expressions: [
       { filter: { fieldName: 'hostName', stringFilter: { matchType: 'EXACT', value: SHOP_HOST } } },
+      { filter: { fieldName: 'eventName', inListFilter: { values: BUSINESS_EVENTS } } },
       { filter: { fieldName: 'streamId', stringFilter: { matchType: 'EXACT', value: streamId } } },
     ] } }, limit: 10000, returnPropertyQuota: true };
   const report = await session.request(DATA + property + ':runReport', { method: 'POST', body });
@@ -47,14 +50,17 @@ export async function analyticsReport(session, property, streamId, start, end) {
     hostname: SHOP_HOST, window: dateWindow(start, end), report,
     caveat: 'Consented measured activity only. Page/event rows overlap; do not sum row sessions as unique sessions or leads.' };
 }
-export async function realtimeReport(session, property, streamId) {
+export async function realtimeReport(session, property, streamId, { diagnostic = false } = {}) {
   await boundStream(session, property, streamId);
   const report = await session.request(DATA + property + ':runRealtimeReport', { method: 'POST', body: {
-    dimensions: [{ name: 'streamId' }, { name: 'eventName' }], metrics: [{ name: 'eventCount' }, { name: 'activeUsers' }],
-    dimensionFilter: { filter: { fieldName: 'streamId', stringFilter: { matchType: 'EXACT', value: streamId } } }, limit: 1000,
+    dimensions: [{ name: 'streamId' }, { name: 'eventName' }], metrics: [{ name: 'eventCount' }],
+    dimensionFilter: { andGroup: { expressions: [
+      { filter: { fieldName: 'streamId', stringFilter: { matchType: 'EXACT', value: streamId } } },
+      { filter: { fieldName: 'eventName', inListFilter: { values: diagnostic ? [DIAGNOSTIC_EVENT] : BUSINESS_EVENTS } } },
+    ] } }, limit: 1000,
   } });
   return { observedAt: new Date().toISOString(), source: 'google_analytics_realtime_direct', property, streamId,
-    verifiedStreamOrigin: SHOP_ORIGIN, report, caveat: 'Realtime diagnostic activity is not independently qualified demand.' };
+    verifiedStreamOrigin: SHOP_ORIGIN, diagnosticOnly: diagnostic, report, caveat: 'Realtime diagnostic activity is not independently qualified demand.' };
 }
 export async function inspectUrl(session, value) {
   let url; try { url = new URL(value); } catch { throw Error('INSPECTION_URL_INVALID'); }

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "enabled": false,
+  "enabled": true,
   "origin": "https://agents.proofandstate.com",
-  "propertyId": null,
-  "streamId": null,
-  "measurementId": null,
-  "ownershipVerifiedAt": null,
-  "enhancedMeasurementDisabled": false,
-  "advertisingFeaturesDisabled": false,
-  "retentionMonths": null,
-  "consentVersion": "2026-10-14.1"
+  "propertyId": "properties/559055643",
+  "streamId": "16129921164",
+  "measurementId": "G-9LH3DJYS4B",
+  "ownershipVerifiedAt": "2026-10-14T18:17:04.686Z",
+  "enhancedMeasurementDisabled": true,
+  "advertisingFeaturesDisabled": true,
+  "retentionMonths": 2,
+  "consentVersion": "2026-10-14.2"
 }

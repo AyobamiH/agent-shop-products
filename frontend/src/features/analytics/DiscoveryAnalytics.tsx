@@ -18,7 +18,7 @@ export function DiscoveryAnalytics() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [storageFailed, setStorageFailed] = useState(false);
   const enabled = !!configuredMeasurementId(analyticsConfig);
-  const publicRoute = !!safePage.current?.(analyticsConfig.origin + location);
+  const publicRoute = ready && typeof window !== "undefined" && !!safePage.current?.(window.location.href);
 
   useEffect(() => {
     let mounted = true;
