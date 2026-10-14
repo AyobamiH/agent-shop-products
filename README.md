@@ -56,3 +56,5 @@ The distinct £9 private kit has passed real Stripe test-mode payment, signed we
 Existing public prompts preserve their migration provenance. New public skills contain original generalised procedures and sanitised evidence. Future premium-only payloads require an explicit publication decision.
 
 Discovery measurement is separately governed: see [consent, activation and funnel evidence](docs/DISCOVERY_MEASUREMENT_20261014.md). An installed measurement boundary is not proof of a connected GA4 stream or a measured visitor.
+
+The [direct Google operator](docs/DIRECT_GOOGLE_OPERATOR.md) provides owner-authorised GA4 inventory/privacy inspection, historical and realtime reporting, Search Console reports, URL Inspection and sitemap readback without GSC Wizard. A new Google consent is required; installation alone neither authorises access nor enables tracking.
