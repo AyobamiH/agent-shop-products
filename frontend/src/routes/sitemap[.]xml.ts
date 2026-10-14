@@ -17,6 +17,7 @@ const STATIC_ENTRIES: readonly SitemapEntry[] = [
   { path: "/coding-bugs" },
   { path: "/integration-services" },
   { path: "/private-kits" },
+  { path: "/privacy" },
   ...policyPaths.map((path) => ({ path })),
 ];
 

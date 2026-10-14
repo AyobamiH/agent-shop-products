@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export function OrderRecoveryForm({ onRestore }: { onRestore: () => Promise<void> }) {
+  const [ready, setReady] = useState(false);
+  useEffect(() => { setReady(true); }, []);
+  const [expanded, setExpanded] = useState(false);
   const [order, setOrder] = useState(""), [code, setCode] = useState(""), [error, setError] = useState("");
   return (
-    <details className="mt-6 rounded-xl border border-border p-4">
-      <summary className="cursor-pointer text-sm font-medium">Have an access code from support?</summary>
+    <details inert={!ready} open={expanded} className="mt-6 rounded-xl border border-border p-4">
+      <summary className="cursor-pointer text-sm font-medium" onClick={event => {
+        // Control the disclosure so replaying a click during hydration cannot
+        // toggle the native details element a second time and hide the form.
+        event.preventDefault(); setExpanded(value => !value);
+      }}>Have an access code from support?</summary>
       <form className="mt-4 space-y-4" onSubmit={async event => {
         event.preventDefault(); setError("");
         if (!/^[0-9a-f-]{36}$/i.test(order.trim()) || !/^[A-Za-z0-9_-]{40,90}$/.test(code.trim())) {

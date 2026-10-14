@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Outlet, Link, createRootRouteWithContext, useRouter, HeadContent, Scripts } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { DiscoveryAnalytics } from "@/features/analytics/DiscoveryAnalytics";
 import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -72,6 +73,7 @@ function RootComponent() {
         <SiteHeader />
         <main id="main-content" className="flex-1"><Outlet /></main>
         <SiteFooter />
+        <DiscoveryAnalytics />
       </div>
     </QueryClientProvider>
   );

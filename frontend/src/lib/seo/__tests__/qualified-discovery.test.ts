@@ -22,6 +22,7 @@ describe("qualified discovery", () => {
       "/integration-services",
       "/solutions",
       "/private-kits",
+      "/privacy",
       "/legal/kit-terms",
       "/legal/kit-licence",
       "/legal/kit-refunds",

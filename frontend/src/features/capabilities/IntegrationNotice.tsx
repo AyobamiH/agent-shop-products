@@ -23,6 +23,7 @@ export function IntegrationNotice({
       ) : (
         <a
           href={SUBCONTRACTING_CAPABILITY_QUOTE_URL}
+          data-discovery-event="quote_click"
           className="mt-4 inline-flex min-h-11 items-center rounded bg-primary px-4 text-sm font-medium text-primary-foreground"
         >
           Request an integration quote

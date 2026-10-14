@@ -97,3 +97,7 @@ Owner approval of remaining launch work explicitly extends DEC-004 for the exist
 ## DEC-019 — Original private integration package discovery
 
 Root DEC-017 authorises metadata-only discovery of three privately authored and tested reference packages and an offline request CLI. The integration page and JSON endpoint consume commerce/integration-packages.json through a domain boundary. Scope remains quote-first; no automatic install, payment or execution is implied. Agent Shop is the approved public name under root DEC-016, superseding the temporary-brand wording in frontend DEC-010/016.
+
+## DEC-020 — Optional discovery analytics and useful acquisition content
+
+Root DEC-018 authorises consent-gated GA4 instrumentation and original evidence/scoping content on existing public routes. Canonical configuration stays off until verified stream ownership, origin, enhanced-measurement, advertising and retention gates pass. No arbitrary event payload, customer data, cross-domain identifier or implied conversion is allowed. `/privacy` has its own version; purchase policy versions and settlement semantics are unaffected.

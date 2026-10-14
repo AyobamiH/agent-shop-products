@@ -24,3 +24,5 @@ When a decision changes, update the relevant durable document in the same change
 See `../../docs/CAPABILITY_SHOP_AND_BUG_INDEX.md` for the owner-authorised 990 external listings, quote-first procurement policy, bug evidence boundaries and deployment requirements. The implementation adds `/capabilities`, `/capabilities/{id}`, `/capabilities.json`, `/capability-brief.json?id={id}`, `/coding-bugs` and `/coding-bugs.json` beside the original product discovery routes.
 
 - [Current launch closeout](../../docs/LAUNCH_CLOSEOUT_20261012.md) — latest scope, merchant gates, discovery evidence and OneClick release boundaries.
+
+- [Discovery measurement and acquisition](../../docs/DISCOVERY_MEASUREMENT_20261014.md) — consent, verified GA4 activation, privacy exclusions, evidence funnel and exact-source release.

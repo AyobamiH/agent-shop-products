@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "enabled": false,
+  "origin": "https://agents.proofandstate.com",
+  "propertyId": null,
+  "streamId": null,
+  "measurementId": null,
+  "ownershipVerifiedAt": null,
+  "enhancedMeasurementDisabled": false,
+  "advertisingFeaturesDisabled": false,
+  "retentionMonths": null,
+  "consentVersion": "2026-10-14.1"
+}

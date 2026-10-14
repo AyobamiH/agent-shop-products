@@ -101,3 +101,7 @@ Keep public skills freely inspectable. The approved introductory £9 private-kit
 ## DEC-017 — Original integration packages and offline request preparation (12 October 2026)
 
 Owner approval extends implementation to original private execution packages and a CLI that prepares bounded provider requests. Public commerce/integration-packages.json contains descriptions, actual versions and archive digests only. Payloads remain in a private repository. These packages are reference components for quote-first integration, not 990 provider implementations or active digital offers. No new prices, Shop MCP, live execution authority or merchant facts are inferred.
+
+## DEC-018 — Consent-bound discovery measurement (14 October 2026)
+
+The owner authorises page, canonical capability-selection and bounded quote-click measurement and original problem-specific acquisition content. Measurement requires a correctly owned, independently read-back Agent Shop GA4 stream and prior optional consent; absent administration evidence it remains disabled. Do not collect private URLs, free-text queries, enquiry data, order references or access tokens. Clicks, enquiries, accepted quotes, paid orders and verified fulfilment remain separate evidence states. Existing private commerce and public-source boundaries remain unchanged. See `docs/DISCOVERY_MEASUREMENT_20261014.md`.

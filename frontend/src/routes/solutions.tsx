@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { EvidenceChecklist } from "@/features/commercial/EvidenceChecklist";
 import { PageShell } from "@/components/layout/PageShell";
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import { COMMERCIAL_PATHS, SOLUTION_TRACKS } from "@/domain/commercial/decision";
@@ -152,6 +153,7 @@ function SolutionsPage() {
           ))}
         </div>
       </section>
+      <EvidenceChecklist />
       <p className="mt-12 text-xs leading-relaxed text-muted-foreground">
         Published capability names describe workflows and their limits, not independent evidence
         that the relevant provider is connected or a tool can execute for your account. No

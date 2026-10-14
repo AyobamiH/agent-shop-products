@@ -61,3 +61,7 @@ When changed:
 ## Authorised original package discovery, 12 October 2026
 
 DEC-019 adds metadata-only original integration package listings and offline request preparation. All premium code stays private. Public listings do not establish live adapters, external licences, sale availability or outcomes.
+
+## Authorised discovery measurement, 14 October 2026
+
+DEC-020 permits only optional, consent-gated public discovery events and bounded campaign labels. No advertising, free-text capture, private-route measurement, cross-site identity joining or fabricated outcomes. Unverified GA4 configuration is disabled, independently of commerce. Existing original pages may gain useful evidence/scoping content; names-only external records do not become indexed sales pages.

@@ -28,14 +28,15 @@ describe("problem-led discovery and commerce authority", () => {
       expect("price" in path).toBe(false);
       expect("stripePriceId" in path).toBe(false);
       expect("checkoutUrl" in path).toBe(false);
-      if (path.availability === "not_for_sale") {
-        expect("actionPath" in path).toBe(false);
+      if (path.availability === "not_for_sale" && "actionPath" in path) {
+        expect(path.actionPath).toBe("/private-kits");
+        expect(path.actionLabel).not.toMatch(/buy|checkout|purchase now/i);
       }
     }
   });
 
-  it("provides working local navigation only for public reference or quote-first service", () => {
+  it("provides crawlable reference, planned-kit information and quote-first navigation", () => {
     const paths = COMMERCIAL_PATHS.filter((path) => "actionPath" in path);
-    expect(paths.map((path) => path.actionPath)).toEqual(["/shop", "/integration-services"]);
+    expect(paths.map((path) => path.actionPath)).toEqual(["/shop", "/private-kits", "/integration-services"]);
   });
 });

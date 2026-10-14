@@ -65,7 +65,9 @@ export function SiteFooter() {
         <a href="/legal/kit-terms" className="underline">Purchase terms</a>
         <a href="/legal/kit-licence" className="underline">Licence</a>
         <a href="/legal/kit-refunds" className="underline">Refunds</a>
-        <a href="/legal/kit-privacy" className="underline">Privacy</a>
+        <a href="/legal/kit-privacy" className="underline">Purchase privacy</a>
+        <a href="/privacy" className="underline">Website privacy</a>
+        <button type="button" className="underline" onClick={() => window.dispatchEvent(new Event("agent-shop:analytics-settings"))}>Analytics settings</button>
       </nav>
       <div className="mx-auto max-w-6xl px-4 pb-8 text-sm leading-relaxed text-muted-foreground sm:px-6">
         <p>Built by <a href="https://tailwaggingwebdesign.com/" className="underline underline-offset-4">TAIL WAGGING WEBSITES DESIGN FACTORY NORTHAMPTON</a>.</p>

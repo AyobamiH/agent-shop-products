@@ -104,6 +104,8 @@ export function CapabilityBrowser({ query }: { query: CapabilityQuery }) {
               <Link
                 to="/capabilities/$id"
                 params={{ id: entry.id }}
+                data-discovery-event="select_capability"
+                data-capability-id={entry.id}
                 className="break-all font-mono text-sm font-medium text-primary hover:underline"
               >
                 {entry.name}

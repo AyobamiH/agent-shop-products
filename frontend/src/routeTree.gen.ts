@@ -22,6 +22,7 @@ import { Route as IntegrationPackagesDotjsonRouteImport } from './routes/integra
 import { Route as IntegrationServicesRouteImport } from './routes/integration-services'
 import { Route as KnowledgeRouteImport } from './routes/knowledge'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PrivateKitsRouteImport } from './routes/private-kits'
 import { Route as ProblemsRouteImport } from './routes/problems'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
@@ -99,6 +100,11 @@ const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
   path: '/llms.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivateKitsRoute = PrivateKitsRouteImport.update({
   id: '/private-kits',
   path: '/private-kits',
@@ -164,6 +170,7 @@ export interface FileRoutesByFullPath {
   '/integration-services': typeof IntegrationServicesRoute
   '/knowledge': typeof KnowledgeRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/privacy': typeof PrivacyRoute
   '/private-kits': typeof PrivateKitsRouteWithChildren
   '/problems': typeof ProblemsRoute
   '/robots.txt': typeof RobotsDottxtRoute
@@ -189,6 +196,7 @@ export interface FileRoutesByTo {
   '/integration-services': typeof IntegrationServicesRoute
   '/knowledge': typeof KnowledgeRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/privacy': typeof PrivacyRoute
   '/private-kits': typeof PrivateKitsRouteWithChildren
   '/problems': typeof ProblemsRoute
   '/robots.txt': typeof RobotsDottxtRoute
@@ -215,6 +223,7 @@ export interface FileRoutesById {
   '/integration-services': typeof IntegrationServicesRoute
   '/knowledge': typeof KnowledgeRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/privacy': typeof PrivacyRoute
   '/private-kits': typeof PrivateKitsRouteWithChildren
   '/problems': typeof ProblemsRoute
   '/robots.txt': typeof RobotsDottxtRoute
@@ -242,6 +251,7 @@ export interface FileRouteTypes {
     | '/integration-services'
     | '/knowledge'
     | '/llms.txt'
+    | '/privacy'
     | '/private-kits'
     | '/problems'
     | '/robots.txt'
@@ -267,6 +277,7 @@ export interface FileRouteTypes {
     | '/integration-services'
     | '/knowledge'
     | '/llms.txt'
+    | '/privacy'
     | '/private-kits'
     | '/problems'
     | '/robots.txt'
@@ -292,6 +303,7 @@ export interface FileRouteTypes {
     | '/integration-services'
     | '/knowledge'
     | '/llms.txt'
+    | '/privacy'
     | '/private-kits'
     | '/problems'
     | '/robots.txt'
@@ -318,6 +330,7 @@ export interface RootRouteChildren {
   IntegrationServicesRoute: typeof IntegrationServicesRoute
   KnowledgeRoute: typeof KnowledgeRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
+  PrivacyRoute: typeof PrivacyRoute
   PrivateKitsRoute: typeof PrivateKitsRouteWithChildren
   ProblemsRoute: typeof ProblemsRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
@@ -422,6 +435,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LlmsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/private-kits': {
       id: '/private-kits'
       path: '/private-kits'
@@ -521,6 +541,7 @@ const rootRouteChildren: RootRouteChildren = {
   IntegrationServicesRoute: IntegrationServicesRoute,
   KnowledgeRoute: KnowledgeRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
+  PrivacyRoute: PrivacyRoute,
   PrivateKitsRoute: PrivateKitsRouteWithChildren,
   ProblemsRoute: ProblemsRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,

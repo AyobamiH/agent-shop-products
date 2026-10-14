@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { isDeepStrictEqual } from "node:util";
 import { resolve } from "node:path";
+import { verifyDiscoveryMeasurement } from "./verify-discovery-measurement.mjs";
 import { verifyRegistrySurface } from "./verify-registry-surface.mjs";
 
 const origin = (process.env.ACCEPTANCE_ORIGIN ?? "").replace(/\/+$/, "");
@@ -179,6 +180,7 @@ for (const retired of [
 }
 
 const registryAcceptance = await verifyRegistrySurface(origin);
+const discoveryAcceptance = await verifyDiscoveryMeasurement(origin, canonicalOrigin);
 console.log(
   JSON.stringify({
     status: "PASS",
@@ -188,6 +190,7 @@ console.log(
     privateKitOffer: commerce.offers[0].availability,
     commerceActive: commerce.commerceActive,
     ...registryAcceptance,
+    ...discoveryAcceptance,
     crawlerAgentsChecked: crawlerAgents.length,
     machineSurfaces: ["/catalog.json", "/agents.txt", "/llms.txt", "/robots.txt", "/sitemap.xml"],
   }),
