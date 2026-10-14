@@ -110,3 +110,7 @@ The owner authorises page, canonical capability-selection and bounded quote-clic
 ## DEC-019 — Owner-local direct Google analytics authority (14 October 2026)
 
 The owner explicitly requests direct GA4 and Search Console access without GSC Wizard. Reuse a legitimate owner desktop OAuth registration only through a new consent flow with an independent private token store. Never copy a third-party connector token or modify the existing Post-Once document/publishing credential. The operator requests identity, Analytics read/edit and Search Console read-only scope, then independently inspects exact owner/stream/host facts. Authorisation does not enable tracking or commerce. Current CLI operations are read-only aside from local OAuth credential/report storage; targeted stream provisioning follows actual inventory and separate exact-source review. GSC Wizard linkage is optional, not a release prerequisite. See `docs/DIRECT_GOOGLE_OPERATOR.md`.
+
+## DEC-020 — Dedicated Shop analytics provisioning (14 October 2026)
+
+Following successful owner consent and direct account inventory, the approved GA4 setup may create or reuse one dedicated Agent Shop property/stream under the observed business Analytics account. Use the reviewed-hash, private-journal provisioning path described in `docs/GA4_DEDICATED_STREAM.md`. Scope excludes unrelated properties, billing, advertising enablement, real customer charges and automatic visitor consent. Website activation and actual ingestion remain separately verified.
