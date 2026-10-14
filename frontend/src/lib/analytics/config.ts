@@ -1,7 +1,7 @@
 import configuration from "./configuration.json";
 
 export const ANALYTICS_ORIGIN = "https://agents.proofandstate.com";
-export const CONSENT_VERSION = "2026-10-14.1";
+export const CONSENT_VERSION = "2026-10-14.2";
 export const CONSENT_KEY = "agent-shop:analytics-consent";
 export const CONSENT_LIFETIME_MS = 180 * 24 * 60 * 60 * 1000;
 export const COOKIE_PREFIX = "agent_shop";

@@ -1,5 +1,10 @@
 # Discovery measurement and acquisition — 14 October 2026
 
+## Later verified stream and activation implementation
+
+The disabled configuration and missing-stream descriptions below are the original checkpoint. Direct owner Google consent, API enablement and dedicated stream provisioning are now verified. See `GA4_ACTIVATION_20261014.md` for the actual stream binding, renewed consent, diagnostics/report separation and current release acceptance boundary; #53 records actual production state. GSC Wizard is not required.
+
+
 ## Authority and current boundary
 
 The owner authorised P1 implementation in issue #53. Root DEC-018 and frontend DEC-020 govern this slice. It does not alter signed Checkout, webhook settlement, D1 entitlement, private R2 delivery, purchase policy versions or merchant settings. Browser acceptance exposed an early-click recovery disclosure race; the native details element now uses explicit React state so a hydration-replayed click does not close the form again. Order access and recovery-authorisation semantics are unchanged. The existing sandbox acceptance is reused, not repeated as a real transaction. A request remains distinct from a quote, payment and verified delivery.

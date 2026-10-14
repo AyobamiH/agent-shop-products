@@ -46,7 +46,7 @@ export async function main(args = process.argv.slice(2)) {
   const { positionals, values } = parseArgs({ args, allowPositionals: true, options: {
     'client-file': { type: 'string' }, 'expected-email': { type: 'string' }, port: { type: 'string', default: '8774' },
     property: { type: 'string' }, stream: { type: 'string' }, start: { type: 'string' }, end: { type: 'string' },
-    url: { type: 'string' }, help: { type: 'boolean', default: false },
+    url: { type: 'string' }, diagnostic: { type: 'boolean', default: false }, help: { type: 'boolean', default: false },
   } });
   const command = positionals[0];
   if (values.help || command === 'help' || !command) {
@@ -55,7 +55,7 @@ export async function main(args = process.argv.slice(2)) {
       'inventory\ninspect-stream --property properties/ID --stream ID\n' +
       'search-report --start YYYY-MM-DD --end YYYY-MM-DD\n' +
       'analytics-report --property properties/ID --stream ID --start YYYY-MM-DD --end YYYY-MM-DD\n' +
-      'realtime-report --property properties/ID --stream ID\ninspect-url --url PUBLIC_SHOP_URL\nsitemaps\n' +
+      'realtime-report --property properties/ID --stream ID [--diagnostic]\ninspect-url --url PUBLIC_SHOP_URL\nsitemaps\n' +
       'Tokens/reports stay in ~/.config/agent-shop-google/. Never paste credentials. No collection, billing, or provider setting is enabled by these commands.');
     return;
   }
@@ -78,7 +78,7 @@ export async function main(args = process.argv.slice(2)) {
   if (command === 'inspect-stream') report = await inspectStream(session, values.property, values.stream);
   if (command === 'search-report') report = await searchReport(session, values.start, values.end);
   if (command === 'analytics-report') report = await analyticsReport(session, values.property, values.stream, values.start, values.end);
-  if (command === 'realtime-report') report = await realtimeReport(session, values.property, values.stream);
+  if (command === 'realtime-report') report = await realtimeReport(session, values.property, values.stream, { diagnostic: values.diagnostic });
   if (command === 'inspect-url') report = await inspectUrl(session, values.url);
   if (command === 'sitemaps') report = await sitemapReport(session);
   const saved = privateWrite(command + '.json', report);

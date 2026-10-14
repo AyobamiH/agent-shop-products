@@ -57,7 +57,7 @@ node scripts/google-operator.mjs inventory
 node scripts/google-operator.mjs inspect-stream --property properties/ACTUAL_ID --stream ACTUAL_ID
 node scripts/google-operator.mjs search-report --start 2026-09-14 --end 2026-10-11
 node scripts/google-operator.mjs analytics-report --property properties/ACTUAL_ID --stream ACTUAL_ID --start 2026-09-14 --end 2026-10-11
-node scripts/google-operator.mjs realtime-report --property properties/ACTUAL_ID --stream ACTUAL_ID
+node scripts/google-operator.mjs realtime-report --property properties/ACTUAL_ID --stream ACTUAL_ID [--diagnostic]
 node scripts/google-operator.mjs inspect-url --url https://agents.proofandstate.com/private-kits
 node scripts/google-operator.mjs sitemaps
 ```
@@ -130,3 +130,5 @@ preserved. A local test is not actual Google consent or a verified GA4 event.
 - https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-api-schema
 - https://developers.google.com/webmaster-tools/v1/how-tos/authorizing
 - https://developers.google.com/webmaster-tools/v1/searchanalytics/query
+
+Later dedicated provisioning and consented activation are described in `GA4_DEDICATED_STREAM.md` and `GA4_ACTIVATION_20261014.md`. Default native reports include only the three business-discovery event names; operator diagnostics require explicit selection and are not qualified demand. Realtime uses eventCount without incompatible user metrics.

@@ -42,6 +42,11 @@ export async function ensureSingleton(session, endpoint, desired) {
   const matches = () => actual.name === resource && Object.entries(desired).every(([k,v]) => {
     // Google protobuf JSON can omit a boolean whose default value is false.
     if(v === false) return actual[k] === false || actual[k] === undefined;
+    // Google normalises these case-insensitive URL keys to lowercase.
+    if(k === 'queryParameterKeys' && Array.isArray(actual[k])) {
+      const canonical = keys => [...new Set(keys.map(key=>String(key).toLowerCase()))].sort();
+      return JSON.stringify(canonical(actual[k])) === JSON.stringify(canonical(v));
+    }
     return JSON.stringify(actual[k]) === JSON.stringify(v);
   });
   if(!matches()) {

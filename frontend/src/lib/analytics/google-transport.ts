@@ -12,6 +12,14 @@ export function createGoogleTransport(
   const flags = browser as unknown as Record<string, unknown>;
   let measurementId: string | null = null;
   let active = false;
+  // A local operator-only test opt-in changes event names, never trusts a URL flag.
+  // Diagnostics are excluded from the direct operator's business-event reports.
+  let diagnostic = false;
+  try {
+    diagnostic = browser.sessionStorage.getItem("agent-shop:analytics-diagnostic") === "operator";
+  } catch {
+    /* Default to ordinary consented measurement; no private value is sent. */
+  }
   function command(..._values: unknown[]) {
     // gtag expects Arguments, not an arbitrary event object or form contents.
     // eslint-disable-next-line prefer-rest-params -- The documented gtag queue consumes Arguments.
@@ -76,7 +84,13 @@ export function createGoogleTransport(
         page_referrer: "",
         page_title: event.parameters["page_title"],
       });
-      command("event", event.name, { ...event.parameters, send_to: measurementId });
+      command("event", diagnostic ? "agent_shop_diagnostic" : event.name, {
+        ...event.parameters,
+        send_to: measurementId,
+        ...(diagnostic
+          ? { diagnostic_event: event.name, diagnostic_origin: "operator_acceptance" }
+          : {}),
+      });
     },
     stop(clear = false) {
       // No consent-denied ping: disable before clearing the queued events or cookies.

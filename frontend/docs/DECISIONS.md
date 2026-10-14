@@ -101,3 +101,7 @@ Root DEC-017 authorises metadata-only discovery of three privately authored and 
 ## DEC-020 — Optional discovery analytics and useful acquisition content
 
 Root DEC-018 authorises consent-gated GA4 instrumentation and original evidence/scoping content on existing public routes. Canonical configuration stays off until verified stream ownership, origin, enhanced-measurement, advertising and retention gates pass. No arbitrary event payload, customer data, cross-domain identifier or implied conversion is allowed. `/privacy` has its own version; purchase policy versions and settlement semantics are unaffected.
+
+## DEC-021 — Verified GA4 stream and renewed optional consent
+
+Root DEC-021 permits the specifically verified Agent Shop stream under consent version 2026-10-14.2. Google collection requires the real canonical origin, safe public URL and explicit visitor consent. Candidate/operator diagnostics are separately named and excluded from native business reports; pointer/keyboard consent and withdrawal acceptance remain required. No commerce state or third-party resale claim changes.
