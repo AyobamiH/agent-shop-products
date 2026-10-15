@@ -118,3 +118,10 @@ Following successful owner consent and direct account inventory, the approved GA
 ## DEC-021 — Actual stream activation and separately labelled diagnostics
 
 The owner-approved dedicated Shop stream is verified through Google directly. The reviewed website configuration may offer optional measurement under renewed consent version 2026-10-14.2. No SDK or event before consent; private URLs and unknown query values remain excluded. Operator tests use a distinct diagnostic event name excluded from native business reports, with transport acceptance and provider reporting recorded separately. See `docs/GA4_ACTIVATION_20261014.md`. This does not authorise live commerce or infer external demand.
+
+
+## DEC-022 — Release does not depend on market response (15 October 2026)
+
+The owner explicitly rejects waiting for clicks, a first enquiry, a first customer or the acquisition experiment before completing production. Those are post-launch observations, not admission or deployment prerequisites. The accepted sandbox purchase/refund/recovery sequence remains technical evidence; do not create another transaction merely to claim progress. A production checkout can be ready before its first sale, but an actual sale must never be claimed without buyer-specific payment and fulfilment evidence.
+
+The source-governed `commerce/release-policy.json` now selects closed or live commerce for both rollout paths. Live selection requires existing verified seller/tax/support/contract facts, the exact approved £9 offer and policy URLs, matching private runtime bindings, exact-head CI and independent public/provider checks. The checked-in policy remains closed because the actual merchant facts and permanent live payment configuration are not complete. No caller boolean, environment flag, traffic metric or test purchase can override those facts. See `docs/RELEASE_COMPLETION_20261015.md`.

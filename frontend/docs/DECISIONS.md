@@ -105,3 +105,7 @@ Root DEC-018 authorises consent-gated GA4 instrumentation and original evidence/
 ## DEC-021 — Verified GA4 stream and renewed optional consent
 
 Root DEC-021 permits the specifically verified Agent Shop stream under consent version 2026-10-14.2. Google collection requires the real canonical origin, safe public URL and explicit visitor consent. Candidate/operator diagnostics are separately named and excluded from native business reports; pointer/keyboard consent and withdrawal acceptance remain required. No commerce state or third-party resale claim changes.
+
+## DEC-022 — Explicit live/test public offer mode
+
+Root DEC-022 removes market-response dependencies from release work. Active public offers expose their real configured `mode` so test checkout cannot be accepted as live. Source-governed release expectation checks the exact price/policy rather than permanently requiring closed commerce. No automatic approval, first-customer requirement or change to payment, recovery or private data authority is introduced.

@@ -1,3 +1,4 @@
+import { loadReleaseExpectation, matchesPublicAcceptance } from "./commerce-release-policy.mjs";
 import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import os from "node:os";
@@ -120,7 +121,7 @@ function availableBun() {
   throw Error("BUN_RUNTIME_UNAVAILABLE");
 }
 
-function checkPublic(targetOrigin) {
+function checkPublic(targetOrigin, commerceExpectation = loadReleaseExpectation()) {
   const environment = { ...process.env, ACCEPTANCE_ORIGIN: targetOrigin, CANONICAL_ORIGIN: origin };
   delete environment.CLOUDFLARE_API_TOKEN;
   delete environment.GITHUB_TOKEN;
@@ -130,9 +131,7 @@ function checkPublic(targetOrigin) {
   let result;
   try { result = JSON.parse(data.trim()); }
   catch { throw Error("PUBLIC_ACCEPTANCE_NOT_JSON"); }
-  if (result.status !== "PASS" || result.products !== 33 ||
-      result.externalCapabilities !== 990 || result.codingBugs !== 24 ||
-      result.commerceActive !== false || result.privateKitOffer !== "planned") {
+  if (!matchesPublicAcceptance(result, commerceExpectation)) {
     throw Error("PUBLIC_ACCEPTANCE_REJECTED");
   }
   return result;
@@ -148,18 +147,19 @@ function saveReceipt(receipt) {
 export async function runLocalRelease({ verifyOnly = false } = {}) {
   const admission = localMainAdmission();
   const sha = admission.sha;
+  const commerceExpectation = loadReleaseExpectation();
   const scoped = managedCredentialFromFile(localTokenFile);
   const priorId = await currentVersion(scoped.token);
   const prior = await cloudflare("GET", "/versions/" + priorId, scoped.token);
   try {
-    verifyCandidateMetadata(prior, sha);
-    const publicAcceptance = checkPublic(origin);
+    verifyCandidateMetadata(prior, sha, commerceExpectation);
+    const publicAcceptance = checkPublic(origin, commerceExpectation);
     const receipt = {
       status: "ALREADY_ACTIVE", sha, versionId: priorId,
       ciVerdict: "PASS", publicAcceptance, checkedAt: new Date().toISOString(),
       channel: "owner-local-scoped-cloudflare",
       githubEnvironmentSecretUsed: false,
-      commerceActive: false,
+      commerceActive: publicAcceptance.commerceActive,
     };
     if (!verifyOnly) receipt.receiptPath = saveReceipt(receipt);
     return receipt;
@@ -192,9 +192,9 @@ export async function runLocalRelease({ verifyOnly = false } = {}) {
     "--tag", sha, "--message", "owner scoped release " + sha],
   { cwd: storefront, env: runtimeEnv });
   const { versionId, previewURL } = parseCandidateUpload(uploaded, sha);
-  const preview = checkPublic(previewURL);
+  const preview = checkPublic(previewURL, commerceExpectation);
   const candidate = await cloudflare("GET", "/versions/" + versionId, scoped.token);
-  verifyCandidateMetadata(candidate, sha);
+  verifyCandidateMetadata(candidate, sha, commerceExpectation);
 
   localMainAdmission();
   if (await currentVersion(scoped.token) !== priorId) {
@@ -202,13 +202,13 @@ export async function runLocalRelease({ verifyOnly = false } = {}) {
   }
   const promoted = await guardedPromote({
     sha, versionId, accountId: scoped.accountId, token: scoped.token,
-    expectedPreviousVersion: priorId,
-    publicVerifier: async (target) => checkPublic(target),
+    expectedPreviousVersion: priorId, commerceExpectation,
+    publicVerifier: async (target) => checkPublic(target, commerceExpectation),
   });
   const receipt = {
     ...promoted, sha, ciVerdict: "PASS", preview,
     channel: "owner-local-scoped-cloudflare",
-    githubEnvironmentSecretUsed: false, commerceActive: false,
+    githubEnvironmentSecretUsed: false, commerceActive: promoted.publicAcceptance.commerceActive,
     verifiedAt: new Date().toISOString(),
   };
   receipt.receiptPath = saveReceipt(receipt);

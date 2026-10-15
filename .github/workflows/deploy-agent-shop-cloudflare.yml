@@ -93,13 +93,12 @@ jobs:
           node scripts/verify-deployed-surface.mjs > "$RUNNER_TEMP/agent-shop-candidate-parity.json"
           node --input-type=module - <<'NODE'
           import { readFileSync } from "node:fs";
+          import { loadReleaseExpectation, matchesPublicAcceptance } from "../scripts/commerce-release-policy.mjs";
           const result = JSON.parse(readFileSync(process.env.RUNNER_TEMP + "/agent-shop-candidate-parity.json", "utf8"));
-          if (result.status !== "PASS" || result.commerceActive !== false ||
-              result.privateKitOffer !== "planned" || result.products !== 33 ||
-              result.externalCapabilities !== 990 || result.codingBugs !== 24) {
+          if (!matchesPublicAcceptance(result, loadReleaseExpectation())) {
             throw Error("UNAPPROVED_OR_UNVERIFIED_COMMERCIAL_CANDIDATE");
           }
-          console.log("Verified preview: source backed, disabled commerce, D1/R2 bindings required.");
+          console.log("Verified preview: exact reviewed commerce policy, source and D1/R2 bindings required.");
           NODE
 
       - name: Reconfirm main and exact-head CI before irreversible promotion
