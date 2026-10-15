@@ -1,3 +1,4 @@
+import { loadReleaseExpectation, verifyCommerceBindings, matchesPublicAcceptance } from "./commerce-release-policy.mjs";
 import { deploymentState, awaitDeployment, rollbackOwnedDeployment } from "./deployment-convergence.mjs";
 import { spawn } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -12,7 +13,7 @@ const EXPECTED_BINDINGS = {
   COMMERCE_RATE_LIMITER: { type: "ratelimit" },
 };
 
-export function verifyCandidateMetadata(result, sha) {
+export function verifyCandidateMetadata(result, sha, commerceExpectation = loadReleaseExpectation()) {
   if (!result || result.annotations?.["workers/tag"] !== sha) {
     throw Error("CANDIDATE_SHA_MISMATCH");
   }
@@ -24,10 +25,7 @@ export function verifyCandidateMetadata(result, sha) {
       matching[0][key] !== value
     )) throw Error("CANDIDATE_BINDING_MISMATCH_" + name);
   }
-  if (bindings.some((b) => b.name === "COMMERCE_ENABLED" &&
-    (b.text === "true" || b.value === "true"))) {
-    throw Error("UNAPPROVED_CHECKOUT_BINDING");
-  }
+  verifyCommerceBindings(bindings, commerceExpectation);
   return true;
 }
 
@@ -43,7 +41,7 @@ export function activeVersion(deployments) {
 
 export async function guardedPromote({
   sha, versionId, accountId, token, fetcher = fetch, publicVerifier,
-  expectedPreviousVersion,
+  expectedPreviousVersion, commerceExpectation = loadReleaseExpectation(),
   delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
 }) {
   if (!SHA_RE.test(sha) || !ID_RE.test(versionId) ||
@@ -69,7 +67,7 @@ export async function guardedPromote({
     return json.result;
   }
   const version = await api("GET", "/versions/" + versionId);
-  verifyCandidateMetadata(version, sha);
+  verifyCandidateMetadata(version, sha, commerceExpectation);
   const deployments = await api("GET", "/deployments");
   const priorState = deploymentState(deployments, activeVersion);
   const prior = priorState.versionId;
@@ -79,9 +77,7 @@ export async function guardedPromote({
   }
   if (prior === versionId) {
     const observed = await publicVerifier(ORIGIN);
-    if (observed.status !== "PASS" || observed.commerceActive !== false ||
-        observed.privateKitOffer !== "planned" || observed.products !== 33 ||
-        observed.externalCapabilities !== 990 || observed.codingBugs !== 24) {
+    if (!matchesPublicAcceptance(observed, commerceExpectation)) {
       throw Error("ACTIVE_VERSION_PUBLIC_ACCEPTANCE_FAILED");
     }
     const after = await readDeployment();
@@ -100,9 +96,7 @@ export async function guardedPromote({
         stale: [priorState], delay });
       try {
         const observed = await publicVerifier(ORIGIN);
-        if (observed?.status === "PASS" && observed.commerceActive === false &&
-          observed.privateKitOffer === "planned" && observed.products === 33 &&
-          observed.externalCapabilities === 990 && observed.codingBugs === 24) {
+        if (matchesPublicAcceptance(observed, commerceExpectation)) {
           return { ...observed, acceptedAttempt: attempt };
         }
       } catch { /* Only bounded redacted acceptance failures leave this scope. */ }
@@ -119,7 +113,7 @@ export async function guardedPromote({
   let deploymentId = "";
   try {
     try {
-      const created = await api("POST", "/deployments", payload(versionId, "protected Agent Shop release " + sha + " commerce disabled"));
+      const created = await api("POST", "/deployments", payload(versionId, "protected Agent Shop release " + sha + " commerce " + commerceExpectation.mode));
       deploymentId = created?.id || "";
     } catch {
       // A timeout can follow a committed write. Reconcile with bounded reads;

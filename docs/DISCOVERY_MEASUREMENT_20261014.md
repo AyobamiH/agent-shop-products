@@ -74,3 +74,7 @@ The exact reviewed main must pass push CI before `node scripts/owner-local-relea
 - Google Analytics Admin API: https://developers.google.com/analytics/devguides/config/admin/v1/rest
 
 These sources inform the implementation. They do not settle the seller's outstanding factual tax or disclosure decisions, and no shared tax setting is changed by this release.
+
+## Release independence — 15 October 2026
+
+The owner explicitly rejects using this experiment, its 28 October end date or its first enquiry as a gate to code completion or production release. This document governs post-launch observation only. #25 and `docs/RELEASE_COMPLETION_20261015.md` govern the independent release; no click, visitor or first-buyer prerequisite exists.

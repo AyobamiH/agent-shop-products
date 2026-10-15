@@ -68,7 +68,7 @@ export function publicOffers(env: CommerceEnv): Record<string, unknown>[] {
       fulfilment: "private_versioned_kit", buyerRequirements: offer.buyerRequirements,
     };
     return active
-      ? { ...base, availability: "purchase_available", unitAmountPence: active.unitAmountPence,
+      ? { ...base, availability: "purchase_available", mode: active.mode, unitAmountPence: active.unitAmountPence,
           termsVersion: active.termsVersion, licenceVersion: active.licenceVersion,
           refundPolicyVersion: active.refundPolicyVersion,
           termsUrl: active.termsUrl, licenceUrl: active.licenceUrl, refundUrl: active.refundUrl }

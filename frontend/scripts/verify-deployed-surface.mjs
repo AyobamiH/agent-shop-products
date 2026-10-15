@@ -1,3 +1,4 @@
+import { loadReleaseExpectation, verifyPublicCommerce } from "../../scripts/commerce-release-policy.mjs";
 import { readFileSync } from "node:fs";
 import { isDeepStrictEqual } from "node:util";
 import { resolve } from "node:path";
@@ -102,19 +103,7 @@ requireValue(privateKitComplete.text.includes("Your kit order"),
   "order completion route must render order help instead of its parent catalogue");
 requireValue(privateKitComplete.text.includes("noindex"),
   "order completion route must not be indexed");
-if (commerce.commerceActive === false) {
-  requireValue(commerce.offers[0].availability === "planned" &&
-    commerce.offers[0].unitAmountPence === undefined &&
-    commerce.offers[0].priceId === undefined,
-  "disabled private kit must not expose a price or checkout");
-} else {
-  requireValue(commerce.commerceActive === true &&
-    commerce.offers[0].availability === "purchase_available" &&
-    Number.isSafeInteger(commerce.offers[0].unitAmountPence) &&
-    ["termsUrl", "licenceUrl", "refundUrl"].every((key) =>
-      typeof commerce.offers[0][key] === "string"),
-  "enabled kit must have approved amount and published terms");
-}
+const commerceAcceptance = verifyPublicCommerce(commerce, loadReleaseExpectation());
 
 const remoteCatalogue = JSON.parse(catalogueResult.text);
 requireValue(remoteCatalogue.productCount === products.length, "catalogue product count drift");
@@ -187,8 +176,7 @@ console.log(
     origin,
     canonicalOrigin,
     products: products.length,
-    privateKitOffer: commerce.offers[0].availability,
-    commerceActive: commerce.commerceActive,
+    ...commerceAcceptance,
     ...registryAcceptance,
     ...discoveryAcceptance,
     crawlerAgentsChecked: crawlerAgents.length,

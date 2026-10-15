@@ -28,6 +28,10 @@ function ready(overrides: Overrides = {}): CommerceEnv {
 }
 const KIT = "private-production-agent-operating-kit";
 describe("Private kit gated commerce", () => {
+  it("labels an enabled sandbox offer as test rather than silently presenting it as live", () => {
+    expect(publicOffers(ready())[0]).toMatchObject({ mode: "test", availability: "purchase_available", unitAmountPence: 900 });
+    expect(publicOffers({})[0]).not.toHaveProperty("mode");
+  });
   it("does not invent public prices or active checkout", () => {
     const offers = publicOffers({});
     expect(offers[0]).toMatchObject({ id: KIT, availability: "planned" });
