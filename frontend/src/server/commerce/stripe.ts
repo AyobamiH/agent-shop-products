@@ -18,7 +18,10 @@ async function stripeRequest(
   key: string, path: string, options: { method?: string; body?: URLSearchParams; idempotencyKey?: string } = {},
   fetcher: typeof fetch = fetch,
 ): Promise<Record<string, unknown>> {
-  const headers = new Headers({ Authorization: "Bearer " + key });
+  const headers = new Headers({
+    Authorization: "Bearer " + key,
+    "Stripe-Version": "2025-03-31.basil",
+  });
   if (options.body) headers.set("Content-Type", "application/x-www-form-urlencoded");
   if (options.idempotencyKey) headers.set("Idempotency-Key", options.idempotencyKey);
   let response: Response;

@@ -146,7 +146,9 @@ describe("Private kit gated commerce", () => {
     };
     const env = { STRIPE_SECRET_KEY: "rk_live_synthetic" } as CommerceEnv;
     let posted = new URLSearchParams();
+    let stripeVersion: string | null = null;
     const provider = async (input: RequestInfo | URL, init?: RequestInit) => {
+      stripeVersion = new Headers(init?.headers).get("Stripe-Version");
       const url = new URL(String(input));
       if (url.pathname.endsWith("/prices/" + offer.priceId)) return Response.json({
         id: offer.priceId, active: true, livemode: true, currency: "gbp",
@@ -169,6 +171,7 @@ describe("Private kit gated commerce", () => {
     };
     const opened = await createStripeSession(env, offer, "order-live-123", provider as typeof fetch);
     expect(opened.id).toBe("cs_live_123456789012345");
+    expect(stripeVersion).toBe("2025-03-31.basil");
     expect(posted?.get("managed_payments[enabled]")).toBe("true");
     expect(posted?.has("automatic_tax[enabled]")).toBe(false);
     expect(posted?.has("billing_address_collection")).toBe(false);
