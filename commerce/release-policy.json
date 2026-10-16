@@ -1,7 +1,23 @@
 {
   "schemaVersion": 1,
-  "mode": "disabled",
+  "mode": "live",
   "offerId": "private-production-agent-operating-kit",
   "offerVersion": "2026.10.1",
-  "approval": null
+  "approval": {
+    "offerId": "private-production-agent-operating-kit",
+    "version": "2026.10.1",
+    "stripeProductId": "prod_agent_shop_private_kit_v2026101",
+    "priceId": "price_1UR7AHGbPfXt7ec5XoUHlW85",
+    "unitAmountPence": 900,
+    "currency": "gbp",
+    "paymentModel": "managed_payments",
+    "taxCode": "txcd_10202003",
+    "termsVersion": "2026-10-16.1",
+    "licenceVersion": "2026-10-16.1",
+    "refundPolicyVersion": "2026-10-16.1",
+    "commercialDecisionId": "agent-shop-kit-live-20261016-v1",
+    "termsUrl": "https://agents.proofandstate.com/legal/kit-terms",
+    "licenceUrl": "https://agents.proofandstate.com/legal/kit-licence",
+    "refundUrl": "https://agents.proofandstate.com/legal/kit-refunds"
+  }
 }
