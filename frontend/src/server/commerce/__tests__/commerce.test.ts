@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from "vitest";
 import { approvedOffer, publicOffers, settlementOffer } from "../config";
-import type { CommerceEnv } from "../config";
+import type { ApprovedOffer, CommerceEnv } from "../config";
 import { claimTokenHash, newClaimToken, verifyStripeSignature } from "../crypto";
-import { verifyPaidSession, verifyStripePrice } from "../stripe";
+import { createStripeSession, verifyPaidSession, verifyStripePrice } from "../stripe";
 import { handleCommerceRequest } from "../handler";
 import realIntroductorySession from "./fixtures/stripe-nine-pound-sandbox-20261010.json";
 
@@ -12,7 +12,8 @@ function ready(overrides: Overrides = {}): CommerceEnv {
     COMMERCE_ENABLED: "true", COMMERCE_MODE: "test",
     COMMERCE_OFFER_APPROVAL: JSON.stringify({
       offerId: "private-production-agent-operating-kit", version: "2026.10.1",
-      priceId: "price_123456789012", unitAmountPence: 900, currency: "gbp",
+      stripeProductId: "prod_agent_shop_sandbox_private_kit_v1", priceId: "price_123456789012",
+      unitAmountPence: 900, currency: "gbp", paymentModel: "managed_payments", taxCode: "txcd_10202003",
       termsVersion: "terms.v1", licenceVersion: "licence.v1",
       refundPolicyVersion: "refund.v1", commercialDecisionId: "approval.v1",
       termsUrl: "https://agents.proofandstate.com/legal/kit-terms",
@@ -120,12 +121,80 @@ describe("Private kit gated commerce", () => {
   it("refuses Checkout when Stripe's actual price conflicts with approved displayed amount", async () => {
     const offer = approvedOffer(ready(), KIT)!;
     const provider = async () => new Response(JSON.stringify({
-      id: offer.priceId, active: true, livemode: false, currency: "gbp",
-      unit_amount: 9999, type: "one_time", recurring: null,
+      id: offer.priceId, active: true, livemode: false, currency: "gbp", product: offer.stripeProductId,
+      unit_amount: 9999, type: "one_time", tax_behavior: "exclusive", recurring: null,
     }), { status: 200 });
     await expect(verifyStripePrice(ready(), offer, provider as typeof fetch))
       .rejects.toMatchObject({ code: "PAYMENT_PRICE_MISMATCH", status: 409 });
   });
+  it("uses Managed Payments only for the live business-use kit and reconciles the fixed GBP ledger", async () => {
+    const offer: ApprovedOffer = {
+      id: KIT, productId: "production-agent-operating-files", title: "Private Production Agent Operating Kit",
+      summary: "fixture", version: "2026.10.1",
+      assetKey: "private-kits/production-agent-operating-files/2026.10.1/kit.zip",
+      status: "planned", deliverableType: "versioned_private_execution_kit",
+      fulfilment: "private_r2_download", currency: "gbp", buyerRequirements: ["Business use only"],
+      introductoryUnitAmountPence: 900, introductoryPriceStatus: "approved",
+      livePaymentModel: "managed_payments", liveTaxCode: "txcd_10202003", buyerType: "business_only",
+      stripeProductId: "prod_agent_shop_live_fixture", priceId: "price_live_fixture_1234",
+      unitAmountPence: 900, paymentModel: "managed_payments", taxCode: "txcd_10202003",
+      termsVersion: "2026-10-16.1", licenceVersion: "2026-10-16.1",
+      refundPolicyVersion: "2026-10-16.1", commercialDecisionId: "managed-payments-v1",
+      mode: "live", termsUrl: "https://agents.proofandstate.com/legal/kit-terms",
+      licenceUrl: "https://agents.proofandstate.com/legal/kit-licence",
+      refundUrl: "https://agents.proofandstate.com/legal/kit-refunds",
+    };
+    const env = { STRIPE_SECRET_KEY: "rk_live_synthetic" } as CommerceEnv;
+    let posted = new URLSearchParams();
+    const provider = async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url = new URL(String(input));
+      if (url.pathname.endsWith("/prices/" + offer.priceId)) return Response.json({
+        id: offer.priceId, active: true, livemode: true, currency: "gbp",
+        unit_amount: 900, type: "one_time", recurring: null, tax_behavior: "unspecified",
+        product: offer.stripeProductId,
+      });
+      if (url.pathname.endsWith("/products/" + offer.stripeProductId)) return Response.json({
+        id: offer.stripeProductId, active: true, livemode: true, tax_code: offer.taxCode,
+        metadata: { offer_id: offer.id, offer_version: offer.version },
+      });
+      if (url.pathname.endsWith("/checkout/sessions") && init?.method === "POST") {
+        posted = new URLSearchParams(String(init.body));
+        return Response.json({
+          id: "cs_live_123456789012345", url: "https://checkout.stripe.com/pay/cs_live_123456789012345",
+          livemode: true, mode: "payment", client_reference_id: posted.get("client_reference_id"),
+          managed_payments: { enabled: true },
+        });
+      }
+      return Response.json({ error: "unexpected" }, { status: 500 });
+    };
+    const opened = await createStripeSession(env, offer, "order-live-123", provider as typeof fetch);
+    expect(opened.id).toBe("cs_live_123456789012345");
+    expect(posted?.get("managed_payments[enabled]")).toBe("true");
+    expect(posted?.has("automatic_tax[enabled]")).toBe(false);
+    expect(posted?.has("billing_address_collection")).toBe(false);
+    const order = { id: "order-live-123", checkout_session_id: opened.id,
+      offer_id: offer.id, offer_version: offer.version, amount_pence: 900, currency: "gbp" };
+    const paid = {
+      id: opened.id, client_reference_id: order.id, mode: "payment", livemode: true,
+      payment_status: "paid", managed_payments: { enabled: true },
+      automatic_tax: { enabled: true, status: "complete", provider: "stripe", liability: { type: "stripe" } },
+      currency: "gbp", amount_subtotal: 900, amount_total: 1080,
+      total_details: { amount_tax: 180, amount_discount: 0, amount_shipping: 0 },
+      payment_intent: "pi_live123456789012",
+      metadata: { agent_shop_order_id: order.id, offer_id: offer.id, offer_version: offer.version },
+      line_items: { data: [{ price: { id: offer.priceId }, quantity: 1 }] },
+    };
+    expect(verifyPaidSession(paid, offer, order)).toBe("pi_live123456789012");
+    for (const bad of [
+      { managed_payments: { enabled: false } },
+      { automatic_tax: { enabled: false, status: "complete", provider: "stripe", liability: { type: "stripe" } } },
+      { automatic_tax: { enabled: true, status: "complete", provider: "stripe", liability: { type: "self" } } },
+      { automatic_tax: { enabled: true, status: "complete", provider: "other", liability: { type: "stripe" } } },
+      { amount_total: 901 },
+      { total_details: { amount_tax: 1, amount_discount: 0, amount_shipping: 0 } },
+    ]) expect(() => verifyPaidSession({ ...paid, ...bad }, offer, order)).toThrow();
+  });
+
   it("fails closed on unauthorised browser actions, forged Stripe events and success URLs", async () => {
     const offers = await handleCommerceRequest(new Request("https://agents.proofandstate.com/api/v1/commerce/offers"), {});
     expect(offers?.status).toBe(200);

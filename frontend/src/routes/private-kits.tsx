@@ -6,7 +6,7 @@ import { buildPageHead } from "@/lib/seo/meta";
 
 type KitOffer = {
   id: string; title: string; summary: string; version: string;
-  availability: string; unitAmountPence?: number;
+  availability: string; unitAmountPence?: number; paymentModel?: string;
   termsVersion?: string; licenceVersion?: string; refundPolicyVersion?: string;
   termsUrl?: string; licenceUrl?: string; refundUrl?: string;
   buyerRequirements?: string[];
@@ -134,8 +134,9 @@ function PrivateKitsPage() {
                 <>
                   <p className="text-lg font-semibold">{price}</p>
                   <p className="mt-2 text-xs text-muted-foreground">
-                    One-off digital delivery. Any applicable tax and the final total are
-                    shown before you pay. Review the purchase terms before continuing.
+                    Business/professional use only. One-off digital delivery through Stripe
+                    Managed Payments. Stripe may present an equivalent local-currency amount;
+                    review the exact total before paying.
                   </p>
                   <div className="mt-3 flex flex-wrap gap-4 text-sm">
                     <a href={offer?.termsUrl} className="underline">Purchase terms</a>

@@ -5,7 +5,7 @@
       "id": "private-production-agent-operating-kit",
       "productId": "production-agent-operating-files",
       "title": "Private Production Agent Operating Kit",
-      "summary": "A planned, private set of implementation fixtures, verification harnesses and rollback-ready operating templates that goes beyond the openly readable agent operating-files prompt.",
+      "summary": "A private set of implementation fixtures, verification harnesses and rollback-ready operating templates that goes beyond the openly readable agent operating-files prompt.",
       "deliverableType": "versioned_private_execution_kit",
       "fulfilment": "private_r2_download",
       "version": "2026.10.1",
@@ -17,15 +17,19 @@
       "termsVersion": null,
       "licenceVersion": null,
       "refundPolicyVersion": null,
-      "updates": "Purchased version only; 30 days of access, archive-integrity and documented-test assistance. No promised future versions. Checkout remains closed.",
+      "updates": "Purchased version only; 30 days of access, archive-integrity and documented-test assistance. No promised future versions.",
       "buyerRequirements": [
+        "Business or professional use only",
         "An explicitly authorised repository or runtime",
         "Operator review before applying any generated change",
         "No delegated live-merge, production deploy or billing authority"
       ],
       "introductoryUnitAmountPence": 900,
-      "introductoryPriceStatus": "approved_pricing_direction_pending_verified_merchant_facts",
-      "purchaseType": "one_off_no_subscription"
+      "introductoryPriceStatus": "approved_business_use_managed_payments_direction",
+      "purchaseType": "one_off_no_subscription",
+      "livePaymentModel": "managed_payments",
+      "liveTaxCode": "txcd_10202003",
+      "buyerType": "business_only"
     }
   ]
 }

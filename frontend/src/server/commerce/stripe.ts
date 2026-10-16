@@ -5,7 +5,8 @@ export type StripeSession = {
   id: string; url?: string | null; livemode?: boolean; mode?: string;
   payment_status?: string; currency?: string | null; amount_total?: number | null;
   amount_subtotal?: number | null;
-  automatic_tax?: { enabled?: boolean; status?: string | null } | null;
+  automatic_tax?: { enabled?: boolean; status?: string | null; provider?: string | null; liability?: { type?: string } | null } | null;
+  managed_payments?: { enabled?: boolean } | null;
   total_details?: { amount_tax?: number | null; amount_discount?: number | null; amount_shipping?: number | null } | null;
   client_reference_id?: string | null; metadata?: Record<string, string>;
   customer_details?: { email?: string | null } | null;
@@ -48,18 +49,27 @@ async function stripeRequest(
 export async function verifyStripePrice(
   env: CommerceEnv, offer: ApprovedOffer, fetcher: typeof fetch = fetch,
 ): Promise<void> {
-  // A price ID is not a verified amount. Check the Stripe-owned Price before
-  // creating Checkout so misconfigured offers cannot overcharge a buyer.
+  if (offer.mode === "live") {
+    // The exact live Product and immutable Price are provider-read and pinned
+    // during release admission. The runtime restricted key deliberately needs
+    // only Checkout read/write authority. If Stripe later deactivates or makes
+    // the pinned Price ineligible for Managed Payments, session creation fails
+    // closed rather than falling back to another amount or tax path.
+    return;
+  }
+  // Preserve the historical sandbox provider check: old test acceptance used
+  // an ordinary Stripe Tax Price and remains independently verifiable.
   const price = await stripeRequest(
     env.STRIPE_SECRET_KEY!, "/prices/" + encodeURIComponent(offer.priceId), {}, fetcher,
   );
   if (
     price["id"] !== offer.priceId ||
-    price["livemode"] !== (offer.mode === "live") ||
+    price["livemode"] !== false ||
     price["active"] !== true ||
     price["currency"] !== offer.currency ||
     price["unit_amount"] !== offer.unitAmountPence ||
     price["type"] !== "one_time" ||
+    price["product"] !== offer.stripeProductId ||
     price["tax_behavior"] !== "exclusive" ||
     (price["recurring"] !== null && price["recurring"] !== undefined)
   ) throw new CommerceFailure("PAYMENT_PRICE_MISMATCH", 409);
@@ -83,11 +93,18 @@ export async function createStripeSession(
     "metadata[terms_version]": offer.termsVersion,
     "success_url": "https://agents.proofandstate.com/private-kits/complete?session_id={CHECKOUT_SESSION_ID}",
     "cancel_url": "https://agents.proofandstate.com/private-kits?checkout=cancelled",
-    "billing_address_collection": "required",
-    // Requires an owner-approved Stripe Tax configuration. A completed calculation alone does not prove tax registration;
-    // merchant readiness is checked separately before new live sales.
-    "automatic_tax[enabled]": "true",
   });
+  if (offer.mode === "live") {
+    // Managed Payments is the live merchant-of-record path for this fully
+    // automated digital kit. Stripe controls indirect-tax calculation and
+    // Adaptive Pricing, so automatic_tax must not be sent on this session.
+    body.set("managed_payments[enabled]", "true");
+  } else {
+    // Preserve the accepted historical sandbox contract. Test-mode evidence
+    // used ordinary Stripe Tax and remains independently settleable.
+    body.set("billing_address_collection", "required");
+    body.set("automatic_tax[enabled]", "true");
+  }
   const result = await stripeRequest(env.STRIPE_SECRET_KEY!, "/checkout/sessions", {
     method: "POST", body, idempotencyKey: "agent-shop-v1-" + orderId,
   }, fetcher);
@@ -98,6 +115,7 @@ export async function createStripeSession(
   if (!/^cs_(?:test_|live_)[A-Za-z0-9]{10,}$/.test(session.id) ||
       destination.protocol !== "https:" || destination.hostname !== "checkout.stripe.com" ||
       session.livemode !== (offer.mode === "live") ||
+      (offer.mode === "live" ? session.managed_payments?.enabled !== true : session.managed_payments?.enabled === true) ||
       (session.client_reference_id && session.client_reference_id !== orderId)) {
     throw new CommerceFailure("PAYMENT_PROVIDER_BAD_RESPONSE", 502);
   }
@@ -118,25 +136,34 @@ export function verifyPaidSession(
   session: StripeSession, offer: ApprovedOffer,
   order: { id: string; checkout_session_id: string; amount_pence: number; currency: string; offer_id: string; offer_version: string },
 ): string {
+  const liveManaged = offer.mode === "live";
+  const tax = Number(session.total_details?.amount_tax);
+  const providerModeInvalid = liveManaged
+    ? session.managed_payments?.enabled !== true ||
+      session.automatic_tax?.enabled !== true ||
+      session.automatic_tax.status !== "complete" ||
+      session.automatic_tax.provider !== "stripe" ||
+      session.automatic_tax.liability?.type !== "stripe" ||
+      !Number.isSafeInteger(session.total_details?.amount_tax) ||
+      tax < 0 ||
+      session.amount_total !== offer.unitAmountPence + tax
+    : session.managed_payments?.enabled === true ||
+      session.automatic_tax?.enabled !== true ||
+      session.automatic_tax.status !== "complete" ||
+      !Number.isSafeInteger(session.total_details?.amount_tax) ||
+      tax < 0 ||
+      session.amount_total !== offer.unitAmountPence + tax;
   if (
     session.id !== order.checkout_session_id ||
     session.client_reference_id !== order.id ||
     session.mode !== "payment" ||
-    session.livemode !== (offer.mode === "live") ||
+    session.livemode !== liveManaged ||
     session.payment_status !== "paid" ||
-    // Checkout must have actually completed Stripe Tax calculation; a 0 tax
-    // result is acceptable, but disabled or unresolved automatic tax is not.
-    session.automatic_tax?.enabled !== true ||
-    session.automatic_tax.status !== "complete" ||
+    providerModeInvalid ||
     session.currency !== offer.currency ||
-    // Stripe Tax can add tax on top of the approved GBP base amount. Reconcile
-    // the original line subtotal AND the exact tax-inclusive charged total.
     session.amount_subtotal !== offer.unitAmountPence ||
-    !Number.isSafeInteger(session.total_details?.amount_tax) ||
-    Number(session.total_details?.amount_tax) < 0 ||
     session.total_details?.amount_discount !== 0 ||
     session.total_details?.amount_shipping !== 0 ||
-    session.amount_total !== offer.unitAmountPence + Number(session.total_details.amount_tax) ||
     order.amount_pence !== offer.unitAmountPence ||
     order.currency !== offer.currency ||
     order.offer_id !== offer.id ||

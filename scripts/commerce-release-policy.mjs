@@ -5,8 +5,8 @@ const requiredFacts = ['publicBusinessAddress', 'monitoredSupportEmail', 'taxTre
   'liveMerchantProfile', 'buyerContractAndRecovery', 'retentionPolicy'];
 const origin = 'https://agents.proofandstate.com';
 const policyKeys = ['schemaVersion', 'mode', 'offerId', 'offerVersion', 'approval'];
-const approvalKeys = ['offerId', 'version', 'priceId', 'unitAmountPence', 'currency',
-  'termsVersion', 'licenceVersion', 'refundPolicyVersion', 'commercialDecisionId',
+const approvalKeys = ['offerId', 'version', 'stripeProductId', 'priceId', 'unitAmountPence', 'currency',
+  'paymentModel', 'taxCode', 'termsVersion', 'licenceVersion', 'refundPolicyVersion', 'commercialDecisionId',
   'termsUrl', 'licenceUrl', 'refundUrl'];
 const versions = ['termsVersion', 'licenceVersion', 'refundPolicyVersion'];
 const urls = { termsUrl: '/legal/kit-terms', licenceUrl: '/legal/kit-licence', refundUrl: '/legal/kit-refunds' };
@@ -44,8 +44,11 @@ export function releaseExpectation(policy, readiness, catalogue) {
   if (blockers.length) throw Error('LIVE_MERCHANT_FACTS_NOT_VERIFIED');
   const approval = policy.approval;
   if (!exactKeys(approval, approvalKeys) || approval.offerId !== offer.id || approval.version !== offer.version ||
+      !/^prod_[A-Za-z0-9_]{8,100}$/.test(approval.stripeProductId ?? '') ||
       !/^price_[A-Za-z0-9]{8,100}$/.test(approval.priceId ?? '') ||
       approval.unitAmountPence !== offer.introductoryUnitAmountPence || approval.currency !== 'gbp' ||
+      approval.paymentModel !== 'managed_payments' || approval.paymentModel !== offer.livePaymentModel ||
+      approval.taxCode !== offer.liveTaxCode || offer.buyerType !== 'business_only' ||
       !/^[A-Za-z0-9][A-Za-z0-9._-]{1,63}$/.test(approval.commercialDecisionId ?? '') ||
       versions.some(key => !/^[A-Za-z0-9][A-Za-z0-9._-]{1,63}$/.test(approval[key] ?? '')) ||
       new Set(versions.map(key => approval[key])).size !== 1 ||
@@ -91,7 +94,7 @@ export function verifyCommerceBindings(bindings, expected) {
   }
 }
 export function safeOfferSummary(offer) {
-  return Object.fromEntries(['id', 'version', 'mode', 'currency', 'unitAmountPence', ...versions, ...Object.keys(urls)]
+  return Object.fromEntries(['id', 'version', 'mode', 'paymentModel', 'currency', 'unitAmountPence', ...versions, ...Object.keys(urls)]
     .filter(key => offer[key] !== undefined).map(key => [key, offer[key]]));
 }
 export function verifyPublicCommerce(commerce, expected) {
@@ -106,6 +109,7 @@ export function verifyPublicCommerce(commerce, expected) {
   } else {
     const approved = expected.approval;
     if (commerce.commerceActive !== true || offer.availability !== 'purchase_available' || offer.mode !== 'live' ||
+        offer.paymentModel !== 'managed_payments' || offer.paymentModel !== approved.paymentModel ||
         offer.unitAmountPence !== approved.unitAmountPence || offer.priceId !== undefined ||
         [...versions, ...Object.keys(urls)].some(key => offer[key] !== approved[key])) throw Error('COMMERCE_PUBLIC_LIVE_MISMATCH');
   }

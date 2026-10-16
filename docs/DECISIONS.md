@@ -125,3 +125,14 @@ The owner-approved dedicated Shop stream is verified through Google directly. Th
 The owner explicitly rejects waiting for clicks, a first enquiry, a first customer or the acquisition experiment before completing production. Those are post-launch observations, not admission or deployment prerequisites. The accepted sandbox purchase/refund/recovery sequence remains technical evidence; do not create another transaction merely to claim progress. A production checkout can be ready before its first sale, but an actual sale must never be claimed without buyer-specific payment and fulfilment evidence.
 
 The source-governed `commerce/release-policy.json` now selects closed or live commerce for both rollout paths. Live selection requires existing verified seller/tax/support/contract facts, the exact approved £9 offer and policy URLs, matching private runtime bindings, exact-head CI and independent public/provider checks. The checked-in policy remains closed because the actual merchant facts and permanent live payment configuration are not complete. No caller boolean, environment flag, traffic metric or test purchase can override those facts. See `docs/RELEASE_COMPLETION_20261015.md`.
+
+
+## DEC-023 — Managed Payments is the live merchant-of-record path for the private digital kit (16 October 2026)
+
+The Private Production Agent Operating Kit is a fully automated business-use digital download, not the separately sold Tail Wagging professional repository-fix service. Live kit Checkout therefore uses Stripe Managed Payments with product tax code `txcd_10202003` rather than depending on the shared Stripe Tax GB registration.
+
+The release pins one live Product and one tax-exclusive £9 GBP Price in source approval. Live Checkout must request `managed_payments[enabled]=true`; it must not send merchant-owned `automatic_tax` settings. Stripe can apply Adaptive Pricing and calculate indirect tax as merchant of record. Reconciliation remains in the integration currency: the order ledger records the £9 GBP base amount, the signed provider session proves Stripe-owned tax liability and the exact calculated tax, and the confirmed contract records the exact total paid.
+
+Historical sandbox payment/refund/recovery evidence remains on its original ordinary Stripe Tax path. It is not rewritten as Managed Payments evidence.
+
+Provider object existence does not activate sales. The source release policy and Cloudflare bindings remain fail-closed until the exact live restricted key, signing secret, Product, Price, legal versions and approval all align. A real customer purchase, traffic or the acquisition experiment is not a prerequisite to release.
