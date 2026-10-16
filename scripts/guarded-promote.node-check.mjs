@@ -1,16 +1,36 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { activeVersion, verifyCandidateMetadata, guardedPromote } from "./guarded-promote.mjs";
+import { loadReleaseExpectation, verifyPublicCommerce } from "./commerce-release-policy.mjs";
 
 const old = "11111111-1111-4111-8111-111111111111";
 const next = "22222222-2222-4222-8222-222222222222";
 const sha = "a".repeat(40);
 const accountId = "6ddcbcb8474f1a7e460b2f0aabec0e2f";
+const selected = loadReleaseExpectation();
+const commerceBindings = [
+  {name:"COMMERCE_ENABLED",type:"plain_text",text:"true"},
+  {name:"COMMERCE_MODE",type:"plain_text",text:"live"},
+  {name:"COMMERCE_LIVE_APPROVED",type:"plain_text",text:"yes:"+selected.approval.commercialDecisionId},
+  {name:"COMMERCE_OFFER_APPROVAL",type:"plain_text",text:JSON.stringify(selected.approval)},
+  {name:"STRIPE_SECRET_KEY",type:"secret_text"},
+  {name:"STRIPE_WEBHOOK_SECRET",type:"secret_text"},
+];
 const bindings = [
   {name:"COMMERCE_DB",type:"d1",id:"f3fa2e0b-bb41-4c51-8b44-25f699baa39b"},
   {name:"PRIVATE_KITS",type:"r2_bucket",bucket_name:"agent-shop-private-kits"},
   {name:"COMMERCE_RATE_LIMITER",type:"ratelimit"},
+  ...commerceBindings,
 ];
+const publicCommerce = {schemaVersion:1,commerceActive:true,offers:[{
+  id:selected.offerId,version:selected.offerVersion,mode:"live",paymentModel:"managed_payments",
+  availability:"purchase_available",currency:"gbp",unitAmountPence:selected.approval.unitAmountPence,
+  termsVersion:selected.approval.termsVersion,licenceVersion:selected.approval.licenceVersion,
+  refundPolicyVersion:selected.approval.refundPolicyVersion,termsUrl:selected.approval.termsUrl,
+  licenceUrl:selected.approval.licenceUrl,refundUrl:selected.approval.refundUrl,
+}]};
+const acceptedPublic = {status:"PASS",products:33,externalCapabilities:990,codingBugs:24,
+  ...verifyPublicCommerce(publicCommerce,selected)};
 const good = {
   annotations: {"workers/tag":sha},
   resources: {bindings},
@@ -59,9 +79,8 @@ function mock({ verified=true, malformedBinding=false, ambiguousPost=false,
           active=concurrentSameVersion?next:"33333333-3333-4333-8333-333333333333";
           deploymentId="deployment-other-operator";
         }
-        return {status: (verified && publicAttempts>transientPublicFailures)?"PASS":"FAIL",
-          commerceActive:false,privateKitOffer:"planned",products:33,
-          externalCapabilities:990,codingBugs:24};
+        return {...acceptedPublic,
+          status: (verified && publicAttempts>transientPublicFailures)?"PASS":"FAIL"};
       }},
     get active(){return active},get writes(){return [...written]},
     get publicAttempts(){return publicAttempts},
