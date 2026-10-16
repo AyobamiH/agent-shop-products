@@ -17,7 +17,9 @@ const approval = { offerId: id, version: '2026.10.1', stripeProductId: 'prod_Tes
   commercialDecisionId: 'UNIT-ONLY', termsUrl: 'https://agents.proofandstate.com/legal/kit-terms',
   licenceUrl: 'https://agents.proofandstate.com/legal/kit-licence', refundUrl: 'https://agents.proofandstate.com/legal/kit-refunds' };
 const policy = { schemaVersion: 1, mode: 'live', offerId: id, offerVersion: '2026.10.1', approval };
+const disabledPolicy = { schemaVersion: 1, mode: 'disabled', offerId: id, offerVersion: '2026.10.1', approval: null };
 const live = () => releaseExpectation(policy, facts, catalogue);
+const closed = () => releaseExpectation(disabledPolicy, facts, catalogue);
 const bindings = [
   ...Object.entries({ COMMERCE_ENABLED: 'true', COMMERCE_MODE: 'live', COMMERCE_LIVE_APPROVED: 'yes:UNIT-ONLY',
     COMMERCE_OFFER_APPROVAL: JSON.stringify(approval) }).map(([name, text]) => ({ name, type: 'plain_text', text })),
@@ -26,13 +28,13 @@ const bindings = [
 const publicOffer = { id, version: '2026.10.1', mode: 'live', paymentModel: 'managed_payments', availability: 'purchase_available', currency: 'gbp', unitAmountPence: 900,
   ...Object.fromEntries(['termsVersion', 'licenceVersion', 'refundPolicyVersion', 'termsUrl', 'licenceUrl', 'refundUrl'].map(key => [key, approval[key]])) };
 const remote = { schemaVersion: 1, commerceActive: true, offers: [publicOffer] };
-test('default policy stays closed after merchant facts clear until an explicit live approval exists', () => {
-  assert.equal(loadReleaseExpectation().mode, 'disabled');
+test('selected source policy is live only after factual and provider gates clear', () => {
+  assert.equal(loadReleaseExpectation().mode, 'live');
   const status = releaseStatus();
   assert.equal(status.demandIsReleaseGate, false); assert.equal(status.firstCustomerIsReleaseGate, false);
   assert.deepEqual(status.merchantFactBlockers, []);
-  assert.equal(status.liveOfferApprovalPresent, false);
-  assert.equal(status.liveCheckoutSourceReady, false);
+  assert.equal(status.liveOfferApprovalPresent, true);
+  assert.equal(status.liveCheckoutSourceReady, true);
 });
 test('complete live release can be admitted before any traffic, enquiries or customer purchase', () => {
   const expectation = live();
@@ -63,13 +65,13 @@ test('live price, currency, legal URLs and versions must match the approved offe
   }
 });
 test('closed policy rejects true, ambiguous, duplicate or opaque enablement flags', () => {
-  const closed = loadReleaseExpectation();
-  verifyCommerceBindings([], closed);
-  verifyCommerceBindings([{ name: 'COMMERCE_ENABLED', type: 'plain_text', text: 'false' }], closed);
+  const expectation = closed();
+  verifyCommerceBindings([], expectation);
+  verifyCommerceBindings([{ name: 'COMMERCE_ENABLED', type: 'plain_text', text: 'false' }], expectation);
   for (const bad of [bindings, [{ name: 'COMMERCE_ENABLED', type: 'secret_text' }],
     [{ name: 'COMMERCE_ENABLED', type: 'plain_text', text: 'false', value: 'true' }],
     [{ name: 'COMMERCE_ENABLED', type: 'plain_text', text: 'false' }, { name: 'COMMERCE_ENABLED', type: 'plain_text', text: 'false' }]]) {
-    assert.throws(() => verifyCommerceBindings(bad, closed));
+    assert.throws(() => verifyCommerceBindings(bad, expectation));
   }
 });
 test('live bindings require exact decision and offer plus secret-name presence without exposing keys', () => {
@@ -82,14 +84,30 @@ test('public readback rejects sandbox mode, hidden price changes and wrong polic
     { refundPolicyVersion: 'old' }, { priceId: approval.priceId }, { version: 'wrong' }]) {
     assert.throws(() => verifyPublicCommerce({ ...remote, offers: [{ ...publicOffer, ...patch }] }, live()));
   }
-  assert.throws(() => verifyPublicCommerce(remote, loadReleaseExpectation()));
+  assert.throws(() => verifyPublicCommerce(remote, closed()));
 });
 test('public acceptance reports its actual selected mode rather than forcing disabled', () => {
   const result = { status: 'PASS', products: 33, externalCapabilities: 990, codingBugs: 24,
     ...verifyPublicCommerce(remote, live()) };
   assert.ok(matchesPublicAcceptance(result, live()));
-  assert.ok(!matchesPublicAcceptance(result, loadReleaseExpectation()));
+  assert.ok(matchesPublicAcceptance(result, loadReleaseExpectation()));
+  assert.ok(!matchesPublicAcceptance(result, closed()));
   assert.ok(!matchesPublicAcceptance({ ...result, status: 'FAIL' }, live()));
+});
+test('checked-in Worker vars exactly match the selected live source contract without secret values', () => {
+  const config = JSON.parse(readFileSync(new URL('../frontend/wrangler.jsonc', import.meta.url), 'utf8'));
+  const selected = loadReleaseExpectation();
+  assert.equal(config.vars.COMMERCE_ENABLED, 'true');
+  assert.equal(config.vars.COMMERCE_MODE, 'live');
+  assert.equal(config.vars.COMMERCE_LIVE_APPROVED, 'yes:' + selected.approval.commercialDecisionId);
+  assert.deepEqual(JSON.parse(config.vars.COMMERCE_OFFER_APPROVAL), selected.approval);
+  assert.equal(Object.hasOwn(config.vars, 'STRIPE_SECRET_KEY'), false);
+  assert.equal(Object.hasOwn(config.vars, 'STRIPE_WEBHOOK_SECRET'), false);
+  verifyCommerceBindings([
+    ...Object.entries(config.vars).map(([name, text]) => ({ name, type: 'plain_text', text })),
+    { name: 'STRIPE_SECRET_KEY', type: 'secret_text' },
+    { name: 'STRIPE_WEBHOOK_SECRET', type: 'secret_text' },
+  ], selected);
 });
 test('guarded promotion accepts the exact live contract with no sale and still verifies the provider deployment', async () => {
   const sha = 'a'.repeat(40), old = '11111111-1111-4111-8111-111111111111', next = '22222222-2222-4222-8222-222222222222';
