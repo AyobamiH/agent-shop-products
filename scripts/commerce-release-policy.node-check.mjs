@@ -5,13 +5,15 @@ import { releaseExpectation, loadReleaseExpectation, merchantFactBlockers, verif
   verifyPublicCommerce, matchesPublicAcceptance, releaseStatus } from './commerce-release-policy.mjs';
 import { guardedPromote } from './guarded-promote.mjs';
 const id = 'private-production-agent-operating-kit';
-const catalogue = { offers: [{ id, version: '2026.10.1', introductoryUnitAmountPence: 900, currency: 'gbp' }] };
+const catalogue = { offers: [{ id, version: '2026.10.1', introductoryUnitAmountPence: 900, currency: 'gbp',
+  livePaymentModel: 'managed_payments', liveTaxCode: 'txcd_10202003', buyerType: 'business_only' }] };
 const names = ['publicBusinessAddress', 'monitoredSupportEmail', 'taxTreatment', 'liveMerchantProfile', 'buyerContractAndRecovery', 'retentionPolicy'];
 // Synthetic release proof only. These URLs/values do not represent merchant acceptance.
 const facts = { schemaVersion: 1, offerId: id, checks: Object.fromEntries(names.map(name => [name,
   { status: 'verified', evidence: 'https://github.com/AyobamiH/agent-shop-products/blob/' + 'a'.repeat(40) + '/docs/unit-fixture.md' }])) };
-const approval = { offerId: id, version: '2026.10.1', priceId: 'price_TestFixtureOnly', unitAmountPence: 900, currency: 'gbp',
-  termsVersion: '2026-10-12.2', licenceVersion: '2026-10-12.2', refundPolicyVersion: '2026-10-12.2',
+const approval = { offerId: id, version: '2026.10.1', stripeProductId: 'prod_TestFixtureOnly', priceId: 'price_TestFixtureOnly',
+  unitAmountPence: 900, currency: 'gbp', paymentModel: 'managed_payments', taxCode: 'txcd_10202003',
+  termsVersion: '2026-10-16.1', licenceVersion: '2026-10-16.1', refundPolicyVersion: '2026-10-16.1',
   commercialDecisionId: 'UNIT-ONLY', termsUrl: 'https://agents.proofandstate.com/legal/kit-terms',
   licenceUrl: 'https://agents.proofandstate.com/legal/kit-licence', refundUrl: 'https://agents.proofandstate.com/legal/kit-refunds' };
 const policy = { schemaVersion: 1, mode: 'live', offerId: id, offerVersion: '2026.10.1', approval };
@@ -21,14 +23,16 @@ const bindings = [
     COMMERCE_OFFER_APPROVAL: JSON.stringify(approval) }).map(([name, text]) => ({ name, type: 'plain_text', text })),
   { name: 'STRIPE_SECRET_KEY', type: 'secret_text' }, { name: 'STRIPE_WEBHOOK_SECRET', type: 'secret_text' },
 ];
-const publicOffer = { id, version: '2026.10.1', mode: 'live', availability: 'purchase_available', currency: 'gbp', unitAmountPence: 900,
+const publicOffer = { id, version: '2026.10.1', mode: 'live', paymentModel: 'managed_payments', availability: 'purchase_available', currency: 'gbp', unitAmountPence: 900,
   ...Object.fromEntries(['termsVersion', 'licenceVersion', 'refundPolicyVersion', 'termsUrl', 'licenceUrl', 'refundUrl'].map(key => [key, approval[key]])) };
 const remote = { schemaVersion: 1, commerceActive: true, offers: [publicOffer] };
-test('default policy stays closed for factual blockers, not demand', () => {
+test('default policy stays closed after merchant facts clear until an explicit live approval exists', () => {
   assert.equal(loadReleaseExpectation().mode, 'disabled');
   const status = releaseStatus();
   assert.equal(status.demandIsReleaseGate, false); assert.equal(status.firstCustomerIsReleaseGate, false);
-  assert.ok(status.merchantFactBlockers.includes('taxTreatment'));
+  assert.deepEqual(status.merchantFactBlockers, []);
+  assert.equal(status.liveOfferApprovalPresent, false);
+  assert.equal(status.liveCheckoutSourceReady, false);
 });
 test('complete live release can be admitted before any traffic, enquiries or customer purchase', () => {
   const expectation = live();
@@ -53,6 +57,7 @@ test('a boolean or environment-style bypass cannot enable the source policy', ()
 });
 test('live price, currency, legal URLs and versions must match the approved offer', () => {
   for (const patch of [{ unitAmountPence: 4900 }, { currency: 'usd' }, { priceId: 'arbitrary' },
+    { stripeProductId: 'arbitrary' }, { paymentModel: 'standard' }, { taxCode: 'txcd_wrong' },
     { termsUrl: 'https://other.example/terms' }, { termsVersion: 'mismatched' }, { unexpected: 'value' }]) {
     assert.throws(() => releaseExpectation({ ...policy, approval: { ...approval, ...patch } }, facts, catalogue));
   }
@@ -73,7 +78,7 @@ test('live bindings require exact decision and offer plus secret-name presence w
   assert.throws(() => verifyCommerceBindings(bindings.map(b => b.name === 'COMMERCE_MODE' ? { ...b, text: 'test' } : b), live()));
 });
 test('public readback rejects sandbox mode, hidden price changes and wrong policy versions', () => {
-  for (const patch of [{ mode: 'test' }, { unitAmountPence: 4900 }, { currency: 'usd' },
+  for (const patch of [{ mode: 'test' }, { paymentModel: 'standard' }, { unitAmountPence: 4900 }, { currency: 'usd' },
     { refundPolicyVersion: 'old' }, { priceId: approval.priceId }, { version: 'wrong' }]) {
     assert.throws(() => verifyPublicCommerce({ ...remote, offers: [{ ...publicOffer, ...patch }] }, live()));
   }

@@ -36,9 +36,13 @@ export type SourceOffer = {
   buyerRequirements: string[];
   introductoryUnitAmountPence: number;
   introductoryPriceStatus: string;
+  livePaymentModel: "managed_payments";
+  liveTaxCode: string;
+  buyerType: "business_only";
 };
 export type ApprovedOffer = SourceOffer & {
-  priceId: string; unitAmountPence: number; termsVersion: string;
+  stripeProductId: string; priceId: string; unitAmountPence: number;
+  paymentModel: "managed_payments"; taxCode: string; termsVersion: string;
   licenceVersion: string; refundPolicyVersion: string;
   commercialDecisionId: string; mode: "test" | "live";
   termsUrl: string; licenceUrl: string; refundUrl: string;
@@ -68,8 +72,8 @@ export function publicOffers(env: CommerceEnv): Record<string, unknown>[] {
       fulfilment: "private_versioned_kit", buyerRequirements: offer.buyerRequirements,
     };
     return active
-      ? { ...base, availability: "purchase_available", mode: active.mode, unitAmountPence: active.unitAmountPence,
-          termsVersion: active.termsVersion, licenceVersion: active.licenceVersion,
+      ? { ...base, availability: "purchase_available", mode: active.mode, paymentModel: active.paymentModel,
+          unitAmountPence: active.unitAmountPence, termsVersion: active.termsVersion, licenceVersion: active.licenceVersion,
           refundPolicyVersion: active.refundPolicyVersion,
           termsUrl: active.termsUrl, licenceUrl: active.licenceUrl, refundUrl: active.refundUrl }
       : { ...base, availability: "planned", commerceStatus: "awaiting_approved_terms_price_and_private_delivery" };
@@ -117,7 +121,10 @@ function configuredOffer(env: CommerceEnv, id: string): ApprovedOffer | null {
   const mode = env.COMMERCE_MODE;
   if (
     value["offerId"] !== entry.id || value["version"] !== entry.version ||
+    !/^prod_[A-Za-z0-9_]{8,100}$/.test(String(value["stripeProductId"] || "")) ||
     !pricePattern.test(String(value["priceId"] || "")) ||
+    value["paymentModel"] !== entry.livePaymentModel || value["taxCode"] !== entry.liveTaxCode ||
+    entry.buyerType !== "business_only" ||
     !Number.isSafeInteger(value["unitAmountPence"]) ||
     Number(value["unitAmountPence"]) < 100 ||
     Number(value["unitAmountPence"]) > 1_000_000 ||
@@ -140,8 +147,9 @@ function configuredOffer(env: CommerceEnv, id: string): ApprovedOffer | null {
     !env.COMMERCE_RATE_LIMITER?.limit
   ) return null;
   return {
-    ...entry, priceId: String(value["priceId"]),
-    unitAmountPence: Number(value["unitAmountPence"]),
+    ...entry, stripeProductId: String(value["stripeProductId"]),
+    priceId: String(value["priceId"]), paymentModel: "managed_payments",
+    taxCode: String(value["taxCode"]), unitAmountPence: Number(value["unitAmountPence"]),
     termsVersion: String(value["termsVersion"]),
     licenceVersion: String(value["licenceVersion"]),
     refundPolicyVersion: String(value["refundPolicyVersion"]),

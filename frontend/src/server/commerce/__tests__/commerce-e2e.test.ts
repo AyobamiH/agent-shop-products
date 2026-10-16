@@ -107,8 +107,8 @@ function fixture({ preventEntitlementInsert = false,
   const env: CommerceEnv = {
     COMMERCE_ENABLED: "true", COMMERCE_MODE: "test",
     COMMERCE_OFFER_APPROVAL: JSON.stringify({
-      offerId:KIT,version:"2026.10.1",priceId:"price_123456789012",
-      unitAmountPence:900,currency:"gbp",termsVersion:POLICY_VERSION,
+      offerId:KIT,version:"2026.10.1",stripeProductId:"prod_agent_shop_sandbox_private_kit_v1",
+      priceId:"price_123456789012",unitAmountPence:900,currency:"gbp",paymentModel:"managed_payments",taxCode:"txcd_10202003",termsVersion:POLICY_VERSION,
       licenceVersion:POLICY_VERSION,refundPolicyVersion:POLICY_VERSION,commercialDecisionId:"approval.v1",
       termsUrl:"https://agents.proofandstate.com/legal/kit-terms",
       licenceUrl:"https://agents.proofandstate.com/legal/kit-licence",
@@ -127,7 +127,7 @@ function fixture({ preventEntitlementInsert = false,
     const url=new URL(String(input));
     if(url.pathname.endsWith("/prices/price_123456789012")) {
       return new Response(JSON.stringify({id:"price_123456789012",active:true,
-        currency:"gbp",unit_amount:900,type:"one_time",tax_behavior:"exclusive",recurring:null,livemode:false}),{status:200});
+        product:"prod_agent_shop_sandbox_private_kit_v1",currency:"gbp",unit_amount:900,type:"one_time",tax_behavior:"exclusive",recurring:null,livemode:false}),{status:200});
     }
     if(url.pathname.endsWith("/checkout/sessions")&&init?.method==="POST"){
       const body=new URLSearchParams(String(init.body));

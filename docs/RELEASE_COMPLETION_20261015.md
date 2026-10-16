@@ -88,3 +88,12 @@ are reused. Actual command/CI/release receipts are recorded in issue #25 after r
 
 These establish why seller facts and provider configuration differ from sales
 performance. They do not establish the owner's VAT status or an authorised address.
+
+
+## 16 October continuation — provider preparation is no longer the blocker
+
+The 15 October assessment that no Agent Shop live Stripe Product or webhook existed is superseded. The live Product, deterministic tax-exclusive £9 Price and dedicated Managed Payments webhook now exist and have been independently read back. See `docs/LIVE_KIT_MANAGED_PAYMENTS_ACCEPTANCE_20261016.md`.
+
+Managed Payments also supersedes the earlier idea that this kit must resolve its launch through the shared Stripe Tax GB registration. The kit is a business-use automated digital download; live checkout uses Stripe as merchant of record where Managed Payments supplies indirect-tax coverage. This does not alter or infer the owner's VAT-registration status.
+
+The public shop remains closed for one explicit runtime reason: Worker `agent-shop` has the webhook signing secret but does not yet have its live restricted Stripe API key. Source release policy therefore remains `disabled`. Do not switch the policy live or claim purchase availability until that secret binding, exact source admission, CI, guarded deployment and outside-in unpaid Checkout acceptance pass.

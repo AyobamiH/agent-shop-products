@@ -8,8 +8,8 @@ const valid = () => ({
     .map((key) => [key, { status: "verified", evidence }])),
 });
 describe("merchant readiness before new live sales", () => {
-  it("keeps the observed missing and conflicting merchant facts closed", () => {
-    expect(merchantReady()).toBe(false);
+  it("accepts the reconciled source facts while still rejecting absent or malformed evidence", () => {
+    expect(merchantReady()).toBe(true);
     expect(merchantReady(null)).toBe(false);
     expect(merchantReady(valid())).toBe(true);
   });

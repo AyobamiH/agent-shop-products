@@ -13,8 +13,9 @@ export function buyerFixture() {
   const env: CommerceEnv = {
     COMMERCE_ENABLED: "true", COMMERCE_MODE: "test",
     COMMERCE_OFFER_APPROVAL: JSON.stringify({
-      offerId: KIT, version: "2026.10.1", priceId: "price_123456789012",
-      unitAmountPence: 900, currency: "gbp", termsVersion: POLICY_VERSION,
+      offerId: KIT, version: "2026.10.1", stripeProductId: "prod_agent_shop_sandbox_private_kit_v1",
+      priceId: "price_123456789012", unitAmountPence: 900, currency: "gbp",
+      paymentModel: "managed_payments", taxCode: "txcd_10202003", termsVersion: POLICY_VERSION,
       licenceVersion: POLICY_VERSION, refundPolicyVersion: POLICY_VERSION,
       commercialDecisionId: "approval.v1",
       termsUrl: "https://agents.proofandstate.com/legal/kit-terms",
@@ -29,7 +30,7 @@ export function buyerFixture() {
     const url = new URL(String(input));
     if (url.pathname.includes("/prices/")) return Response.json({
       id: "price_123456789012", active: true, currency: "gbp", unit_amount: 900,
-      type: "one_time", tax_behavior: "exclusive", recurring: null, livemode: false,
+      product: "prod_agent_shop_sandbox_private_kit_v1", type: "one_time", tax_behavior: "exclusive", recurring: null, livemode: false,
     });
     if (init?.method === "POST") {
       currentId = new URLSearchParams(String(init.body)).get("client_reference_id")!;
