@@ -137,4 +137,11 @@ test('both rollout entry points and the outside-in verifier use the same policy'
     assert.ok(source.includes('loadReleaseExpectation'));
     assert.ok(!source.includes('result.commerceActive !== false'));
   }
+  const verifier = readFileSync(new URL('../frontend/scripts/verify-deployed-surface.mjs', import.meta.url), 'utf8');
+  const contact = readFileSync(new URL('../frontend/src/lib/contact.ts', import.meta.url), 'utf8');
+  assert.ok(verifier.includes('SUPPORT_EMAIL'));
+  assert.ok(verifier.includes('selected.approval.termsVersion'));
+  assert.ok(!verifier.includes('2026-10-12.2'));
+  assert.ok(!verifier.includes('heryourbarme@live.com'));
+  assert.ok(contact.includes('support@tailwaggingwebdesign.com'));
 });
