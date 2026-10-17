@@ -10,6 +10,7 @@ import { googleSession } from './google/session.mjs';
 import { inventory, exactShopStreams, ALPHA, ADMIN } from './google/inventory.mjs';
 import { searchReport, analyticsReport, realtimeReport, inspectUrl, sitemapReport, boundStream } from './google/reports.mjs';
 import { safeError } from './google/http.mjs';
+import { scopesFromFile, validateSocial, readPortfolio } from './google/portfolio-report.mjs';
 
 export function status() {
   const file = path.join(PRIVATE_DIR, 'credential.json');
@@ -46,7 +47,7 @@ export async function main(args = process.argv.slice(2)) {
   const { positionals, values } = parseArgs({ args, allowPositionals: true, options: {
     'client-file': { type: 'string' }, 'expected-email': { type: 'string' }, port: { type: 'string', default: '8774' },
     property: { type: 'string' }, stream: { type: 'string' }, start: { type: 'string' }, end: { type: 'string' },
-    url: { type: 'string' }, diagnostic: { type: 'boolean', default: false }, help: { type: 'boolean', default: false },
+    url: { type: 'string' }, 'social-file': { type: 'string' }, 'gsc-end': { type: 'string' }, diagnostic: { type: 'boolean', default: false }, help: { type: 'boolean', default: false },
   } });
   const command = positionals[0];
   if (values.help || command === 'help' || !command) {
@@ -55,7 +56,7 @@ export async function main(args = process.argv.slice(2)) {
       'inventory\ninspect-stream --property properties/ID --stream ID\n' +
       'search-report --start YYYY-MM-DD --end YYYY-MM-DD\n' +
       'analytics-report --property properties/ID --stream ID --start YYYY-MM-DD --end YYYY-MM-DD\n' +
-      'realtime-report --property properties/ID --stream ID [--diagnostic]\ninspect-url --url PUBLIC_SHOP_URL\nsitemaps\n' +
+      'realtime-report --property properties/ID --stream ID [--diagnostic]\nportfolio-report --start YYYY-MM-DD --end YYYY-MM-DD --gsc-end YYYY-MM-DD [--social-file OWNER_PRIVATE_FILE]\ninspect-url --url PUBLIC_SHOP_URL\nsitemaps\n' +
       'Tokens/reports stay in ~/.config/agent-shop-google/. Never paste credentials. No collection, billing, or provider setting is enabled by these commands.');
     return;
   }
@@ -72,6 +73,22 @@ export async function main(args = process.argv.slice(2)) {
     console.log(JSON.stringify(await pending.done)); return;
   }
   if (command === 'inventory') { await saveInventory(); return; }
+  if (command === 'portfolio-report') {
+    const scopes=scopesFromFile();
+    const social=values['social-file'] ? validateSocial(privateRead(values['social-file']),scopes) : [];
+    const session=await googleSession();
+    const current=await inventory(session);
+    const output=await readPortfolio({session,scopes,inv:current,start:values.start,
+      end:values.end,gscEnd:values['gsc-end'],social});
+    const saved=privateWrite('portfolio-attribution.json',output);
+    console.log(JSON.stringify({status:'observed',command,saved,observedAt:output.observedAt,
+      mapped:Object.values(output.scopes).filter(x=>x.status==='mapped').length,
+      unmapped:Object.values(output.scopes).filter(x=>x.status==='not_mapped').length,
+      socialCampaigns:output.campaigns.length,
+      preliminary:!output.ga4Window.matured,
+      note:'Direct Google API readbacks only; no credentials or customer records exposed.'}));
+    return;
+  }
   const allowed = ['inspect-stream', 'search-report', 'analytics-report', 'realtime-report', 'inspect-url', 'sitemaps'];
   if (!allowed.includes(command)) throw Error('UNKNOWN_GOOGLE_COMMAND');
   const session = await googleSession(); let report;
