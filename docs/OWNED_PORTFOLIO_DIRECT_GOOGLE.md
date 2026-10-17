@@ -36,8 +36,10 @@ web-stream origin and Google permission.
   same site's traffic; never add them together.
 - OpsTruth: property 558016559, G-55ENMEPB2Y.
 - Proof & State and DoneState: property 559326765, G-FCN2PNH422.
-  DoneState is just a specific page path on that shared host; do not
-  attribute all its sessions to DoneState.
+  DoneState is a specific path on the shared host; GA4 session, campaign
+  and event readbacks are now separately narrowed to the exact /donestate
+  landing/page path. The parent host total includes nested product pages,
+  so Proof & State and DoneState sessions must NEVER be added together.
 - Agent Shop: property 559055643, G-9LH3DJYS4B.
 - One Click: property 558050749, G-ND2N8M7BF2.
 - OneClickPostFactory: newly provisioned property 559372276, stream

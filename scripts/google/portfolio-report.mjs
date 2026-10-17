@@ -74,9 +74,15 @@ export function filterGscRows(rows,def){
     topPageCount:kept.length?kept.length:null,
     coverage:'Google may omit anonymised queries and some low-volume rows; this is not a proof of zero organic activity.'};
 }
+export function analyticsLandingPathMatch(path, prefix) {
+  if(typeof path!=='string' || !path.startsWith('/'))return false;
+  if(prefix==='/')return true;
+  return path===prefix || path.startsWith(prefix+'/');
+}
 export function normalizeReport(report,dimensions,metrics){
   if(!report || (report.rows!==undefined && !Array.isArray(report.rows)))refuse('DATA_RESPONSE');
-  if(report.rows?.length>10000)refuse('ROW_LIMIT');
+  if(report.rows?.length>10000 || (Number.isInteger(report.rowCount) && report.rowCount>10000))
+    refuse('ROW_TRUNCATED_CANNOT_REPORT_AS_COMPLETE');
   return (report.rows||[]).map(row=>{
     if((row.dimensionValues||[]).length!==dimensions.length || (row.metricValues||[]).length!==metrics.length)refuse('COLUMN_MISMATCH');
     const value={};
@@ -85,10 +91,11 @@ export function normalizeReport(report,dimensions,metrics){
     return value;
   });
 }
-export function scoreCampaigns(rows,social,project,matured){
+export function scoreCampaigns(rows,social,project,matured,pathPrefix='/'){
   const allowed=(social||[]).filter(x=>x.project===project && typeof x.campaign==='string' && SOCIAL_PREFIX.test(x.campaign));
   return allowed.map(post=>{
-    const match=rows.filter(row=>row.sessionCampaignName===post.campaign);
+    const match=rows.filter(row=>row.sessionCampaignName===post.campaign
+      && analyticsLandingPathMatch(row.landingPage, pathPrefix));
     return {
       project, campaign:post.campaign, provider:post.provider,
       publicationStatus:post.publicationStatus,postUrl:post.postUrl||null,
@@ -149,11 +156,20 @@ export async function readPortfolio({session,scopes,inv,start,end,gscEnd,social=
       return normalizeReport(report,dims,metrics);
     };
     try {
-      const campaignRows=await call(['hostName','streamId','sessionCampaignName','sessionSourceMedium','sessionManualAdContent'],['sessions','keyEvents']);
+      const campaignRows=await call(['hostName','streamId','landingPage','sessionCampaignName','sessionSourceMedium','sessionManualAdContent'],['sessions','keyEvents']);
+      // Keep canonical host totals without a landingPage dimension: sessions
+      // without recorded landing-page attribution must not disappear.
       const siteRows=await call(['hostName','streamId'],['sessions','totalUsers']);
       const eventRows=await call(['hostName','eventName'],['eventCount','keyEvents']);
+      // A shared property needs independent path-scoped facts, but those
+      // cannot replace canonical totals or be added to them.
+      const needsPaths=def.projects.some(project=>scopes[project].pathPrefix!=='/');
+      const sitePathRows=needsPaths
+        ?await call(['hostName','streamId','landingPage'],['sessions','totalUsers']):[];
+      const eventPathRows=needsPaths
+        ?await call(['hostName','pagePath','eventName'],['eventCount','keyEvents']):[];
       const keyConfig=await session.request(ALPHA+def.property+'/keyEvents?pageSize=200');
-      store.set(key,{status:'observed',campaignRows,siteRows,eventRows,
+      store.set(key,{status:'observed',campaignRows,siteRows,eventRows,sitePathRows,eventPathRows,
         configuredKeyEvents:(keyConfig.keyEvents||[]).map(x=>x.eventName)});
     }catch(error){store.set(key,{status:'unavailable',reason:error.message});}
   }
@@ -165,11 +181,15 @@ export async function readPortfolio({session,scopes,inv,start,end,gscEnd,social=
       siteSessions:null,totalUsers:null,campaignRows:[],events:[],configuredKeyEvents:[],
       caveat:null},gsc:{status:'unavailable',clicks:null,impressions:null,rowsReturned:null}};
     if(ga?.status==='observed'){
-      const shared=project==='donestate';
-      entry.ga4={...entry.ga4,status:'observed',siteSessions:shared||!ga.siteRows.length?null:ga.siteRows.reduce((n,r)=>n+r.sessions,0),
-        totalUsers:shared||!ga.siteRows.length?null:ga.siteRows.reduce((n,r)=>n+r.totalUsers,0),
-        campaignRows:ga.campaignRows,events:ga.eventRows,configuredKeyEvents:ga.configuredKeyEvents,
-        caveat:shared?'Shared Proof & State web stream. Do not attribute all host sessions to DoneState; only exact campaign/landing path.':
+      const pathScoped=def.pathPrefix!=='/';
+      const scopedSiteRows=pathScoped?ga.sitePathRows.filter(r=>analyticsLandingPathMatch(r.landingPage,def.pathPrefix)):ga.siteRows;
+      const scopedCampaignRows=ga.campaignRows.filter(r=>analyticsLandingPathMatch(r.landingPage,def.pathPrefix));
+      const scopedEventRows=pathScoped?ga.eventPathRows.filter(r=>analyticsLandingPathMatch(r.pagePath,def.pathPrefix)):ga.eventRows;
+      entry.ga4={...entry.ga4,status:'observed',siteSessions:scopedSiteRows.length?scopedSiteRows.reduce((n,r)=>n+r.sessions,0):null,
+        totalUsers:scopedSiteRows.length?scopedSiteRows.reduce((n,r)=>n+r.totalUsers,0):null,
+        campaignRows:scopedCampaignRows,events:scopedEventRows,configuredKeyEvents:ga.configuredKeyEvents,
+        caveat:pathScoped?'Landing-page and event-page scope: '+def.pathPrefix+'; parent host sessions excluded.':
+         project==='proof-and-state'?'Parent host-wide sessions can overlap DoneState path counts; never add these audiences.':
          project==='tail-wagging-websites'?'Canonical stream only; overlapping property is intentionally excluded.':
          !matured?'Recent GA4 totals are preliminary until standard processing catches up.':null};
     }else if(ga?.status==='unavailable')entry.ga4.reason=ga.reason;
@@ -184,7 +204,7 @@ export async function readPortfolio({session,scopes,inv,start,end,gscEnd,social=
     }else if(def.gsc)entry.gsc={status:'not_granted',clicks:null,impressions:null,rowsReturned:null};
     output.projects[project]=entry;
     if(def.property){
-      const scores=scoreCampaigns(ga?.status==='observed'?ga.campaignRows:[],social,project,matured);
+      const scores=scoreCampaigns(ga?.status==='observed'?ga.campaignRows:[],social,project,matured,def.pathPrefix);
       output.campaigns.push(...scores);
     }else output.campaigns.push(...scoreCampaigns([],social,project,matured).map(x=>({...x,ga4Coverage:'not_mapped'})));
   }

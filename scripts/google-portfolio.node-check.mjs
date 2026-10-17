@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {scopesFromFile,matchingInventory,exactPageMatch,filterGscRows,
+import {scopesFromFile,matchingInventory,exactPageMatch,filterGscRows,analyticsLandingPathMatch,
         normalizeReport,validateSocial,scoreCampaigns,readPortfolio} from './google/portfolio-report.mjs';
 
 const scopes=scopesFromFile();
@@ -53,7 +53,7 @@ test('no model-invented campaign / fake social URL or duplicate accepted',()=>{
  assert.throws(()=>validateSocial({...good,campaigns:[{...good.campaigns[0],project:'unknown'}]},scopes),/SOCIAL_IDENTITY_INVALID/);
 });
 test('campaign sessions and key events remain separate from independent sales evidence',()=>{
- const rows=[{sessionCampaignName:'OPSTRUTH-LIVE-20261016-001',sessions:4,keyEvents:1}];
+ const rows=[{landingPage:'/',sessionCampaignName:'OPSTRUTH-LIVE-20261016-001',sessions:4,keyEvents:1}];
  const social=validateSocial({schemaVersion:1,campaigns:[
   {project:'opstruth',campaign:'OPSTRUTH-LIVE-20261016-001',
    provider:'x',publicationStatus:'published_unverified',postUrl:null,impressions:3}
@@ -67,6 +67,7 @@ test('campaign sessions and key events remain separate from independent sales ev
 test('data report refuses invalid metrics instead of treating them as zero',()=>{
  assert.deepEqual(normalizeReport({rows:[]},['hostName'],['sessions']),[]);
  assert.throws(()=>normalizeReport({rows:[{dimensionValues:[{value:'x'}],metricValues:[{value:'-1'}]}]},['hostName'],['sessions']),/METRIC_INVALID/);
+ assert.throws(()=>normalizeReport({rowCount:10001,rows:[]},['hostName'],['sessions']),/ROW_TRUNCATED/);
 });
 test('read-only Google portfolio report de-duplicates shared Proof State stream',async()=>{
  const seen=[];
@@ -78,13 +79,17 @@ test('read-only Google portfolio report de-duplicates shared Proof State stream'
    if(endpoint.includes(':runReport')){
      const names=opts.body.dimensions.map(x=>x.name);
      if(names.includes('sessionCampaignName'))return{rows:[
-        {dimensionValues:[{value:'proofandstate.com'},{value:'16143351458'},{value:'DONESTATE-LIVE-20261016-001'},{value:'x / social'},{value:'overview'}],
+        {dimensionValues:[{value:'proofandstate.com'},{value:'16143351458'},{value:'/donestate'},{value:'DONESTATE-LIVE-20261016-001'},{value:'x / social'},{value:'overview'}],
          metricValues:[{value:'2'},{value:'0'}]}
      ]};
-     if(names.includes('eventName'))return{rows:[{dimensionValues:[{value:'proofandstate.com'},{value:'page_view'}],
+     if(names.includes('eventName')&&names.includes('pagePath'))return{rows:[{dimensionValues:[{value:'proofandstate.com'},{value:'/donestate'},{value:'page_view'}],
         metricValues:[{value:'2'},{value:'0'}]}]};
-     return{rows:[{dimensionValues:[{value:'proofandstate.com'},{value:'16143351458'}],
+     if(names.includes('eventName'))return{rows:[{dimensionValues:[{value:'proofandstate.com'},{value:'page_view'}],
+        metricValues:[{value:'5'},{value:'0'}]}]};
+     if(names.includes('landingPage'))return{rows:[{dimensionValues:[{value:'proofandstate.com'},{value:'16143351458'},{value:'/donestate'}],
         metricValues:[{value:'2'},{value:'1'}]}]};
+     return{rows:[{dimensionValues:[{value:'proofandstate.com'},{value:'16143351458'}],
+        metricValues:[{value:'4'},{value:'3'}]}]};
    }
    if(endpoint.includes('/searchAnalytics/query'))return{rows:[
       {keys:['https://proofandstate.com/donestate'],impressions:3,clicks:1},
@@ -99,14 +104,34 @@ test('read-only Google portfolio report de-duplicates shared Proof State stream'
  const report=await readPortfolio({session,scopes:select,inv:seenInv,
    start:'2026-10-01',end:'2026-10-16',gscEnd:'2026-10-14',
    clock:new Date('2026-10-17T06:00:00Z'),social});
- assert.equal(report.projects.donestate.ga4.siteSessions,null);
- assert.equal(report.projects['proof-and-state'].ga4.siteSessions,2);
+ assert.equal(report.projects.donestate.ga4.siteSessions,2);
+ assert.equal(report.projects.donestate.ga4.campaignRows[0].landingPage,'/donestate');
+ assert.equal(report.projects.donestate.ga4.events[0].pagePath,'/donestate');
+ assert.equal(analyticsLandingPathMatch('/donestateful','/donestate'),false);
+ assert.equal(analyticsLandingPathMatch('/donestate/guide','/donestate'),true);
+ assert.equal(report.projects['proof-and-state'].ga4.siteSessions,4);
  assert.equal(report.campaigns.find(x=>x.project==='donestate').websiteSessions,2);
  assert.equal(report.projects.donestate.gsc.impressions,3);
  assert.equal(report.projects['proof-and-state'].gsc.impressions,3); // excludes Agent Shop subdomain
- assert.equal(seen.filter(x=>x.endpoint.includes(':runReport')).length,3); // shared source queried once
+ assert.equal(seen.filter(x=>x.endpoint.includes(':runReport')).length,5); // shared source queried once per 5 scoped dimensions
  assert.ok(seen.every(x=>['GET','POST'].includes(x.method)));
  assert.ok(seen.every(x=>x.endpoint.startsWith('https://www.googleapis.com/')||
    x.endpoint.startsWith('https://analyticsdata.googleapis.com/')||
    x.endpoint.startsWith('https://analyticsadmin.googleapis.com/')));
+});
+
+test('shared Proof & State campaign must land on actual DoneState page, not merely share UTM ID',()=>{
+ const social=validateSocial({schemaVersion:1,campaigns:[
+  {project:'donestate',campaign:'DONESTATE-LIVE-20261016-001',provider:'x',
+   publicationStatus:'published_verified',postUrl:null,impressions:20}
+ ]},scopes);
+ const bogus=[{landingPage:'/',sessionCampaignName:'DONESTATE-LIVE-20261016-001',
+   sessions:250,keyEvents:2}];
+ const result=scoreCampaigns(bogus,social,'donestate',true,'/donestate');
+ assert.equal(result[0].websiteSessions,null);
+ const good=[...bogus,{landingPage:'/donestate',sessionCampaignName:'DONESTATE-LIVE-20261016-001',
+   sessions:1,keyEvents:0}];
+ const scoped=scoreCampaigns(good,social,'donestate',true,'/donestate');
+ assert.equal(scoped[0].websiteSessions,1);
+ assert.equal(scoped[0].ga4KeyEvents,0);
 });
