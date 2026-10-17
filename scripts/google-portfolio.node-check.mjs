@@ -18,7 +18,7 @@ inventory.analytics.properties=[...unique.values()].map(p=>({
 test('mapping requires exact owned property+stream, with no duplicate Tail sessions',()=>{
  assert.equal(matchingInventory(scopes,inventory)['tail-wagging-websites'].property,'properties/501768556');
  assert.equal(matchingInventory(scopes,inventory)['donestate'].stream,'16143351458');
- assert.equal(matchingInventory(scopes,inventory)['global-bill-forge'].status,'not_mapped');
+ assert.equal(matchingInventory(scopes,inventory)['global-bill-forge'].property,'properties/559374343');
  const bad=structuredClone(inventory);
  bad.analytics.properties[0].streams[0].measurementId='G-CHANGED';
  assert.throws(()=>matchingInventory(scopes,bad),/STREAM_IDENTITY_CHANGED/);

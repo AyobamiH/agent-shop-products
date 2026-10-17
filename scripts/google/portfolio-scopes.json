@@ -53,17 +53,17 @@
     },
     "oneclickpostfactory": {
       "origin": "https://www.oneclickpostfactory.com",
-      "property": null,
-      "stream": null,
-      "measurementId": null,
+      "property": "properties/559372276",
+      "stream": "16146488615",
+      "measurementId": "G-DWLNXGNBV6",
       "gsc": "sc-domain:oneclickpostfactory.com",
       "pathPrefix": "/"
     },
     "global-bill-forge": {
       "origin": "https://globalbill.tailwaggingwebdesign.com",
-      "property": null,
-      "stream": null,
-      "measurementId": null,
+      "property": "properties/559374343",
+      "stream": "16146511219",
+      "measurementId": "G-TBFMEGYPC7",
       "gsc": "sc-domain:tailwaggingwebdesign.com",
       "pathPrefix": "/"
     },

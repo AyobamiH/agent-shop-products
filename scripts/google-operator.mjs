@@ -11,6 +11,7 @@ import { inventory, exactShopStreams, ALPHA, ADMIN } from './google/inventory.mj
 import { searchReport, analyticsReport, realtimeReport, inspectUrl, sitemapReport, boundStream } from './google/reports.mjs';
 import { safeError } from './google/http.mjs';
 import { scopesFromFile, validateSocial, readPortfolio } from './google/portfolio-report.mjs';
+import { plan as portfolioPlan, planHash as portfolioPlanHash, provision as provisionPortfolio } from './google/portfolio-provision.mjs';
 
 export function status() {
   const file = path.join(PRIVATE_DIR, 'credential.json');
@@ -47,7 +48,7 @@ export async function main(args = process.argv.slice(2)) {
   const { positionals, values } = parseArgs({ args, allowPositionals: true, options: {
     'client-file': { type: 'string' }, 'expected-email': { type: 'string' }, port: { type: 'string', default: '8774' },
     property: { type: 'string' }, stream: { type: 'string' }, start: { type: 'string' }, end: { type: 'string' },
-    url: { type: 'string' }, 'social-file': { type: 'string' }, 'gsc-end': { type: 'string' }, diagnostic: { type: 'boolean', default: false }, help: { type: 'boolean', default: false },
+    url: { type: 'string' }, 'social-file': { type: 'string' }, 'gsc-end': { type: 'string' }, project: { type: 'string' }, 'expected-hash': { type: 'string' }, apply: { type: 'boolean', default: false }, diagnostic: { type: 'boolean', default: false }, help: { type: 'boolean', default: false },
   } });
   const command = positionals[0];
   if (values.help || command === 'help' || !command) {
@@ -56,7 +57,7 @@ export async function main(args = process.argv.slice(2)) {
       'inventory\ninspect-stream --property properties/ID --stream ID\n' +
       'search-report --start YYYY-MM-DD --end YYYY-MM-DD\n' +
       'analytics-report --property properties/ID --stream ID --start YYYY-MM-DD --end YYYY-MM-DD\n' +
-      'realtime-report --property properties/ID --stream ID [--diagnostic]\nportfolio-report --start YYYY-MM-DD --end YYYY-MM-DD --gsc-end YYYY-MM-DD [--social-file OWNER_PRIVATE_FILE]\ninspect-url --url PUBLIC_SHOP_URL\nsitemaps\n' +
+      'realtime-report --property properties/ID --stream ID [--diagnostic]\nportfolio-report --start YYYY-MM-DD --end YYYY-MM-DD --gsc-end YYYY-MM-DD [--social-file OWNER_PRIVATE_FILE]\nportfolio-provision --project APPROVED_PROJECT [--apply --expected-hash REVIEW_SHA256]\ninspect-url --url PUBLIC_SHOP_URL\nsitemaps\n' +
       'Tokens/reports stay in ~/.config/agent-shop-google/. Never paste credentials. No collection, billing, or provider setting is enabled by these commands.');
     return;
   }
@@ -73,6 +74,22 @@ export async function main(args = process.argv.slice(2)) {
     console.log(JSON.stringify(await pending.done)); return;
   }
   if (command === 'inventory') { await saveInventory(); return; }
+  if (command === 'portfolio-provision') {
+    const plan=portfolioPlan(values.project),hash=portfolioPlanHash(plan);
+    if(!values.apply){
+      console.log(JSON.stringify({status:'preview',project:values.project,plan,reviewSha256:hash,
+        boundary:'No Google API write. Exact hash and --apply required to provision.'}));
+      return;
+    }
+    if(values['expected-hash']!==hash)throw Error('GOOGLE_PORTFOLIO_PLAN_HASH_MISMATCH');
+    const journalFile='portfolio-provision-'+values.project+'.json';
+    const full=path.join(PRIVATE_DIR,journalFile);
+    const journal=existsSync(full)?privateRead(full):{};
+    const result=await provisionPortfolio({session:await googleSession(),
+      project:values.project,expectedHash:hash,journal,
+      save:async data=>privateWrite(journalFile,data)});
+    console.log(JSON.stringify(result));return;
+  }
   if (command === 'portfolio-report') {
     const scopes=scopesFromFile();
     const social=values['social-file'] ? validateSocial(privateRead(values['social-file']),scopes) : [];
