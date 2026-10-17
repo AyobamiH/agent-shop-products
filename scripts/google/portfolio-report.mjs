@@ -69,8 +69,8 @@ export function exactPageMatch(value,def){
 }
 export function filterGscRows(rows,def){
   const kept=(rows||[]).filter(r=>Array.isArray(r.keys) && exactPageMatch(r.keys[0],def));
-  return {rowsReturned:kept.length, clicks:kept.reduce((n,x)=>n+Number(x.clicks||0),0),
-    impressions:kept.reduce((n,x)=>n+Number(x.impressions||0),0),
+  return {rowsReturned:kept.length, clicks:kept.length?kept.reduce((n,x)=>n+Number(x.clicks||0),0):null,
+    impressions:kept.length?kept.reduce((n,x)=>n+Number(x.impressions||0),0):null,
     topPageCount:kept.length?kept.length:null,
     coverage:'Google may omit anonymised queries and some low-volume rows; this is not a proof of zero organic activity.'};
 }

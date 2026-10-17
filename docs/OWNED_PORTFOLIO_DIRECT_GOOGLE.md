@@ -40,14 +40,23 @@ web-stream origin and Google permission.
   attribute all its sessions to DoneState.
 - Agent Shop: property 559055643, G-9LH3DJYS4B.
 - One Click: property 558050749, G-ND2N8M7BF2.
-- GlobalBill and OneClickPostFactory: no matched GA4 streams at the
-  initial audit in the connected accounts. They remain not_mapped,
-  not zero traffic. Public GitHub projects are external source links
-  rather than owned GA4 destinations.
+- OneClickPostFactory: newly provisioned property 559372276, stream
+  16146488615, measurement G-DWLNXGNBV6.
+- GlobalBill: newly provisioned property 559374343, stream
+  16146511219, measurement G-TBFMEGYPC7.
+  Both properties/streams were owner-authorised, provisioned using the
+  existing Google API, verified with privacy-first settings (enhanced
+  measurement off, Signals disabled, two-month data retention, redaction).
+  No site tag was installed by the Google resource creation step.
+  Until a consent-bound tag is deployed and events genuinely arrive,
+  website sessions are UNOBSERVED, not zero traffic.
+  Public GitHub projects are external source links, not owned GA4 sites.
 
 GSC site ownership is verified through the Search Console API. All GSC
 results are checked against exact canonical hostname and URL-path rules,
 so a broad GSC domain property does not misassign child subdomain traffic.
+When no exact canonical page rows are returned, GSC clicks and impressions
+remain UNKNOWN (null), not proof of zero organic activity.
 GSC reports only organic Google Search clicks/impressions and can omit data;
 it is not Post-Once social reach or GA4 sessions.
 
