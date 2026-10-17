@@ -55,6 +55,8 @@ web-stream origin and Google permission.
 GSC site ownership is verified through the Search Console API. All GSC
 results are checked against exact canonical hostname and URL-path rules,
 so a broad GSC domain property does not misassign child subdomain traffic.
+When no exact canonical page rows are returned, GSC clicks and impressions
+remain UNKNOWN (null), not proof of zero organic activity.
 GSC reports only organic Google Search clicks/impressions and can omit data;
 it is not Post-Once social reach or GA4 sessions.
 

@@ -34,6 +34,10 @@ test('subdomain GSC data never becomes the Tail canonical site',()=>{
   {keys:['https://tailwaggingwebdesign.com.evil.test/'],impressions:400,clicks:40},
  ],def);
  assert.equal(filtered.clicks,1);assert.equal(filtered.impressions,4);
+ const absent=filterGscRows([{keys:['https://globalbill.tailwaggingwebdesign.com/'],impressions:10,clicks:2}],def);
+ assert.equal(absent.rowsReturned,0);
+ assert.equal(absent.impressions,null);
+ assert.equal(absent.clicks,null);
  const done=scopes.donestate;
  assert.ok(exactPageMatch('https://proofandstate.com/donestate',done));
  assert.equal(exactPageMatch('https://proofandstate.com/about',done),false);
