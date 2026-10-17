@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "source": "Direct Google Admin inventory and verified owned-site URLs, 17 October 2026",
+  "projects": {
+    "tail-wagging-websites": {
+      "origin": "https://tailwaggingwebdesign.com",
+      "property": "properties/501768556",
+      "stream": "12047470834",
+      "measurementId": "G-70BM3BDSEJ",
+      "gsc": "sc-domain:tailwaggingwebdesign.com",
+      "excludedDuplicateProperty": "properties/470183466",
+      "pathPrefix": "/"
+    },
+    "opstruth": {
+      "origin": "https://opstruth.io",
+      "property": "properties/558016559",
+      "stream": "16064055251",
+      "measurementId": "G-55ENMEPB2Y",
+      "gsc": "sc-domain:opstruth.io",
+      "pathPrefix": "/"
+    },
+    "proof-and-state": {
+      "origin": "https://proofandstate.com",
+      "property": "properties/559326765",
+      "stream": "16143351458",
+      "measurementId": "G-FCN2PNH422",
+      "gsc": "sc-domain:proofandstate.com",
+      "pathPrefix": "/"
+    },
+    "donestate": {
+      "origin": "https://proofandstate.com",
+      "property": "properties/559326765",
+      "stream": "16143351458",
+      "measurementId": "G-FCN2PNH422",
+      "gsc": "sc-domain:proofandstate.com",
+      "pathPrefix": "/donestate"
+    },
+    "agent-shop-products": {
+      "origin": "https://agents.proofandstate.com",
+      "property": "properties/559055643",
+      "stream": "16129921164",
+      "measurementId": "G-9LH3DJYS4B",
+      "gsc": "sc-domain:proofandstate.com",
+      "pathPrefix": "/"
+    },
+    "oneclick-chatgpt-plugin": {
+      "origin": "https://oneclickwebsitedesignfactory.com",
+      "property": "properties/558050749",
+      "stream": "16064084310",
+      "measurementId": "G-ND2N8M7BF2",
+      "gsc": "sc-domain:oneclickwebsitedesignfactory.com",
+      "pathPrefix": "/"
+    },
+    "oneclickpostfactory": {
+      "origin": "https://www.oneclickpostfactory.com",
+      "property": null,
+      "stream": null,
+      "measurementId": null,
+      "gsc": "sc-domain:oneclickpostfactory.com",
+      "pathPrefix": "/"
+    },
+    "global-bill-forge": {
+      "origin": "https://globalbill.tailwaggingwebdesign.com",
+      "property": null,
+      "stream": null,
+      "measurementId": null,
+      "gsc": "sc-domain:tailwaggingwebdesign.com",
+      "pathPrefix": "/"
+    },
+    "coding-agent-skills": {
+      "origin": "https://github.com",
+      "property": null,
+      "stream": null,
+      "measurementId": null,
+      "gsc": null,
+      "pathPrefix": "/AyobamiH/coding-agent-skills"
+    },
+    "agentproof": {
+      "origin": "https://github.com",
+      "property": null,
+      "stream": null,
+      "measurementId": null,
+      "gsc": null,
+      "pathPrefix": "/AyobamiH/agentproof"
+    }
+  }
+}
