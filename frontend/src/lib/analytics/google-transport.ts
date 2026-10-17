@@ -62,9 +62,9 @@ export function createGoogleTransport(
         transport_type: "beacon",
         // Never derive campaign values from arbitrary URL parameters.
         campaign_source: page.parameters["discovery_source"],
-        campaign_medium: "referral",
+        campaign_medium: page.parameters["discovery_medium"] ?? "referral",
         campaign_name: page.parameters["discovery_campaign"],
-        campaign_content: "",
+        campaign_content: page.parameters["discovery_content"] ?? "",
         campaign_term: "",
       });
       if (!doc.getElementById(scriptId)) {
