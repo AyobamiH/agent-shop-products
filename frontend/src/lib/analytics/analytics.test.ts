@@ -10,6 +10,7 @@ import type { AnalyticsConfig } from "./config";
 import { readConsent, saveConsent } from "./consent";
 import { discoveryEvent, safePage } from "./events";
 import { DiscoveryRuntime } from "./runtime";
+import { createGoogleTransport } from "./google-transport";
 import { listCapabilities } from "@/domain/capabilities/repository";
 const enabled: AnalyticsConfig = {
   ...analyticsConfig,
@@ -67,6 +68,122 @@ describe("analytics configuration admission", () => {
     ]) {
       expect(configuredMeasurementId({ ...enabled, ...patch })).toBeNull();
     }
+  });
+});
+describe("reviewed Post-Once Agent Shop LinkedIn attribution", () => {
+  const campaign = "ASP-LIVE-20261016-001";
+  const approved =
+    "/?utm_source=linkedin&utm_medium=social&utm_campaign=" + campaign + "&utm_content=catalogue";
+  const observed =
+    "/?utmsource=linkedin&utmmedium=social&utmcampaign=" + campaign + "&utmcontent=catalogue";
+  it("accepts only exact frozen campaign on the owned public landing page", () => {
+    for (const path of [approved, observed]) {
+      const page = safePage(origin + path);
+      expect(page).toMatchObject({
+        path: "/",
+        source: "linkedin",
+        campaign,
+        socialMedium: "social",
+        socialContent: "catalogue",
+      });
+      const event = discoveryEvent(origin + path, "page_view");
+      expect(event?.parameters).toMatchObject({
+        page_location: origin + "/",
+        page_referrer: "",
+        discovery_source: "linkedin",
+        discovery_campaign: campaign,
+        discovery_medium: "social",
+        discovery_content: "catalogue",
+      });
+      expect(JSON.stringify(event)).not.toContain("utmsource");
+      expect(JSON.stringify(event)).not.toContain("utm_source");
+    }
+  });
+  it("refuses duplicate, mixed, private or other-brand queries even with known campaign", () => {
+    const input = new URLSearchParams(observed.split("?")[1]);
+    for (const value of [
+      observed + "&code=secret",
+      observed + "&utmsource=reddit",
+      observed.replace("utmcampaign", "utm_campaign"),
+      observed.replace("utmcampaign=" + campaign, "utmcampaign=UNVERIFIED"),
+      observed.replace("utmcontent=catalogue", "utmcontent=checkout"),
+      "/login" + observed.slice(1),
+      "/private-kits/complete" + observed.slice(1),
+      "/agents" + observed.slice(1),
+      approved + "&email=private@example.com",
+      approved.replace("utm_content=catalogue", "utm_content=unknown"),
+    ]) {
+      expect(safePage(origin + value)).toBeNull();
+    }
+    expect(safePage("https://evil.test/" + observed.slice(1))).toBeNull();
+    expect(safePage(origin + "/?utmsource=x")).toBeNull();
+    expect(input.get("utmcampaign")).toBe(campaign);
+  });
+  it("queues correctly scoped GA4 campaign settings only after explicit runtime start", () => {
+    const scripts: Record<string, unknown>[] = [];
+    const browser = {
+      sessionStorage: { getItem: () => null },
+      agentShopAnalyticsLayer: [] as IArguments[],
+    } as unknown as Window;
+    const document = {
+      getElementById: () => null,
+      createElement: () => ({ id: "", async: false, referrerPolicy: "", src: "" }),
+      head: { append: (s: Record<string, unknown>) => scripts.push(s) },
+      cookie: "",
+    } as unknown as Document;
+    const transport = createGoogleTransport(browser, document);
+    expect(
+      (browser as unknown as { agentShopAnalyticsLayer: IArguments[] }).agentShopAnalyticsLayer,
+    ).toHaveLength(0);
+    const event = discoveryEvent(
+      origin +
+        "/?utmsource=linkedin&utmmedium=social&utmcampaign=" +
+        campaign +
+        "&utmcontent=catalogue",
+      "page_view",
+    );
+    expect(event).not.toBeNull();
+    transport.start("G-TESTID", event!);
+    transport.send(event!);
+    const commands = (
+      browser as unknown as { agentShopAnalyticsLayer: IArguments[] }
+    ).agentShopAnalyticsLayer.map((args) => Array.from(args));
+    const config = commands.find((args) => args[0] === "config");
+    expect(config?.[2]).toMatchObject({
+      campaign_source: "linkedin",
+      campaign_medium: "social",
+      campaign_name: campaign,
+      campaign_content: "catalogue",
+      send_page_view: false,
+    });
+    expect(config?.[2]).not.toHaveProperty("email");
+    expect(scripts).toHaveLength(1);
+    expect(scripts[0]?.["src"]).toContain("gtag/js?id=G-TESTID");
+    const eventCommand = commands.find((args) => args[0] === "event");
+    expect(eventCommand?.[2]).toMatchObject({
+      page_location: origin + "/",
+      discovery_campaign: campaign,
+      discovery_content: "catalogue",
+    });
+    transport.stop(true);
+    expect(scripts).toHaveLength(1); // only the originally injected script, no second vendor.
+  });
+  it("does not broaden existing campaign allowlist or modify native-page semantics", () => {
+    const old = discoveryEvent(
+      origin + "/solutions?utm_source=linkedin&utm_medium=social&utm_campaign=agent_shop_evidence",
+      "page_view",
+    );
+    expect(old?.parameters["discovery_campaign"]).toBe("agent_shop_evidence");
+    expect(old?.parameters).not.toHaveProperty("discovery_content");
+    expect(
+      discoveryEvent(
+        origin +
+          "/solutions?utm_source=linkedin&utm_medium=social&utm_campaign=" +
+          campaign +
+          "&utm_content=catalogue",
+        "page_view",
+      ),
+    ).toBeNull();
   });
 });
 describe("versioned optional preference", () => {
