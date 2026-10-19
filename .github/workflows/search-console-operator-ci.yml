@@ -1,0 +1,42 @@
+name: Search Console Operator CI
+
+on:
+  pull_request:
+    paths:
+      - "packages/search-console-operator/**"
+      - ".github/workflows/search-console-operator-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "packages/search-console-operator/**"
+      - ".github/workflows/search-console-operator-ci.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: search-console-operator-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: packages/search-console-operator
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: packages/search-console-operator/package-lock.json
+      - name: Install locked dependencies without lifecycle scripts
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Run credential-free acceptance tests
+        run: npm test
+      - name: Confirm tests leave tracked source unchanged
+        run: git diff --exit-code -- .
