@@ -16,6 +16,8 @@ The catalogue contains **37 products: 11 prompts and 26 skills**. The [skills an
 
 The [2 November intelligence growth review](docs/INTELLIGENCE_GROWTH_20261102.md) separates private source intake from public evidence-backed catalogue expansion.
 
+The [scoped CI-equivalence policy](docs/CI_EQUIVALENCE_20261102.md) records the explicitly approved exact-main local fallback used only when GitHub refuses to start the normal runner; it is not an automatic green hosted check.
+
 The [multi-week review](docs/MULTIWEEK_REVIEW.md) reconciles the saved history checkpoint, selected supporting records and newer continuation evidence through 9 October. The [latest work review](docs/LATEST_WORK_REVIEW.md) identifies the highest evidenced states and remaining acceptance gates.
 
 The [capability inventory](docs/CAPABILITY_INVENTORY.md) records **111 distinct external skill names, 868 advertised tools across 38 providers and 11 separate orchestration controls**. These are dated metadata, not installation or execution claims.

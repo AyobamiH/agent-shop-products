@@ -5,6 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { requireExactMainCI } from "./check-release-ci.mjs";
+import { verifyOwnerEquivalentCI } from "./owner-ci-equivalence.mjs";
 import { parseCandidateUpload } from "./parse-candidate-upload.mjs";
 import { activeVersion, guardedPromote, verifyCandidateMetadata } from "./guarded-promote.mjs";
 
@@ -82,10 +83,22 @@ export function localMainAdmission({ git = execute, gh = execute } = {}) {
   let result;
   try { result = JSON.parse(response); }
   catch { throw Error("GITHUB_CI_MALFORMED"); }
-  return confirmLocalRelease({
-    branch, clean: dirty === "", localSha, remoteSha,
-    ciRuns: result.workflow_runs,
-  });
+  try {
+    return confirmLocalRelease({
+      branch, clean: dirty === "", localSha, remoteSha,
+      ciRuns: result.workflow_runs,
+    });
+  } catch (error) {
+    // A billing-locked GitHub job never ran. Owner-approved proof is not a green GitHub check.
+    if (error?.message !== "EXACT_MAIN_CI_NOT_SUCCESSFUL" ||
+        process.env.AGENT_SHOP_APPROVED_FALLBACK_SHA !== localSha ||
+        branch !== "main" || dirty !== "" || remoteSha !== localSha) throw error;
+    return verifyOwnerEquivalentCI({
+      sha: localSha, treeSha: git("git", ["rev-parse", "HEAD^{tree}"]).trim(),
+      approvalSha: process.env.AGENT_SHOP_APPROVED_FALLBACK_SHA,
+      gh,
+    });
+  }
 }
 
 async function cloudflare(method, location, token) {
@@ -156,7 +169,7 @@ export async function runLocalRelease({ verifyOnly = false } = {}) {
     const publicAcceptance = checkPublic(origin, commerceExpectation);
     const receipt = {
       status: "ALREADY_ACTIVE", sha, versionId: priorId,
-      ciVerdict: "PASS", publicAcceptance, checkedAt: new Date().toISOString(),
+      ciVerdict: admission.ciVerdict, githubHostedCiStatus: admission.githubHostedCiStatus ?? "SUCCESS", publicAcceptance, checkedAt: new Date().toISOString(),
       channel: "owner-local-scoped-cloudflare",
       githubEnvironmentSecretUsed: false,
       commerceActive: publicAcceptance.commerceActive,
@@ -206,7 +219,7 @@ export async function runLocalRelease({ verifyOnly = false } = {}) {
     publicVerifier: async (target) => checkPublic(target, commerceExpectation),
   });
   const receipt = {
-    ...promoted, sha, ciVerdict: "PASS", preview,
+    ...promoted, sha, ciVerdict: admission.ciVerdict, githubHostedCiStatus: admission.githubHostedCiStatus ?? "SUCCESS", preview,
     channel: "owner-local-scoped-cloudflare",
     githubEnvironmentSecretUsed: false, commerceActive: promoted.publicAcceptance.commerceActive,
     verifiedAt: new Date().toISOString(),

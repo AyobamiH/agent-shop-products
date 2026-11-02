@@ -104,3 +104,6 @@ Stripe configuration. Do not set checks to verified solely to pass this policy.
 No real-money test charge or existing customer is a deployment prerequisite.
 Market validation proceeds separately after release; failed outside-in acceptance
 still triggers only the existing identity-fenced rollback, never data rollback.
+## Signed-source owner-local CI equivalence — 2 November 2026
+
+The original GitHub Actions production lane remains **strict exact-main successful push CI**. If GitHub refuses to start the job because the account is billing-locked, the owner-approved independent local route may admit a single exact SHA only through the formal read-only CI-equivalent verifier documented in [CI_EQUIVALENCE_20261102.md](CI_EQUIVALENCE_20261102.md). It requires a first-party exact-main billing-lock job annotation (no executed steps), verified signed commit, clean source/tree identity, an explicit one-SHA approval, 16 zero-exit owner-host acceptance stages and owner-private hashed logs. The alternative result is `OWNER_LOCAL_EQUIVALENT_PASS`, not green GitHub CI. Existing Cloudflare candidate, commercial approval, immutable version, identity-fenced deployment and external readback gates remain mandatory. Do not run this alternative for real test failures, no missing evidence, or when normal GitHub CI is available.
