@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "ci-admission-and-fallback-triage",
+  "slug": "ci-admission-and-fallback-triage",
+  "name": "CI Admission and Fallback Triage",
+  "productType": "skill",
+  "category": "developer-tooling",
+  "summary": "Distinguish hosted CI job-admission failures from actual test failures, and produce exact-revision verification evidence through a trusted bounded alternative.",
+  "problem": "A red CI badge may mean billing, runner allocation or permissions prevented the job from starting; treating it as failed tests or bypassing it with unpinned local checks can corrupt release decisions.",
+  "coreOutcomes": [
+    "Runner-admission, environment and source-test failures separated",
+    "Exact revision and intended job matrix pinned before fallback",
+    "Read-only primary provider annotations preserved",
+    "Bounded trusted alternative execution with truthful parity limitations",
+    "Protected release gates remain explicit instead of silently bypassed"
+  ],
+  "requirements": [
+    "Read access to original CI run, job annotations and repository revision",
+    "A trusted controlled executor with the required platform and toolchain",
+    "A documented equivalent test command set and reproducible fixture",
+    "Explicit project spending and source-permission boundaries"
+  ],
+  "boundaries": [
+    "A local green suite is not a green hosted GitHub Actions check",
+    "An executor with a different OS or architecture does not prove platform parity",
+    "Never change billing or bypass required repository checks without authority",
+    "A job that never started provides no evidence about test correctness",
+    "Alternative CI results must be bound to the exact candidate commit"
+  ],
+  "tags": [
+    "ci",
+    "github-actions",
+    "runner-admission",
+    "billing",
+    "circleci",
+    "fallback",
+    "exact-sha",
+    "release-gates"
+  ],
+  "source": "SKILL.md"
+}

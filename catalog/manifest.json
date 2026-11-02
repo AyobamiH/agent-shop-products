@@ -10,6 +10,14 @@
       "metadata": "products/agent-subcontracting-commercial-handoff/product.json"
     },
     {
+      "id": "architecture-matched-release-rehearsal",
+      "metadata": "products/architecture-matched-release-rehearsal/product.json"
+    },
+    {
+      "id": "auditable-indexing-state-reconciliation",
+      "metadata": "products/auditable-indexing-state-reconciliation/product.json"
+    },
+    {
       "id": "autonomous-coding-workflow",
       "metadata": "products/autonomous-coding-workflow/product.json"
     },
@@ -28,6 +36,10 @@
     {
       "id": "capability-surface-reconciliation",
       "metadata": "products/capability-surface-reconciliation/product.json"
+    },
+    {
+      "id": "ci-admission-and-fallback-triage",
+      "metadata": "products/ci-admission-and-fallback-triage/product.json"
     },
     {
       "id": "consent-aware-plugin-measurement",
@@ -92,6 +104,10 @@
     {
       "id": "production-agent-operating-files",
       "metadata": "products/production-agent-operating-files/product.json"
+    },
+    {
+      "id": "protocol-faithful-analytics-command-queues",
+      "metadata": "products/protocol-faithful-analytics-command-queues/product.json"
     },
     {
       "id": "published-package-contract-verification",

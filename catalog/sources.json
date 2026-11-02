@@ -29,6 +29,32 @@
       }
     },
     {
+      "id": "architecture-matched-release-rehearsal",
+      "canonical": {
+        "path": "products/architecture-matched-release-rehearsal/SKILL.md",
+        "blobSha": "5f5d59b08cde10da24d02ff3a7717225f07e847b"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/evidence-intelligence-refresh-20261102",
+        "path": "products/architecture-matched-release-rehearsal/SKILL.md",
+        "blobSha": "5f5d59b08cde10da24d02ff3a7717225f07e847b"
+      }
+    },
+    {
+      "id": "auditable-indexing-state-reconciliation",
+      "canonical": {
+        "path": "products/auditable-indexing-state-reconciliation/SKILL.md",
+        "blobSha": "38bf2d8850fa310593afbc0ced809d557a6c5431"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/evidence-intelligence-refresh-20261102",
+        "path": "products/auditable-indexing-state-reconciliation/SKILL.md",
+        "blobSha": "38bf2d8850fa310593afbc0ced809d557a6c5431"
+      }
+    },
+    {
       "id": "autonomous-coding-workflow",
       "canonical": {
         "path": "products/autonomous-coding-workflow/PROMPT.md",
@@ -91,6 +117,19 @@
         "branch": "feat/current-capability-extraction",
         "path": "products/capability-surface-reconciliation/SKILL.md",
         "blobSha": "cc5e0a590a2b7b1e0e7fda83a1d2c3f874dcad35"
+      }
+    },
+    {
+      "id": "ci-admission-and-fallback-triage",
+      "canonical": {
+        "path": "products/ci-admission-and-fallback-triage/SKILL.md",
+        "blobSha": "2820de66109b792eddd71ec038e1bff24dc66ba8"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/evidence-intelligence-refresh-20261102",
+        "path": "products/ci-admission-and-fallback-triage/SKILL.md",
+        "blobSha": "2820de66109b792eddd71ec038e1bff24dc66ba8"
       }
     },
     {
@@ -299,6 +338,19 @@
         "branch": "agent/production-agent-operating-files",
         "path": "agents/production-agent-operating-files.md",
         "blobSha": "5b81d8601c3017c7a88d203da9e8feee29216752"
+      }
+    },
+    {
+      "id": "protocol-faithful-analytics-command-queues",
+      "canonical": {
+        "path": "products/protocol-faithful-analytics-command-queues/SKILL.md",
+        "blobSha": "19bde64ea2eafa4e3c829e8219019a0846ffe727"
+      },
+      "origin": {
+        "repository": "AyobamiH/agent-shop-products",
+        "branch": "feat/evidence-intelligence-refresh-20261102",
+        "path": "products/protocol-faithful-analytics-command-queues/SKILL.md",
+        "blobSha": "19bde64ea2eafa4e3c829e8219019a0846ffe727"
       }
     },
     {

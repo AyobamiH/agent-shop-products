@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0.0",
   "recordKind": "sanitised-agentic-coding-bug-index",
-  "indexedOn": "2026-10-12",
-  "scope": "Historical defects and preventive patterns recovered from reviewed work, plus current failures caught by acceptance checks. Each record qualifies its observation and repair evidence; production health requires separate verification.",
+  "indexedOn": "2026-11-02",
+  "scope": "Historical defects and preventive patterns recovered from reviewed work, plus current failures caught by acceptance checks. Each record qualifies its observation and repair evidence; production health requires separate verification. Four November entries preserve exact provider and owner-local evidence limits; open fixes remain open and source changes are not customer outcomes.",
   "bugs": [
     {
       "id": "BUG-0001",
@@ -555,6 +555,98 @@
         "scope": "The 12 October candidate passed 51 targeted web tests and 62 native tests. Isolated review readback was reported after deployment; production migration and publisher acceptance remain separate."
       },
       "indexedOn": "2026-10-12"
+    },
+    {
+      "id": "BUG-0025",
+      "title": "Unicode dash mismatch silently zeroes discovered-but-not-indexed counter",
+      "project": "Agent Shop",
+      "category": "Discovery",
+      "trigger": "Official Google coverage labels contain an en dash but a custom aggregation regex recognises only ASCII hyphen.",
+      "symptom": "All 48 row-level results exist but the 1 November report says zero discovered pages when nine rows are discovered-not-indexed.",
+      "rootCause": "The coverage-state matcher used /discovered - currently not indexed/i without normalising or permitting Unicode dash characters.",
+      "consequence": "Monitoring can give false reports of indexing regressions, mask genuine classification changes and misdirect remediation.",
+      "repair": "Normalise coverage labels, accept exact Unicode dash variants, separate inspection errors, and assert unique-URL partition totals.",
+      "regressionCheck": "Verify a preserved 48-row real report and Unicode dash fixtures, unknown/indexed/error partitions and duplicate rejection; the local four-test suite passed on 2 November.",
+      "status": "Implementation reviewed",
+      "skillId": "auditable-indexing-state-reconciliation",
+      "nextAcceptance": "Use the corrected bounded daily runner through natural cycles and compare future Google changes without overwriting historic observations.",
+      "evidence": {
+        "id": "BEV-0025",
+        "sourceId": "agent-shop-google-indexed-version-20261102",
+        "basis": "Sanitised owner-only direct Google Search Console observation and local four-test contract",
+        "sourceUrl": "https://github.com/AyobamiH/agent-shop-products/issues/53",
+        "scope": "Private owner-local observations 1–2 Nov identified 23 indexed, 9→10 discovered and 16→15 unknown of 48; original raw Search Console rows remain private. Linked issue is public context, not an independent raw inspection transcript."
+      },
+      "indexedOn": "2026-11-02"
+    },
+    {
+      "id": "BUG-0026",
+      "title": "GitHub Actions billing lock is misread as failing source tests",
+      "project": "Agent Shop",
+      "category": "CI",
+      "trigger": "Scheduled source-to-public parity workflow reports a failed job despite never starting any step.",
+      "symptom": "Repeated red CI checks show no executed tests or useful job log.",
+      "rootCause": "GitHub provider annotation states the account is locked due to a billing issue; the job was not admitted.",
+      "consequence": "Developers may rewrite correct tests, waste retries or bypass a release gate rather than repair provider admission.",
+      "repair": "Read exact check annotations and job steps first; preserve the provider blocker while running a clean exact-SHA parity suite as independent partial evidence.",
+      "regressionCheck": "Assert job-step absence and primary failure annotation; compare independent clean-checkout nine-test/local production-parity pass without marking the original hosted check green.",
+      "status": "Candidate fix open",
+      "skillId": "ci-admission-and-fallback-triage",
+      "nextAcceptance": "Resolve the authorised GitHub billing/admission state and record a genuinely executed exact-head hosted run or separately approved trusted equivalent; do not purchase credits automatically.",
+      "evidence": {
+        "id": "BEV-0026",
+        "sourceId": "agent-shop-ci-billing-lock-20261101",
+        "basis": "Primary GitHub Actions check annotation and exact-main local test readback",
+        "sourceUrl": "https://github.com/AyobamiH/agent-shop-products/actions/runs/41319820188",
+        "scope": "1 Nov run #41319820188 ended within seconds before steps; 2 Nov locally verified nine parity tests and source/live alignment. Original check still failed."
+      },
+      "indexedOn": "2026-11-02"
+    },
+    {
+      "id": "BUG-0027",
+      "title": "Analytics SDK loads but gtag rest arrays silently suppress events",
+      "project": "OneClickPostFactory and Global Bill Forge",
+      "category": "Analytics",
+      "trigger": "An application replaces the documented Google gtag wrapper with an arrow/rest function that pushes arrays into dataLayer.",
+      "symptom": "The real SDK loads after visitor consent but the expected network collection hit is absent.",
+      "rootCause": "The adapter changed Google's expected function Arguments command envelope into ordinary rest-parameter arrays.",
+      "consequence": "Successful script loads can falsely be reported as working analytics, reducing observability of real user journeys.",
+      "repair": "Use a provider-faithful regular function queuing genuine Arguments objects, add shape regressions, and keep privacy/consent gates separate.",
+      "regressionCheck": "Assert [object Arguments] and Array.isArray(entry)===false; verify no network on queue creation; perform separately authorised browser and provider readback.",
+      "status": "Implementation reviewed",
+      "skillId": "protocol-faithful-analytics-command-queues",
+      "nextAcceptance": "Independently verify consented production GA4 request and destination event ingestion without broadening collection authority.",
+      "evidence": {
+        "id": "BEV-0027",
+        "sourceId": "ocpf-gtag-arguments-pr44",
+        "basis": "Two merged public source repairs and targeted queue-contract tests",
+        "sourceUrl": "https://github.com/AyobamiH/oneclickpostfactory/pull/44",
+        "scope": "OneClickPostFactory PR #44 and Global Bill Forge PR #10 merged on 21 Oct; tests address queue shape, not independent live provider ingestion or customer conversion."
+      },
+      "indexedOn": "2026-11-02"
+    },
+    {
+      "id": "BUG-0028",
+      "title": "Retired hosted image interrupts required Apple Silicon release jobs",
+      "project": "AMD GAIA",
+      "category": "CI",
+      "trigger": "Required darwin-arm64 release matrix still selects macos-14 as GitHub retires the runner image.",
+      "symptom": "Scheduled brownout cancels an Apple Silicon sidecar build on an upstream release PR.",
+      "rootCause": "Two required release workflow jobs pinned a retiring runner label.",
+      "consequence": "Native release binaries cannot be built through the required upstream matrix until the runner is updated.",
+      "repair": "Use supported macos-15 for both darwin-arm64 jobs and rehearse their exact-source frozen binary smoke tests on genuine Apple Silicon.",
+      "regressionCheck": "Pin source SHA and check both native freeze/smoke receipts; then separately require an actual upstream release workflow run.",
+      "status": "Implementation reviewed",
+      "skillId": "architecture-matched-release-rehearsal",
+      "nextAcceptance": "Observe later actual upstream release/RC workflow and published artefact evidence; original contributor PR was superseded, not merged.",
+      "evidence": {
+        "id": "BEV-0028",
+        "sourceId": "amd-gaia-upstream-runner-pr6182",
+        "basis": "AMD maintainer upstream correction and contributor native architecture-matched CircleCI evidence",
+        "sourceUrl": "https://github.com/amd/gaia/pull/6182",
+        "scope": "AMD PR #6182 merged 30 Oct. Owner contribution #6172 closed superseded after real Apple Silicon native smoke evidence; original PR and independent CI are not an AMD published release."
+      },
+      "indexedOn": "2026-11-02"
     }
   ]
 }
