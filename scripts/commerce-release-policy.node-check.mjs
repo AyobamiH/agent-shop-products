@@ -87,7 +87,7 @@ test('public readback rejects sandbox mode, hidden price changes and wrong polic
   assert.throws(() => verifyPublicCommerce(remote, closed()));
 });
 test('public acceptance reports its actual selected mode rather than forcing disabled', () => {
-  const result = { status: 'PASS', products: 33, externalCapabilities: 990, codingBugs: 24,
+  const result = { status: 'PASS', products: 37, externalCapabilities: 990, codingBugs: 28,
     ...verifyPublicCommerce(remote, live()) };
   assert.ok(matchesPublicAcceptance(result, live()));
   assert.ok(matchesPublicAcceptance(result, loadReleaseExpectation()));
@@ -127,7 +127,7 @@ test('guarded promotion accepts the exact live contract with no sale and still v
   };
   const proof = await guardedPromote({ sha, versionId: next, accountId: '6ddcbcb8474f1a7e460b2f0aabec0e2f',
     token: 'unit-fixture-not-real', fetcher, delay: async () => {}, commerceExpectation: live(),
-    publicVerifier: async () => ({ status: 'PASS', products: 33, externalCapabilities: 990, codingBugs: 24,
+    publicVerifier: async () => ({ status: 'PASS', products: 37, externalCapabilities: 990, codingBugs: 28,
       ...verifyPublicCommerce(remote, live()) }) });
   assert.equal(proof.status, 'PASS'); assert.equal(proof.publicAcceptance.commerceActive, true); assert.equal(writes, 1);
 });

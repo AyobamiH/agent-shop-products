@@ -116,7 +116,7 @@ export function verifyPublicCommerce(commerce, expected) {
   return { commerceActive: commerce.commerceActive, privateKitOffer: offer.availability, commerceOffer: safeOfferSummary(offer) };
 }
 export function matchesPublicAcceptance(result, expected) {
-  if (result?.status !== 'PASS' || result.products !== 33 || result.externalCapabilities !== 990 || result.codingBugs !== 24) return false;
+  if (result?.status !== 'PASS' || result.products !== 37 || result.externalCapabilities !== 990 || result.codingBugs !== 28) return false;
   if (expected.mode === 'disabled') return result.commerceActive === false && result.privateKitOffer === 'planned';
   try {
     verifyPublicCommerce({ schemaVersion: 1, commerceActive: result.commerceActive,

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "architecture-matched-release-rehearsal",
+  "slug": "architecture-matched-release-rehearsal",
+  "name": "Architecture-Matched Release Rehearsal",
+  "productType": "skill",
+  "category": "verification",
+  "summary": "Test release-critical architecture-specific builds on genuine matching hardware and exact source before replacing a retired hosted runner or declaring a release gate accepted.",
+  "problem": "A release matrix may depend on a retiring hosted image; syntax checks or unrelated x86 builds cannot prove Apple Silicon binary freezing and smoke tests will work on its replacement.",
+  "coreOutcomes": [
+    "Release-critical runner matrix and deprecation impact identified",
+    "Exact candidate commit pinned for independent architecture-matched rehearsal",
+    "Real architecture and OS recorded with binary smoke results and digests",
+    "Contributor evidence separated from upstream merge, release workflow and publication"
+  ],
+  "requirements": [
+    "A source-controlled release matrix and candidate patch",
+    "Genuine matching target OS/CPU executor such as Apple Silicon",
+    "Native build and smoke commands for the actual release artefacts",
+    "A controlled place for logs, artefact digests and provider receipts"
+  ],
+  "boundaries": [
+    "Cross-architecture emulation alone does not establish a native platform pass",
+    "A contributor's separate CI project is not the upstream release workflow",
+    "Passing freeze/smoke does not prove every application service is available",
+    "A superseded PR is not merged even if the identical change lands elsewhere",
+    "Do not publish release binaries or alter customer deployment automatically"
+  ],
+  "tags": [
+    "release-engineering",
+    "runner-migration",
+    "apple-silicon",
+    "ci",
+    "binary-smoke",
+    "exact-sha",
+    "reproducibility"
+  ],
+  "source": "SKILL.md"
+}

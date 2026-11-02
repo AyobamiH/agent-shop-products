@@ -2,8 +2,8 @@
   "schemaVersion": "1.0.0",
   "recordKind": "catalogue-sync-record",
   "localRole": "synced-projection",
-  "syncedOn": "2026-10-09",
-  "productCount": 33,
+  "syncedOn": "2026-11-02",
+  "productCount": 37,
   "upstream": {
     "repository": "AyobamiH/agent-shop-products",
     "branch": "main",
@@ -22,16 +22,19 @@
   ],
   "productCountsByType": {
     "prompt": 11,
-    "skill": 22
+    "skill": 26
   },
   "productIds": [
     "account-erasure-with-write-fencing",
     "agent-subcontracting-commercial-handoff",
+    "architecture-matched-release-rehearsal",
+    "auditable-indexing-state-reconciliation",
     "autonomous-coding-workflow",
     "bounded-google-docs-read-recovery",
     "bounded-solo-maintainer-release",
     "capability-gap-learning-system",
     "capability-surface-reconciliation",
+    "ci-admission-and-fallback-triage",
     "consent-aware-plugin-measurement",
     "continuous-business-operations-graph",
     "deterministic-social-publication",
@@ -48,6 +51,7 @@
     "outside-in-agent-crawl-verification",
     "problem-centred-institutional-memory",
     "production-agent-operating-files",
+    "protocol-faithful-analytics-command-queues",
     "published-package-contract-verification",
     "react-hydration-contract-repair",
     "read-only-production-reconnaissance",

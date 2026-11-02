@@ -12,13 +12,17 @@ The [private reference kit](https://agents.proofandstate.com/private-kits?utm_so
 
 ## Catalogue
 
-The catalogue contains **33 products: 11 prompts and 22 skills**. The [skills and work-coverage index](docs/SKILL_COVERAGE.md) maps **38 reviewed procedures**, their evidence limits and eight explicitly observed dependency names.
+The catalogue contains **37 products: 11 prompts and 26 skills**. The [skills and work-coverage index](docs/SKILL_COVERAGE.md) maps **42 reviewed procedures**, their evidence limits and eight explicitly observed dependency names.
+
+The [2 November intelligence growth review](docs/INTELLIGENCE_GROWTH_20261102.md) separates private source intake from public evidence-backed catalogue expansion.
+
+The [scoped CI-equivalence policy](docs/CI_EQUIVALENCE_20261102.md) records the explicitly approved exact-main local fallback used only when GitHub refuses to start the normal runner; it is not an automatic green hosted check.
 
 The [multi-week review](docs/MULTIWEEK_REVIEW.md) reconciles the saved history checkpoint, selected supporting records and newer continuation evidence through 9 October. The [latest work review](docs/LATEST_WORK_REVIEW.md) identifies the highest evidenced states and remaining acceptance gates.
 
 The [capability inventory](docs/CAPABILITY_INVENTORY.md) records **111 distinct external skill names, 868 advertised tools across 38 providers and 11 separate orchestration controls**. These are dated metadata, not installation or execution claims.
 
-Shop discovery now includes all **990 external acquisition listings** at `/capabilities`, with individual names-only detail pages and quote-first original integration briefs. The original product and problem pages are the indexable search inventory; metadata-only third-party detail pages are public GET references, not independently indexable Google landing pages. The `/integration-services` page explains the separate scoped implementation offer, with no invented digital checkout or licence. The [acquisition and bug-index contract](docs/CAPABILITY_SHOP_AND_BUG_INDEX.md) explains provider access, accepted scope and evidence boundaries. The [agentic coding bug index](catalog/agentic-coding-bugs.json) records documented bugs and preventive failure modes, linked to scoped evidence, repair skills and regression checks. The original 33 product payloads are preserved.
+Shop discovery now includes all **990 external acquisition listings** at `/capabilities`, with individual names-only detail pages and quote-first original integration briefs. The original product and problem pages are the indexable search inventory; metadata-only third-party detail pages are public GET references, not independently indexable Google landing pages. The `/integration-services` page explains the separate scoped implementation offer, with no invented digital checkout or licence. The [acquisition and bug-index contract](docs/CAPABILITY_SHOP_AND_BUG_INDEX.md) explains provider access, accepted scope and evidence boundaries. The [agentic coding bug index](catalog/agentic-coding-bugs.json) records documented bugs and preventive failure modes, linked to scoped evidence, repair skills and regression checks. The previous 33 product payloads are preserved; four original generalised skills were added from fresh evidence in the 2 November 2026 candidate refresh.
 
 - [Product manifest](catalog/manifest.json)
 - [Public discovery projection](catalog/products.public.json)

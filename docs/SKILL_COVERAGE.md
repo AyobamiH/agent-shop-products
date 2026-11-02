@@ -1,6 +1,6 @@
 # Skills catalogue and work coverage
 
-Reviewed **9 October 2026**. The catalogue contains **33 products: 11 prompts and 22 skills**, mapped against **38 reviewed procedures**. [The JSON coverage record](../catalog/skill-coverage.json) is authoritative for these mappings.
+Reviewed **2 November 2026** (original baseline: 9 October). The catalogue contains **37 products: 11 prompts and 26 skills**, mapped against **42 reviewed procedures**. [The JSON coverage record](../catalog/skill-coverage.json) is authoritative for these mappings.
 
 ## Review scope
 
@@ -16,6 +16,10 @@ A procedure match does not establish historical invocation of that product paylo
 
 | Product | Type | Catalogue state | Reviewed procedures |
 | --- | --- | --- | --- |
+| [Auditable Indexing-State Reconciliation](../products/auditable-indexing-state-reconciliation/SKILL.md) | skill | added | `reconcile-indexed-version-with-public-crawl` |
+| [CI Admission and Fallback Triage](../products/ci-admission-and-fallback-triage/SKILL.md) | skill | added | `separate-ci-runner-admission-from-test-results` |
+| [Protocol-Faithful Analytics Command Queues](../products/protocol-faithful-analytics-command-queues/SKILL.md) | skill | added | `preserve-provider-specific-analytics-command-shape` |
+| [Architecture-Matched Release Rehearsal](../products/architecture-matched-release-rehearsal/SKILL.md) | skill | added | `rehearse-platform-specific-binary-releases` |
 | [Account Erasure with Write Fencing](../products/account-erasure-with-write-fencing/SKILL.md) | skill | added | `erase-accounts-with-stale-write-fences` |
 | [Agent Subcontracting Commercial Handoff](../products/agent-subcontracting-commercial-handoff/SKILL.md) | skill | added | `publish-agent-subcontracting-commercial-handoff`, `link-independent-subcontracting-discovery` |
 | [Autonomous Coding Workflow with a Work Ledger](../products/autonomous-coding-workflow/PROMPT.md) | prompt | retained | `recover-work-context`, `run-bounded-safe-diagnostics`, `handoff-exact-runtime-revision` |
@@ -50,12 +54,16 @@ A procedure match does not establish historical invocation of that product paylo
 | [State-Transition Evidence Contract](../products/state-transition-evidence-contract/SKILL.md) | skill | added | `govern-state-transitions-with-evidence`, `publish-agent-subcontracting-commercial-handoff`, `inventory-current-capability-surfaces`, `stage-initial-mcp-plugin-activation`, `separate-launch-measurement-planes`, `reconcile-native-campaign-queue-evidence`, `correct-capability-launch-claims`, `release-under-bounded-owner-exception`, `reconcile-durable-business-outcomes`, `erase-accounts-with-stale-write-fences`, `build-labelled-exact-release-walkthrough`, `reconcile-same-draft-package-and-submission` |
 | [Temporary Authority Bridge Lifecycle](../products/temporary-authority-bridge-lifecycle/SKILL.md) | skill | added | `use-and-retire-temporary-authority-bridge` |
 
-The retained baseline is 13 products. Twenty additions across the successive reviews now have original payloads and canonical metadata. Existing 25 payloads were preserved during this multi-week expansion.
+The retained baseline is 13 products. Twenty additions were reviewed through 9 October and four further original skills were added in the 2 November evidence refresh. Historical payloads and provenance remain preserved.
 
 ## Reviewed procedures
 
 | Procedure | Status | Relationship | Evidence sources |
 | --- | --- | --- | --- |
+| `reconcile-indexed-version-with-public-crawl` — Reconcile Google URL indexed versions against sitemap and public crawl | demonstrated | standalone | `agent-shop-google-indexed-version-20261102` |
+| `separate-ci-runner-admission-from-test-results` — Separate CI job admission failure from actual source-test results | demonstrated | standalone | `agent-shop-ci-billing-lock-20261101` |
+| `preserve-provider-specific-analytics-command-shape` — Preserve the exact gtag command-queue payload shape | demonstrated | standalone | `ocpf-gtag-arguments-pr44`, `gbf-gtag-arguments-pr10` |
+| `rehearse-platform-specific-binary-releases` — Rehearse release sidecar binaries on genuine target architecture | demonstrated | standalone | `amd-gaia-arm64-native-evidence-pr6172`, `amd-gaia-upstream-runner-pr6182` |
 | `recover-work-context` — Recover an earlier conversation into durable working context | demonstrated | composition | `recovered-work-thread`, `continuity-capture` |
 | `isolate-connectivity-layer` — Separate host routing, transport, authentication and document failures | partially-demonstrated | composition | `recovered-work-thread`, `restricted-implementation-review` |
 | `activate-guarded-host-configuration` — Back up host configuration and verify effective activation | partially-demonstrated | composition | `recovered-work-thread` |
@@ -101,6 +109,12 @@ The JSON record preserves each trigger, product reference, evidence summary and 
 
 | Source | Kind | What it supports | Limits |
 | --- | --- | --- | --- |
+| `agent-shop-google-indexed-version-20261102` | owner-verified-provider-observation | 2 November direct official Google URL Inspection and unauthenticated Agent Shop crawl check: 48 unique sitemap URLs; 23 indexed, 10 discovered-not-indexed, 15 unknown; no inspection/public-route errors. An older aggregate was wrong because it matched only an ASCII hyphen. | Individual Google property records remain private and must not be published; a passing sitemap and public crawl do not ensure indexing; provider classifications can fluctuate. |
+| [agent-shop-ci-billing-lock-20261101](https://github.com/AyobamiH/agent-shop-products/actions/runs/41319820188) | public-provider-check-and-owner-local-reproduction | Hosted Agent Shop release parity run was refused before any steps due to a recorded account billing lock; separate exact-source owner-local nine-test parity and live readback passed. | A completed local suite does not constitute the required GitHub Actions run or resolve the provider billing lock. |
+| [ocpf-gtag-arguments-pr44](https://github.com/AyobamiH/oneclickpostfactory/pull/44) | merged-public-source-and-targeted-regression | OneClickPostFactory PR #44 repaired rest-array gtag queue commands with genuine Arguments and local shape tests; merge recorded 21 October 2026. | Merged source and queued command shape do not independently prove live GA4 collection, visitor consent or revenue. |
+| [gbf-gtag-arguments-pr10](https://github.com/AyobamiH/global-bill-forge/pull/10) | merged-public-source-and-targeted-regression | Global Bill Forge PR #10 independently made the same protocol correction and added a targeted Arguments-object test; merged 21 October 2026. | No provider-side analytics ingestion or business conversion is established by the PR. |
+| [amd-gaia-arm64-native-evidence-pr6172](https://github.com/amd/gaia/pull/6172) | public-contributor-ci-rehearsal | Contributor's pinned macOS 15 Apple Silicon build and smoke evidence for two native GAIA sidecars; original PR was closed as superseded after maintainer acknowledgement. | Uses separate CircleCI Free execution, not AMD's release workflow; no actual release publication or live model-service success established. |
+| [amd-gaia-upstream-runner-pr6182](https://github.com/amd/gaia/pull/6182) | merged-upstream-source | AMD merged the same two darwin-arm64 macos-14 to macos-15 runner corrections through upstream PR #6182 on 30 October 2026. | Upstream merge is not evidence of subsequent released native artefacts or cross-provider release success. |
 | [catalogue-baseline](https://github.com/AyobamiH/agent-shop-products/tree/6b75108e0953c62240557daae53df3123a50428c) | public-repository | Canonical inventory and source provenance at the start of this catalogue review. | Shows that 11 prompt products and two skill products were already catalogued. Catalogue presence does not establish invocation in the recovered work. |
 | `recovered-work-thread` | owner-supplied-visible-conversation | A complete extraction of 65 visible user and assistant messages supplied for continuity, reviewed in message order. Tool envelopes and hidden/internal content were excluded. | Direct operator output, assistant reports, inherited handover claims and proposed actions have different evidential weight. The shared link, transcript, attachments and operational identifiers are not published here. |
 | `restricted-implementation-review` | authorised-private-repository-review | Read-only review of relevant merged changes, implementation, regressions and hosted CI for bounded provider reads, scheduled upgrades and dashboard rendering. | This is a sanitised review account, not independently inspectable public proof. Private code, repository links, revision identifiers, CI links and host details are withheld. Source and test evidence do not establish installation or current live behaviour. |
@@ -182,3 +196,7 @@ python3 scripts/validate_capability_inventory.py
 ```
 
 These validators check metadata integrity. They do not verify private-summary truth, remote origin availability or customer outcomes.
+
+## 2 November intelligence-growth intake
+
+Four published-scope skill candidates and four scoped coding bugs have been authored from the latest verified primary engineering evidence. The privately held 269-record intake (141 problems, 64 general solutions, 26 execution solutions, 29 research candidates and nine project solutions) remains an **unpublished review queue**, not 269 public products. Overlap and historical/unverified records cannot be promoted automatically. This branch is a candidate, not a production deployment.

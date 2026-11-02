@@ -29,7 +29,7 @@ const publicCommerce = {schemaVersion:1,commerceActive:true,offers:[{
   refundPolicyVersion:selected.approval.refundPolicyVersion,termsUrl:selected.approval.termsUrl,
   licenceUrl:selected.approval.licenceUrl,refundUrl:selected.approval.refundUrl,
 }]};
-const acceptedPublic = {status:"PASS",products:33,externalCapabilities:990,codingBugs:24,
+const acceptedPublic = {status:"PASS",products:37,externalCapabilities:990,codingBugs:28,
   ...verifyPublicCommerce(publicCommerce,selected)};
 const good = {
   annotations: {"workers/tag":sha},
