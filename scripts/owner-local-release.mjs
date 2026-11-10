@@ -18,6 +18,8 @@ const workerName = "agent-shop";
 const versionPath = "https://api.cloudflare.com/client/v4/accounts/" + accountId +
   "/workers/scripts/" + workerName;
 const localTokenFile = path.join(os.homedir(), ".config/woe-ops/secrets/cloudflare/agent-shop.env");
+const r2TokenFile = path.join(os.homedir(), ".config/woe-ops/secrets/cloudflare/agent-shop-commerce-infra.env");
+const r2BucketName = "agent-shop-private-kits";
 const privateReceiptDir = path.join(os.homedir(), ".config/woe-ops/agent-shop-release-receipts");
 
 export function confirmLocalRelease({ branch, clean, localSha, remoteSha, ciRuns }) {
@@ -121,6 +123,38 @@ async function currentVersion(token) {
   return activeVersion(await cloudflare("GET", "/deployments", token));
 }
 
+export async function verifyR2ControlPlane({ token, accountId: credentialAccountId, fetchImpl = fetch }) {
+  if (credentialAccountId !== accountId) throw Error("R2_CREDENTIAL_ACCOUNT_MISMATCH");
+  let response;
+  try {
+    response = await fetchImpl(
+      `https://api.cloudflare.com/client/v4/accounts/${accountId}/r2/buckets?name_contains=${encodeURIComponent(r2BucketName)}&per_page=1000`,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+          "cf-r2-jurisdiction": "eu",
+        },
+        signal: AbortSignal.timeout(20000),
+      },
+    );
+  } catch {
+    throw Error("R2_CONTROL_PLANE_UNAVAILABLE");
+  }
+  let data;
+  try { data = await response.json(); } catch { throw Error("R2_CONTROL_PLANE_BAD_JSON"); }
+  if (!response.ok || data?.success !== true) {
+    const codes = Array.isArray(data?.errors) ? data.errors.map((error) => Number(error?.code)) : [];
+    if (codes.includes(10042)) throw Error("R2_NOT_ENTITLED");
+    if (codes.includes(10000) || codes.includes(10002)) throw Error("R2_CREDENTIAL_REJECTED");
+    throw Error("R2_CONTROL_PLANE_HTTP_" + response.status);
+  }
+  const buckets = Array.isArray(data?.result?.buckets) ? data.result.buckets : [];
+  const bucket = buckets.find((item) => item?.name === r2BucketName);
+  if (!bucket) throw Error("R2_BUCKET_NOT_FOUND");
+  if (bucket.jurisdiction && bucket.jurisdiction !== "eu") throw Error("R2_BUCKET_JURISDICTION_MISMATCH");
+  return { bucket: r2BucketName, jurisdiction: bucket.jurisdiction || "eu" };
+}
+
 function availableBun() {
   const options = [
     process.env.AGENT_SHOP_BUN_BIN,
@@ -179,6 +213,12 @@ export async function runLocalRelease({ verifyOnly = false } = {}) {
   } catch {
     if (verifyOnly) throw Error("CURRENT_PRODUCTION_NOT_AT_EXACT_GREEN_HEAD");
   }
+
+  // R2 REST access is intentionally a separate, least-privilege credential from
+  // Worker deployment. Fail before build/upload when the R2 authority is wrong
+  // or the account is not entitled; never use the deployment token as fallback.
+  const r2Scoped = managedCredentialFromFile(r2TokenFile);
+  await verifyR2ControlPlane({ token: r2Scoped.token, accountId: r2Scoped.accountId });
 
   const bun = availableBun();
   const buildEnv = sanitizedBuildEnvironment(process.env, bun);
