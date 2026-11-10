@@ -17,3 +17,5 @@ The catalogue contract teaches one metadata authority per product: projections a
 
 ## Maintenance
 Update this map and relevant established docs in the same change when architecture, commands, boundaries, or behavior change. Preserve decision rationale and source-backed lessons; do not paste chat logs, secrets, private host inventories, or stale live-status claims. Record exact revision, checks passed/failed/not run, and unresolved gates in handoffs.
+
+The foundation validator and its fixture tests require Python 3.9 or newer.

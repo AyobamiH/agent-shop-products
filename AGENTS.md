@@ -125,3 +125,5 @@ Run `python3 scripts/validate-agent-foundations.py` and `git diff --check`;
 after commit also run `python3 scripts/validate-agent-foundations.py --git-archive HEAD`.
 This offline structure/link check is not application testing or a CI/security gate.
 Run `python3 scripts/test-agent-foundations.py` for isolated positive and negative validator fixtures.
+
+The foundation validator and its fixture tests require Python 3.9 or newer.
