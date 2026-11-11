@@ -2,6 +2,7 @@
 import os
 from urllib.parse import urlsplit
 from playwright.async_api import expect
+from browser_actions import pointer_click, wait_for_condition
 BASE = os.environ.get('AGENT_SHOP_E2E_ORIGIN', 'http://localhost:8080').rstrip('/')
 ORIGIN = 'https://agents.proofandstate.com'
 VERSION = '2026-10-14.2'
@@ -20,7 +21,7 @@ async def application_context(browser, width=390, diagnostic=False, stale_consen
     if diagnostic:
         await context.add_init_script("sessionStorage.setItem('agent-shop:analytics-diagnostic', 'operator')")
     if stale_consent:
-        await context.add_init_script("if(!localStorage.getItem('agent-shop:analytics-consent')){localStorage.setItem('agent-shop:analytics-consent', JSON.stringify({version:'2026-10-14.1',choice:'granted',timestamp:Date.now()}))}")
+        await context.add_init_script("if(!sessionStorage.getItem('agent-shop:e2e-stale-consent-seeded')){localStorage.setItem('agent-shop:analytics-consent', JSON.stringify({version:'2026-10-14.1',choice:'granted',timestamp:Date.now()}));sessionStorage.setItem('agent-shop:e2e-stale-consent-seeded','1')}")
     if broken_storage:
         await context.add_init_script("const original = Storage.prototype.setItem; Storage.prototype.setItem = function(key,value){if(key==='agent-shop:analytics-consent')throw Error('Fixture storage unavailable');return original.call(this,key,value)}")
     async def intercept(route):
@@ -40,7 +41,7 @@ async def application_context(browser, width=390, diagnostic=False, stale_consen
     await context.route('**/*', intercept)
     return context, tags
 
-async def activate(locator):
+async def activate(page, locator):
     # Exercise genuine keyboard input when the local WSL compositor is unavailable.
     # CI keeps pointer activation; neither path changes consent state directly.
     if os.environ.get('PLAYWRIGHT_KEYBOARD_ACTIVATION') == '1':
@@ -48,7 +49,7 @@ async def activate(locator):
         await expect(locator).to_be_focused()
         await locator.press('Enter')
     else:
-        await locator.click()
+        await pointer_click(page, locator)
 
 async def events(page):
     return await page.evaluate("(window.__gaCommands || []).filter(x=>x[0]==='event').map(x=>({name:x[1],params:x[2]}))")
@@ -60,13 +61,13 @@ async def application_acceptance(browser):
         await page.goto(ORIGIN + '/solutions?utm_source=linkedin&utm_medium=social&utm_campaign=agent_shop_evidence', wait_until='networkidle')
         await expect(page.get_by_role('region', name='Analytics preferences')).to_be_visible()
         assert not tags and await page.locator('#agent-shop-analytics').count() == 0
-        await activate(page.get_by_role('button', name='Reject analytics', exact=True))
-        await page.wait_for_load_state('networkidle')
+        async with page.expect_navigation(wait_until='networkidle'):
+            await activate(page, page.get_by_role('button', name='Reject analytics', exact=True))
         await expect(page.get_by_role('region', name='Analytics preferences')).to_have_count(0)
         assert not tags
-        await activate(page.get_by_role('button', name='Analytics settings', exact=True))
-        await activate(page.get_by_role('button', name='Allow analytics', exact=True))
-        await page.wait_for_function("(window.__gaCommands || []).some(x=>x[0]==='event')")
+        await activate(page, page.get_by_role('button', name='Analytics settings', exact=True))
+        await activate(page, page.get_by_role('button', name='Allow analytics', exact=True))
+        await wait_for_condition(page, "(window.__gaCommands || []).some(x=>x[0]==='event')")
         assert len(tags) == 1
         first = (await events(page))[0]
         assert first['name'] == 'page_view'
@@ -75,20 +76,20 @@ async def application_acceptance(browser):
         assert first['params']['discovery_source'] == 'linkedin'
         assert 'utm_' not in str(first)
         await page.goto(ORIGIN + '/capabilities', wait_until='networkidle')
-        await page.wait_for_function("(window.__gaCommands || []).some(x=>x[0]==='event')")
-        await activate(page.locator('a[data-discovery-event="select_capability"]').first)
-        await page.wait_for_function("(window.__gaCommands || []).some(x=>x[0]==='event'&&x[1]==='select_capability')")
+        await wait_for_condition(page, "(window.__gaCommands || []).some(x=>x[0]==='event')")
+        await activate(page, page.locator('a[data-discovery-event="select_capability"]').first)
+        await wait_for_condition(page, "(window.__gaCommands || []).some(x=>x[0]==='event'&&x[1]==='select_capability')")
         assert any(e['name'] == 'select_capability' for e in await events(page))
         await page.goto(ORIGIN + '/integration-services', wait_until='networkidle')
-        await page.wait_for_function("(window.__gaCommands || []).some(x=>x[0]==='event')")
+        await wait_for_condition(page, "(window.__gaCommands || []).some(x=>x[0]==='event')")
         await page.evaluate("document.addEventListener('click',e=>{if(e.target.closest('a[data-discovery-event=quote_click]'))e.preventDefault()})")
-        await activate(page.get_by_role('link', name='Request a scoped integration quote', exact=True))
+        await activate(page, page.get_by_role('link', name='Request a scoped integration quote', exact=True))
         assert any(e['name'] == 'quote_click' for e in await events(page))
         await page.evaluate("document.cookie='agent_shop_ga=fixture; Path=/; Secure';document.cookie='essential_order=keep; Path=/; Secure'")
-        await activate(page.get_by_role('button', name='Analytics settings', exact=True))
+        await activate(page, page.get_by_role('button', name='Analytics settings', exact=True))
         assert await page.evaluate('document.documentElement.scrollWidth <= innerWidth')
-        await activate(page.get_by_role('button', name='Reject analytics', exact=True))
-        await page.wait_for_load_state('networkidle')
+        async with page.expect_navigation(wait_until='networkidle'):
+            await activate(page, page.get_by_role('button', name='Reject analytics', exact=True))
         assert 'agent_shop_ga' not in await page.evaluate('document.cookie')
         assert 'essential_order=keep' in await page.evaluate('document.cookie')
         count = len(tags)
@@ -104,8 +105,8 @@ async def application_acceptance(browser):
     context, tags = await application_context(browser, diagnostic=True)
     page = await context.new_page()
     await page.goto(ORIGIN + '/solutions', wait_until='networkidle')
-    await activate(page.get_by_role('button', name='Allow analytics', exact=True))
-    await page.wait_for_function("(window.__gaCommands || []).some(x=>x[0]==='event')")
+    await activate(page, page.get_by_role('button', name='Allow analytics', exact=True))
+    await wait_for_condition(page, "(window.__gaCommands || []).some(x=>x[0]==='event')")
     observed = await events(page)
     assert observed and all(e['name'] == 'agent_shop_diagnostic' for e in observed)
     assert observed[0]['params']['diagnostic_event'] == 'page_view'
@@ -113,7 +114,7 @@ async def application_acceptance(browser):
     context, tags = await application_context(browser, broken_storage=True)
     page = await context.new_page()
     await page.goto(ORIGIN + '/solutions', wait_until='networkidle')
-    await activate(page.get_by_role('button', name='Allow analytics', exact=True))
+    await activate(page, page.get_by_role('button', name='Allow analytics', exact=True))
     await expect(page.get_by_role('alert')).to_contain_text('could not be saved')
     assert not tags
     await context.close()

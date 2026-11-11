@@ -6,6 +6,7 @@ import subprocess
 import tempfile
 from pathlib import Path
 from playwright.async_api import async_playwright, expect
+from browser_actions import wait_for_condition
 BASE = os.environ.get("AGENT_SHOP_E2E_ORIGIN", "http://localhost:8080").rstrip("/")
 
 async def run():
@@ -35,13 +36,13 @@ async def run():
                     await route.abort()
             await page.route("**/*", isolate)
             await page.goto("https://analytics-fixture.invalid/")
-            await page.wait_for_function("Boolean(window.analyticsFixture)")
+            await wait_for_condition(page, "Boolean(window.analyticsFixture)")
             await page.evaluate("analyticsFixture.visit('/solutions', null)")
             await page.evaluate("analyticsFixture.visit('/solutions', 'denied')")
             assert not google_requests
             assert await page.evaluate("window.agentShopAnalyticsLayer === undefined")
             await page.evaluate("analyticsFixture.visit('/solutions?utm_source=linkedin&utm_medium=social&utm_campaign=agent_shop_evidence', 'granted')")
-            await page.wait_for_function("Boolean(document.getElementById('agent-shop-analytics'))")
+            await wait_for_condition(page, "Boolean(document.getElementById('agent-shop-analytics'))")
             await page.wait_for_timeout(100)
             assert len(google_requests) == 1
             commands = await page.evaluate("agentShopAnalyticsLayer.map(x => Array.from(x))")
