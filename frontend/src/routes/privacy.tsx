@@ -19,7 +19,7 @@ function WebsitePrivacy() {
     <PageShell>
       <article className="max-w-3xl space-y-7 text-sm leading-7">
         <h1 className="text-3xl font-semibold">Website privacy and optional analytics</h1>
-        <p>Version {CONSENT_VERSION} · 14 October 2026</p>
+        <p>Version {CONSENT_VERSION} · 14 November 2026</p>
         <p>
           <strong>Current status:</strong>{" "}
           {enabled
@@ -62,7 +62,14 @@ function WebsitePrivacy() {
             Our events contain canonical public paths and fixed campaign labels, not free-text
             searches, full referring URLs, enquiry contents, email addresses, order references or
             access tokens. Private order-completion and API routes are excluded. URLs containing
-            unrecognised parameters are not measured.
+            unrecognised parameters are not measured. After you consent, the browser can recognise
+            referrals from a fixed list of AI assistants (including ChatGPT, Claude, Perplexity,
+            Copilot, Gemini and DeepSeek). Only a fixed assistant-domain label is sent as a campaign
+            source; the referring URL, path, query and conversation details are not included in
+            optional analytics events. Normal website requests may separately include
+            browser-supplied referral headers processed by Cloudflare under the hosting policy.
+            Known campaign links take precedence. An AI referral label does not prove the assistant
+            cited or recommended Agent Shop.
           </p>
           <p className="mt-3">
             Google Analytics uses a pseudonymous browser identifier and processes device and network

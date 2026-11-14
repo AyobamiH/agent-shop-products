@@ -109,3 +109,17 @@ Root DEC-021 permits the specifically verified Agent Shop stream under consent v
 ## DEC-022 — Explicit live/test public offer mode
 
 Root DEC-022 removes market-response dependencies from release work. Active public offers expose their real configured `mode` so test checkout cannot be accepted as live. Source-governed release expectation checks the exact price/policy rather than permanently requiring closed commerce. No automatic approval, first-customer requirement or change to payment, recovery or private data authority is introduced.
+
+## DEC-023 — Consented AI assistant referral classification (14 November 2026)
+
+At the owner's request, Agent Shop's existing optional discovery analytics may classify
+known AI assistant referring origins into a fixed source domain label *only after*
+valid consent and only on already-eligible public routes. The full referrer, prompts,
+conversation paths, query strings and fragments must not be recorded or passed to GA4.
+An approved existing UTM campaign takes precedence; arbitrary source names, unsafe
+queries, private routes and all non-consented collection remain excluded.
+The consent version is renewed to 2026-11-14.1 and the website privacy notice updated.
+The existing Search Console Operator GA4 assistant-domain selection is reused for
+reporting, with no second vendor, new tracker, cross-site identity join or automatic
+citation claim. Actual assistant citations require separate independently sourced
+evidence; traffic/referrers alone do not prove citations, sales or qualified enquiries.

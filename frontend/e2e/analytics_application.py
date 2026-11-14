@@ -5,7 +5,7 @@ from playwright.async_api import expect
 from browser_actions import pointer_click, wait_for_condition
 BASE = os.environ.get('AGENT_SHOP_E2E_ORIGIN', 'http://localhost:8080').rstrip('/')
 ORIGIN = 'https://agents.proofandstate.com'
-VERSION = '2026-10-14.2'
+VERSION = '2026-11-14.1'
 TAG_STUB = '''
 window.__gaCommands = (window.agentShopAnalyticsLayer || []).map(x => Array.from(x));
 const originalPush = window.agentShopAnalyticsLayer.push.bind(window.agentShopAnalyticsLayer);
@@ -21,7 +21,7 @@ async def application_context(browser, width=390, diagnostic=False, stale_consen
     if diagnostic:
         await context.add_init_script("sessionStorage.setItem('agent-shop:analytics-diagnostic', 'operator')")
     if stale_consent:
-        await context.add_init_script("if(!sessionStorage.getItem('agent-shop:e2e-stale-consent-seeded')){localStorage.setItem('agent-shop:analytics-consent', JSON.stringify({version:'2026-10-14.1',choice:'granted',timestamp:Date.now()}));sessionStorage.setItem('agent-shop:e2e-stale-consent-seeded','1')}")
+        await context.add_init_script("if(!sessionStorage.getItem('agent-shop:e2e-stale-consent-seeded')){localStorage.setItem('agent-shop:analytics-consent', JSON.stringify({version:'2026-10-14.2',choice:'granted',timestamp:Date.now()}));sessionStorage.setItem('agent-shop:e2e-stale-consent-seeded','1')}")
     if broken_storage:
         await context.add_init_script("const original = Storage.prototype.setItem; Storage.prototype.setItem = function(key,value){if(key==='agent-shop:analytics-consent')throw Error('Fixture storage unavailable');return original.call(this,key,value)}")
     async def intercept(route):
@@ -117,4 +117,24 @@ async def application_acceptance(browser):
     await activate(page, page.get_by_role('button', name='Allow analytics', exact=True))
     await expect(page.get_by_role('alert')).to_contain_text('could not be saved')
     assert not tags
+    await context.close()
+    # Exercise actual document.referrer wiring in the real application.
+    context, tags = await application_context(browser)
+    page = await context.new_page()
+    private_referrer = 'https://chatgpt.com/c/private-conversation?token=must-not-emit'
+    await page.goto(ORIGIN + '/shop', referer=private_referrer, wait_until='networkidle')
+    await expect(page.get_by_role('region', name='Analytics preferences')).to_be_visible()
+    assert not tags
+    await activate(page, page.get_by_role('button', name='Allow analytics', exact=True))
+    await wait_for_condition(page, "(window.__gaCommands || []).some(x=>x[0]==='event')")
+    commands = await page.evaluate("window.__gaCommands")
+    event = next(c[2] for c in commands if c[0] == 'event')
+    config = next(c[2] for c in commands if c[0] == 'config')
+    assert event['discovery_source'] == 'chatgpt.com'
+    assert event['discovery_medium'] == 'referral'
+    assert config['campaign_source'] == 'chatgpt.com'
+    assert event['page_referrer'] == '' and config['ignore_referrer'] is True
+    assert private_referrer not in str(commands)
+    assert 'must-not-emit' not in str(commands)
+    assert len(tags) == 1
     await context.close()
