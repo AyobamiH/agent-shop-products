@@ -65,9 +65,11 @@ function WebsitePrivacy() {
             unrecognised parameters are not measured. After you consent, the browser can recognise
             referrals from a fixed list of AI assistants (including ChatGPT, Claude, Perplexity,
             Copilot, Gemini and DeepSeek). Only a fixed assistant-domain label is sent as a campaign
-            source; the referring URL, path, query and conversation details are not sent or retained
-            by Agent Shop. Known campaign links take precedence. An AI referral label does not prove
-            the assistant cited or recommended Agent Shop.
+            source; the referring URL, path, query and conversation details are not included in
+            optional analytics events. Normal website requests may separately include
+            browser-supplied referral headers processed by Cloudflare under the hosting policy.
+            Known campaign links take precedence. An AI referral label does not prove the assistant
+            cited or recommended Agent Shop.
           </p>
           <p className="mt-3">
             Google Analytics uses a pseudonymous browser identifier and processes device and network
