@@ -78,3 +78,25 @@ These sources inform the implementation. They do not settle the seller's outstan
 ## Release independence — 15 October 2026
 
 The owner explicitly rejects using this experiment, its 28 October end date or its first enquiry as a gate to code completion or production release. This document governs post-launch observation only. #25 and `docs/RELEASE_COMPLETION_20261015.md` govern the independent release; no click, visitor or first-buyer prerequisite exists.
+
+
+## AI-assistant referral extension — 14 November 2026
+
+DEC-023 introduces an opt-in, privacy-scoped extension to existing public-page events.
+After explicit renewed consent (2026-11-14.1), the browser locally classifies the
+document referrer against a fixed HTTPS assistant-domain allowlist that matches the
+Search Console Operator GA4 assistant source selection. The only transmitted value is
+a constant source domain (for example `chatgpt.com` or `claude.ai`) and
+`discovery_medium=referral`; referrer URLs, queries, conversations and identity
+are never sent. The raw string is not persisted, existing accepted campaigns win,
+and private/unsafe URLs remain excluded. Google's automatic referrer processing
+stays disabled. The output is consent-limited referral attribution, not proof that
+a model cited a page or that a person became a qualified customer.
+
+The discovery objective remains independently observable through: (1) Google
+URL Inspection and sitemap coverage; (2) actual assistant citation evidence
+requiring genuine externally observed answers and source links; (3) GA4
+consented assistant-referred sessions using the *existing* Search Console Operator
+`get_ga4_llm_traffic` operation; and (4) proven enquiries/conversions. None of
+these measures may be inferred solely from the others. No new monitoring
+schedule, credential, search-index submission or commerce authority is added.

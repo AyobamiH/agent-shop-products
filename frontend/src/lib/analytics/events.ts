@@ -2,6 +2,7 @@ import { getProductBySlug } from "@/domain/catalog/repository";
 import { getCapability } from "@/domain/capabilities/repository";
 import { SOLUTION_TRACKS } from "@/domain/commercial/decision";
 import { ANALYTICS_ORIGIN } from "./config";
+import type { AssistantSource } from "./assistant-referrals";
 
 const pages = new Set([
   "/",
@@ -120,16 +121,21 @@ export function discoveryEvent(
   href: string,
   name: string,
   selectedId?: string,
+  assistantSource?: AssistantSource | null,
 ): DiscoveryEvent | null {
   const page = safePage(href);
   if (!page || !["page_view", "select_capability", "quote_click"].includes(name)) return null;
+  // An existing reviewed UTM campaign wins. A confirmed assistant source may
+  // classify only otherwise-unattributed public pages.
+  const source = page.source === "unattributed" && assistantSource ? assistantSource : page.source;
   const parameters: Record<string, string> = {
     page_location: ANALYTICS_ORIGIN + page.path,
     page_referrer: "",
     page_title: "Agent Shop — " + page.pageGroup,
     page_group: page.pageGroup,
-    discovery_source: page.source,
+    discovery_source: source,
     discovery_campaign: page.campaign,
+    ...(source === assistantSource && !page.socialMedium ? { discovery_medium: "referral" } : {}),
     ...(page.socialMedium === "social" && page.socialContent
       ? { discovery_medium: page.socialMedium, discovery_content: page.socialContent }
       : {}),

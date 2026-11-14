@@ -3,6 +3,7 @@ import asyncio
 import json
 import os
 import subprocess
+import shutil
 import tempfile
 from pathlib import Path
 from playwright.async_api import async_playwright, expect
@@ -12,7 +13,15 @@ BASE = os.environ.get("AGENT_SHOP_E2E_ORIGIN", "http://localhost:8080").rstrip("
 async def run():
     with tempfile.TemporaryDirectory(prefix="agent-shop-analytics-e2e-") as directory:
         bundle = Path(directory) / "harness.js"
-        subprocess.run(["bun", "build", "e2e/fixtures/analytics-harness.ts", "--target", "browser", "--outfile", str(bundle)], check=True, capture_output=True)
+        # The same offline fixture can run on machines without the Bun executable.
+        # Both builders bundle into one isolated browser script; neither calls Google.
+        builder = (["bun", "build", "e2e/fixtures/analytics-harness.ts",
+                    "--target", "browser", "--outfile", str(bundle)]
+                   if shutil.which("bun") else
+                   ["node", "node_modules/rolldown/dist/cli.mjs",
+                    "e2e/fixtures/analytics-harness.ts", "--platform", "browser",
+                    "--format", "iife", "--file", str(bundle)])
+        subprocess.run(builder, check=True, capture_output=True)
         async with async_playwright() as p:
             options = {"headless": True}
             if os.environ.get("PLAYWRIGHT_CHROMIUM_EXECUTABLE"):
@@ -72,10 +81,27 @@ async def run():
             assert "essential_order=keep" in await page.evaluate("document.cookie")
             assert await page.locator("#agent-shop-analytics").count() == 0
             assert len(google_requests) == 1 and not unexpected
+            # A genuine consented assistant referral is classified by a fixed host
+            # only; raw chat paths/queries never reach the GA command layer.
+            await page.evaluate("analyticsFixture.setReferrer('https://chatgpt.com/c/private?token=hidden')")
+            await page.evaluate("analyticsFixture.visit('/shop', null)")
+            assert not await page.evaluate("agentShopAnalyticsLayer.length")
+            await page.evaluate("analyticsFixture.visit('/shop', 'granted')")
+            await wait_for_condition(page, "agentShopAnalyticsLayer.some(x => x[0] === 'event')")
+            commands = await page.evaluate("agentShopAnalyticsLayer.map(x => Array.from(x))")
+            assert next(c[2] for c in commands if c[0] == "config")["campaign_source"] == "chatgpt.com"
+            assert next(c[2] for c in commands if c[0] == "event")["discovery_source"] == "chatgpt.com"
+            assert "hidden" not in json.dumps(commands, default=str)
+            assert "/c/private" not in json.dumps(commands, default=str)
+            assert len(google_requests) == 2 and not unexpected
             await page.close()
-            from analytics_application import application_acceptance
-            await application_acceptance(browser)
+            if os.environ.get("AGENT_SHOP_E2E_FIXTURE_ONLY") != "1":
+                from analytics_application import application_acceptance
+                await application_acceptance(browser)
             await browser.close()
-    print("PASS: consent denial/grant/withdrawal, scoped-cookie removal, safe events, private-route exclusion, enabled consent-bound application and separated diagnostic events, crawlable content, phone/desktop; no Google or customer transaction")
+    if os.environ.get("AGENT_SHOP_E2E_FIXTURE_ONLY") == "1":
+        print("PASS: isolated consent, privacy, assistant attribution and event transport; full app acceptance NOT RUN")
+    else:
+        print("PASS: consent denial/grant/withdrawal, scoped-cookie removal, safe events, private-route exclusion, enabled consent-bound application and separated diagnostic events, crawlable content, phone/desktop; no Google or customer transaction")
 
 asyncio.run(run())

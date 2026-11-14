@@ -14,8 +14,12 @@ const config = {
   advertisingFeaturesDisabled: true,
   retentionMonths: 2,
 };
-const runtime = new DiscoveryRuntime(config, createGoogleTransport());
+let simulatedReferrer = "";
+const runtime = new DiscoveryRuntime(config, createGoogleTransport(), () => simulatedReferrer);
 const api = {
+  setReferrer(value: string) {
+    simulatedReferrer = value;
+  },
   visit(path: string, choice: ConsentChoice | null) {
     runtime.update(ANALYTICS_ORIGIN + path, choice);
   },
