@@ -6,7 +6,8 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { requireExactMainCI } from "./check-release-ci.mjs";
 import { verifyOwnerEquivalentCI } from "./owner-ci-equivalence.mjs";
-import { parseCandidateUpload } from "./parse-candidate-upload.mjs";
+import { reconcileOrUpload, reserveOneShotVersionAttempt } from "./worker-upload-control.mjs";
+import { makeVersionPageReader } from "./worker-version-reconciliation.mjs";
 import { activeVersion, guardedPromote, verifyCandidateMetadata } from "./guarded-promote.mjs";
 
 const repo = fileURLToPath(new URL("../", import.meta.url));
@@ -65,7 +66,8 @@ function execute(command, args, { cwd = repo, env = process.env, timeout = 18000
   const result = spawnSync(command, args, {
     cwd, env, encoding: "utf8", timeout, maxBuffer: 8_000_000,
   });
-  if (result.status !== 0) {
+  if (result.status !== 0 || result.error || result.signal) {
+    // A killed subprocess may have an empty or misleading stdout. Fail closed.
     // Child stderr may accidentally include API tokens. Never return it.
     throw Error("LOCAL_RELEASE_COMMAND_FAILED_" +
       path.basename(command).replace(/[^a-z0-9.-]/gi, "").slice(0, 25));
@@ -240,11 +242,25 @@ export async function runLocalRelease({ verifyOnly = false } = {}) {
   const runtimeEnv = {
     ...buildEnv, CLOUDFLARE_API_TOKEN: scoped.token, CLOUDFLARE_ACCOUNT_ID: scoped.accountId,
   };
-  const uploaded = execute(bun, ["x", "wrangler@4.135.0", "versions", "upload",
-    "--config", "wrangler.jsonc", "--preview-alias", "release-" + sha.slice(0, 8),
-    "--tag", sha, "--message", "owner scoped release " + sha],
-  { cwd: storefront, env: runtimeEnv });
-  const { versionId, previewURL } = parseCandidateUpload(uploaded, sha);
+  const readVersionPage = makeVersionPageReader({ baseUrl: versionPath, token: scoped.token });
+  // One intent per source prevents duplicate version uploads after crashes and
+  // ambiguous responses. An existing exact-tagged provider version can be
+  // recovered without consuming a new intent.
+  const candidateResult = await reconcileOrUpload({
+    sha, readPage: readVersionPage,
+    reserveAttempt: () => {
+      reserveOneShotVersionAttempt({
+        folder: privateReceiptDir, sha, priorVersionId: priorId,
+        sourceTree: execute("git", ["rev-parse", "HEAD^{tree}"]).trim(),
+      });
+    },
+    upload: () => execute(bun, ["x", "wrangler@4.135.0", "versions", "upload",
+      "--config", "wrangler.jsonc", "--preview-alias", "release-" + sha.slice(0, 8),
+      "--tag", sha, "--message", "owner scoped release " + sha],
+    { cwd: storefront, env: runtimeEnv, timeout: 600000 }),
+    delay: (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
+  });
+  const { versionId, previewURL } = candidateResult;
   const preview = checkPublic(previewURL, commerceExpectation);
   const candidate = await cloudflare("GET", "/versions/" + versionId, scoped.token);
   verifyCandidateMetadata(candidate, sha, commerceExpectation);
@@ -260,6 +276,7 @@ export async function runLocalRelease({ verifyOnly = false } = {}) {
   });
   const receipt = {
     ...promoted, sha, ciVerdict: admission.ciVerdict, githubHostedCiStatus: admission.githubHostedCiStatus ?? "SUCCESS", preview,
+    candidateSource: candidateResult.source,
     channel: "owner-local-scoped-cloudflare",
     githubEnvironmentSecretUsed: false, commerceActive: promoted.publicAcceptance.commerceActive,
     verifiedAt: new Date().toISOString(),

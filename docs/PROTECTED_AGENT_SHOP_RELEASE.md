@@ -107,3 +107,39 @@ still triggers only the existing identity-fenced rollback, never data rollback.
 ## Signed-source owner-local CI equivalence — 2 November 2026
 
 The original GitHub Actions production lane remains **strict exact-main successful push CI**. If GitHub refuses to start the job because the account is billing-locked, the owner-approved independent local route may admit a single exact SHA only through the formal read-only CI-equivalent verifier documented in [CI_EQUIVALENCE_20261102.md](CI_EQUIVALENCE_20261102.md). It requires a first-party exact-main billing-lock job annotation (no executed steps), verified signed commit, clean source/tree identity, an explicit one-SHA approval, 16 zero-exit owner-host acceptance stages and owner-private hashed logs. The alternative result is `OWNER_LOCAL_EQUIVALENT_PASS`, not green GitHub CI. Existing Cloudflare candidate, commercial approval, immutable version, identity-fenced deployment and external readback gates remain mandatory. Do not run this alternative for real test failures, no missing evidence, or when normal GitHub CI is available.
+
+
+## One-shot Worker version upload reconciliation (15 November 2026)
+
+The owner-local production path previously lost the upload outcome near the
+wrapper's 180-second command timeout. The actual 14 November sanitised
+Wrangler log confirmed that 22 static assets were accepted, but the
+process stopped after beginning a Cloudflare GET, without an acknowledged
+Worker Version ID. The exact initiating failure is not demonstrated by that
+log alone. Cloudflare's full 47-version authoritative listing and
+deployment readback showed no exact-source candidate; static-assets acceptance
+was **not** a Worker version or production activation.
+
+The upload controller now admits at most **one** new candidate version upload
+per exact source SHA, reserving a private 0600 source/prior-version/UTC intent
+before the side effect. It first reads all Cloudflare version pages up to a
+bounded 2,000 records. If one existing Worker version is tagged with the exact
+approved SHA and carries the expected preview alias, it reuses that version
+without uploading again. Two exact-tag versions, a mismatched alias, missing
+pagination, provider read errors and a previous unresolved upload intent all
+block new upload. The pinned Wrangler process has a ten-minute upload-only
+timeout; it does not change test/build/dry-run deadlines.
+
+After any CLI outcome (including timeout or missing human-readable output),
+Cloudflare's version listing is queried again with bounded consistency waits.
+A provider-confirmed immutable version ID is required, followed by the
+existing full candidate metadata/bindings/commerce verification and independent
+public preview acceptance. A CLI zero exit, assets uploaded, an alias string
+or a guessed Version ID is never sufficient for promotion.
+
+On interruption, first reconcile exact-tag versions and the active
+deployment; never delete an unresolved attempt file or retry automatically.
+A fresh owner review of a new source/authority is required before clearing
+an unresolved one-shot intent. Preserve the earlier active version for
+fenced rollback. These controls do **not** change commerce, credential
+scopes, CI equivalence, production routes, or sitemap submissions.
