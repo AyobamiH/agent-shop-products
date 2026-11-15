@@ -138,3 +138,22 @@ async def application_acceptance(browser):
     assert 'must-not-emit' not in str(commands)
     assert len(tags) == 1
     await context.close()
+    # ChatGPT Search links carry the fixed official UTM source even where
+    # browsers omit cross-site document.referrer. Do not forward raw URL data.
+    context, tags = await application_context(browser)
+    page = await context.new_page()
+    await page.goto(ORIGIN + '/shop?utm_source=chatgpt.com', wait_until='networkidle')
+    await expect(page.get_by_role('region', name='Analytics preferences')).to_be_visible()
+    assert not tags
+    await activate(page, page.get_by_role('button', name='Allow analytics', exact=True))
+    await wait_for_condition(page, "(window.__gaCommands || []).some(x=>x[0]==='event')")
+    commands = await page.evaluate("window.__gaCommands")
+    event = next(c[2] for c in commands if c[0] == 'event')
+    config = next(c[2] for c in commands if c[0] == 'config')
+    assert event['discovery_source'] == config['campaign_source'] == 'chatgpt.com'
+    assert event['discovery_medium'] == config['campaign_medium'] == 'referral'
+    assert event['page_location'] == ORIGIN + '/shop'
+    assert event['page_referrer'] == '' and config['ignore_referrer'] is True
+    assert 'utm_source=' not in str(commands)
+    assert len(tags) == 1
+    await context.close()

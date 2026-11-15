@@ -93,7 +93,10 @@ export function safePage(href: string): SafePage | null {
   const params = url.searchParams;
   const keys = [...params.keys()];
   const reviewed = reviewedPostOnceQuery(path, params);
-  if (!reviewed) {
+  // ChatGPT Search appends precisely this public attribution parameter.
+  // Reject unknown/mixed parameters, duplicate sources and free text.
+  const chatgptSearch = params.size === 1 && params.get("utm_source") === "chatgpt.com";
+  if (!reviewed && !chatgptSearch) {
     if (
       keys.some((key) => !["utm_source", "utm_medium", "utm_campaign"].includes(key)) ||
       new Set(keys).size !== keys.length
@@ -113,7 +116,11 @@ export function safePage(href: string): SafePage | null {
     pageGroup: capability ? "external_capability" : product ? "public_product" : path,
     source: reviewed ? reviewedPostOnce.source : (params.get("utm_source") ?? "unattributed"),
     campaign: reviewed ? reviewedPostOnce.campaign : (params.get("utm_campaign") ?? "none"),
-    socialMedium: reviewed ? "social" : (params.get("utm_medium") as "social" | "referral" | null),
+    socialMedium: reviewed
+      ? "social"
+      : chatgptSearch
+        ? "referral"
+        : (params.get("utm_medium") as "social" | "referral" | null),
     socialContent: reviewed ? reviewedPostOnce.content : null,
   };
 }
@@ -128,6 +135,9 @@ export function discoveryEvent(
   // An existing reviewed UTM campaign wins. A confirmed assistant source may
   // classify only otherwise-unattributed public pages.
   const source = page.source === "unattributed" && assistantSource ? assistantSource : page.source;
+  const fixedAssistantSource =
+    (source === assistantSource && !page.socialMedium) ||
+    (page.source === "chatgpt.com" && page.socialMedium === "referral");
   const parameters: Record<string, string> = {
     page_location: ANALYTICS_ORIGIN + page.path,
     page_referrer: "",
@@ -135,7 +145,7 @@ export function discoveryEvent(
     page_group: page.pageGroup,
     discovery_source: source,
     discovery_campaign: page.campaign,
-    ...(source === assistantSource && !page.socialMedium ? { discovery_medium: "referral" } : {}),
+    ...(fixedAssistantSource ? { discovery_medium: "referral" } : {}),
     ...(page.socialMedium === "social" && page.socialContent
       ? { discovery_medium: page.socialMedium, discovery_content: page.socialContent }
       : {}),

@@ -123,3 +123,21 @@ The existing Search Console Operator GA4 assistant-domain selection is reused fo
 reporting, with no second vendor, new tracker, cross-site identity join or automatic
 citation claim. Actual assistant citations require separate independently sourced
 evidence; traffic/referrers alone do not prove citations, sales or qualified enquiries.
+
+
+## DEC-024 — Official ChatGPT Search UTM admission (15 November 2026)
+
+OpenAI documents its ChatGPT search citations appending the single
+`utm_source=chatgpt.com` query parameter. The existing privacy-safe URL
+allowlist dropped these visits entirely even with analytics consent.
+Only that single exact key/value may now be classified as the fixed
+`chatgpt.com` referral source on existing public pages, including product
+pages. Extra or duplicate query keys, lookalike domains, arbitrary campaigns,
+private paths, unsafe fragments and no-consent activity remain excluded.
+
+This is a narrow implementation of DEC-023's already-approved fixed assistant
+source label, not an additional data category: the existing consent version is
+retained. Transmit only canonical page location, the fixed source and medium;
+never raw URLs, full referrers or conversation identifiers. The UTM marker
+is a source claim, **not independently verified proof** of a human referral,
+assistant citation, qualified enquiry or payment.
