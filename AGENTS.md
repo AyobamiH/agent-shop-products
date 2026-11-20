@@ -100,3 +100,30 @@ A product/catalogue change is complete only when:
 - JSON remains valid;
 - documentation remains consistent;
 - the change does not expose private/premium material unintentionally.
+
+## Repository-owned agent foundations
+
+Before every development change, including documentation-only work, read the
+[local Secure API Delivery skill](.agents/skills/secure-api-delivery/SKILL.md)
+and the [repository knowledge entry point](.agents/knowledge/README.md).
+If the skill is absent from your catalog, open that relative file directly.
+These versioned files are sufficient for discovery without a home-directory skill.
+
+Perform the skill's initial applicability review: name the requested scope,
+exact revision, trust boundaries, permitted tests, and evidence limits. For
+low-risk documentation work explain why runtime/API checks are not applicable;
+never skip the initial scope review or imply security certification.
+Preserve existing repository instructions, narrower directory rules, owner
+work, security controls, and release gates. This guidance grants no authority
+to publish, deploy, access secrets, scan live systems, or spend money.
+
+Update relevant repository knowledge with architecture, behavior, command, and
+boundary changes in the same change. Preserve source-backed rationale and
+verified lessons, not raw conversations, secrets, private host inventories, or
+stale live-status claims. Report conflicts rather than silently replacing policy.
+Run `python3 scripts/validate-agent-foundations.py` and `git diff --check`;
+after commit also run `python3 scripts/validate-agent-foundations.py --git-archive HEAD`.
+This offline structure/link check is not application testing or a CI/security gate.
+Run `python3 scripts/test-agent-foundations.py` for isolated positive and negative validator fixtures.
+
+The foundation validator and its fixture tests require Python 3.9 or newer.
