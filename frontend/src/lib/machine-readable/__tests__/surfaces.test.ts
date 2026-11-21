@@ -4,7 +4,11 @@ import { catalogSource } from "@/domain/catalog/source";
 import { buildProductJsonLd } from "@/lib/jsonld/product";
 import { absoluteUrl } from "@/lib/site";
 import { buildAgentsTxt } from "../agents";
-import { SUBCONTRACTING_CAPABILITY_SLUG, SUBCONTRACTING_SERVICE_GUIDE, SUBCONTRACTING_SERVICE_CATALOGUE } from "@/features/agent-discovery/subcontracting-source";
+import {
+  SUBCONTRACTING_CAPABILITY_SLUG,
+  SUBCONTRACTING_SERVICE_GUIDE,
+  SUBCONTRACTING_SERVICE_CATALOGUE,
+} from "@/features/agent-discovery/subcontracting-source";
 import { buildCatalogJson } from "../catalog";
 import { buildLlmsTxt } from "../llms";
 import { buildProductMarkdown } from "../product-markdown";
@@ -12,7 +16,10 @@ import { buildRobotsTxt, EXPLICIT_CRAWLER_ALLOWLIST } from "../robots";
 
 const products = listProducts();
 const skills = products.filter((product) => product.productType === "skill");
-const catalogJson = buildCatalogJson() as { productCount: number; products: { slug: string; detailUrl: string; rawUrl: string }[] };
+const catalogJson = buildCatalogJson() as {
+  productCount: number;
+  products: { slug: string; detailUrl: string; rawUrl: string }[];
+};
 const llmsTxt = buildLlmsTxt();
 const agentsTxt = buildAgentsTxt();
 
@@ -61,9 +68,23 @@ describe("agent discovery surfaces", () => {
     expect(JSON.stringify(catalogJson)).not.toContain(SUBCONTRACTING_SERVICE_CATALOGUE);
   });
 
+  it("points to the authoritative runtime kit offer instead of asserting a stale payment state", () => {
+    for (const guidance of [agentsTxt, llmsTxt]) {
+      expect(guidance).toContain(absoluteUrl("/api/v1/commerce/offers"));
+      expect(guidance).toContain(absoluteUrl("/private-kits"));
+      expect(guidance).not.toContain("purchase and paid kit fulfilment: not available");
+      expect(guidance).not.toContain(
+        "Paid execution kits, bundles and install/buy/update CLI commands are not live",
+      );
+    }
+    expect(agentsTxt).toContain("CLI buy/install/update are roadmap only");
+    expect(llmsTxt).toContain("CLI buy/install/update remain unimplemented");
+  });
+
   it("withholds full prompt and skill payload bodies", () => {
     const combined = JSON.stringify(catalogJson) + llmsTxt + agentsTxt;
-    for (const marker of ["```", "## System role", "<system>", "---\nname:"]) expect(combined).not.toContain(marker);
+    for (const marker of ["```", "## System role", "<system>", "---\nname:"])
+      expect(combined).not.toContain(marker);
     for (const product of products) {
       const markdown = buildProductMarkdown(product);
       expect(markdown).toContain("PROMPT.md / SKILL.md payload bodies are not published");
