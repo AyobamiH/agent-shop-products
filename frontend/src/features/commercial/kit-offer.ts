@@ -75,6 +75,7 @@ export function parseKitCatalogue(value: unknown): VerifiedCatalogue {
   if (
     !value["commerceActive"] &&
     (entry["availability"] !== "planned" ||
+      entry["currency"] !== "gbp" ||
       ["unitAmountPence", "priceId", "mode"].some((key) => entry[key] !== undefined))
   ) {
     throw Error("Closed private-kit offer terms are inconsistent");

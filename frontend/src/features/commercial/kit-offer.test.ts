@@ -30,7 +30,7 @@ describe("private-kit offer boundary", () => {
       ...live,
       commerceActive: false,
       offers: [{ id: KIT_ID, title: offer.title, summary: offer.summary,
-        version: offer.version, availability: "planned" }],
+        version: offer.version, availability: "planned", currency: "gbp" }],
     };
     expect(parseKitCatalogue(closed).commerceActive).toBe(false);
   });
@@ -40,11 +40,13 @@ describe("private-kit offer boundary", () => {
       schemaVersion: 1,
       commerceActive: false,
       offers: [{ id: KIT_ID, title: offer.title, summary: offer.summary,
-        version: offer.version, availability: "planned" }],
+        version: offer.version, availability: "planned", currency: "gbp" }],
     };
     for (const changed of [
       { availability: "purchase_available" },
       { mode: "live" },
+      { currency: "usd" },
+      { currency: undefined },
       { unitAmountPence: 900 },
       { priceId: "price_not_public" },
     ]) {
