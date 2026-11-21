@@ -34,5 +34,8 @@ export function verifyCommercialGuidance({
     obsoleteBuyerCopy.some((claim) => privateKitHtml.includes(claim))) {
     throw Error("private-kits: STALE_BUYER_COPY");
   }
+  if (!privateKitHtml.includes("Checking current kit availability and price.")) {
+    throw Error("private-kits: MISSING_NEUTRAL_AVAILABILITY_STATUS");
+  }
   return { commercialGuidance: "PASS" };
 }

@@ -50,3 +50,14 @@ test("rejects stale private-kit SSR even if the client would correct it later", 
     }), /STALE_BUYER_COPY/);
   }
 });
+
+test("rejects a missing neutral SSR status despite plausible alternative copy", () => {
+  for (const privateKitHtml of [
+    "",
+    "Private Production Agent Operating Kit — Online checkout is closed.",
+  ]) {
+    assert.throws(() => verifyCommercialGuidance({
+      ...valid, privateKitHtml,
+    }), /MISSING_NEUTRAL_AVAILABILITY_STATUS/);
+  }
+});
