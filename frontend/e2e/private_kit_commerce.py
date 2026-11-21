@@ -45,6 +45,51 @@ async def main():
         assert 'unitAmountPence' not in catalogue['offers'][0]
         assert 'priceId' not in catalogue['offers'][0]
 
+        # HTTP failures mean unknown availability, never a confirmed closure.
+        async def fail_offers(route):
+            await route.fulfill(status=500, content_type='application/json', body='{}')
+
+        await page.route('**/api/v1/commerce/offers', fail_offers)
+        await page.reload(wait_until='domcontentloaded')
+        await expect(page.get_by_text('Current kit availability cannot be confirmed')).to_be_visible()
+        assert await page.get_by_text('Private-kit checkout is not yet open').count() == 0
+        assert await page.get_by_text('Planned introductory price:', exact=False).count() == 0
+        assert await page.get_by_role('button', name='Continue to secure checkout').count() == 0
+        await page.unroute('**/api/v1/commerce/offers', fail_offers)
+
+        # Global off must supersede a contradictory purchase_available offer.
+        live_offer = {
+            'id': 'private-production-agent-operating-kit',
+            'title': 'Private Production Agent Operating Kit',
+            'summary': 'Runtime guard and recovery cases',
+            'version': '2026.10.1',
+            'availability': 'purchase_available',
+            'unitAmountPence': 900,
+            'termsUrl': '/legal/kit-terms',
+            'licenceUrl': '/legal/kit-licence',
+            'refundUrl': '/legal/kit-refunds',
+        }
+        async def closed_global(route):
+            await route.fulfill(status=200, content_type='application/json',
+                                body=json.dumps({'commerceActive': False, 'offers': [live_offer]}))
+
+        await page.route('**/api/v1/commerce/offers', closed_global)
+        await page.reload(wait_until='domcontentloaded')
+        await expect(page.get_by_text('Private-kit checkout is not yet open')).to_be_visible()
+        assert await page.get_by_role('button', name='Continue to secure checkout').count() == 0
+        await page.unroute('**/api/v1/commerce/offers', closed_global)
+
+        # Mocked live UI: verify price and button, never click or charge.
+        async def live_global(route):
+            await route.fulfill(status=200, content_type='application/json',
+                                body=json.dumps({'commerceActive': True, 'offers': [live_offer]}))
+
+        await page.route('**/api/v1/commerce/offers', live_global)
+        await page.reload(wait_until='domcontentloaded')
+        await expect(page.get_by_role('button', name='Continue to secure checkout')).to_be_visible()
+        await expect(page.get_by_text('£9.00', exact=True)).to_be_visible()
+        await page.unroute('**/api/v1/commerce/offers', live_global)
+
         unsafe = await page.request.post(
             BASE + '/api/v1/commerce/checkout',
             data=json.dumps({'offerId': 'private-production-agent-operating-kit'}),

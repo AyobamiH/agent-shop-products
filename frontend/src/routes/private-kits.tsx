@@ -36,6 +36,8 @@ function PrivateKitsPage() {
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [commerceActive, setCommerceActive] = useState(false);
+  const [offerLookupFailed, setOfferLookupFailed] = useState(false);
 
   useEffect(() => {
     const abort = new AbortController();
@@ -45,11 +47,16 @@ function PrivateKitsPage() {
         return response.json() as Promise<Catalogue>;
       })
       .then((data) => {
+        if (!data || typeof data.commerceActive !== "boolean" || !Array.isArray(data.offers)) {
+          throw new Error("Invalid commerce availability response");
+        }
+        setCommerceActive(data.commerceActive);
         setOffer(data.offers.find((item) => item.id === KIT_ID) ?? null);
         setLoading(false);
       })
       .catch(() => {
         if (!abort.signal.aborted) {
+          setOfferLookupFailed(true);
           setError("Availability is temporarily unavailable. Please try again. No payment has been started.");
           setLoading(false);
         }
@@ -57,7 +64,7 @@ function PrivateKitsPage() {
     return () => abort.abort();
   }, []);
 
-  const available = offer?.availability === "purchase_available" && typeof offer.unitAmountPence === "number";
+  const available = !offerLookupFailed && commerceActive && offer?.availability === "purchase_available" && typeof offer.unitAmountPence === "number" && Number.isSafeInteger(offer.unitAmountPence) && offer.unitAmountPence > 0;
   const price = available
     ? new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(offer!.unitAmountPence! / 100)
     : null;
@@ -124,6 +131,17 @@ function PrivateKitsPage() {
                 <p className="font-medium">Checking current kit availability and price.</p>
                 <p role="status" className="mt-2 text-sm text-muted-foreground">
                   Checking whether online orders are open. No payment has been started.
+                </p>
+                <a href="/integration-services" className="mt-4 inline-block text-sm text-primary underline underline-offset-4">
+                  Enquire about professional integration
+                </a>
+              </div>
+            ) : offerLookupFailed ? (
+              <div>
+                <p className="font-medium">Current kit availability cannot be confirmed</p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  The live offer could not be checked. Availability and price are unknown,
+                  and no payment has been started. Please try again.
                 </p>
                 <a href="/integration-services" className="mt-4 inline-block text-sm text-primary underline underline-offset-4">
                   Enquire about professional integration
