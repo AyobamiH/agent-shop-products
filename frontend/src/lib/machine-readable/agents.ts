@@ -75,7 +75,7 @@ export function buildAgentsTxt(): string {
     `external provider: ${SUBCONTRACTING_PROVIDER_NAME}`,
     `provider agent guide: ${SUBCONTRACTING_SERVICE_GUIDE}`,
     `provider live service catalogue: ${SUBCONTRACTING_SERVICE_CATALOGUE}`,
-    "- Agent Shop provides capability metadata only; it does not accept paid jobs, issue quotes, grant repository access or execute purchases.",
+    "- This professional-integration discovery route supplies capability metadata only: it does not accept paid service jobs, issue quotes, grant repository access or execute integration work. Private-kit checkout is a separate browser flow governed by the live offers endpoint.",
     "- Verify the provider's live contract independently. Receipt, owner acceptance, price, payment and completion are separate evidence states.",
     "",
     "## Crawl policy",

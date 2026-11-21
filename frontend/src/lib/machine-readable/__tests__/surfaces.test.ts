@@ -63,7 +63,7 @@ describe("agent discovery surfaces", () => {
     expect(agentsTxt).toContain(absoluteUrl(`/products/${SUBCONTRACTING_CAPABILITY_SLUG}`));
     expect(agentsTxt).toContain(SUBCONTRACTING_SERVICE_GUIDE);
     expect(agentsTxt).toContain(SUBCONTRACTING_SERVICE_CATALOGUE);
-    expect(agentsTxt).toContain("does not accept paid jobs, issue quotes");
+    expect(agentsTxt).toContain("does not accept paid service jobs, issue quotes");
     expect(agentsTxt).toContain("Receipt, owner acceptance, price, payment and completion");
     expect(JSON.stringify(catalogJson)).not.toContain(SUBCONTRACTING_SERVICE_CATALOGUE);
   });
@@ -78,6 +78,8 @@ describe("agent discovery surfaces", () => {
       );
     }
     expect(agentsTxt).toContain("CLI buy/install/update are roadmap only");
+    expect(agentsTxt).toContain("Private-kit checkout is a separate browser flow");
+    expect(agentsTxt).not.toContain("Agent Shop provides capability metadata only;");
     expect(llmsTxt).toContain("CLI buy/install/update remain unimplemented");
   });
 
