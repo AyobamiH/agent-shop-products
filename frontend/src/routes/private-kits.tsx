@@ -3,18 +3,10 @@ import { createFileRoute, Link, Outlet, useMatchRoute } from "@tanstack/react-ro
 import { PageShell } from "@/components/layout/PageShell";
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import { buildPageHead } from "@/lib/seo/meta";
+import { KIT_ID, parseKitCatalogue, type KitOffer } from "@/features/commercial/kit-offer";
 
-type KitOffer = {
-  id: string; title: string; summary: string; version: string;
-  availability: string; unitAmountPence?: number; paymentModel?: string;
-  termsVersion?: string; licenceVersion?: string; refundPolicyVersion?: string;
-  termsUrl?: string; licenceUrl?: string; refundUrl?: string;
-  buyerRequirements?: string[];
-};
-type Catalogue = { offers: KitOffer[]; commerceActive: boolean };
 type CheckoutReceipt = { orderId: string; claimToken: string; checkoutUrl: string };
 const OFFER_URL = "/api/v1/commerce/offers";
-const KIT_ID = "private-production-agent-operating-kit";
 const PLANNED_PRICE_LABEL = "Planned introductory price: £9 one-off.";
 
 export const Route = createFileRoute("/private-kits")({
@@ -44,23 +36,12 @@ function PrivateKitsPage() {
     fetch(OFFER_URL, { signal: abort.signal, cache: "no-store" })
       .then(async (response) => {
         if (!response.ok) throw new Error("Commerce availability could not be checked");
-        return response.json() as Promise<Catalogue>;
+        return response.json() as Promise<unknown>;
       })
       .then((data) => {
-        if (!data || typeof data.commerceActive !== "boolean" || !Array.isArray(data.offers)) {
-          throw new Error("Invalid commerce availability response");
-        }
-        const matchingOffers = data.offers.filter((item) => item?.id === KIT_ID);
-        const selectedOffer = matchingOffers[0];
-        if (
-          !selectedOffer ||
-          matchingOffers.length !== 1 ||
-          !["planned", "purchase_available"].includes(selectedOffer.availability)
-        ) {
-          throw new Error("Canonical private-kit offer is missing or invalid");
-        }
-        setCommerceActive(data.commerceActive);
-        setOffer(selectedOffer);
+        const catalogue = parseKitCatalogue(data);
+        setCommerceActive(catalogue.commerceActive);
+        setOffer(catalogue.offer);
         setLoading(false);
       })
       .catch(() => {
