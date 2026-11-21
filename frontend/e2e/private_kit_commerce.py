@@ -84,6 +84,10 @@ async def main():
             'summary': 'Runtime guard and recovery cases',
             'version': '2026.10.1',
             'availability': 'purchase_available',
+            'mode': 'live',
+            'termsVersion': '2026-10-16.1',
+            'licenceVersion': '2026-10-16.1',
+            'refundPolicyVersion': '2026-10-16.1',
             'unitAmountPence': 900,
             'currency': 'gbp',
             'paymentModel': 'managed_payments',
@@ -117,6 +121,10 @@ async def main():
         for changed in [
             {'unitAmountPence': 800},
             {'currency': 'usd'},
+            {'mode': 'disabled'},
+            {'termsVersion': '2025-old'},
+            {'licenceVersion': None},
+            {'refundPolicyVersion': '2025-old'},
             {'termsUrl': 'https://example.invalid/legal/kit-terms'},
         ]:
             async def inconsistent_live(route):

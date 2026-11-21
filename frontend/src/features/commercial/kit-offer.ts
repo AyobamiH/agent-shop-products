@@ -7,6 +7,7 @@ export type KitOffer = {
   summary: string;
   version: string;
   availability: "planned" | "purchase_available";
+  mode?: string;
   currency?: string;
   unitAmountPence?: number;
   paymentModel?: string;
@@ -21,6 +22,7 @@ export type KitOffer = {
 
 type VerifiedCatalogue = { offer: KitOffer; commerceActive: boolean };
 const ORIGIN = "https://agents.proofandstate.com";
+const APPROVED_LEGAL_VERSION = "2026-10-16.1";
 const LEGAL = {
   termsUrl: ORIGIN + "/legal/kit-terms",
   licenceUrl: ORIGIN + "/legal/kit-licence",
@@ -58,9 +60,13 @@ export function parseKitCatalogue(value: unknown): VerifiedCatalogue {
   if (
     value["commerceActive"] &&
     (entry["availability"] !== "purchase_available" ||
+      entry["mode"] !== "live" ||
       entry["currency"] !== "gbp" ||
       entry["unitAmountPence"] !== 900 ||
       entry["paymentModel"] !== "managed_payments" ||
+      ["termsVersion", "licenceVersion", "refundPolicyVersion"].some(
+        (key) => entry[key] !== APPROVED_LEGAL_VERSION,
+      ) ||
       Object.entries(LEGAL).some(([key, url]) => entry[key] !== url))
   ) {
     throw Error("Live private-kit offer terms are inconsistent");
