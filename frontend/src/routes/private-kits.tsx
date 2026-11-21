@@ -50,8 +50,17 @@ function PrivateKitsPage() {
         if (!data || typeof data.commerceActive !== "boolean" || !Array.isArray(data.offers)) {
           throw new Error("Invalid commerce availability response");
         }
+        const matchingOffers = data.offers.filter((item) => item?.id === KIT_ID);
+        const selectedOffer = matchingOffers[0];
+        if (
+          !selectedOffer ||
+          matchingOffers.length !== 1 ||
+          !["planned", "purchase_available"].includes(selectedOffer.availability)
+        ) {
+          throw new Error("Canonical private-kit offer is missing or invalid");
+        }
         setCommerceActive(data.commerceActive);
-        setOffer(data.offers.find((item) => item.id === KIT_ID) ?? null);
+        setOffer(selectedOffer);
         setLoading(false);
       })
       .catch(() => {

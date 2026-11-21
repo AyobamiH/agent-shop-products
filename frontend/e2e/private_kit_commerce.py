@@ -57,6 +57,26 @@ async def main():
         assert await page.get_by_role('button', name='Continue to secure checkout').count() == 0
         await page.unroute('**/api/v1/commerce/offers', fail_offers)
 
+        # A 200 without the canonical kit is not proof that checkout is closed.
+        for malformed_offers in [
+            [],
+            [{'id': 'unrelated-kit', 'availability': 'purchase_available'}],
+            [{'id': 'private-production-agent-operating-kit', 'availability': 'unexpected'}],
+        ]:
+            async def missing_kit(route):
+                await route.fulfill(
+                    status=200, content_type='application/json',
+                    body=json.dumps({'commerceActive': True, 'offers': malformed_offers}),
+                )
+
+            await page.route('**/api/v1/commerce/offers', missing_kit)
+            await page.reload(wait_until='domcontentloaded')
+            await expect(page.get_by_text('Current kit availability cannot be confirmed')).to_be_visible()
+            assert await page.get_by_text('Private-kit checkout is not yet open').count() == 0
+            assert await page.get_by_text('Planned introductory price:', exact=False).count() == 0
+            assert await page.get_by_role('button', name='Continue to secure checkout').count() == 0
+            await page.unroute('**/api/v1/commerce/offers', missing_kit)
+
         # Global off must supersede a contradictory purchase_available offer.
         live_offer = {
             'id': 'private-production-agent-operating-kit',
