@@ -3,7 +3,7 @@ import { createFileRoute, Link, Outlet, useMatchRoute } from "@tanstack/react-ro
 import { PageShell } from "@/components/layout/PageShell";
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import { buildPageHead } from "@/lib/seo/meta";
-import { KIT_ID, parseKitCatalogue, type KitOffer } from "@/features/commercial/kit-offer";
+import { KIT_ID, parseKitCatalogue, verifiedCheckoutRedirect, type KitOffer } from "@/features/commercial/kit-offer";
 
 type CheckoutReceipt = { orderId: string; claimToken: string; checkoutUrl: string };
 const OFFER_URL = "/api/v1/commerce/offers";
@@ -74,10 +74,7 @@ function PrivateKitsPage() {
       if (!response.ok || !data.orderId || !data.claimToken || !data.checkoutUrl) {
         throw new Error(data.error || "CHECKOUT_UNAVAILABLE");
       }
-      const redirect = new URL(data.checkoutUrl);
-      if (redirect.protocol !== "https:" || redirect.hostname !== "checkout.stripe.com") {
-        throw new Error("UNTRUSTED_CHECKOUT");
-      }
+      const redirect = verifiedCheckoutRedirect(data.checkoutUrl);
       sessionStorage.setItem("agent-shop:commerce-order", data.orderId);
       sessionStorage.setItem("agent-shop:commerce-claim", data.claimToken);
       window.location.assign(redirect.toString());

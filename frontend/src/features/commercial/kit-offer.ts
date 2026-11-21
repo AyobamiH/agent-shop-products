@@ -82,3 +82,24 @@ export function parseKitCatalogue(value: unknown): VerifiedCatalogue {
   }
   return { commerceActive: value["commerceActive"], offer: entry as KitOffer };
 }
+
+/** Browser defence in depth: the checkout response is still server-authoritative. */
+export function verifiedCheckoutRedirect(value: unknown): URL {
+  let redirect: URL;
+  try {
+    if (typeof value !== "string") throw Error("UNTRUSTED_CHECKOUT");
+    redirect = new URL(value);
+  } catch {
+    throw Error("UNTRUSTED_CHECKOUT");
+  }
+  if (
+    redirect.protocol !== "https:" ||
+    redirect.hostname !== "checkout.stripe.com" ||
+    redirect.port !== "" ||
+    redirect.username !== "" ||
+    redirect.password !== ""
+  ) {
+    throw Error("UNTRUSTED_CHECKOUT");
+  }
+  return redirect;
+}
