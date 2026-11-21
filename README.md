@@ -8,7 +8,7 @@ Canonical source repository for AyobamiH prompt and skill products used by the a
 
 For hands-on work, [scope a repository repair or workflow integration](https://agents.proofandstate.com/integration-services?utm_source=github&utm_medium=referral&utm_campaign=agent_shop_integration). Describe one reproducible failure, the allowed changes and an acceptance test; a request is not an accepted quote, repository authority or payment.
 
-The [private reference kit](https://agents.proofandstate.com/private-kits?utm_source=github&utm_medium=referral&utm_campaign=agent_shop_private_kit) is distinct from public prompts and skills. Its approved introductory direction is **£9 one-off**, but online purchase is **not open**. The kit is a reference implementation, not a turnkey installation or a licence to third-party tools. No customer results or sales are implied.
+The [private reference kit](https://agents.proofandstate.com/private-kits?utm_source=github&utm_medium=referral&utm_campaign=agent_shop_private_kit) is distinct from public prompts and skills. Its approved introductory direction is **£9 one-off**, and checkout availability must be verified through [the runtime offers endpoint](https://agents.proofandstate.com/api/v1/commerce/offers). The kit is a reference implementation, not a turnkey installation or a licence to third-party tools. No customer results or sales are implied.
 
 ## Catalogue
 
@@ -55,7 +55,7 @@ AGENTS.md       Repository operating contract
 
 The earlier [25-product acceptance](docs/AGENT-SHOP-25-PRODUCTION-ACCEPTANCE-2026-10-09.md) and 12 October release receipts are historical checkpoints, not claims about the current deployment. The canonical [commercial launch issue](https://github.com/AyobamiH/agent-shop-products/issues/25) and [discovery-to-enquiry issue](https://github.com/AyobamiH/agent-shop-products/issues/53) record exact-source releases and independent production readbacks. Current counts derive from the public catalogue and bug-index endpoints rather than a copied historical release paragraph.
 
-The distinct £9 private kit has passed real Stripe test-mode payment, signed webhook, exact private delivery, refund and buyer-record recovery acceptance. **Live Checkout remains disabled** until the seller address, merchant profile and tax-registration mismatch are independently resolved. Consult [buyer-operation acceptance](docs/BUYER_OPERATIONS_ACCEPTANCE_20261012.md), [launch readiness](commerce/launch-readiness.json) and the [latest launch closeout](docs/LAUNCH_CLOSEOUT_20261012.md). A successfully deployed catalogue is not evidence of a live paid sale.
+The distinct £9 private kit has passed real Stripe test-mode payment, signed webhook, exact private delivery, refund and buyer-record recovery acceptance. Live checkout is governed by the source-reviewed release policy and observed runtime offer state; historical merchant blockers are not a permanent disabled flag. Consult [buyer-operation acceptance](docs/BUYER_OPERATIONS_ACCEPTANCE_20261012.md), [launch readiness](commerce/launch-readiness.json) and the [latest launch closeout](docs/LAUNCH_CLOSEOUT_20261012.md). A successfully deployed catalogue is not evidence of a live paid sale.
 
 Existing public prompts preserve their migration provenance. New public skills contain original generalised procedures and sanitised evidence. Future premium-only payloads require an explicit publication decision.
 

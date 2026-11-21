@@ -4,6 +4,7 @@ import { isDeepStrictEqual } from "node:util";
 import { resolve } from "node:path";
 import { verifyDiscoveryMeasurement } from "./verify-discovery-measurement.mjs";
 import { verifyRegistrySurface } from "./verify-registry-surface.mjs";
+import { verifyCommercialGuidance } from "./verify-commercial-guidance.mjs";
 import { SUPPORT_EMAIL } from "../src/lib/contact.ts";
 
 const origin = (process.env.ACCEPTANCE_ORIGIN ?? "").replace(/\/+$/, "");
@@ -108,6 +109,12 @@ requireValue(privateKitComplete.text.includes("Your kit order"),
 requireValue(privateKitComplete.text.includes("noindex"),
   "order completion route must not be indexed");
 const commerceAcceptance = verifyPublicCommerce(commerce, loadReleaseExpectation());
+const commercialGuidanceAcceptance = verifyCommercialGuidance({
+  agentsText: agentsTxt.text,
+  llmsText: llmsTxt.text,
+  privateKitHtml: privateKitPage.text,
+  canonicalOrigin,
+});
 
 const remoteCatalogue = JSON.parse(catalogueResult.text);
 requireValue(remoteCatalogue.productCount === products.length, "catalogue product count drift");
@@ -181,6 +188,7 @@ console.log(
     canonicalOrigin,
     products: products.length,
     ...commerceAcceptance,
+    ...commercialGuidanceAcceptance,
     ...registryAcceptance,
     ...discoveryAcceptance,
     crawlerAgentsChecked: crawlerAgents.length,

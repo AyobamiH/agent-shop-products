@@ -110,7 +110,7 @@ function PrivateKitsPage() {
           <p className="text-xs uppercase tracking-wide text-muted-foreground">Private Production Agent Operating Kit · v2026.10.1</p>
           <h2 className="mt-3 text-xl font-semibold">{offer?.title || "Private Production Agent Operating Kit"}</h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            {offer?.summary || "A proposed private execution pack with checked templates, runtime verification cases and failure-handling examples."}
+            {offer?.summary || "A private execution pack with checked templates, runtime verification cases and failure-handling examples."}
           </p>
           <p className="mt-4 text-sm">
             Open source stays free:{" "}
@@ -121,7 +121,7 @@ function PrivateKitsPage() {
           <div className="mt-5 border-t border-border pt-5">
             {loading ? (
               <div>
-                <p className="font-medium">{PLANNED_PRICE_LABEL}</p>
+                <p className="font-medium">Checking current kit availability and price.</p>
                 <p role="status" className="mt-2 text-sm text-muted-foreground">
                   Checking whether online orders are open. No payment has been started.
                 </p>
@@ -173,7 +173,7 @@ function PrivateKitsPage() {
             <li>Rollback and recovery worksheets for reviewing changes before applying them.</li>
           </ul>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            Once purchases open, delivery is for the purchased version with 30 days of bounded
+            Where purchase is offered, delivery is for the purchased version with 30 days of bounded
             archive-access and documented-test assistance. No automatic upgrade or deployment
             authority is included. The stated refund policy allows 14-day full refunds, including
             after download.
