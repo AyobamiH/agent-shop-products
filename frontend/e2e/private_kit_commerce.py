@@ -1,7 +1,7 @@
 """Browser acceptance: no charge, falsely ACTIVE price or private file is created.
 
-The private-kit route is deliberately visible but the purchase flow stays
-closed until its owner-approved merchant, legal text and delivery acceptance.
+This scenario exercises a deliberately closed local offer fixture. Live purchase
+availability must be verified independently against the running environment.
 """
 import asyncio
 import json
@@ -21,7 +21,9 @@ async def main():
         initial = await page.request.get(BASE + '/private-kits')
         assert initial.status == 200
         initial_html = await initial.text()
-        assert 'Planned introductory price: £9 one-off.' in initial_html
+        assert 'Checking current kit availability and price.' in initial_html
+        assert 'A proposed private execution pack' not in initial_html
+        assert 'Once purchases open' not in initial_html
         assert 'What is different from the free public reference?' in initial_html
         assert 'Continue to secure checkout' not in initial_html
 
