@@ -63,6 +63,7 @@ export function parseKitCatalogue(value: unknown): VerifiedCatalogue {
       entry["mode"] !== "live" ||
       entry["currency"] !== "gbp" ||
       entry["unitAmountPence"] !== 900 ||
+      entry["priceId"] !== undefined ||
       entry["paymentModel"] !== "managed_payments" ||
       ["termsVersion", "licenceVersion", "refundPolicyVersion"].some(
         (key) => entry[key] !== APPROVED_LEGAL_VERSION,

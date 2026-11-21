@@ -120,6 +120,7 @@ async def main():
         # an HTTP 200 with a mismatched price, currency or legal destination.
         for changed in [
             {'unitAmountPence': 800},
+            {'priceId': 'price_should_not_be_public'},
             {'currency': 'usd'},
             {'mode': 'disabled'},
             {'termsVersion': '2025-old'},

@@ -40,6 +40,7 @@ describe("private-kit offer boundary", () => {
       { unitAmountPence: 800 },
       { unitAmountPence: undefined },
       { unitAmountPence: "900" },
+      { priceId: "price_should_not_be_public" },
       { currency: "usd" },
       { currency: undefined },
       { paymentModel: "card" },
