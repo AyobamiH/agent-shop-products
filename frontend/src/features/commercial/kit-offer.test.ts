@@ -25,14 +25,33 @@ describe("private-kit offer boundary", () => {
     expect(parseKitCatalogue(live)).toEqual({ commerceActive: true, offer });
   });
 
-  it("retains genuine global closure and planned availability", () => {
+  it("retains genuine closure with canonical planned availability", () => {
     const closed = {
       ...live,
       commerceActive: false,
-      offers: [{ ...offer, availability: "planned", unitAmountPence: undefined }],
+      offers: [{ id: KIT_ID, title: offer.title, summary: offer.summary,
+        version: offer.version, availability: "planned" }],
     };
     expect(parseKitCatalogue(closed).commerceActive).toBe(false);
-    expect(parseKitCatalogue({ ...live, commerceActive: false }).commerceActive).toBe(false);
+  });
+
+  it("treats a contradictory globally disabled offer as unknown, not confirmed closed", () => {
+    const closed = {
+      schemaVersion: 1,
+      commerceActive: false,
+      offers: [{ id: KIT_ID, title: offer.title, summary: offer.summary,
+        version: offer.version, availability: "planned" }],
+    };
+    for (const changed of [
+      { availability: "purchase_available" },
+      { mode: "live" },
+      { unitAmountPence: 900 },
+      { priceId: "price_not_public" },
+    ]) {
+      expect(() => parseKitCatalogue({
+        ...closed, offers: [{ ...closed.offers[0], ...changed }],
+      })).toThrow();
+    }
   });
 
   it("rejects contradictory or missing live price, currency and payment authority", () => {

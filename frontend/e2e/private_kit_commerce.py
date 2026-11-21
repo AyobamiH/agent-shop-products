@@ -95,9 +95,26 @@ async def main():
             'licenceUrl': 'https://agents.proofandstate.com/legal/kit-licence',
             'refundUrl': 'https://agents.proofandstate.com/legal/kit-refunds',
         }
-        async def closed_global(route):
+        # Contradictory disabled flag + live offer is unknown, not confirmed closure.
+        async def contradictory_closed(route):
             await route.fulfill(status=200, content_type='application/json',
                                 body=json.dumps({'schemaVersion': 1, 'commerceActive': False, 'offers': [live_offer]}))
+
+        await page.route('**/api/v1/commerce/offers', contradictory_closed)
+        await page.reload(wait_until='domcontentloaded')
+        await expect(page.get_by_text('Current kit availability cannot be confirmed')).to_be_visible()
+        assert await page.get_by_text('Planned introductory price:', exact=False).count() == 0
+        assert await page.get_by_role('button', name='Continue to secure checkout').count() == 0
+        await page.unroute('**/api/v1/commerce/offers', contradictory_closed)
+
+        # Canonical disabled response is planned, without payment price or mode.
+        planned_offer = {key: value for key, value in live_offer.items()
+                         if key not in ('unitAmountPence', 'mode')}
+        planned_offer['availability'] = 'planned'
+
+        async def closed_global(route):
+            await route.fulfill(status=200, content_type='application/json',
+                                body=json.dumps({'schemaVersion': 1, 'commerceActive': False, 'offers': [planned_offer]}))
 
         await page.route('**/api/v1/commerce/offers', closed_global)
         await page.reload(wait_until='domcontentloaded')

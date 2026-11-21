@@ -72,5 +72,12 @@ export function parseKitCatalogue(value: unknown): VerifiedCatalogue {
   ) {
     throw Error("Live private-kit offer terms are inconsistent");
   }
+  if (
+    !value["commerceActive"] &&
+    (entry["availability"] !== "planned" ||
+      ["unitAmountPence", "priceId", "mode"].some((key) => entry[key] !== undefined))
+  ) {
+    throw Error("Closed private-kit offer terms are inconsistent");
+  }
   return { commerceActive: value["commerceActive"], offer: entry as KitOffer };
 }
