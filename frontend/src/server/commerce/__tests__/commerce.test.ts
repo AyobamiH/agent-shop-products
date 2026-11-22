@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { approvedOffer, publicOffers, settlementOffer } from "../config";
 import type { ApprovedOffer, CommerceEnv } from "../config";
-import { claimTokenHash, newClaimToken, verifyStripeSignature } from "../crypto";
+import { claimTokenHash, newClaimToken, readBoundedBody, verifyStripeSignature } from "../crypto";
 import { createStripeSession, getStripeSession, verifyPaidSession, verifyStripePrice } from "../stripe";
 import { handleCommerceRequest } from "../handler";
 import realIntroductorySession from "./fixtures/stripe-nine-pound-sandbox-20261010.json";
@@ -29,6 +29,60 @@ function ready(overrides: Overrides = {}): CommerceEnv {
 }
 const KIT = "private-production-agent-operating-kit";
 describe("Private kit gated commerce", () => {
+  it("enforces streamed byte limits without trusting Content-Length or UTF-16 length", async () => {
+    const raw = new TextEncoder().encode(JSON.stringify({ offerId: KIT }) + "€".repeat(1500));
+    expect(raw.byteLength).toBeGreaterThan(4096);
+    const checkoutRequest = new Request("https://agents.proofandstate.com/api/v1/commerce/checkout", {
+      method: "POST",
+      headers: { origin: "https://agents.proofandstate.com",
+        "sec-fetch-site": "same-origin", "content-type": "application/json" },
+      body: new ReadableStream<Uint8Array>({
+        start(controller) {
+          controller.enqueue(raw.slice(0, 1024));
+          controller.enqueue(raw.slice(1024));
+          controller.close();
+        },
+      }),
+      duplex: "half",
+    } as RequestInit & { duplex: "half" });
+    expect(checkoutRequest.headers.get("content-length")).toBeNull();
+    const response = await handleCommerceRequest(checkoutRequest, ready());
+    expect(response?.status).toBe(413);
+    expect(await response?.json()).toMatchObject({ error: "PAYLOAD_TOO_LARGE" });
+
+    // The signed webhook must not continue draining a hostile chunked upload.
+    let pulls = 0;
+    const webhookRequest = new Request("https://agents.proofandstate.com/api/v1/commerce/stripe-webhook", {
+      method: "POST",
+      body: new ReadableStream<Uint8Array>({
+        pull(controller) {
+          pulls++;
+          if (pulls > 3) throw Error("STREAM_DRAINED_AFTER_BYTE_LIMIT");
+          controller.enqueue(new Uint8Array(23_000));
+        },
+      }, { highWaterMark: 0 }),
+      duplex: "half",
+    } as RequestInit & { duplex: "half" });
+    const webhookResponse = await handleCommerceRequest(webhookRequest, ready());
+    expect(webhookResponse?.status).toBe(413);
+    expect(pulls).toBe(3);
+
+    // A multibyte character split across chunks must survive at the exact limit.
+    const glyph = new TextEncoder().encode("£🚀");
+    const accepted = new Request("https://agents.proofandstate.com/", {
+      method: "POST",
+      body: new ReadableStream<Uint8Array>({
+        start(controller) {
+          controller.enqueue(glyph.slice(0, 1));
+          controller.enqueue(glyph.slice(1, 3));
+          controller.enqueue(glyph.slice(3));
+          controller.close();
+        },
+      }),
+      duplex: "half",
+    } as RequestInit & { duplex: "half" });
+    expect(await readBoundedBody(accepted, glyph.byteLength)).toBe("£🚀");
+  });
   it("rejects non-object 200 responses from Stripe before reconciliation", async () => {
     const env = ready();
     const ref = "cs_test_123456789012";

@@ -1,6 +1,6 @@
 import { CommerceFailure, settlementOffer } from "./config";
 import type { ApprovedOffer, CommerceEnv } from "./config";
-import { checkBodySize, verifyStripeSignature } from "./crypto";
+import { readBoundedBody, verifyStripeSignature } from "./crypto";
 import { confirmContract } from "./contracts";
 import { getStripeSession, verifyPaidSession } from "./stripe";
 import { applied, database, now, orderPattern, reply } from "./shared";
@@ -191,8 +191,7 @@ async function processWebhookEvent(event: StripeEvent, env: CommerceEnv, fetcher
 }
 
 export async function webhook(request: Request, env: CommerceEnv, fetcher: typeof fetch): Promise<Response> {
-  checkBodySize(request, 65_536);
-  const payload = await request.text();
+  const payload = await readBoundedBody(request, 65_536);
   if (new TextEncoder().encode(payload).length > 65_536) throw new CommerceFailure("PAYLOAD_TOO_LARGE", 413);
   if (!env.STRIPE_WEBHOOK_SECRET) throw new CommerceFailure("WEBHOOK_NOT_CONFIGURED", 503, true);
   if (!await verifyStripeSignature(payload, request.headers.get("stripe-signature"), env.STRIPE_WEBHOOK_SECRET)) {

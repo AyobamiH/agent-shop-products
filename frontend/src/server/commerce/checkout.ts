@@ -1,6 +1,6 @@
 import { approvedOffer, CommerceFailure } from "./config";
 import type { ApprovedOffer, CommerceEnv } from "./config";
-import { assertBrowserOrigin, checkBodySize, claimTokenHash, newClaimToken } from "./crypto";
+import { assertBrowserOrigin, readBoundedBody, claimTokenHash, newClaimToken } from "./crypto";
 import { contractInsert, contractSnapshot } from "./contracts";
 import { createStripeSession } from "./stripe";
 import { applied, database, now, orderPattern, reply } from "./shared";
@@ -31,8 +31,7 @@ export async function checkout(request: Request, env: CommerceEnv, fetcher: type
   if (!request.headers.get("content-type")?.toLowerCase().startsWith("application/json")) {
     throw new CommerceFailure("UNSUPPORTED_MEDIA", 415);
   }
-  checkBodySize(request, 4096);
-  const payload = await request.text();
+  const payload = await readBoundedBody(request, 4096);
   if (payload.length > 4096) throw new CommerceFailure("PAYLOAD_TOO_LARGE", 413);
   let input: unknown;
   try { input = JSON.parse(payload); }
