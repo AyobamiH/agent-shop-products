@@ -86,6 +86,10 @@ async function processWebhookEvent(event: StripeEvent, env: CommerceEnv, fetcher
           provider.metadata?.["agent_shop_order_id"] !== creating.id ||
           provider.metadata?.["offer_id"] !== approved.id ||
           provider.metadata?.["offer_version"] !== approved.version ||
+          // Recovery after an ambiguous POST must preserve the signed buyer
+          // terms attached to the original creating order before any grant.
+          (approved.mode === "live" &&
+            provider.metadata?.["terms_version"] !== creating.terms_version) ||
           provider.line_items?.data?.length !== 1 ||
           provider.line_items.data[0]?.price?.id !== approved.priceId ||
           provider.line_items.data[0]?.quantity !== 1

@@ -229,7 +229,8 @@ describe("Private kit gated commerce", () => {
     expect(posted?.has("automatic_tax[enabled]")).toBe(false);
     expect(posted?.has("billing_address_collection")).toBe(false);
     const order = { id: "order-live-123", checkout_session_id: opened.id,
-      offer_id: offer.id, offer_version: offer.version, amount_pence: 900, currency: "gbp" };
+      offer_id: offer.id, offer_version: offer.version, amount_pence: 900, currency: "gbp",
+      terms_version: offer.termsVersion };
     const paid = {
       id: opened.id, client_reference_id: order.id, mode: "payment", livemode: true,
       payment_status: "paid", managed_payments: { enabled: true },
@@ -237,7 +238,8 @@ describe("Private kit gated commerce", () => {
       currency: "gbp", amount_subtotal: 900, amount_total: 1080,
       total_details: { amount_tax: 180, amount_discount: 0, amount_shipping: 0 },
       payment_intent: "pi_live123456789012",
-      metadata: { agent_shop_order_id: order.id, offer_id: offer.id, offer_version: offer.version },
+      metadata: { agent_shop_order_id: order.id, offer_id: offer.id,
+        offer_version: offer.version, terms_version: order.terms_version },
       line_items: { data: [{ price: { id: offer.priceId }, quantity: 1 }] },
     };
     expect(verifyPaidSession(paid, offer, order)).toBe("pi_live123456789012");
@@ -248,6 +250,8 @@ describe("Private kit gated commerce", () => {
       { automatic_tax: { enabled: true, status: "complete", provider: "other", liability: { type: "stripe" } } },
       { amount_total: 901 },
       { total_details: { amount_tax: 1, amount_discount: 0, amount_shipping: 0 } },
+      { metadata: { agent_shop_order_id: order.id, offer_id: offer.id, offer_version: offer.version } },
+      { metadata: { ...paid.metadata, terms_version: "not-the-buyers-contract" } },
     ]) expect(() => verifyPaidSession({ ...paid, ...bad }, offer, order)).toThrow();
   });
 

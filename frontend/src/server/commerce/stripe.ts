@@ -146,7 +146,7 @@ export async function getStripeSession(
 
 export function verifyPaidSession(
   session: StripeSession, offer: ApprovedOffer,
-  order: { id: string; checkout_session_id: string; amount_pence: number; currency: string; offer_id: string; offer_version: string },
+  order: { id: string; checkout_session_id: string; amount_pence: number; currency: string; offer_id: string; offer_version: string; terms_version?: string },
 ): string {
   const liveManaged = offer.mode === "live";
   const tax = Number(session.total_details?.amount_tax);
@@ -183,6 +183,10 @@ export function verifyPaidSession(
     session.metadata?.["agent_shop_order_id"] !== order.id ||
     session.metadata?.["offer_id"] !== offer.id ||
     session.metadata?.["offer_version"] !== offer.version ||
+    // Bind real-money fulfilment to the legal version on the original D1 order,
+    // not whichever terms happen to be current when a delayed webhook arrives.
+    (liveManaged && (typeof order.terms_version !== "string" ||
+      session.metadata?.["terms_version"] !== order.terms_version)) ||
     session.line_items?.data?.length !== 1 ||
     session.line_items.data[0]?.price?.id !== offer.priceId ||
     session.line_items.data[0]?.quantity !== 1
