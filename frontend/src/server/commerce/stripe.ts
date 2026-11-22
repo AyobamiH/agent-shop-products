@@ -38,7 +38,11 @@ async function stripeRequest(
   try {
     const raw = await response.text();
     if (raw.length > 131_072) throw new Error("oversized Stripe payload");
-    value = JSON.parse(raw) as Record<string, unknown>;
+    const parsed: unknown = JSON.parse(raw);
+    if (parsed === null || typeof parsed !== "object" || Array.isArray(parsed)) {
+      throw new Error("invalid Stripe response shape");
+    }
+    value = parsed as Record<string, unknown>;
   } catch {
     throw new CommerceFailure("PAYMENT_PROVIDER_BAD_RESPONSE", 502, true);
   }

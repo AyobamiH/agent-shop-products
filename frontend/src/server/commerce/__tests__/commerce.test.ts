@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import { approvedOffer, publicOffers, settlementOffer } from "../config";
 import type { ApprovedOffer, CommerceEnv } from "../config";
 import { claimTokenHash, newClaimToken, verifyStripeSignature } from "../crypto";
-import { createStripeSession, verifyPaidSession, verifyStripePrice } from "../stripe";
+import { createStripeSession, getStripeSession, verifyPaidSession, verifyStripePrice } from "../stripe";
 import { handleCommerceRequest } from "../handler";
 import realIntroductorySession from "./fixtures/stripe-nine-pound-sandbox-20261010.json";
 
@@ -29,6 +29,17 @@ function ready(overrides: Overrides = {}): CommerceEnv {
 }
 const KIT = "private-production-agent-operating-kit";
 describe("Private kit gated commerce", () => {
+  it("rejects non-object 200 responses from Stripe before reconciliation", async () => {
+    const env = ready();
+    const ref = "cs_test_123456789012";
+    const valid = { id: ref, livemode: false };
+    const accepted = await getStripeSession(env, ref, async () => Response.json(valid));
+    expect(accepted).toEqual(valid);
+    for (const value of [null, [], "unexpected", 24, true]) {
+      await expect(getStripeSession(env, ref, async () => Response.json(value)))
+        .rejects.toMatchObject({ code: "PAYMENT_PROVIDER_BAD_RESPONSE", status: 502 });
+    }
+  });
   it("labels an enabled sandbox offer as test rather than silently presenting it as live", () => {
     expect(publicOffers(ready())[0]).toMatchObject({ mode: "test", availability: "purchase_available", unitAmountPence: 900 });
     expect(publicOffers({})[0]).not.toHaveProperty("mode");
