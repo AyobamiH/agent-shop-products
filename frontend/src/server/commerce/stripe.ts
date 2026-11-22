@@ -123,6 +123,10 @@ export async function createStripeSession(
       destination.protocol !== "https:" || destination.hostname !== "checkout.stripe.com" ||
       destination.port !== "" || destination.username !== "" || destination.password !== "" ||
       session.mode !== "payment" || session.client_reference_id !== orderId ||
+      session.metadata?.["agent_shop_order_id"] !== orderId ||
+      session.metadata?.["offer_id"] !== offer.id ||
+      session.metadata?.["offer_version"] !== offer.version ||
+      session.metadata?.["terms_version"] !== offer.termsVersion ||
       session.livemode !== (offer.mode === "live") ||
       (offer.mode === "live" ? session.managed_payments?.enabled !== true : session.managed_payments?.enabled === true)) {
     throw new CommerceFailure("PAYMENT_PROVIDER_BAD_RESPONSE", 502);

@@ -177,7 +177,14 @@ describe("Private kit gated commerce", () => {
         return Response.json({
           id: "cs_live_123456789012345", url: checkoutUrl,
           livemode: true, mode: "payment", client_reference_id: posted.get("client_reference_id"),
-          managed_payments: { enabled: true }, ...checkoutResponseOverride,
+          managed_payments: { enabled: true },
+          metadata: {
+            agent_shop_order_id: posted.get("metadata[agent_shop_order_id]"),
+            offer_id: posted.get("metadata[offer_id]"),
+            offer_version: posted.get("metadata[offer_version]"),
+            terms_version: posted.get("metadata[terms_version]"),
+          },
+          ...checkoutResponseOverride,
         });
       }
       return Response.json({ error: "unexpected" }, { status: 500 });
@@ -193,13 +200,24 @@ describe("Private kit gated commerce", () => {
         .rejects.toMatchObject({ code: "PAYMENT_PROVIDER_BAD_RESPONSE", status: 502 });
     }
     checkoutUrl = "https://checkout.stripe.com/pay/cs_live_123456789012345";
-    // Checkout must not start when Stripe omits fields needed for later paid-order reconciliation.
+    // Reject provider sessions missing the order, policy or metadata needed for settlement.
+    const canonicalMetadata = {
+      agent_shop_order_id: "order-live-123", offer_id: offer.id,
+      offer_version: offer.version, terms_version: offer.termsVersion,
+    };
     for (const invalidSession of [
       { client_reference_id: undefined },
       { client_reference_id: null },
       { client_reference_id: "unrelated-order" },
       { mode: undefined },
       { mode: "subscription" },
+      { metadata: undefined },
+      { metadata: null },
+      { metadata: {} },
+      { metadata: { ...canonicalMetadata, agent_shop_order_id: "other-order" } },
+      { metadata: { ...canonicalMetadata, offer_id: "other-offer" } },
+      { metadata: { ...canonicalMetadata, offer_version: "other-version" } },
+      { metadata: { ...canonicalMetadata, terms_version: "other-terms" } },
     ]) {
       checkoutResponseOverride = invalidSession;
       await expect(createStripeSession(env, offer, "order-live-123", provider as typeof fetch))
