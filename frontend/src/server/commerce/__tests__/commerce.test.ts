@@ -147,6 +147,7 @@ describe("Private kit gated commerce", () => {
     const env = { STRIPE_SECRET_KEY: "rk_live_synthetic" } as CommerceEnv;
     let posted = new URLSearchParams();
     let stripeVersion: string | null = null;
+    let checkoutUrl = "https://checkout.stripe.com/pay/cs_live_123456789012345";
     const provider = async (input: RequestInfo | URL, init?: RequestInit) => {
       stripeVersion = new Headers(init?.headers).get("Stripe-Version");
       const url = new URL(String(input));
@@ -162,7 +163,7 @@ describe("Private kit gated commerce", () => {
       if (url.pathname.endsWith("/checkout/sessions") && init?.method === "POST") {
         posted = new URLSearchParams(String(init.body));
         return Response.json({
-          id: "cs_live_123456789012345", url: "https://checkout.stripe.com/pay/cs_live_123456789012345",
+          id: "cs_live_123456789012345", url: checkoutUrl,
           livemode: true, mode: "payment", client_reference_id: posted.get("client_reference_id"),
           managed_payments: { enabled: true },
         });
@@ -171,6 +172,14 @@ describe("Private kit gated commerce", () => {
     };
     const opened = await createStripeSession(env, offer, "order-live-123", provider as typeof fetch);
     expect(opened.id).toBe("cs_live_123456789012345");
+    for (const invalidUrl of [
+      "https://operator:password@checkout.stripe.com/pay/cs_live_123456789012345",
+      "https://checkout.stripe.com:8443/pay/cs_live_123456789012345",
+    ]) {
+      checkoutUrl = invalidUrl;
+      await expect(createStripeSession(env, offer, "order-live-123", provider as typeof fetch))
+        .rejects.toMatchObject({ code: "PAYMENT_PROVIDER_BAD_RESPONSE", status: 502 });
+    }
     expect(stripeVersion).toBe("2025-03-31.basil");
     expect(posted?.get("managed_payments[enabled]")).toBe("true");
     expect(posted?.has("automatic_tax[enabled]")).toBe(false);
