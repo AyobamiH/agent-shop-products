@@ -122,9 +122,9 @@ export async function createStripeSession(
   if (!/^cs_(?:test_|live_)[A-Za-z0-9]{10,}$/.test(session.id) ||
       destination.protocol !== "https:" || destination.hostname !== "checkout.stripe.com" ||
       destination.port !== "" || destination.username !== "" || destination.password !== "" ||
+      session.mode !== "payment" || session.client_reference_id !== orderId ||
       session.livemode !== (offer.mode === "live") ||
-      (offer.mode === "live" ? session.managed_payments?.enabled !== true : session.managed_payments?.enabled === true) ||
-      (session.client_reference_id && session.client_reference_id !== orderId)) {
+      (offer.mode === "live" ? session.managed_payments?.enabled !== true : session.managed_payments?.enabled === true)) {
     throw new CommerceFailure("PAYMENT_PROVIDER_BAD_RESPONSE", 502);
   }
   return { id: session.id, url: destination.toString() };

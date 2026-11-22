@@ -159,6 +159,7 @@ describe("Private kit gated commerce", () => {
     let posted = new URLSearchParams();
     let stripeVersion: string | null = null;
     let checkoutUrl = "https://checkout.stripe.com/pay/cs_live_123456789012345";
+    let checkoutResponseOverride: Record<string, unknown> = {};
     const provider = async (input: RequestInfo | URL, init?: RequestInit) => {
       stripeVersion = new Headers(init?.headers).get("Stripe-Version");
       const url = new URL(String(input));
@@ -176,7 +177,7 @@ describe("Private kit gated commerce", () => {
         return Response.json({
           id: "cs_live_123456789012345", url: checkoutUrl,
           livemode: true, mode: "payment", client_reference_id: posted.get("client_reference_id"),
-          managed_payments: { enabled: true },
+          managed_payments: { enabled: true }, ...checkoutResponseOverride,
         });
       }
       return Response.json({ error: "unexpected" }, { status: 500 });
@@ -191,6 +192,20 @@ describe("Private kit gated commerce", () => {
       await expect(createStripeSession(env, offer, "order-live-123", provider as typeof fetch))
         .rejects.toMatchObject({ code: "PAYMENT_PROVIDER_BAD_RESPONSE", status: 502 });
     }
+    checkoutUrl = "https://checkout.stripe.com/pay/cs_live_123456789012345";
+    // Checkout must not start when Stripe omits fields needed for later paid-order reconciliation.
+    for (const invalidSession of [
+      { client_reference_id: undefined },
+      { client_reference_id: null },
+      { client_reference_id: "unrelated-order" },
+      { mode: undefined },
+      { mode: "subscription" },
+    ]) {
+      checkoutResponseOverride = invalidSession;
+      await expect(createStripeSession(env, offer, "order-live-123", provider as typeof fetch))
+        .rejects.toMatchObject({ code: "PAYMENT_PROVIDER_BAD_RESPONSE", status: 502 });
+    }
+    checkoutResponseOverride = {};
     expect(stripeVersion).toBe("2025-03-31.basil");
     expect(posted?.get("managed_payments[enabled]")).toBe("true");
     expect(posted?.has("automatic_tax[enabled]")).toBe(false);
