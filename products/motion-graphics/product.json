@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "motion-graphics",
+  "slug": "motion-graphics",
+  "name": "Motion Graphics",
+  "category": "video-production",
+  "summary": "Create concise, design-led motion graphics where movement carries the message.",
+  "problem": "Short kinetic pieces lose impact when animation, typography and information hierarchy are designed as separate concerns.",
+  "coreOutcomes": [
+    "Translate one visual idea into a compact motion concept",
+    "Compose kinetic typography, data or brand elements",
+    "Build and validate a short HyperFrames composition"
+  ],
+  "requirements": [
+    "A concise motion-first brief, such as a headline, statistic, chart, logo or callout",
+    "A HyperFrames project"
+  ],
+  "boundaries": [
+    "Intended for short unnarrated motion-first pieces, not long narrated videos or live-action edits",
+    "Use a specialized workflow for product launches, explainers, PR videos or captioned footage"
+  ],
+  "tags": [
+    "motion-graphics",
+    "kinetic-typography",
+    "short-form-video",
+    "hyperframes"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

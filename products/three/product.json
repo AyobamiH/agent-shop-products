@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "three",
+  "slug": "three",
+  "name": "Three.js Runtime Adapter",
+  "category": "video-tooling",
+  "summary": "Embed Three.js and WebGL animation in HyperFrames while keeping scene playback seekable.",
+  "problem": "Three.js scenes can render differently at arbitrary timestamps when the animation mixer and browser frame loop are not controlled by the composition timeline.",
+  "coreOutcomes": [
+    "Set up a Three.js scene for a HyperFrames composition",
+    "Advance animation state from the requested composition time",
+    "Validate scene output at arbitrary seek positions"
+  ],
+  "requirements": [
+    "A HyperFrames composition",
+    "Three.js and any required WebGL browser support"
+  ],
+  "boundaries": [
+    "Covers runtime integration rather than general 3D asset creation",
+    "WebGL availability and third-party model or texture licensing remain separate requirements"
+  ],
+  "tags": [
+    "hyperframes",
+    "threejs",
+    "webgl",
+    "deterministic-rendering"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

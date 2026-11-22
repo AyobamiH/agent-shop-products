@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "waapi",
+  "slug": "waapi",
+  "name": "Web Animations API Runtime Adapter",
+  "category": "video-tooling",
+  "summary": "Use Web Animations API playback state as a seek-driven adapter for HyperFrames compositions.",
+  "problem": "Native browser animations can keep advancing independently of the frame timestamp requested by a video renderer.",
+  "coreOutcomes": [
+    "Create Web Animations API effects for composition elements",
+    "Set animation current time from the requested composition time",
+    "Check repeatable output when seeking between frames"
+  ],
+  "requirements": [
+    "A HyperFrames composition",
+    "Browser support for the Web Animations API"
+  ],
+  "boundaries": [
+    "Covers deterministic playback integration, not broad motion design",
+    "Avoid uncontrolled requestAnimationFrame or wall-clock animation loops"
+  ],
+  "tags": [
+    "hyperframes",
+    "waapi",
+    "web-animations-api",
+    "deterministic-rendering"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

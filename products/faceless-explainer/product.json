@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "faceless-explainer",
+  "slug": "faceless-explainer",
+  "name": "Faceless Explainer Video",
+  "category": "video-production",
+  "summary": "Turn a topic, article, notes or brief into an explainer made from original typography, abstract visuals, diagrams and data-viz.",
+  "problem": "Explaining a topic in video requires a coherent visual narrative even when there is no website, footage or supplied imagery to capture.",
+  "coreOutcomes": [
+    "Turn source text into a concise brief and script",
+    "Plan original visual beats using typography and abstract graphics",
+    "Build and validate the resulting HyperFrames composition"
+  ],
+  "requirements": [
+    "A topic, article, notes or creative brief",
+    "A HyperFrames project"
+  ],
+  "boundaries": [
+    "Does not capture websites or use real-world source imagery",
+    "Use product-launch, website-tour, PR or caption workflows when those intents apply"
+  ],
+  "tags": [
+    "explainer",
+    "faceless-video",
+    "storytelling",
+    "hyperframes"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

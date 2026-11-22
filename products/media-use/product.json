@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "media-use",
+  "slug": "media-use",
+  "name": "Media Asset Resolution",
+  "category": "media-tooling",
+  "summary": "Resolve a media request into a frozen local asset with cache reuse and a provenance-ledger record.",
+  "problem": "Media searches can leave projects with unstable remote links, duplicate downloads and unclear asset provenance.",
+  "coreOutcomes": [
+    "Check project and shared caches before acquiring media",
+    "Freeze the selected asset into a local project path",
+    "Record media metadata in the project ledger"
+  ],
+  "requirements": [
+    "A project directory and a specific image, icon, music or sound-effect need",
+    "The media-use scripts and any credentials required by an enabled provider"
+  ],
+  "boundaries": [
+    "Provider search and generation may be unavailable and must not be presented as successful when they fail",
+    "Verify usage rights before using acquired media in a public or commercial deliverable"
+  ],
+  "tags": [
+    "media-assets",
+    "provenance",
+    "cache",
+    "asset-management"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "css-animations",
+  "slug": "css-animations",
+  "name": "CSS Animation Runtime Adapter",
+  "category": "video-tooling",
+  "summary": "Author CSS keyframe motion with delay and fill behavior that remains deterministic under HyperFrames seeking.",
+  "problem": "Wall-clock CSS animations are difficult to reproduce at arbitrary video timestamps unless their timing is controlled by the renderer.",
+  "coreOutcomes": [
+    "Configure CSS keyframes for deterministic frame seeking",
+    "Apply delay, fill mode and playback state correctly",
+    "Translate CSS motion patterns into render-safe HyperFrames HTML"
+  ],
+  "requirements": [
+    "A HyperFrames composition",
+    "CSS keyframe animation support in the browser"
+  ],
+  "boundaries": [
+    "Covers CSS animation integration, not general visual direction",
+    "Avoid animation behavior that depends on an uncontrolled wall clock"
+  ],
+  "tags": [
+    "hyperframes",
+    "css",
+    "animation",
+    "deterministic-rendering"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

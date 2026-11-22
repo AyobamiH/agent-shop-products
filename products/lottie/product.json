@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "lottie",
+  "slug": "lottie",
+  "name": "Lottie Runtime Adapter",
+  "category": "video-tooling",
+  "summary": "Embed Lottie and dotLottie animations with playback that can be sought deterministically by HyperFrames.",
+  "problem": "Pre-rendered Lottie timelines may show the wrong frame unless player state is coordinated with the composition renderer.",
+  "coreOutcomes": [
+    "Embed Lottie or dotLottie player assets",
+    "Register player instances for deterministic seeking",
+    "Validate animation behavior at requested composition times"
+  ],
+  "requirements": [
+    "A HyperFrames composition",
+    "A Lottie JSON or dotLottie asset and compatible player runtime"
+  ],
+  "boundaries": [
+    "Covers player integration, not exporting or editing the source animation",
+    "The source animation remains subject to its own license and asset requirements"
+  ],
+  "tags": [
+    "hyperframes",
+    "lottie",
+    "animation",
+    "deterministic-rendering"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

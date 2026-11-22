@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "product-launch-video",
+  "slug": "product-launch-video",
+  "name": "Product Launch Video",
+  "category": "video-production",
+  "summary": "Turn a product URL, script or brief into a product marketing video built from time-coded shot sequences.",
+  "problem": "Product launch videos need a clear feature story and visuals that develop across each shot rather than stopping after an opening animation.",
+  "coreOutcomes": [
+    "Shape a product brief into a launch narrative",
+    "Plan and build time-coded visual shot sequences",
+    "Validate the assembled video composition"
+  ],
+  "requirements": [
+    "A product or feature URL, script or marketing brief",
+    "A HyperFrames project and the required media resources"
+  ],
+  "boundaries": [
+    "Use for product marketing, launches and feature reveals",
+    "Do not use for generic topic explainers, non-product website tours, pull requests or short unnarrated motion graphics"
+  ],
+  "tags": [
+    "product-launch",
+    "marketing-video",
+    "storytelling",
+    "hyperframes"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

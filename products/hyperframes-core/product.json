@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "hyperframes-core",
+  "slug": "hyperframes-core",
+  "name": "HyperFrames Composition Contract",
+  "category": "video-tooling",
+  "summary": "Build renderable HyperFrames compositions using the timing, track, clip, variable and deterministic-render contract.",
+  "problem": "Composition HTML can silently render incorrectly when timing attributes, tracks, scene dimensions or media ownership violate the runtime contract.",
+  "coreOutcomes": [
+    "Structure root compositions, clips, tracks and sub-compositions",
+    "Apply timing attributes and variable conventions",
+    "Validate deterministic behavior and composition structure"
+  ],
+  "requirements": [
+    "A HyperFrames project",
+    "A composition brief or existing HTML composition"
+  ],
+  "boundaries": [
+    "The skill defines the composition contract, not creative direction or animation-runtime APIs",
+    "Keep frame output a pure function of the requested composition time"
+  ],
+  "tags": [
+    "hyperframes",
+    "composition",
+    "html-video",
+    "deterministic-rendering"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

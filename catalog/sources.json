@@ -29,6 +29,19 @@
       }
     },
     {
+      "id": "animejs",
+      "canonical": {
+        "path": "products/animejs/SKILL.md",
+        "blobSha": "9eeea2bf21767243a8d0332634799051387230df"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/animejs/SKILL.md",
+        "blobSha": "9eeea2bf21767243a8d0332634799051387230df"
+      },
+      "supportingFiles": []
+    },
+    {
       "id": "autonomous-coding-workflow",
       "canonical": {
         "path": "products/autonomous-coding-workflow/PROMPT.md",
@@ -120,6 +133,19 @@
       }
     },
     {
+      "id": "css-animations",
+      "canonical": {
+        "path": "products/css-animations/SKILL.md",
+        "blobSha": "005a9bac9b2fd93b791d9c19b7d68c1148a36139"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/css-animations/SKILL.md",
+        "blobSha": "005a9bac9b2fd93b791d9c19b7d68c1148a36139"
+      },
+      "supportingFiles": []
+    },
+    {
       "id": "deterministic-social-publication",
       "canonical": {
         "path": "products/deterministic-social-publication/PROMPT.md",
@@ -198,6 +224,129 @@
       }
     },
     {
+      "id": "faceless-explainer",
+      "canonical": {
+        "path": "products/faceless-explainer/SKILL.md",
+        "blobSha": "28b84de7478cb04a68961582cb30fd84a8b696df"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/faceless-explainer/SKILL.md",
+        "blobSha": "28b84de7478cb04a68961582cb30fd84a8b696df"
+      },
+      "supportingFiles": [
+        {
+          "canonicalPath": "products/faceless-explainer/references/composition.md",
+          "canonicalBlobSha": "2bd694fb54af591175280b72a9c4a6cbf32caed1",
+          "originPath": ".agents/skills/faceless-explainer/references/composition.md",
+          "originBlobSha": "2bd694fb54af591175280b72a9c4a6cbf32caed1"
+        },
+        {
+          "canonicalPath": "products/faceless-explainer/references/motion-language.md",
+          "canonicalBlobSha": "bcb8268bd571c7340551616c2b8f3918bdaaa568",
+          "originPath": ".agents/skills/faceless-explainer/references/motion-language.md",
+          "originBlobSha": "bcb8268bd571c7340551616c2b8f3918bdaaa568"
+        },
+        {
+          "canonicalPath": "products/faceless-explainer/references/story-design.md",
+          "canonicalBlobSha": "fc906113964c212faad587eba15ef513f5317d23",
+          "originPath": ".agents/skills/faceless-explainer/references/story-design.md",
+          "originBlobSha": "fc906113964c212faad587eba15ef513f5317d23"
+        },
+        {
+          "canonicalPath": "products/faceless-explainer/references/visual-design.md",
+          "canonicalBlobSha": "6533caa46bbe0beddeaaa9ca0e4c0a3fac9f5b3e",
+          "originPath": ".agents/skills/faceless-explainer/references/visual-design.md",
+          "originBlobSha": "6533caa46bbe0beddeaaa9ca0e4c0a3fac9f5b3e"
+        },
+        {
+          "canonicalPath": "products/faceless-explainer/scripts/assemble-index.mjs",
+          "canonicalBlobSha": "df49b7549816b6682755fba710c42405b0eea298",
+          "originPath": ".agents/skills/faceless-explainer/scripts/assemble-index.mjs",
+          "originBlobSha": "df49b7549816b6682755fba710c42405b0eea298"
+        },
+        {
+          "canonicalPath": "products/faceless-explainer/scripts/audio.mjs",
+          "canonicalBlobSha": "5640fd1065c8ca6a4339ae577fe754854741f8d8",
+          "originPath": ".agents/skills/faceless-explainer/scripts/audio.mjs",
+          "originBlobSha": "5640fd1065c8ca6a4339ae577fe754854741f8d8"
+        },
+        {
+          "canonicalPath": "products/faceless-explainer/scripts/build-frame.mjs",
+          "canonicalBlobSha": "de00509ae3cf6642f3f3b2bbe9c6ef7b694c6fe4",
+          "originPath": ".agents/skills/faceless-explainer/scripts/build-frame.mjs",
+          "originBlobSha": "de00509ae3cf6642f3f3b2bbe9c6ef7b694c6fe4"
+        },
+        {
+          "canonicalPath": "products/faceless-explainer/scripts/captions.mjs",
+          "canonicalBlobSha": "dfa25c9fcf966b0a50676c352bd210f49cffe296",
+          "originPath": ".agents/skills/faceless-explainer/scripts/captions.mjs",
+          "originBlobSha": "dfa25c9fcf966b0a50676c352bd210f49cffe296"
+        },
+        {
+          "canonicalPath": "products/faceless-explainer/scripts/lib/assets.mjs",
+          "canonicalBlobSha": "0f06ac5da1e358a33488e0b1383f98101fef9018",
+          "originPath": ".agents/skills/faceless-explainer/scripts/lib/assets.mjs",
+          "originBlobSha": "0f06ac5da1e358a33488e0b1383f98101fef9018"
+        },
+        {
+          "canonicalPath": "products/faceless-explainer/scripts/lib/dimensions.mjs",
+          "canonicalBlobSha": "c91f01caa88807a22190395d1b659e047a8e7dff",
+          "originPath": ".agents/skills/faceless-explainer/scripts/lib/dimensions.mjs",
+          "originBlobSha": "c91f01caa88807a22190395d1b659e047a8e7dff"
+        },
+        {
+          "canonicalPath": "products/faceless-explainer/scripts/lib/storyboard.mjs",
+          "canonicalBlobSha": "7c821dcbaabe717e6ac7b7aa8502d8057e2c95d4",
+          "originPath": ".agents/skills/faceless-explainer/scripts/lib/storyboard.mjs",
+          "originBlobSha": "7c821dcbaabe717e6ac7b7aa8502d8057e2c95d4"
+        },
+        {
+          "canonicalPath": "products/faceless-explainer/scripts/lib/tokens.mjs",
+          "canonicalBlobSha": "3f51778ec5d56fb99a3a4954a749d8ad58befc0b",
+          "originPath": ".agents/skills/faceless-explainer/scripts/lib/tokens.mjs",
+          "originBlobSha": "3f51778ec5d56fb99a3a4954a749d8ad58befc0b"
+        },
+        {
+          "canonicalPath": "products/faceless-explainer/scripts/lib/transition-registry.mjs",
+          "canonicalBlobSha": "a0451793a65447f76fd05dd0a726f0d47f33198b",
+          "originPath": ".agents/skills/faceless-explainer/scripts/lib/transition-registry.mjs",
+          "originBlobSha": "a0451793a65447f76fd05dd0a726f0d47f33198b"
+        },
+        {
+          "canonicalPath": "products/faceless-explainer/scripts/lib/transitions.json",
+          "canonicalBlobSha": "ab1c4b9d781d404612db49a445b25219a4d57c90",
+          "originPath": ".agents/skills/faceless-explainer/scripts/lib/transitions.json",
+          "originBlobSha": "ab1c4b9d781d404612db49a445b25219a4d57c90"
+        },
+        {
+          "canonicalPath": "products/faceless-explainer/scripts/transitions.mjs",
+          "canonicalBlobSha": "00b1246aae7da52956cd6ad015a0891b63fa52d9",
+          "originPath": ".agents/skills/faceless-explainer/scripts/transitions.mjs",
+          "originBlobSha": "00b1246aae7da52956cd6ad015a0891b63fa52d9"
+        },
+        {
+          "canonicalPath": "products/faceless-explainer/sub-agents/frame-worker.md",
+          "canonicalBlobSha": "c5247ada5d8091289ec5da6ddc63ed148e73e51c",
+          "originPath": ".agents/skills/faceless-explainer/sub-agents/frame-worker.md",
+          "originBlobSha": "c5247ada5d8091289ec5da6ddc63ed148e73e51c"
+        }
+      ]
+    },
+    {
+      "id": "general-video",
+      "canonical": {
+        "path": "products/general-video/SKILL.md",
+        "blobSha": "2a4b5d376c947811e67e7eed0e777943f06bea80"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/general-video/SKILL.md",
+        "blobSha": "2a4b5d376c947811e67e7eed0e777943f06bea80"
+      },
+      "supportingFiles": []
+    },
+    {
       "id": "graph-native-agent-system-migration",
       "canonical": {
         "path": "products/graph-native-agent-system-migration/PROMPT.md",
@@ -209,6 +358,768 @@
         "path": "agents/graph-native-agent-system-migration.md",
         "blobSha": "562c2937deb2b8c790ee3d3ab9f0529b6618a656"
       }
+    },
+    {
+      "id": "gsap",
+      "canonical": {
+        "path": "products/gsap/SKILL.md",
+        "blobSha": "db40a6c17c594a141f3e365c9a27841614f7d826"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/gsap/SKILL.md",
+        "blobSha": "db40a6c17c594a141f3e365c9a27841614f7d826"
+      },
+      "supportingFiles": [
+        {
+          "canonicalPath": "products/gsap/references/effects.md",
+          "canonicalBlobSha": "82c0ebafb81203493bab5b9b5a0525147c6359cf",
+          "originPath": ".agents/skills/gsap/references/effects.md",
+          "originBlobSha": "82c0ebafb81203493bab5b9b5a0525147c6359cf"
+        },
+        {
+          "canonicalPath": "products/gsap/scripts/extract-audio-data.py",
+          "canonicalBlobSha": "b4efba788d03ed84d6fae25e3a7102fde934f61e",
+          "originPath": ".agents/skills/gsap/scripts/extract-audio-data.py",
+          "originBlobSha": "b4efba788d03ed84d6fae25e3a7102fde934f61e"
+        }
+      ]
+    },
+    {
+      "id": "hyperframes-cli",
+      "canonical": {
+        "path": "products/hyperframes-cli/SKILL.md",
+        "blobSha": "8ecfec8f79d9d21ad30687136af27ee5bc1946ad"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/hyperframes-cli/SKILL.md",
+        "blobSha": "8ecfec8f79d9d21ad30687136af27ee5bc1946ad"
+      },
+      "supportingFiles": [
+        {
+          "canonicalPath": "products/hyperframes-cli/references/doctor-browser.md",
+          "canonicalBlobSha": "706aa4540131acf1b96f2bdf24b945bd6eccafa9",
+          "originPath": ".agents/skills/hyperframes-cli/references/doctor-browser.md",
+          "originBlobSha": "706aa4540131acf1b96f2bdf24b945bd6eccafa9"
+        },
+        {
+          "canonicalPath": "products/hyperframes-cli/references/init-and-scaffold.md",
+          "canonicalBlobSha": "6c319f1cf2010293bbe3af939695a57bef8a412f",
+          "originPath": ".agents/skills/hyperframes-cli/references/init-and-scaffold.md",
+          "originBlobSha": "6c319f1cf2010293bbe3af939695a57bef8a412f"
+        },
+        {
+          "canonicalPath": "products/hyperframes-cli/references/lambda.md",
+          "canonicalBlobSha": "85b6158b34eb3b6b243c803bfad72a68d193ee00",
+          "originPath": ".agents/skills/hyperframes-cli/references/lambda.md",
+          "originBlobSha": "85b6158b34eb3b6b243c803bfad72a68d193ee00"
+        },
+        {
+          "canonicalPath": "products/hyperframes-cli/references/lint-validate-inspect.md",
+          "canonicalBlobSha": "13d22450622723006f6b67b06fa35f0bd654a466",
+          "originPath": ".agents/skills/hyperframes-cli/references/lint-validate-inspect.md",
+          "originBlobSha": "13d22450622723006f6b67b06fa35f0bd654a466"
+        },
+        {
+          "canonicalPath": "products/hyperframes-cli/references/preview-render.md",
+          "canonicalBlobSha": "caa45cc95e589a34588421fe3940a976ee798f2b",
+          "originPath": ".agents/skills/hyperframes-cli/references/preview-render.md",
+          "originBlobSha": "caa45cc95e589a34588421fe3940a976ee798f2b"
+        },
+        {
+          "canonicalPath": "products/hyperframes-cli/references/upgrade-info-misc.md",
+          "canonicalBlobSha": "8ad73809b68daed3dfad132cc72f44ebaafaf3a7",
+          "originPath": ".agents/skills/hyperframes-cli/references/upgrade-info-misc.md",
+          "originBlobSha": "8ad73809b68daed3dfad132cc72f44ebaafaf3a7"
+        }
+      ]
+    },
+    {
+      "id": "hyperframes-core",
+      "canonical": {
+        "path": "products/hyperframes-core/SKILL.md",
+        "blobSha": "47e7ad019def2430edd14dce28e36f1af0f11b8e"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/hyperframes-core/SKILL.md",
+        "blobSha": "47e7ad019def2430edd14dce28e36f1af0f11b8e"
+      },
+      "supportingFiles": [
+        {
+          "canonicalPath": "products/hyperframes-core/references/composition-patterns.md",
+          "canonicalBlobSha": "54f66bc4fd86ed4b6087c7d068533f7cd20bfeaa",
+          "originPath": ".agents/skills/hyperframes-core/references/composition-patterns.md",
+          "originBlobSha": "54f66bc4fd86ed4b6087c7d068533f7cd20bfeaa"
+        },
+        {
+          "canonicalPath": "products/hyperframes-core/references/data-attributes.md",
+          "canonicalBlobSha": "f474c65337738a9ad7405639cf661e1ff54b665a",
+          "originPath": ".agents/skills/hyperframes-core/references/data-attributes.md",
+          "originBlobSha": "f474c65337738a9ad7405639cf661e1ff54b665a"
+        },
+        {
+          "canonicalPath": "products/hyperframes-core/references/determinism-rules.md",
+          "canonicalBlobSha": "1cee99b081492db15678321c0454a07734a2aaf3",
+          "originPath": ".agents/skills/hyperframes-core/references/determinism-rules.md",
+          "originBlobSha": "1cee99b081492db15678321c0454a07734a2aaf3"
+        },
+        {
+          "canonicalPath": "products/hyperframes-core/references/full-screen-motion.md",
+          "canonicalBlobSha": "5898485a8573d5ae3c2b012cea23e44f0e88fba7",
+          "originPath": ".agents/skills/hyperframes-core/references/full-screen-motion.md",
+          "originBlobSha": "5898485a8573d5ae3c2b012cea23e44f0e88fba7"
+        },
+        {
+          "canonicalPath": "products/hyperframes-core/references/minimal-composition.md",
+          "canonicalBlobSha": "4cd7c627d3ba6bb536a601e20064ba4f51ecccea",
+          "originPath": ".agents/skills/hyperframes-core/references/minimal-composition.md",
+          "originBlobSha": "4cd7c627d3ba6bb536a601e20064ba4f51ecccea"
+        },
+        {
+          "canonicalPath": "products/hyperframes-core/references/script-format.md",
+          "canonicalBlobSha": "18e003c77bcde62b5c672a3ea29ac030c9fad199",
+          "originPath": ".agents/skills/hyperframes-core/references/script-format.md",
+          "originBlobSha": "18e003c77bcde62b5c672a3ea29ac030c9fad199"
+        },
+        {
+          "canonicalPath": "products/hyperframes-core/references/storyboard-format.md",
+          "canonicalBlobSha": "e9d962ba312bd7049ac9e7635e4c41498966fd0c",
+          "originPath": ".agents/skills/hyperframes-core/references/storyboard-format.md",
+          "originBlobSha": "e9d962ba312bd7049ac9e7635e4c41498966fd0c"
+        },
+        {
+          "canonicalPath": "products/hyperframes-core/references/sub-compositions.md",
+          "canonicalBlobSha": "b3390cc48b77b1b65cf09171f38862f92bde4ce9",
+          "originPath": ".agents/skills/hyperframes-core/references/sub-compositions.md",
+          "originBlobSha": "b3390cc48b77b1b65cf09171f38862f92bde4ce9"
+        },
+        {
+          "canonicalPath": "products/hyperframes-core/references/subagent-dispatch.md",
+          "canonicalBlobSha": "506a8fb904738b64a48149486ecb6e4f44ee6b94",
+          "originPath": ".agents/skills/hyperframes-core/references/subagent-dispatch.md",
+          "originBlobSha": "506a8fb904738b64a48149486ecb6e4f44ee6b94"
+        },
+        {
+          "canonicalPath": "products/hyperframes-core/references/tailwind.md",
+          "canonicalBlobSha": "a8a4b3d2a96a71809316dd43b130a158336c8e2b",
+          "originPath": ".agents/skills/hyperframes-core/references/tailwind.md",
+          "originBlobSha": "a8a4b3d2a96a71809316dd43b130a158336c8e2b"
+        },
+        {
+          "canonicalPath": "products/hyperframes-core/references/tracks-and-clips.md",
+          "canonicalBlobSha": "991135a959ef5ea1e69c94ba1b501bc88fe992f1",
+          "originPath": ".agents/skills/hyperframes-core/references/tracks-and-clips.md",
+          "originBlobSha": "991135a959ef5ea1e69c94ba1b501bc88fe992f1"
+        },
+        {
+          "canonicalPath": "products/hyperframes-core/references/variables-and-media.md",
+          "canonicalBlobSha": "d1105bb41dce39a02cd55950de4b002cad34881a",
+          "originPath": ".agents/skills/hyperframes-core/references/variables-and-media.md",
+          "originBlobSha": "d1105bb41dce39a02cd55950de4b002cad34881a"
+        }
+      ]
+    },
+    {
+      "id": "hyperframes-creative",
+      "canonical": {
+        "path": "products/hyperframes-creative/SKILL.md",
+        "blobSha": "e249645944b3584cef2a573ccaa950c49f732072"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/hyperframes-creative/SKILL.md",
+        "blobSha": "e249645944b3584cef2a573ccaa950c49f732072"
+      },
+      "supportingFiles": [
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/biennale-yellow/FRAME.md",
+          "canonicalBlobSha": "c082ea2fefdd47bd2679d72d6a50a3a41aa99eaf",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/biennale-yellow/FRAME.md",
+          "originBlobSha": "c082ea2fefdd47bd2679d72d6a50a3a41aa99eaf"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/biennale-yellow/caption-skin.html",
+          "canonicalBlobSha": "8ca668456354e2bf252452c0af04c1599a123f12",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/biennale-yellow/caption-skin.html",
+          "originBlobSha": "8ca668456354e2bf252452c0af04c1599a123f12"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/biennale-yellow/frame-showcase.html",
+          "canonicalBlobSha": "186f8252ad7aeaa18d1fbed1680e4227f0a9ac23",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/biennale-yellow/frame-showcase.html",
+          "originBlobSha": "186f8252ad7aeaa18d1fbed1680e4227f0a9ac23"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/blockframe/FRAME.md",
+          "canonicalBlobSha": "00e4d88318288c8c138716d266b13dcb31350d57",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/blockframe/FRAME.md",
+          "originBlobSha": "00e4d88318288c8c138716d266b13dcb31350d57"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/blockframe/caption-skin.html",
+          "canonicalBlobSha": "f0cdb26fd0a8a5b816ac82d9de8b1c92ad180798",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/blockframe/caption-skin.html",
+          "originBlobSha": "f0cdb26fd0a8a5b816ac82d9de8b1c92ad180798"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/blockframe/frame-showcase.html",
+          "canonicalBlobSha": "3f5a165072f67559e2c10bbd12d5cbb8bae820e5",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/blockframe/frame-showcase.html",
+          "originBlobSha": "3f5a165072f67559e2c10bbd12d5cbb8bae820e5"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/blue-professional/FRAME.md",
+          "canonicalBlobSha": "e821dee2dccc8e424ac160ca6714d561027cce46",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/blue-professional/FRAME.md",
+          "originBlobSha": "e821dee2dccc8e424ac160ca6714d561027cce46"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/blue-professional/caption-skin.html",
+          "canonicalBlobSha": "5a599c2703c2453e50cf263cb31bcb6f5b576872",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/blue-professional/caption-skin.html",
+          "originBlobSha": "5a599c2703c2453e50cf263cb31bcb6f5b576872"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/blue-professional/frame-showcase.html",
+          "canonicalBlobSha": "ff00e7be733ca18714a5b48c4f49669b68d17f5f",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/blue-professional/frame-showcase.html",
+          "originBlobSha": "ff00e7be733ca18714a5b48c4f49669b68d17f5f"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/bold-poster/FRAME.md",
+          "canonicalBlobSha": "c9f31256cd127913c3ff2457811f8467639da539",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/bold-poster/FRAME.md",
+          "originBlobSha": "c9f31256cd127913c3ff2457811f8467639da539"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/bold-poster/caption-skin.html",
+          "canonicalBlobSha": "ee1d4bfb6871de5dcf32c970d8d5b39b663d7f51",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/bold-poster/caption-skin.html",
+          "originBlobSha": "ee1d4bfb6871de5dcf32c970d8d5b39b663d7f51"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/bold-poster/frame-showcase.html",
+          "canonicalBlobSha": "a8f91897faa3b5b4c74108a6424fcf9290325cd6",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/bold-poster/frame-showcase.html",
+          "originBlobSha": "a8f91897faa3b5b4c74108a6424fcf9290325cd6"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/broadside/FRAME.md",
+          "canonicalBlobSha": "4dff52def23bb5492844cbbc25a25c19909c6fc4",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/broadside/FRAME.md",
+          "originBlobSha": "4dff52def23bb5492844cbbc25a25c19909c6fc4"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/broadside/caption-skin.html",
+          "canonicalBlobSha": "00f4b6f8db1791833dabc8e163e15845f1e45810",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/broadside/caption-skin.html",
+          "originBlobSha": "00f4b6f8db1791833dabc8e163e15845f1e45810"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/broadside/frame-showcase.html",
+          "canonicalBlobSha": "0d2a6cd15266207ca6feed354cadd2b8eaa21670",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/broadside/frame-showcase.html",
+          "originBlobSha": "0d2a6cd15266207ca6feed354cadd2b8eaa21670"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/capsule/FRAME.md",
+          "canonicalBlobSha": "a37f828c847c031f1603406ce1440a8fc2b4f803",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/capsule/FRAME.md",
+          "originBlobSha": "a37f828c847c031f1603406ce1440a8fc2b4f803"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/capsule/caption-skin.html",
+          "canonicalBlobSha": "0742a0532170739e8dfd6a2b2b0dc60ddf7566aa",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/capsule/caption-skin.html",
+          "originBlobSha": "0742a0532170739e8dfd6a2b2b0dc60ddf7566aa"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/capsule/frame-showcase.html",
+          "canonicalBlobSha": "65b4e196dbf09cd76208df59daaf77b142bd1dba",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/capsule/frame-showcase.html",
+          "originBlobSha": "65b4e196dbf09cd76208df59daaf77b142bd1dba"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/cartesian/FRAME.md",
+          "canonicalBlobSha": "a00c21d9250ace9886fc835834993b9d63f64b3f",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/cartesian/FRAME.md",
+          "originBlobSha": "a00c21d9250ace9886fc835834993b9d63f64b3f"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/cartesian/caption-skin.html",
+          "canonicalBlobSha": "135fa971929954b52a5b4f0f7964de8dddd624ae",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/cartesian/caption-skin.html",
+          "originBlobSha": "135fa971929954b52a5b4f0f7964de8dddd624ae"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/cartesian/frame-showcase.html",
+          "canonicalBlobSha": "7918b04e9ddb4bfb924668f24470a24e1d4b9e71",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/cartesian/frame-showcase.html",
+          "originBlobSha": "7918b04e9ddb4bfb924668f24470a24e1d4b9e71"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/claude/FRAME.md",
+          "canonicalBlobSha": "e6ca03f41914ae2ab4203baaedf1cc8997b03783",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/claude/FRAME.md",
+          "originBlobSha": "e6ca03f41914ae2ab4203baaedf1cc8997b03783"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/claude/caption-skin.html",
+          "canonicalBlobSha": "32b657bdfd684c7a4240e19ba480a4bb4297c6b3",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/claude/caption-skin.html",
+          "originBlobSha": "32b657bdfd684c7a4240e19ba480a4bb4297c6b3"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/claude/frame-showcase.html",
+          "canonicalBlobSha": "67a98a8ab776c62ba5fb2f83523f0e6033249621",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/claude/frame-showcase.html",
+          "originBlobSha": "67a98a8ab776c62ba5fb2f83523f0e6033249621"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/cobalt-grid/FRAME.md",
+          "canonicalBlobSha": "af52eec8f3cd86880530f4c0169c9cf422e31e4e",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/cobalt-grid/FRAME.md",
+          "originBlobSha": "af52eec8f3cd86880530f4c0169c9cf422e31e4e"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/cobalt-grid/caption-skin.html",
+          "canonicalBlobSha": "e604347cf7f5b5e94186c202a1e83d1ea3d512ee",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/cobalt-grid/caption-skin.html",
+          "originBlobSha": "e604347cf7f5b5e94186c202a1e83d1ea3d512ee"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/cobalt-grid/frame-showcase.html",
+          "canonicalBlobSha": "d9449880f1a7b21ff30976dcdbd1d8a385cf3386",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/cobalt-grid/frame-showcase.html",
+          "originBlobSha": "d9449880f1a7b21ff30976dcdbd1d8a385cf3386"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/coral/FRAME.md",
+          "canonicalBlobSha": "0c73b04acba1d4b86e5285daa90273b5e346a3c9",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/coral/FRAME.md",
+          "originBlobSha": "0c73b04acba1d4b86e5285daa90273b5e346a3c9"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/coral/caption-skin.html",
+          "canonicalBlobSha": "41f2a59603e4a7949230ed270cf38d47aede492c",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/coral/caption-skin.html",
+          "originBlobSha": "41f2a59603e4a7949230ed270cf38d47aede492c"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/coral/frame-showcase.html",
+          "canonicalBlobSha": "ae87659f3b61426694e9e522f6573b28b1d6c4e7",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/coral/frame-showcase.html",
+          "originBlobSha": "ae87659f3b61426694e9e522f6573b28b1d6c4e7"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/creative-mode/FRAME.md",
+          "canonicalBlobSha": "e00e6fed67b6a1a1f366119714d548238427d752",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/creative-mode/FRAME.md",
+          "originBlobSha": "e00e6fed67b6a1a1f366119714d548238427d752"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/creative-mode/caption-skin.html",
+          "canonicalBlobSha": "231e39bf048db4c6049e76b2a007abdfaddf6ff0",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/creative-mode/caption-skin.html",
+          "originBlobSha": "231e39bf048db4c6049e76b2a007abdfaddf6ff0"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/creative-mode/frame-showcase.html",
+          "canonicalBlobSha": "e540e40a39733abced1ea3d249f692c0eca32832",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/creative-mode/frame-showcase.html",
+          "originBlobSha": "e540e40a39733abced1ea3d249f692c0eca32832"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/daisy-days/FRAME.md",
+          "canonicalBlobSha": "ed3ebf49e0a0f78cb5ac543e5c175d8da4c07541",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/daisy-days/FRAME.md",
+          "originBlobSha": "ed3ebf49e0a0f78cb5ac543e5c175d8da4c07541"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/daisy-days/caption-skin.html",
+          "canonicalBlobSha": "6431baaa6cd6129f22085436cc9d7889abee6d99",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/daisy-days/caption-skin.html",
+          "originBlobSha": "6431baaa6cd6129f22085436cc9d7889abee6d99"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/daisy-days/frame-showcase.html",
+          "canonicalBlobSha": "c577bdbab3a1f023139349f3a63f2e5ff875b274",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/daisy-days/frame-showcase.html",
+          "originBlobSha": "c577bdbab3a1f023139349f3a63f2e5ff875b274"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/editorial-forest/FRAME.md",
+          "canonicalBlobSha": "83e2594f6301b54d98569ad478417d6fbb0d95ed",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/editorial-forest/FRAME.md",
+          "originBlobSha": "83e2594f6301b54d98569ad478417d6fbb0d95ed"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/editorial-forest/caption-skin.html",
+          "canonicalBlobSha": "b3d28986797c7643674ba93e120f8b104fc29d80",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/editorial-forest/caption-skin.html",
+          "originBlobSha": "b3d28986797c7643674ba93e120f8b104fc29d80"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/frame-presets/editorial-forest/frame-showcase.html",
+          "canonicalBlobSha": "c5c08718fef48120a17ee7d7858e3bfe592c63e7",
+          "originPath": ".agents/skills/hyperframes-creative/frame-presets/editorial-forest/frame-showcase.html",
+          "originBlobSha": "c5c08718fef48120a17ee7d7858e3bfe592c63e7"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/palettes/bold-energetic.md",
+          "canonicalBlobSha": "e60e2d76a481c0f1f3853374532411426b261f9e",
+          "originPath": ".agents/skills/hyperframes-creative/palettes/bold-energetic.md",
+          "originBlobSha": "e60e2d76a481c0f1f3853374532411426b261f9e"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/palettes/clean-corporate.md",
+          "canonicalBlobSha": "a4b79c939d0517c3235cccf9dadc4cc59ef5b8c8",
+          "originPath": ".agents/skills/hyperframes-creative/palettes/clean-corporate.md",
+          "originBlobSha": "a4b79c939d0517c3235cccf9dadc4cc59ef5b8c8"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/palettes/dark-premium.md",
+          "canonicalBlobSha": "84f81d5622d8f3fd18b97e072a45e171356008ae",
+          "originPath": ".agents/skills/hyperframes-creative/palettes/dark-premium.md",
+          "originBlobSha": "84f81d5622d8f3fd18b97e072a45e171356008ae"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/palettes/jewel-rich.md",
+          "canonicalBlobSha": "fbd5542b2a01ba16e5601d20d4115bc91d146201",
+          "originPath": ".agents/skills/hyperframes-creative/palettes/jewel-rich.md",
+          "originBlobSha": "fbd5542b2a01ba16e5601d20d4115bc91d146201"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/palettes/monochrome.md",
+          "canonicalBlobSha": "e26d247379de3a2133af87294f5e3d7304a86c1e",
+          "originPath": ".agents/skills/hyperframes-creative/palettes/monochrome.md",
+          "originBlobSha": "e26d247379de3a2133af87294f5e3d7304a86c1e"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/palettes/nature-earth.md",
+          "canonicalBlobSha": "cc3cb9d63b0320310852659b99d38de62e811288",
+          "originPath": ".agents/skills/hyperframes-creative/palettes/nature-earth.md",
+          "originBlobSha": "cc3cb9d63b0320310852659b99d38de62e811288"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/palettes/neon-electric.md",
+          "canonicalBlobSha": "94c3e86e8de695ad49c1108c96ea3113095de368",
+          "originPath": ".agents/skills/hyperframes-creative/palettes/neon-electric.md",
+          "originBlobSha": "94c3e86e8de695ad49c1108c96ea3113095de368"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/palettes/pastel-soft.md",
+          "canonicalBlobSha": "f4e99c5383955b41932e776152f38be5179ce27b",
+          "originPath": ".agents/skills/hyperframes-creative/palettes/pastel-soft.md",
+          "originBlobSha": "f4e99c5383955b41932e776152f38be5179ce27b"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/palettes/warm-editorial.md",
+          "canonicalBlobSha": "2b1907aac544928b0fd82d82a2bdd21960be6830",
+          "originPath": ".agents/skills/hyperframes-creative/palettes/warm-editorial.md",
+          "originBlobSha": "2b1907aac544928b0fd82d82a2bdd21960be6830"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/references/audio-reactive.md",
+          "canonicalBlobSha": "69549bbebac1a16b5696c58e8b715949e7e675d1",
+          "originPath": ".agents/skills/hyperframes-creative/references/audio-reactive.md",
+          "originBlobSha": "69549bbebac1a16b5696c58e8b715949e7e675d1"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/references/beat-direction.md",
+          "canonicalBlobSha": "b1d436a5b9b371452e2186c9489cf1c7ee78616c",
+          "originPath": ".agents/skills/hyperframes-creative/references/beat-direction.md",
+          "originBlobSha": "b1d436a5b9b371452e2186c9489cf1c7ee78616c"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/references/composition-patterns.md",
+          "canonicalBlobSha": "e2ddb391c06f492897dc49e8762f7235b9634418",
+          "originPath": ".agents/skills/hyperframes-creative/references/composition-patterns.md",
+          "originBlobSha": "e2ddb391c06f492897dc49e8762f7235b9634418"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/references/data-in-motion.md",
+          "canonicalBlobSha": "0578cd155a7bbc1c3af7e31d1a6ce7f6416e86f3",
+          "originPath": ".agents/skills/hyperframes-creative/references/data-in-motion.md",
+          "originBlobSha": "0578cd155a7bbc1c3af7e31d1a6ce7f6416e86f3"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/references/design-adherence.md",
+          "canonicalBlobSha": "130d469df25aed5f057c81e507b22226417da43b",
+          "originPath": ".agents/skills/hyperframes-creative/references/design-adherence.md",
+          "originBlobSha": "130d469df25aed5f057c81e507b22226417da43b"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/references/design-picker.md",
+          "canonicalBlobSha": "b0a9019226c9885fb6a385a93c94f51bbcd6b9c8",
+          "originPath": ".agents/skills/hyperframes-creative/references/design-picker.md",
+          "originBlobSha": "b0a9019226c9885fb6a385a93c94f51bbcd6b9c8"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/references/design-spec.md",
+          "canonicalBlobSha": "ba50475a28eaa2573daa88de08611f8967d1c52c",
+          "originPath": ".agents/skills/hyperframes-creative/references/design-spec.md",
+          "originBlobSha": "ba50475a28eaa2573daa88de08611f8967d1c52c"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/references/house-style.md",
+          "canonicalBlobSha": "c967ec63400dbf8e4b4e52c31538d5e037791dc3",
+          "originPath": ".agents/skills/hyperframes-creative/references/house-style.md",
+          "originBlobSha": "c967ec63400dbf8e4b4e52c31538d5e037791dc3"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/references/motion-principles.md",
+          "canonicalBlobSha": "c85fcfeac435c6930dc7841c1cbbaec402844f6f",
+          "originPath": ".agents/skills/hyperframes-creative/references/motion-principles.md",
+          "originBlobSha": "c85fcfeac435c6930dc7841c1cbbaec402844f6f"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/references/narration.md",
+          "canonicalBlobSha": "c28fff2ee65ec0620db9033a62834c6aa580384e",
+          "originPath": ".agents/skills/hyperframes-creative/references/narration.md",
+          "originBlobSha": "c28fff2ee65ec0620db9033a62834c6aa580384e"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/references/prompt-expansion.md",
+          "canonicalBlobSha": "b5f9d6b1b543e134514aa0154dfa588db01fb478",
+          "originPath": ".agents/skills/hyperframes-creative/references/prompt-expansion.md",
+          "originBlobSha": "b5f9d6b1b543e134514aa0154dfa588db01fb478"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/references/typography.md",
+          "canonicalBlobSha": "30ba3d76a70b5c29d9778003b027b8ed69311b9d",
+          "originPath": ".agents/skills/hyperframes-creative/references/typography.md",
+          "originBlobSha": "30ba3d76a70b5c29d9778003b027b8ed69311b9d"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/references/video-composition.md",
+          "canonicalBlobSha": "8b50cf922f5768d5d8e4660b554b08f65b8734c3",
+          "originPath": ".agents/skills/hyperframes-creative/references/video-composition.md",
+          "originBlobSha": "8b50cf922f5768d5d8e4660b554b08f65b8734c3"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/references/visual-styles.md",
+          "canonicalBlobSha": "621ff9e6bfd4f0fd4b2e8c0e2a121939082bf3ea",
+          "originPath": ".agents/skills/hyperframes-creative/references/visual-styles.md",
+          "originBlobSha": "621ff9e6bfd4f0fd4b2e8c0e2a121939082bf3ea"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/scripts/contrast-report.mjs",
+          "canonicalBlobSha": "cd18eaeb7ec5485e8048cd2939c87f0e8f266ca8",
+          "originPath": ".agents/skills/hyperframes-creative/scripts/contrast-report.mjs",
+          "originBlobSha": "cd18eaeb7ec5485e8048cd2939c87f0e8f266ca8"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/scripts/extract-audio-data.py",
+          "canonicalBlobSha": "b4efba788d03ed84d6fae25e3a7102fde934f61e",
+          "originPath": ".agents/skills/hyperframes-creative/scripts/extract-audio-data.py",
+          "originBlobSha": "b4efba788d03ed84d6fae25e3a7102fde934f61e"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/scripts/package-loader.mjs",
+          "canonicalBlobSha": "d3e388225a5f140ceeccec853743c5cdf25b1052",
+          "originPath": ".agents/skills/hyperframes-creative/scripts/package-loader.mjs",
+          "originBlobSha": "d3e388225a5f140ceeccec853743c5cdf25b1052"
+        },
+        {
+          "canonicalPath": "products/hyperframes-creative/templates/design-picker.html",
+          "canonicalBlobSha": "6cb6f0878dc1b1e7296664b193c080a91babc335",
+          "originPath": ".agents/skills/hyperframes-creative/templates/design-picker.html",
+          "originBlobSha": "6cb6f0878dc1b1e7296664b193c080a91babc335"
+        }
+      ]
+    },
+    {
+      "id": "hyperframes-media",
+      "canonical": {
+        "path": "products/hyperframes-media/SKILL.md",
+        "blobSha": "a594fb9d4f1d9d240cea48fa7b33cb69fe853cbe"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/hyperframes-media/SKILL.md",
+        "blobSha": "33d77eb67d2e1b10de4079dba158afd4ecd05a15"
+      },
+      "supportingFiles": [
+        {
+          "canonicalPath": "products/hyperframes-media/references/bgm.md",
+          "canonicalBlobSha": "277626ca931d7243f0139ecbf31046cf3ef24cbf",
+          "originPath": ".agents/skills/hyperframes-media/references/bgm.md",
+          "originBlobSha": "277626ca931d7243f0139ecbf31046cf3ef24cbf"
+        },
+        {
+          "canonicalPath": "products/hyperframes-media/references/captions/authoring.md",
+          "canonicalBlobSha": "65687f680336861388464657a685d816b6beda7e",
+          "originPath": ".agents/skills/hyperframes-media/references/captions/authoring.md",
+          "originBlobSha": "65687f680336861388464657a685d816b6beda7e"
+        },
+        {
+          "canonicalPath": "products/hyperframes-media/references/captions/motion.md",
+          "canonicalBlobSha": "d39be28dce42613ae2a7520e32e256f95350007a",
+          "originPath": ".agents/skills/hyperframes-media/references/captions/motion.md",
+          "originBlobSha": "d39be28dce42613ae2a7520e32e256f95350007a"
+        },
+        {
+          "canonicalPath": "products/hyperframes-media/references/captions/transcript-handling.md",
+          "canonicalBlobSha": "3a87d6410f73db41b880bd329b0539d5ad30834c",
+          "originPath": ".agents/skills/hyperframes-media/references/captions/transcript-handling.md",
+          "originBlobSha": "3a87d6410f73db41b880bd329b0539d5ad30834c"
+        },
+        {
+          "canonicalPath": "products/hyperframes-media/references/remove-background.md",
+          "canonicalBlobSha": "eff9fd551f7fa2e19858ea4010d1e71e514cd9a9",
+          "originPath": ".agents/skills/hyperframes-media/references/remove-background.md",
+          "originBlobSha": "eff9fd551f7fa2e19858ea4010d1e71e514cd9a9"
+        },
+        {
+          "canonicalPath": "products/hyperframes-media/references/requirements.md",
+          "canonicalBlobSha": "d695b3e0b2aa454a1e9dd41cf765f138ee4ba9a5",
+          "originPath": ".agents/skills/hyperframes-media/references/requirements.md",
+          "originBlobSha": "d695b3e0b2aa454a1e9dd41cf765f138ee4ba9a5"
+        },
+        {
+          "canonicalPath": "products/hyperframes-media/references/sfx.md",
+          "canonicalBlobSha": "6b7b8ae983c89d98781392220e41f0aec4931d6c",
+          "originPath": ".agents/skills/hyperframes-media/references/sfx.md",
+          "originBlobSha": "6df3268cc354dbbb127b9eb47c2e867b38fb061d"
+        },
+        {
+          "canonicalPath": "products/hyperframes-media/references/transcribe.md",
+          "canonicalBlobSha": "06df2ce445bc7eb13fc4e0b42321cf405d9c6db4",
+          "originPath": ".agents/skills/hyperframes-media/references/transcribe.md",
+          "originBlobSha": "06df2ce445bc7eb13fc4e0b42321cf405d9c6db4"
+        },
+        {
+          "canonicalPath": "products/hyperframes-media/references/tts-to-captions.md",
+          "canonicalBlobSha": "bad5f86eae6ddce1878e9801eb197340b4d44fda",
+          "originPath": ".agents/skills/hyperframes-media/references/tts-to-captions.md",
+          "originBlobSha": "bad5f86eae6ddce1878e9801eb197340b4d44fda"
+        },
+        {
+          "canonicalPath": "products/hyperframes-media/references/tts.md",
+          "canonicalBlobSha": "22ec77f0b438887bbe8a7f235f9f6f4fd747f7e5",
+          "originPath": ".agents/skills/hyperframes-media/references/tts.md",
+          "originBlobSha": "22ec77f0b438887bbe8a7f235f9f6f4fd747f7e5"
+        },
+        {
+          "canonicalPath": "products/hyperframes-media/scripts/audio.mjs",
+          "canonicalBlobSha": "2169fbe2b6f9c286b5c1106a69991e208010544e",
+          "originPath": ".agents/skills/hyperframes-media/scripts/audio.mjs",
+          "originBlobSha": "0532a0cf5726444e43f7646581e19f9c8864756f"
+        },
+        {
+          "canonicalPath": "products/hyperframes-media/scripts/heygen-tts.mjs",
+          "canonicalBlobSha": "f54eba892c5479e296898fca55a07947afca2a48",
+          "originPath": ".agents/skills/hyperframes-media/scripts/heygen-tts.mjs",
+          "originBlobSha": "f54eba892c5479e296898fca55a07947afca2a48"
+        },
+        {
+          "canonicalPath": "products/hyperframes-media/scripts/lib/bgm.mjs",
+          "canonicalBlobSha": "aca90f0429e694a05913befde212db1f520e0380",
+          "originPath": ".agents/skills/hyperframes-media/scripts/lib/bgm.mjs",
+          "originBlobSha": "aca90f0429e694a05913befde212db1f520e0380"
+        },
+        {
+          "canonicalPath": "products/hyperframes-media/scripts/lib/heygen.mjs",
+          "canonicalBlobSha": "ef466e4bb143f6f948163488a541f6ba840dfe9e",
+          "originPath": ".agents/skills/hyperframes-media/scripts/lib/heygen.mjs",
+          "originBlobSha": "ef466e4bb143f6f948163488a541f6ba840dfe9e"
+        },
+        {
+          "canonicalPath": "products/hyperframes-media/scripts/lib/sfx.mjs",
+          "canonicalBlobSha": "fafe4b6c735b174c6990d98ab8b63907f5a3f3c0",
+          "originPath": ".agents/skills/hyperframes-media/scripts/lib/sfx.mjs",
+          "originBlobSha": "c3e33b237f9a2c8b9b9efde047af85da35236375"
+        },
+        {
+          "canonicalPath": "products/hyperframes-media/scripts/lib/tts.mjs",
+          "canonicalBlobSha": "e93b3c3d4308649523f79d864206ceab512b1fb2",
+          "originPath": ".agents/skills/hyperframes-media/scripts/lib/tts.mjs",
+          "originBlobSha": "e93b3c3d4308649523f79d864206ceab512b1fb2"
+        },
+        {
+          "canonicalPath": "products/hyperframes-media/scripts/lyria-recipe.py",
+          "canonicalBlobSha": "c28cba8f7340c82bb3945597ce242d3d9718f039",
+          "originPath": ".agents/skills/hyperframes-media/scripts/lyria-recipe.py",
+          "originBlobSha": "c28cba8f7340c82bb3945597ce242d3d9718f039"
+        },
+        {
+          "canonicalPath": "products/hyperframes-media/scripts/wait-bgm.mjs",
+          "canonicalBlobSha": "aa9cc19361444b0c95e5dcfb507f0c7105eae53e",
+          "originPath": ".agents/skills/hyperframes-media/scripts/wait-bgm.mjs",
+          "originBlobSha": "aa9cc19361444b0c95e5dcfb507f0c7105eae53e"
+        }
+      ]
+    },
+    {
+      "id": "hyperframes-registry",
+      "canonical": {
+        "path": "products/hyperframes-registry/SKILL.md",
+        "blobSha": "4f526773281197e37bb76d3c35c177e15f86c3e9"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/hyperframes-registry/SKILL.md",
+        "blobSha": "4f526773281197e37bb76d3c35c177e15f86c3e9"
+      },
+      "supportingFiles": [
+        {
+          "canonicalPath": "products/hyperframes-registry/examples/add-block.md",
+          "canonicalBlobSha": "95bee6ff87928db0f6b3d39008e4f0913600ea79",
+          "originPath": ".agents/skills/hyperframes-registry/examples/add-block.md",
+          "originBlobSha": "95bee6ff87928db0f6b3d39008e4f0913600ea79"
+        },
+        {
+          "canonicalPath": "products/hyperframes-registry/examples/add-component.md",
+          "canonicalBlobSha": "1371289ddfa21b27ec461947686c840f02e3d956",
+          "originPath": ".agents/skills/hyperframes-registry/examples/add-component.md",
+          "originBlobSha": "1371289ddfa21b27ec461947686c840f02e3d956"
+        },
+        {
+          "canonicalPath": "products/hyperframes-registry/references/contributing.md",
+          "canonicalBlobSha": "1b7f6681662f5aaf0445920c6735fd134377cb5f",
+          "originPath": ".agents/skills/hyperframes-registry/references/contributing.md",
+          "originBlobSha": "1b7f6681662f5aaf0445920c6735fd134377cb5f"
+        },
+        {
+          "canonicalPath": "products/hyperframes-registry/references/demo-html-pattern.md",
+          "canonicalBlobSha": "3e53838c10b91dbf5fb196c95cde64bc385d2bc7",
+          "originPath": ".agents/skills/hyperframes-registry/references/demo-html-pattern.md",
+          "originBlobSha": "3e53838c10b91dbf5fb196c95cde64bc385d2bc7"
+        },
+        {
+          "canonicalPath": "products/hyperframes-registry/references/discovery.md",
+          "canonicalBlobSha": "6c06bc5836f93e0d36b613b510304fe67068e169",
+          "originPath": ".agents/skills/hyperframes-registry/references/discovery.md",
+          "originBlobSha": "6c06bc5836f93e0d36b613b510304fe67068e169"
+        },
+        {
+          "canonicalPath": "products/hyperframes-registry/references/install-locations.md",
+          "canonicalBlobSha": "65e3d34e57f1e509f82476992c8d72c05a7106ee",
+          "originPath": ".agents/skills/hyperframes-registry/references/install-locations.md",
+          "originBlobSha": "65e3d34e57f1e509f82476992c8d72c05a7106ee"
+        },
+        {
+          "canonicalPath": "products/hyperframes-registry/references/templates.md",
+          "canonicalBlobSha": "84d104ef3dde3fe47604c3f437984b45ef6e020b",
+          "originPath": ".agents/skills/hyperframes-registry/references/templates.md",
+          "originBlobSha": "84d104ef3dde3fe47604c3f437984b45ef6e020b"
+        },
+        {
+          "canonicalPath": "products/hyperframes-registry/references/wiring-blocks.md",
+          "canonicalBlobSha": "d3f4474cfa7af80e157c44c51dd6cb0ce6d1d076",
+          "originPath": ".agents/skills/hyperframes-registry/references/wiring-blocks.md",
+          "originBlobSha": "d3f4474cfa7af80e157c44c51dd6cb0ce6d1d076"
+        },
+        {
+          "canonicalPath": "products/hyperframes-registry/references/wiring-components.md",
+          "canonicalBlobSha": "9521a2174a37734efb3de8370224e21647a5655c",
+          "originPath": ".agents/skills/hyperframes-registry/references/wiring-components.md",
+          "originBlobSha": "9521a2174a37734efb3de8370224e21647a5655c"
+        }
+      ]
     },
     {
       "id": "live-dashboard-update-verification",
@@ -237,6 +1148,19 @@
       }
     },
     {
+      "id": "lottie",
+      "canonical": {
+        "path": "products/lottie/SKILL.md",
+        "blobSha": "e4a05dd1fa122ee0a9dfc1a04e74793af4f3fa9c"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/lottie/SKILL.md",
+        "blobSha": "e4a05dd1fa122ee0a9dfc1a04e74793af4f3fa9c"
+      },
+      "supportingFiles": []
+    },
+    {
       "id": "machine-discovery-surface-engineering",
       "canonical": {
         "path": "products/machine-discovery-surface-engineering/SKILL.md",
@@ -263,6 +1187,274 @@
       }
     },
     {
+      "id": "media-use",
+      "canonical": {
+        "path": "products/media-use/SKILL.md",
+        "blobSha": "100b0f2240287eb25a3ef0b1b8cddbdfc26c4202"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/media-use/SKILL.md",
+        "blobSha": "100b0f2240287eb25a3ef0b1b8cddbdfc26c4202"
+      },
+      "supportingFiles": [
+        {
+          "canonicalPath": "products/media-use/.gitignore",
+          "canonicalBlobSha": "17df1e2dbcfacf1e381b6153b10eac6002151231",
+          "originPath": ".agents/skills/media-use/.gitignore",
+          "originBlobSha": "17df1e2dbcfacf1e381b6153b10eac6002151231"
+        },
+        {
+          "canonicalPath": "products/media-use/scripts/eval.mjs",
+          "canonicalBlobSha": "7184c6fc1538ab41864dd94a54dc40f52ce22f1d",
+          "originPath": ".agents/skills/media-use/scripts/eval.mjs",
+          "originBlobSha": "7184c6fc1538ab41864dd94a54dc40f52ce22f1d"
+        },
+        {
+          "canonicalPath": "products/media-use/scripts/lib/adopt.mjs",
+          "canonicalBlobSha": "773714890a07bc22f6571b1438ba782a83d82e05",
+          "originPath": ".agents/skills/media-use/scripts/lib/adopt.mjs",
+          "originBlobSha": "773714890a07bc22f6571b1438ba782a83d82e05"
+        },
+        {
+          "canonicalPath": "products/media-use/scripts/lib/bgm-provider.mjs",
+          "canonicalBlobSha": "462354d098b7e48517d37255b8ad565569c866f0",
+          "originPath": ".agents/skills/media-use/scripts/lib/bgm-provider.mjs",
+          "originBlobSha": "462354d098b7e48517d37255b8ad565569c866f0"
+        },
+        {
+          "canonicalPath": "products/media-use/scripts/lib/brand-provider.mjs",
+          "canonicalBlobSha": "e05caf1e3e2d61b6efd9a5a1a00e6bc0f17799e9",
+          "originPath": ".agents/skills/media-use/scripts/lib/brand-provider.mjs",
+          "originBlobSha": "e05caf1e3e2d61b6efd9a5a1a00e6bc0f17799e9"
+        },
+        {
+          "canonicalPath": "products/media-use/scripts/lib/cache.mjs",
+          "canonicalBlobSha": "e138e2bc01251644599792f6a456822523e07a2f",
+          "originPath": ".agents/skills/media-use/scripts/lib/cache.mjs",
+          "originBlobSha": "e138e2bc01251644599792f6a456822523e07a2f"
+        },
+        {
+          "canonicalPath": "products/media-use/scripts/lib/freeze.mjs",
+          "canonicalBlobSha": "aa4704201ddb8a02492fd0d6f44f84ee700feb46",
+          "originPath": ".agents/skills/media-use/scripts/lib/freeze.mjs",
+          "originBlobSha": "aa4704201ddb8a02492fd0d6f44f84ee700feb46"
+        },
+        {
+          "canonicalPath": "products/media-use/scripts/lib/heygen-search.mjs",
+          "canonicalBlobSha": "d873504eae620c24e042a2e8b9666d4f0c1c754b",
+          "originPath": ".agents/skills/media-use/scripts/lib/heygen-search.mjs",
+          "originBlobSha": "d873504eae620c24e042a2e8b9666d4f0c1c754b"
+        },
+        {
+          "canonicalPath": "products/media-use/scripts/lib/image-provider.mjs",
+          "canonicalBlobSha": "69b26397e78cd84e49c15662e30460e0d16b5085",
+          "originPath": ".agents/skills/media-use/scripts/lib/image-provider.mjs",
+          "originBlobSha": "69b26397e78cd84e49c15662e30460e0d16b5085"
+        },
+        {
+          "canonicalPath": "products/media-use/scripts/lib/index-gen.mjs",
+          "canonicalBlobSha": "65b019a92e9cdd88e3ca97f27986ea170dea9236",
+          "originPath": ".agents/skills/media-use/scripts/lib/index-gen.mjs",
+          "originBlobSha": "65b019a92e9cdd88e3ca97f27986ea170dea9236"
+        },
+        {
+          "canonicalPath": "products/media-use/scripts/lib/manifest.mjs",
+          "canonicalBlobSha": "a32ea181bf849f2e3b0241f5ce980a35957010f8",
+          "originPath": ".agents/skills/media-use/scripts/lib/manifest.mjs",
+          "originBlobSha": "a32ea181bf849f2e3b0241f5ce980a35957010f8"
+        },
+        {
+          "canonicalPath": "products/media-use/scripts/lib/manifest.test.mjs",
+          "canonicalBlobSha": "227addf309756efc59507d2ac83b2555f792e233",
+          "originPath": ".agents/skills/media-use/scripts/lib/manifest.test.mjs",
+          "originBlobSha": "227addf309756efc59507d2ac83b2555f792e233"
+        },
+        {
+          "canonicalPath": "products/media-use/scripts/lib/probe.mjs",
+          "canonicalBlobSha": "27ef28ce7a1f4c1e1fdafc3afac509e96baefaaa",
+          "originPath": ".agents/skills/media-use/scripts/lib/probe.mjs",
+          "originBlobSha": "27ef28ce7a1f4c1e1fdafc3afac509e96baefaaa"
+        },
+        {
+          "canonicalPath": "products/media-use/scripts/lib/probe.test.mjs",
+          "canonicalBlobSha": "d4d896cc382bfec860a93d65c06d71fe28aa6019",
+          "originPath": ".agents/skills/media-use/scripts/lib/probe.test.mjs",
+          "originBlobSha": "d4d896cc382bfec860a93d65c06d71fe28aa6019"
+        },
+        {
+          "canonicalPath": "products/media-use/scripts/lib/providers.mjs",
+          "canonicalBlobSha": "f8924410d24c4fa04af4015223009679eb58c97a",
+          "originPath": ".agents/skills/media-use/scripts/lib/providers.mjs",
+          "originBlobSha": "f8924410d24c4fa04af4015223009679eb58c97a"
+        },
+        {
+          "canonicalPath": "products/media-use/scripts/lib/sfx-provider.mjs",
+          "canonicalBlobSha": "24c9e5398fdaf3fddff2595df2d37a4f1b2f1e65",
+          "originPath": ".agents/skills/media-use/scripts/lib/sfx-provider.mjs",
+          "originBlobSha": "24c9e5398fdaf3fddff2595df2d37a4f1b2f1e65"
+        },
+        {
+          "canonicalPath": "products/media-use/scripts/resolve.mjs",
+          "canonicalBlobSha": "0de752cdd188fcd211b1f56e59fe9f3ed285c326",
+          "originPath": ".agents/skills/media-use/scripts/resolve.mjs",
+          "originBlobSha": "0de752cdd188fcd211b1f56e59fe9f3ed285c326"
+        },
+        {
+          "canonicalPath": "products/media-use/scripts/resolve.test.mjs",
+          "canonicalBlobSha": "bfec55b17b970858127e6edc63a405164db146db",
+          "originPath": ".agents/skills/media-use/scripts/resolve.test.mjs",
+          "originBlobSha": "bfec55b17b970858127e6edc63a405164db146db"
+        }
+      ]
+    },
+    {
+      "id": "motion-graphics",
+      "canonical": {
+        "path": "products/motion-graphics/SKILL.md",
+        "blobSha": "a9593aef286708d39d82ddf635924247cc56fd5f"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/motion-graphics/SKILL.md",
+        "blobSha": "a9593aef286708d39d82ddf635924247cc56fd5f"
+      },
+      "supportingFiles": [
+        {
+          "canonicalPath": "products/motion-graphics/agents/builder.md",
+          "canonicalBlobSha": "6553ec90d3d5a8e4078696598b4a586e1d7fca0b",
+          "originPath": ".agents/skills/motion-graphics/agents/builder.md",
+          "originBlobSha": "6553ec90d3d5a8e4078696598b4a586e1d7fca0b"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/agents/director.md",
+          "canonicalBlobSha": "37b17a237bf88c3702aae51b6aaf3823f7784f43",
+          "originPath": ".agents/skills/motion-graphics/agents/director.md",
+          "originBlobSha": "37b17a237bf88c3702aae51b6aaf3823f7784f43"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/agents/finalize.md",
+          "canonicalBlobSha": "5795b191d35fbf98e5c1d3a1424ed98bf1b61d70",
+          "originPath": ".agents/skills/motion-graphics/agents/finalize.md",
+          "originBlobSha": "5795b191d35fbf98e5c1d3a1424ed98bf1b61d70"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/catalog-map.md",
+          "canonicalBlobSha": "a0d008a80636c86669272d24aac5d6692b0da8ba",
+          "originPath": ".agents/skills/motion-graphics/catalog-map.md",
+          "originBlobSha": "a0d008a80636c86669272d24aac5d6692b0da8ba"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/categories/asset-fusion/module.md",
+          "canonicalBlobSha": "6bd1431a57d950695bf549b85f2add0bcbbebe70",
+          "originPath": ".agents/skills/motion-graphics/categories/asset-fusion/module.md",
+          "originBlobSha": "6bd1431a57d950695bf549b85f2add0bcbbebe70"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/categories/charts/module.md",
+          "canonicalBlobSha": "d00354cc377f7b8d5ca7692a0f39f32a893e4bf9",
+          "originPath": ".agents/skills/motion-graphics/categories/charts/module.md",
+          "originBlobSha": "d00354cc377f7b8d5ca7692a0f39f32a893e4bf9"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/categories/kinetic-type/module.md",
+          "canonicalBlobSha": "3c24c98a7e632e962dfe7828e69234cb75f450f0",
+          "originPath": ".agents/skills/motion-graphics/categories/kinetic-type/module.md",
+          "originBlobSha": "3c24c98a7e632e962dfe7828e69234cb75f450f0"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/categories/logo-reveal/module.md",
+          "canonicalBlobSha": "9459db0d4781c4771f358ef74a43c3625182e7f0",
+          "originPath": ".agents/skills/motion-graphics/categories/logo-reveal/module.md",
+          "originBlobSha": "9459db0d4781c4771f358ef74a43c3625182e7f0"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/categories/lower-thirds/module.md",
+          "canonicalBlobSha": "6b7ce4fe7c97f36fc92d4a9594940981688c97b2",
+          "originPath": ".agents/skills/motion-graphics/categories/lower-thirds/module.md",
+          "originBlobSha": "6b7ce4fe7c97f36fc92d4a9594940981688c97b2"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/categories/maps/bake-basemap.mjs",
+          "canonicalBlobSha": "47ec742c1c712b87657940bb6681bcedc0e4a610",
+          "originPath": ".agents/skills/motion-graphics/categories/maps/bake-basemap.mjs",
+          "originBlobSha": "47ec742c1c712b87657940bb6681bcedc0e4a610"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/categories/maps/module.md",
+          "canonicalBlobSha": "a164964491db7600ddf71c47ff7e9eae56c052cc",
+          "originPath": ".agents/skills/motion-graphics/categories/maps/module.md",
+          "originBlobSha": "a164964491db7600ddf71c47ff7e9eae56c052cc"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/categories/news/module.md",
+          "canonicalBlobSha": "a35a7264e4ec3319cc506e6b0a000f0fe7e3c868",
+          "originPath": ".agents/skills/motion-graphics/categories/news/module.md",
+          "originBlobSha": "a35a7264e4ec3319cc506e6b0a000f0fe7e3c868"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/categories/stat/module.md",
+          "canonicalBlobSha": "a283d87e4274605ad44426366652d94855965a04",
+          "originPath": ".agents/skills/motion-graphics/categories/stat/module.md",
+          "originBlobSha": "a283d87e4274605ad44426366652d94855965a04"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/categories/tweet/module.md",
+          "canonicalBlobSha": "8c1f759548d937733aa630a6b02cd382cb073ee5",
+          "originPath": ".agents/skills/motion-graphics/categories/tweet/module.md",
+          "originBlobSha": "8c1f759548d937733aa630a6b02cd382cb073ee5"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/categories/webpage/module.md",
+          "canonicalBlobSha": "b37e1f63f4b826d0a160919da572a5cfc1f39c13",
+          "originPath": ".agents/skills/motion-graphics/categories/webpage/module.md",
+          "originBlobSha": "b37e1f63f4b826d0a160919da572a5cfc1f39c13"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/grounding/PROTOCOL.md",
+          "canonicalBlobSha": "b6e460e558b0f8b550f99a73a34520e327436de7",
+          "originPath": ".agents/skills/motion-graphics/grounding/PROTOCOL.md",
+          "originBlobSha": "b6e460e558b0f8b550f99a73a34520e327436de7"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/grounding/locate.mjs",
+          "canonicalBlobSha": "136b8074aa60a58b618bae6739e5a66bab22dba9",
+          "originPath": ".agents/skills/motion-graphics/grounding/locate.mjs",
+          "originBlobSha": "136b8074aa60a58b618bae6739e5a66bab22dba9"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/phases/source/guide.md",
+          "canonicalBlobSha": "9ab18e07324520122ef1339754b83ebf26457e25",
+          "originPath": ".agents/skills/motion-graphics/phases/source/guide.md",
+          "originBlobSha": "9ab18e07324520122ef1339754b83ebf26457e25"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/references/builder-contract.md",
+          "canonicalBlobSha": "968d8d57e9ff24883ffbdf31620cc62f52ed5731",
+          "originPath": ".agents/skills/motion-graphics/references/builder-contract.md",
+          "originBlobSha": "968d8d57e9ff24883ffbdf31620cc62f52ed5731"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/references/motion-vocabulary.md",
+          "canonicalBlobSha": "d7be1df9660ce3496dda399824822eb939f39b47",
+          "originPath": ".agents/skills/motion-graphics/references/motion-vocabulary.md",
+          "originBlobSha": "d7be1df9660ce3496dda399824822eb939f39b47"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/references/shot-plan-ir.md",
+          "canonicalBlobSha": "5a847af7d6314432d7d61d2099a6cf56f86ca099",
+          "originPath": ".agents/skills/motion-graphics/references/shot-plan-ir.md",
+          "originBlobSha": "5a847af7d6314432d7d61d2099a6cf56f86ca099"
+        },
+        {
+          "canonicalPath": "products/motion-graphics/samples/asset-fusion/_ref-circle-highlight.html",
+          "canonicalBlobSha": "ef4c83c2e7396fa5443bffabccdf407d41bc4c0d",
+          "originPath": ".agents/skills/motion-graphics/samples/asset-fusion/_ref-circle-highlight.html",
+          "originBlobSha": "ef4c83c2e7396fa5443bffabccdf407d41bc4c0d"
+        }
+      ]
+    },
+    {
       "id": "outside-in-agent-crawl-verification",
       "canonical": {
         "path": "products/outside-in-agent-crawl-verification/SKILL.md",
@@ -276,6 +1468,140 @@
       }
     },
     {
+      "id": "pr-to-video",
+      "canonical": {
+        "path": "products/pr-to-video/SKILL.md",
+        "blobSha": "dc51b00e31a26458b2049ffe0dd601108867ef84"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/pr-to-video/SKILL.md",
+        "blobSha": "dc51b00e31a26458b2049ffe0dd601108867ef84"
+      },
+      "supportingFiles": [
+        {
+          "canonicalPath": "products/pr-to-video/references/code-vocabulary.md",
+          "canonicalBlobSha": "d880dcc6443409821dcbf57867324d1d2f7d628f",
+          "originPath": ".agents/skills/pr-to-video/references/code-vocabulary.md",
+          "originBlobSha": "d880dcc6443409821dcbf57867324d1d2f7d628f"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/references/composition.md",
+          "canonicalBlobSha": "63ad60784cc7bdcbf9c53a256836b86682770e50",
+          "originPath": ".agents/skills/pr-to-video/references/composition.md",
+          "originBlobSha": "63ad60784cc7bdcbf9c53a256836b86682770e50"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/references/motion-language.md",
+          "canonicalBlobSha": "28957e042ff9277588f5b5ea99e3383a5a931d75",
+          "originPath": ".agents/skills/pr-to-video/references/motion-language.md",
+          "originBlobSha": "28957e042ff9277588f5b5ea99e3383a5a931d75"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/references/story-design.md",
+          "canonicalBlobSha": "ee62d763d4a8f234ec2260c357aa07ca9bcda6e1",
+          "originPath": ".agents/skills/pr-to-video/references/story-design.md",
+          "originBlobSha": "ee62d763d4a8f234ec2260c357aa07ca9bcda6e1"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/references/visual-design.md",
+          "canonicalBlobSha": "8584a599f62f055d5bd3830dde7b131ea432c5ec",
+          "originPath": ".agents/skills/pr-to-video/references/visual-design.md",
+          "originBlobSha": "8584a599f62f055d5bd3830dde7b131ea432c5ec"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/scripts/assemble-index.mjs",
+          "canonicalBlobSha": "df49b7549816b6682755fba710c42405b0eea298",
+          "originPath": ".agents/skills/pr-to-video/scripts/assemble-index.mjs",
+          "originBlobSha": "df49b7549816b6682755fba710c42405b0eea298"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/scripts/audio.mjs",
+          "canonicalBlobSha": "5640fd1065c8ca6a4339ae577fe754854741f8d8",
+          "originPath": ".agents/skills/pr-to-video/scripts/audio.mjs",
+          "originBlobSha": "5640fd1065c8ca6a4339ae577fe754854741f8d8"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/scripts/build-frame.mjs",
+          "canonicalBlobSha": "de00509ae3cf6642f3f3b2bbe9c6ef7b694c6fe4",
+          "originPath": ".agents/skills/pr-to-video/scripts/build-frame.mjs",
+          "originBlobSha": "de00509ae3cf6642f3f3b2bbe9c6ef7b694c6fe4"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/scripts/captions.mjs",
+          "canonicalBlobSha": "6bf4b84b47083bf8e075b154586f1694f7b380d5",
+          "originPath": ".agents/skills/pr-to-video/scripts/captions.mjs",
+          "originBlobSha": "6bf4b84b47083bf8e075b154586f1694f7b380d5"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/scripts/fetch-people-avatars.mjs",
+          "canonicalBlobSha": "69b386a3d8d01a665d7dcb6a330bfff01257734b",
+          "originPath": ".agents/skills/pr-to-video/scripts/fetch-people-avatars.mjs",
+          "originBlobSha": "69b386a3d8d01a665d7dcb6a330bfff01257734b"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/scripts/fetch-pr.mjs",
+          "canonicalBlobSha": "8a55f925192f0c8cade87afe8ca8f21662d7e893",
+          "originPath": ".agents/skills/pr-to-video/scripts/fetch-pr.mjs",
+          "originBlobSha": "8a55f925192f0c8cade87afe8ca8f21662d7e893"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/scripts/ingest.mjs",
+          "canonicalBlobSha": "176c89c3b0df366c99f1840355f25b70bae0a9b9",
+          "originPath": ".agents/skills/pr-to-video/scripts/ingest.mjs",
+          "originBlobSha": "176c89c3b0df366c99f1840355f25b70bae0a9b9"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/scripts/lib/assets.mjs",
+          "canonicalBlobSha": "0f06ac5da1e358a33488e0b1383f98101fef9018",
+          "originPath": ".agents/skills/pr-to-video/scripts/lib/assets.mjs",
+          "originBlobSha": "0f06ac5da1e358a33488e0b1383f98101fef9018"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/scripts/lib/dimensions.mjs",
+          "canonicalBlobSha": "c91f01caa88807a22190395d1b659e047a8e7dff",
+          "originPath": ".agents/skills/pr-to-video/scripts/lib/dimensions.mjs",
+          "originBlobSha": "c91f01caa88807a22190395d1b659e047a8e7dff"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/scripts/lib/storyboard.mjs",
+          "canonicalBlobSha": "7c821dcbaabe717e6ac7b7aa8502d8057e2c95d4",
+          "originPath": ".agents/skills/pr-to-video/scripts/lib/storyboard.mjs",
+          "originBlobSha": "7c821dcbaabe717e6ac7b7aa8502d8057e2c95d4"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/scripts/lib/tokens.mjs",
+          "canonicalBlobSha": "3f51778ec5d56fb99a3a4954a749d8ad58befc0b",
+          "originPath": ".agents/skills/pr-to-video/scripts/lib/tokens.mjs",
+          "originBlobSha": "3f51778ec5d56fb99a3a4954a749d8ad58befc0b"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/scripts/lib/transition-registry.mjs",
+          "canonicalBlobSha": "a0451793a65447f76fd05dd0a726f0d47f33198b",
+          "originPath": ".agents/skills/pr-to-video/scripts/lib/transition-registry.mjs",
+          "originBlobSha": "a0451793a65447f76fd05dd0a726f0d47f33198b"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/scripts/lib/transitions.json",
+          "canonicalBlobSha": "ab1c4b9d781d404612db49a445b25219a4d57c90",
+          "originPath": ".agents/skills/pr-to-video/scripts/lib/transitions.json",
+          "originBlobSha": "ab1c4b9d781d404612db49a445b25219a4d57c90"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/scripts/transitions.mjs",
+          "canonicalBlobSha": "00b1246aae7da52956cd6ad015a0891b63fa52d9",
+          "originPath": ".agents/skills/pr-to-video/scripts/transitions.mjs",
+          "originBlobSha": "00b1246aae7da52956cd6ad015a0891b63fa52d9"
+        },
+        {
+          "canonicalPath": "products/pr-to-video/sub-agents/frame-worker.md",
+          "canonicalBlobSha": "e2f20d6fc44a76ff0b1959a06e9bf8c3827646c0",
+          "originPath": ".agents/skills/pr-to-video/sub-agents/frame-worker.md",
+          "originBlobSha": "e2f20d6fc44a76ff0b1959a06e9bf8c3827646c0"
+        }
+      ]
+    },
+    {
       "id": "problem-centred-institutional-memory",
       "canonical": {
         "path": "products/problem-centred-institutional-memory/SKILL.md",
@@ -287,6 +1613,122 @@
         "path": "products/problem-centred-institutional-memory/SKILL.md",
         "blobSha": "c2dac1f143d36ce08118583a6c6b9517d22ed9bf"
       }
+    },
+    {
+      "id": "product-launch-video",
+      "canonical": {
+        "path": "products/product-launch-video/SKILL.md",
+        "blobSha": "b1038c79001053508147aedac13ff0285fc6c6fa"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/product-launch-video/SKILL.md",
+        "blobSha": "b1038c79001053508147aedac13ff0285fc6c6fa"
+      },
+      "supportingFiles": [
+        {
+          "canonicalPath": "products/product-launch-video/references/cut-catalog.md",
+          "canonicalBlobSha": "1c54a5e776a9748170095e1060d7ba38ffe02610",
+          "originPath": ".agents/skills/product-launch-video/references/cut-catalog.md",
+          "originBlobSha": "1c54a5e776a9748170095e1060d7ba38ffe02610"
+        },
+        {
+          "canonicalPath": "products/product-launch-video/references/motion-language.md",
+          "canonicalBlobSha": "d9d42f22ec4fcf5a796a421383cc22b76bd27991",
+          "originPath": ".agents/skills/product-launch-video/references/motion-language.md",
+          "originBlobSha": "d9d42f22ec4fcf5a796a421383cc22b76bd27991"
+        },
+        {
+          "canonicalPath": "products/product-launch-video/references/story-design.md",
+          "canonicalBlobSha": "8180025ef7cfc8989c62eb2993009049894d0c15",
+          "originPath": ".agents/skills/product-launch-video/references/story-design.md",
+          "originBlobSha": "8180025ef7cfc8989c62eb2993009049894d0c15"
+        },
+        {
+          "canonicalPath": "products/product-launch-video/references/visual-design.md",
+          "canonicalBlobSha": "040681358987743c06484948ebdd9168c6b6501a",
+          "originPath": ".agents/skills/product-launch-video/references/visual-design.md",
+          "originBlobSha": "040681358987743c06484948ebdd9168c6b6501a"
+        },
+        {
+          "canonicalPath": "products/product-launch-video/scripts/assemble-index.mjs",
+          "canonicalBlobSha": "6c5a28d8570d72ffede1a57c2310cf3cee2c0b3a",
+          "originPath": ".agents/skills/product-launch-video/scripts/assemble-index.mjs",
+          "originBlobSha": "6c5a28d8570d72ffede1a57c2310cf3cee2c0b3a"
+        },
+        {
+          "canonicalPath": "products/product-launch-video/scripts/audio.mjs",
+          "canonicalBlobSha": "5640fd1065c8ca6a4339ae577fe754854741f8d8",
+          "originPath": ".agents/skills/product-launch-video/scripts/audio.mjs",
+          "originBlobSha": "5640fd1065c8ca6a4339ae577fe754854741f8d8"
+        },
+        {
+          "canonicalPath": "products/product-launch-video/scripts/build-frame.mjs",
+          "canonicalBlobSha": "74171acaade46f4edfa0d9d5e74756b79c1e6b93",
+          "originPath": ".agents/skills/product-launch-video/scripts/build-frame.mjs",
+          "originBlobSha": "74171acaade46f4edfa0d9d5e74756b79c1e6b93"
+        },
+        {
+          "canonicalPath": "products/product-launch-video/scripts/captions.mjs",
+          "canonicalBlobSha": "f238218d02bea5a1e98775dc7ccaad53f68b7c5d",
+          "originPath": ".agents/skills/product-launch-video/scripts/captions.mjs",
+          "originBlobSha": "f238218d02bea5a1e98775dc7ccaad53f68b7c5d"
+        },
+        {
+          "canonicalPath": "products/product-launch-video/scripts/lib/assets.mjs",
+          "canonicalBlobSha": "0f06ac5da1e358a33488e0b1383f98101fef9018",
+          "originPath": ".agents/skills/product-launch-video/scripts/lib/assets.mjs",
+          "originBlobSha": "0f06ac5da1e358a33488e0b1383f98101fef9018"
+        },
+        {
+          "canonicalPath": "products/product-launch-video/scripts/lib/dimensions.mjs",
+          "canonicalBlobSha": "c91f01caa88807a22190395d1b659e047a8e7dff",
+          "originPath": ".agents/skills/product-launch-video/scripts/lib/dimensions.mjs",
+          "originBlobSha": "c91f01caa88807a22190395d1b659e047a8e7dff"
+        },
+        {
+          "canonicalPath": "products/product-launch-video/scripts/lib/storyboard.mjs",
+          "canonicalBlobSha": "7c821dcbaabe717e6ac7b7aa8502d8057e2c95d4",
+          "originPath": ".agents/skills/product-launch-video/scripts/lib/storyboard.mjs",
+          "originBlobSha": "7c821dcbaabe717e6ac7b7aa8502d8057e2c95d4"
+        },
+        {
+          "canonicalPath": "products/product-launch-video/scripts/lib/tokens.mjs",
+          "canonicalBlobSha": "02b1ceda7b03c58840841852c417e8b69d698033",
+          "originPath": ".agents/skills/product-launch-video/scripts/lib/tokens.mjs",
+          "originBlobSha": "02b1ceda7b03c58840841852c417e8b69d698033"
+        },
+        {
+          "canonicalPath": "products/product-launch-video/scripts/lib/transition-registry.mjs",
+          "canonicalBlobSha": "a0451793a65447f76fd05dd0a726f0d47f33198b",
+          "originPath": ".agents/skills/product-launch-video/scripts/lib/transition-registry.mjs",
+          "originBlobSha": "a0451793a65447f76fd05dd0a726f0d47f33198b"
+        },
+        {
+          "canonicalPath": "products/product-launch-video/scripts/lib/transitions.json",
+          "canonicalBlobSha": "ab1c4b9d781d404612db49a445b25219a4d57c90",
+          "originPath": ".agents/skills/product-launch-video/scripts/lib/transitions.json",
+          "originBlobSha": "ab1c4b9d781d404612db49a445b25219a4d57c90"
+        },
+        {
+          "canonicalPath": "products/product-launch-video/scripts/stage-assets.mjs",
+          "canonicalBlobSha": "5ccf22ea7f6d06b55b3b4a8cd9e73a7e1414bc80",
+          "originPath": ".agents/skills/product-launch-video/scripts/stage-assets.mjs",
+          "originBlobSha": "5ccf22ea7f6d06b55b3b4a8cd9e73a7e1414bc80"
+        },
+        {
+          "canonicalPath": "products/product-launch-video/scripts/transitions.mjs",
+          "canonicalBlobSha": "00b1246aae7da52956cd6ad015a0891b63fa52d9",
+          "originPath": ".agents/skills/product-launch-video/scripts/transitions.mjs",
+          "originBlobSha": "00b1246aae7da52956cd6ad015a0891b63fa52d9"
+        },
+        {
+          "canonicalPath": "products/product-launch-video/sub-agents/frame-worker.md",
+          "canonicalBlobSha": "88c59bd30ef9b5eda6929c8bccbfe82850713b1f",
+          "originPath": ".agents/skills/product-launch-video/sub-agents/frame-worker.md",
+          "originBlobSha": "88c59bd30ef9b5eda6929c8bccbfe82850713b1f"
+        }
+      ]
     },
     {
       "id": "production-agent-operating-files",
@@ -341,6 +1783,434 @@
       }
     },
     {
+      "id": "remotion-to-hyperframes",
+      "canonical": {
+        "path": "products/remotion-to-hyperframes/SKILL.md",
+        "blobSha": "d0cdcbd1ab42f13d88ef9ce057a4db7f637e17d0"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/remotion-to-hyperframes/SKILL.md",
+        "blobSha": "d0cdcbd1ab42f13d88ef9ce057a4db7f637e17d0"
+      },
+      "supportingFiles": [
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/.gitkeep",
+          "canonicalBlobSha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/.gitkeep",
+          "originBlobSha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/.gitignore",
+          "canonicalBlobSha": "89d8102e436a750c6c2fa436ff0eae9c1cf21a11",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/.gitignore",
+          "originBlobSha": "89d8102e436a750c6c2fa436ff0eae9c1cf21a11"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/run.sh",
+          "canonicalBlobSha": "50920be7a7ba17a779304fd7c89f6ebb39214172",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/run.sh",
+          "originBlobSha": "50920be7a7ba17a779304fd7c89f6ebb39214172"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/.gitignore",
+          "canonicalBlobSha": "d45877158704c5d5ba94f6ab4cb3011aa3c376b8",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/.gitignore",
+          "originBlobSha": "d45877158704c5d5ba94f6ab4cb3011aa3c376b8"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/README.md",
+          "canonicalBlobSha": "7b496809c034fcbab4dc310d43f3c294a0bb8f83",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/README.md",
+          "originBlobSha": "7b496809c034fcbab4dc310d43f3c294a0bb8f83"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/expected.json",
+          "canonicalBlobSha": "bccec0a59945094cbf795e15fd8c6848dc37df3d",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/expected.json",
+          "originBlobSha": "bccec0a59945094cbf795e15fd8c6848dc37df3d"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/hf-src/index.html",
+          "canonicalBlobSha": "df2570b8f41687d3faa5159fb656dd6a75ce7bb2",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/hf-src/index.html",
+          "originBlobSha": "df2570b8f41687d3faa5159fb656dd6a75ce7bb2"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/remotion-src/package.json",
+          "canonicalBlobSha": "1c33b63b42205ab6fd3b6a252bbc4dbb2fcf15d0",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/remotion-src/package.json",
+          "originBlobSha": "1c33b63b42205ab6fd3b6a252bbc4dbb2fcf15d0"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/remotion-src/remotion.config.ts",
+          "canonicalBlobSha": "a22cafc5e2087cd4816063e3d2a054f39b7b4ec9",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/remotion-src/remotion.config.ts",
+          "originBlobSha": "a22cafc5e2087cd4816063e3d2a054f39b7b4ec9"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/remotion-src/src/Root.tsx",
+          "canonicalBlobSha": "f8dd727705610772456a6fc862bec089cd245ae8",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/remotion-src/src/Root.tsx",
+          "originBlobSha": "f8dd727705610772456a6fc862bec089cd245ae8"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/remotion-src/src/TitleCard.tsx",
+          "canonicalBlobSha": "924557fffab2f3f518bb661ec892fd7cf458a83c",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/remotion-src/src/TitleCard.tsx",
+          "originBlobSha": "924557fffab2f3f518bb661ec892fd7cf458a83c"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/remotion-src/src/index.ts",
+          "canonicalBlobSha": "f31c790edb3e2f1611a701c7637cc396353d1ff7",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/remotion-src/src/index.ts",
+          "originBlobSha": "f31c790edb3e2f1611a701c7637cc396353d1ff7"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/remotion-src/tsconfig.json",
+          "canonicalBlobSha": "eb6f0f806538ff0e3cd203d339f52f836c6040ab",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/remotion-src/tsconfig.json",
+          "originBlobSha": "eb6f0f806538ff0e3cd203d339f52f836c6040ab"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/.gitignore",
+          "canonicalBlobSha": "def72ea0190faeb1b758f0e213d7f7399ea36f05",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/.gitignore",
+          "originBlobSha": "def72ea0190faeb1b758f0e213d7f7399ea36f05"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/README.md",
+          "canonicalBlobSha": "17659a683534880085f81f0de9371936fc3e9b9b",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/README.md",
+          "originBlobSha": "17659a683534880085f81f0de9371936fc3e9b9b"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/expected.json",
+          "canonicalBlobSha": "ed5c477df5985251b86f16da376e4500aa058a55",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/expected.json",
+          "originBlobSha": "ed5c477df5985251b86f16da376e4500aa058a55"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/hf-src/index.html",
+          "canonicalBlobSha": "9a663530596ff602f29b163c8abfe37fb573e634",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/hf-src/index.html",
+          "originBlobSha": "9a663530596ff602f29b163c8abfe37fb573e634"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/remotion-src/package.json",
+          "canonicalBlobSha": "88b08833aee1e8afc19d01f2e030f98a47cb0801",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/remotion-src/package.json",
+          "originBlobSha": "88b08833aee1e8afc19d01f2e030f98a47cb0801"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/remotion-src/remotion.config.ts",
+          "canonicalBlobSha": "a22cafc5e2087cd4816063e3d2a054f39b7b4ec9",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/remotion-src/remotion.config.ts",
+          "originBlobSha": "a22cafc5e2087cd4816063e3d2a054f39b7b4ec9"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/remotion-src/src/MultiScene.tsx",
+          "canonicalBlobSha": "362d967fa6b18812166074964d2d270c3fabd767",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/remotion-src/src/MultiScene.tsx",
+          "originBlobSha": "362d967fa6b18812166074964d2d270c3fabd767"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/remotion-src/src/Root.tsx",
+          "canonicalBlobSha": "37703e9cd15e32d741ea36dc8c024f40647644aa",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/remotion-src/src/Root.tsx",
+          "originBlobSha": "37703e9cd15e32d741ea36dc8c024f40647644aa"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/remotion-src/src/index.ts",
+          "canonicalBlobSha": "f31c790edb3e2f1611a701c7637cc396353d1ff7",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/remotion-src/src/index.ts",
+          "originBlobSha": "f31c790edb3e2f1611a701c7637cc396353d1ff7"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/remotion-src/tsconfig.json",
+          "canonicalBlobSha": "eb6f0f806538ff0e3cd203d339f52f836c6040ab",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/remotion-src/tsconfig.json",
+          "originBlobSha": "eb6f0f806538ff0e3cd203d339f52f836c6040ab"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/setup.sh",
+          "canonicalBlobSha": "918212337d447e5cbb20b8c2066b726a6b9f58fb",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/setup.sh",
+          "originBlobSha": "918212337d447e5cbb20b8c2066b726a6b9f58fb"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/.gitignore",
+          "canonicalBlobSha": "d45877158704c5d5ba94f6ab4cb3011aa3c376b8",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/.gitignore",
+          "originBlobSha": "d45877158704c5d5ba94f6ab4cb3011aa3c376b8"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/README.md",
+          "canonicalBlobSha": "711733364946942177dae6d091938c267f201ac7",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/README.md",
+          "originBlobSha": "711733364946942177dae6d091938c267f201ac7"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/expected.json",
+          "canonicalBlobSha": "82c0a7de71990e64079b2501937e56c30758f63c",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/expected.json",
+          "originBlobSha": "82c0a7de71990e64079b2501937e56c30758f63c"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/hf-src/index.html",
+          "canonicalBlobSha": "e4253f20475f2c0bebc77eb6725d15797237228f",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/hf-src/index.html",
+          "originBlobSha": "e4253f20475f2c0bebc77eb6725d15797237228f"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/package.json",
+          "canonicalBlobSha": "d5acfc24d132bf292546940326229f2c2f639909",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/package.json",
+          "originBlobSha": "d5acfc24d132bf292546940326229f2c2f639909"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/remotion.config.ts",
+          "canonicalBlobSha": "a22cafc5e2087cd4816063e3d2a054f39b7b4ec9",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/remotion.config.ts",
+          "originBlobSha": "a22cafc5e2087cd4816063e3d2a054f39b7b4ec9"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/Root.tsx",
+          "canonicalBlobSha": "5932bcd458ca40f73173fa12d4ab0cef997e5e58",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/Root.tsx",
+          "originBlobSha": "5932bcd458ca40f73173fa12d4ab0cef997e5e58"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/Stargazed.tsx",
+          "canonicalBlobSha": "4579c6d9aa0691d5d4b5f112f4758c7240eea765",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/Stargazed.tsx",
+          "originBlobSha": "4579c6d9aa0691d5d4b5f112f4758c7240eea765"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/components/AnimatedNumber.tsx",
+          "canonicalBlobSha": "d1a03f5e707524c97ae7b79a2b2c74dfc2488527",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/components/AnimatedNumber.tsx",
+          "originBlobSha": "d1a03f5e707524c97ae7b79a2b2c74dfc2488527"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/components/StatCard.tsx",
+          "canonicalBlobSha": "7de79fc4398c85a3c7a1bd5dbf1854a33fd27297",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/components/StatCard.tsx",
+          "originBlobSha": "7de79fc4398c85a3c7a1bd5dbf1854a33fd27297"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/components/UnderlinedText.tsx",
+          "canonicalBlobSha": "38800f42ca3c08a2e20ae851cc0fe8a180c60171",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/components/UnderlinedText.tsx",
+          "originBlobSha": "38800f42ca3c08a2e20ae851cc0fe8a180c60171"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/index.ts",
+          "canonicalBlobSha": "f31c790edb3e2f1611a701c7637cc396353d1ff7",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/index.ts",
+          "originBlobSha": "f31c790edb3e2f1611a701c7637cc396353d1ff7"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/scenes/OutroScene.tsx",
+          "canonicalBlobSha": "3121b49dd4f2d8ad6a4358c13d2cd6d60bd34762",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/scenes/OutroScene.tsx",
+          "originBlobSha": "3121b49dd4f2d8ad6a4358c13d2cd6d60bd34762"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/scenes/StatsScene.tsx",
+          "canonicalBlobSha": "aeb6878a47d4136de072a117490a8dad343d0ff6",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/scenes/StatsScene.tsx",
+          "originBlobSha": "aeb6878a47d4136de072a117490a8dad343d0ff6"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/scenes/TitleScene.tsx",
+          "canonicalBlobSha": "12d00038838a405d2c935485779fee632f005adb",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/src/scenes/TitleScene.tsx",
+          "originBlobSha": "12d00038838a405d2c935485779fee632f005adb"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/tsconfig.json",
+          "canonicalBlobSha": "eb6f0f806538ff0e3cd203d339f52f836c6040ab",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/tsconfig.json",
+          "originBlobSha": "eb6f0f806538ff0e3cd203d339f52f836c6040ab"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/README.md",
+          "canonicalBlobSha": "ac36e230d34e964cbf9105a584642da5f53cb12c",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/README.md",
+          "originBlobSha": "ac36e230d34e964cbf9105a584642da5f53cb12c"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/cases/01-use-state.tsx",
+          "canonicalBlobSha": "d022bb277ab00d1b8e362dca824582efd2826d4c",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/cases/01-use-state.tsx",
+          "originBlobSha": "d022bb277ab00d1b8e362dca824582efd2826d4c"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/cases/02-use-effect-deps.tsx",
+          "canonicalBlobSha": "270a65fa6c47e201892fee66f73a75f4580b2495",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/cases/02-use-effect-deps.tsx",
+          "originBlobSha": "270a65fa6c47e201892fee66f73a75f4580b2495"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/cases/03-async-metadata.tsx",
+          "canonicalBlobSha": "c1ecbbbc8525049cafc35c736c611e780712f40f",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/cases/03-async-metadata.tsx",
+          "originBlobSha": "c1ecbbbc8525049cafc35c736c611e780712f40f"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/cases/04-third-party-react.tsx",
+          "canonicalBlobSha": "5787c489122b6e6ccba4445377a06093bb96b22e",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/cases/04-third-party-react.tsx",
+          "originBlobSha": "5787c489122b6e6ccba4445377a06093bb96b22e"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/cases/05-lambda-config.tsx",
+          "canonicalBlobSha": "e4cdb2c0077ac862bb3372eef7e5aa7859f6958f",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/cases/05-lambda-config.tsx",
+          "originBlobSha": "e4cdb2c0077ac862bb3372eef7e5aa7859f6958f"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/cases/06-warnings-only.tsx",
+          "canonicalBlobSha": "eecf8326100a0bcd615201aff4abc03d65f6627c",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/cases/06-warnings-only.tsx",
+          "originBlobSha": "eecf8326100a0bcd615201aff4abc03d65f6627c"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/cases/07-custom-hook.tsx",
+          "canonicalBlobSha": "7ebcf9cf5b76aea9931df99b357611aa093b90c6",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/cases/07-custom-hook.tsx",
+          "originBlobSha": "7ebcf9cf5b76aea9931df99b357611aa093b90c6"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/cases/08-mixed.tsx",
+          "canonicalBlobSha": "68d918280f2f0cb35ea404451c3620551bce5d6a",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/cases/08-mixed.tsx",
+          "originBlobSha": "68d918280f2f0cb35ea404451c3620551bce5d6a"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/expected.json",
+          "canonicalBlobSha": "94a494e6c499d12013dec3cc4ce497b13c55337c",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/expected.json",
+          "originBlobSha": "94a494e6c499d12013dec3cc4ce497b13c55337c"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/validate.sh",
+          "canonicalBlobSha": "e7180f48c78421d7505147273eab617005fb2511",
+          "originPath": ".agents/skills/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/validate.sh",
+          "originBlobSha": "e7180f48c78421d7505147273eab617005fb2511"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/references/api-map.md",
+          "canonicalBlobSha": "23481216e9a9542275adb7d763d2697e7f5a2f90",
+          "originPath": ".agents/skills/remotion-to-hyperframes/references/api-map.md",
+          "originBlobSha": "23481216e9a9542275adb7d763d2697e7f5a2f90"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/references/escape-hatch.md",
+          "canonicalBlobSha": "9dd0fa445226596451a3ded2b683b98424b02e9b",
+          "originPath": ".agents/skills/remotion-to-hyperframes/references/escape-hatch.md",
+          "originBlobSha": "9dd0fa445226596451a3ded2b683b98424b02e9b"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/references/eval.md",
+          "canonicalBlobSha": "edb951c3a7dbc60dd9572fae7a883e1bd7d9aad0",
+          "originPath": ".agents/skills/remotion-to-hyperframes/references/eval.md",
+          "originBlobSha": "edb951c3a7dbc60dd9572fae7a883e1bd7d9aad0"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/references/fonts.md",
+          "canonicalBlobSha": "56c92983be34ee5f7aa038898dc773899ca5b5d8",
+          "originPath": ".agents/skills/remotion-to-hyperframes/references/fonts.md",
+          "originBlobSha": "56c92983be34ee5f7aa038898dc773899ca5b5d8"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/references/limitations.md",
+          "canonicalBlobSha": "e01980652746b62be67e8a5daf4a26d731b32a90",
+          "originPath": ".agents/skills/remotion-to-hyperframes/references/limitations.md",
+          "originBlobSha": "e01980652746b62be67e8a5daf4a26d731b32a90"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/references/lottie.md",
+          "canonicalBlobSha": "2fdb2e7d12a59e3ee2b28dfb2730d456550e7d39",
+          "originPath": ".agents/skills/remotion-to-hyperframes/references/lottie.md",
+          "originBlobSha": "2fdb2e7d12a59e3ee2b28dfb2730d456550e7d39"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/references/media.md",
+          "canonicalBlobSha": "1c7b77ddebd58cc58d0045c62da3bdbcdbf8fff0",
+          "originPath": ".agents/skills/remotion-to-hyperframes/references/media.md",
+          "originBlobSha": "1c7b77ddebd58cc58d0045c62da3bdbcdbf8fff0"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/references/parameters.md",
+          "canonicalBlobSha": "56fde3ecfb0edfa219995706e8e376129f4d16ce",
+          "originPath": ".agents/skills/remotion-to-hyperframes/references/parameters.md",
+          "originBlobSha": "56fde3ecfb0edfa219995706e8e376129f4d16ce"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/references/sequencing.md",
+          "canonicalBlobSha": "c0de381c606dfab36dbea4813d2ae041c049846e",
+          "originPath": ".agents/skills/remotion-to-hyperframes/references/sequencing.md",
+          "originBlobSha": "c0de381c606dfab36dbea4813d2ae041c049846e"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/references/timing.md",
+          "canonicalBlobSha": "dee32aee7101c5b80ecea7ba9d8680560195ac0c",
+          "originPath": ".agents/skills/remotion-to-hyperframes/references/timing.md",
+          "originBlobSha": "dee32aee7101c5b80ecea7ba9d8680560195ac0c"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/references/transitions.md",
+          "canonicalBlobSha": "223cc7ff11541ae13d2baa56f6f8689629b5001e",
+          "originPath": ".agents/skills/remotion-to-hyperframes/references/transitions.md",
+          "originBlobSha": "223cc7ff11541ae13d2baa56f6f8689629b5001e"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/scripts/.gitkeep",
+          "canonicalBlobSha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "originPath": ".agents/skills/remotion-to-hyperframes/scripts/.gitkeep",
+          "originBlobSha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/scripts/frame_strip.sh",
+          "canonicalBlobSha": "468d50d5ee73cf1eb13734e573756b466dfb7097",
+          "originPath": ".agents/skills/remotion-to-hyperframes/scripts/frame_strip.sh",
+          "originBlobSha": "468d50d5ee73cf1eb13734e573756b466dfb7097"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/scripts/lint_source.py",
+          "canonicalBlobSha": "e3a8ecd5cb983959f24752aa749560684596509b",
+          "originPath": ".agents/skills/remotion-to-hyperframes/scripts/lint_source.py",
+          "originBlobSha": "e3a8ecd5cb983959f24752aa749560684596509b"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/scripts/render_diff.sh",
+          "canonicalBlobSha": "dc349fd11ed5f883c028e3f141e4981b85e7dbcf",
+          "originPath": ".agents/skills/remotion-to-hyperframes/scripts/render_diff.sh",
+          "originBlobSha": "dc349fd11ed5f883c028e3f141e4981b85e7dbcf"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/scripts/tests/fixtures/blocker.tsx",
+          "canonicalBlobSha": "f0363663199286be7dc2a05992bcc411bcd2cb47",
+          "originPath": ".agents/skills/remotion-to-hyperframes/scripts/tests/fixtures/blocker.tsx",
+          "originBlobSha": "f0363663199286be7dc2a05992bcc411bcd2cb47"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/scripts/tests/fixtures/clean.tsx",
+          "canonicalBlobSha": "73c9b60c27985e790b2ea4ae8e4bd95b21c6ff78",
+          "originPath": ".agents/skills/remotion-to-hyperframes/scripts/tests/fixtures/clean.tsx",
+          "originBlobSha": "73c9b60c27985e790b2ea4ae8e4bd95b21c6ff78"
+        },
+        {
+          "canonicalPath": "products/remotion-to-hyperframes/scripts/tests/smoke.sh",
+          "canonicalBlobSha": "3a13c28045e839761daa2999ded34bd905f163ec",
+          "originPath": ".agents/skills/remotion-to-hyperframes/scripts/tests/smoke.sh",
+          "originBlobSha": "3a13c28045e839761daa2999ded34bd905f163ec"
+        }
+      ]
+    },
+    {
       "id": "safe-scheduled-runtime-upgrade",
       "canonical": {
         "path": "products/safe-scheduled-runtime-upgrade/SKILL.md",
@@ -378,6 +2248,26 @@
         "path": "agents/signed-agent-action-receipts.md",
         "blobSha": "b821da740c9019f71ebbe9dd9599cce4669610d9"
       }
+    },
+    {
+      "id": "slideshow",
+      "canonical": {
+        "path": "products/slideshow/SKILL.md",
+        "blobSha": "1e4726114c2a2349af3ac424e6d75cd2b26eacce"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/slideshow/SKILL.md",
+        "blobSha": "1e4726114c2a2349af3ac424e6d75cd2b26eacce"
+      },
+      "supportingFiles": [
+        {
+          "canonicalPath": "products/slideshow/references/standalone-harness.md",
+          "canonicalBlobSha": "e24306cddc49068fed50819319e9f6bb8a9d1061",
+          "originPath": ".agents/skills/slideshow/references/standalone-harness.md",
+          "originBlobSha": "e24306cddc49068fed50819319e9f6bb8a9d1061"
+        }
+      ]
     },
     {
       "id": "staged-mcp-plugin-activation",
@@ -419,6 +2309,19 @@
       }
     },
     {
+      "id": "tailwind",
+      "canonical": {
+        "path": "products/tailwind/SKILL.md",
+        "blobSha": "6453f2d22b816d828e3560b284a26b26260e3eb6"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/tailwind/SKILL.md",
+        "blobSha": "6453f2d22b816d828e3560b284a26b26260e3eb6"
+      },
+      "supportingFiles": []
+    },
+    {
       "id": "temporary-authority-bridge-lifecycle",
       "canonical": {
         "path": "products/temporary-authority-bridge-lifecycle/SKILL.md",
@@ -430,6 +2333,119 @@
         "path": "products/temporary-authority-bridge-lifecycle/SKILL.md",
         "blobSha": "67f712a645ebc4cadea6920853714b3264f68911"
       }
+    },
+    {
+      "id": "three",
+      "canonical": {
+        "path": "products/three/SKILL.md",
+        "blobSha": "72d1de64ffe676a2b19cd12dfae1886f93771127"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/three/SKILL.md",
+        "blobSha": "72d1de64ffe676a2b19cd12dfae1886f93771127"
+      },
+      "supportingFiles": []
+    },
+    {
+      "id": "typegpu",
+      "canonical": {
+        "path": "products/typegpu/SKILL.md",
+        "blobSha": "6a1969458867a3850fd128e696de46e5795e02fa"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/typegpu/SKILL.md",
+        "blobSha": "6a1969458867a3850fd128e696de46e5795e02fa"
+      },
+      "supportingFiles": []
+    },
+    {
+      "id": "waapi",
+      "canonical": {
+        "path": "products/waapi/SKILL.md",
+        "blobSha": "7a8521c18354385bff5a6e193244c4cce8e1ecf2"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/waapi/SKILL.md",
+        "blobSha": "7a8521c18354385bff5a6e193244c4cce8e1ecf2"
+      },
+      "supportingFiles": []
+    },
+    {
+      "id": "website-to-video",
+      "canonical": {
+        "path": "products/website-to-video/SKILL.md",
+        "blobSha": "ec795648305b365c7b3081e3c19fa0b39daed5ca"
+      },
+      "origin": {
+        "sourceKind": "owner-profile",
+        "path": ".agents/skills/website-to-video/SKILL.md",
+        "blobSha": "ec795648305b365c7b3081e3c19fa0b39daed5ca"
+      },
+      "supportingFiles": [
+        {
+          "canonicalPath": "products/website-to-video/references/beat-builder-guide.md",
+          "canonicalBlobSha": "81c7349ffff23ec90dcf1087886bb3e3ea2c8ad0",
+          "originPath": ".agents/skills/website-to-video/references/beat-builder-guide.md",
+          "originBlobSha": "81c7349ffff23ec90dcf1087886bb3e3ea2c8ad0"
+        },
+        {
+          "canonicalPath": "products/website-to-video/references/capabilities.md",
+          "canonicalBlobSha": "31f61f8986fd8ebe823946f66e96adabe83b36ab",
+          "originPath": ".agents/skills/website-to-video/references/capabilities.md",
+          "originBlobSha": "31f61f8986fd8ebe823946f66e96adabe83b36ab"
+        },
+        {
+          "canonicalPath": "products/website-to-video/references/step-0-capture.md",
+          "canonicalBlobSha": "78870d20dd10f568c18bb693a15bcd239f368daa",
+          "originPath": ".agents/skills/website-to-video/references/step-0-capture.md",
+          "originBlobSha": "78870d20dd10f568c18bb693a15bcd239f368daa"
+        },
+        {
+          "canonicalPath": "products/website-to-video/references/step-1-design.md",
+          "canonicalBlobSha": "b49f6d8adba9b1121ba00b6ba8131afdad6fc6b4",
+          "originPath": ".agents/skills/website-to-video/references/step-1-design.md",
+          "originBlobSha": "b49f6d8adba9b1121ba00b6ba8131afdad6fc6b4"
+        },
+        {
+          "canonicalPath": "products/website-to-video/references/step-2-brief.md",
+          "canonicalBlobSha": "52f71901d483e924606ee3540f335e6f86360cbf",
+          "originPath": ".agents/skills/website-to-video/references/step-2-brief.md",
+          "originBlobSha": "52f71901d483e924606ee3540f335e6f86360cbf"
+        },
+        {
+          "canonicalPath": "products/website-to-video/references/step-3-storyboard.md",
+          "canonicalBlobSha": "5f593e341f01955ec42fe0b008cc2a499450d920",
+          "originPath": ".agents/skills/website-to-video/references/step-3-storyboard.md",
+          "originBlobSha": "8c2bf9c81147ef3613628ddf7b26794f599980b9"
+        },
+        {
+          "canonicalPath": "products/website-to-video/references/step-4-vo.md",
+          "canonicalBlobSha": "59b84c98d0a037734eee2a27e32353355da49bb9",
+          "originPath": ".agents/skills/website-to-video/references/step-4-vo.md",
+          "originBlobSha": "59b84c98d0a037734eee2a27e32353355da49bb9"
+        },
+        {
+          "canonicalPath": "products/website-to-video/references/step-5-build.md",
+          "canonicalBlobSha": "8b6683de99e1230563ec80355db6f7527f44998b",
+          "originPath": ".agents/skills/website-to-video/references/step-5-build.md",
+          "originBlobSha": "bdba1016280a2ddda376dfdb896c98f9c80dc8d5"
+        },
+        {
+          "canonicalPath": "products/website-to-video/references/step-6-validate.md",
+          "canonicalBlobSha": "87bedd5093b030b7d32d7ad1ee30f2603dd6d8dd",
+          "originPath": ".agents/skills/website-to-video/references/step-6-validate.md",
+          "originBlobSha": "87bedd5093b030b7d32d7ad1ee30f2603dd6d8dd"
+        },
+        {
+          "canonicalPath": "products/website-to-video/scripts/w2h-verify.mjs",
+          "canonicalBlobSha": "e1aeebb272c0cd29eed5a1f58f9bb14f8b584db7",
+          "originPath": ".agents/skills/website-to-video/scripts/w2h-verify.mjs",
+          "originBlobSha": "e1aeebb272c0cd29eed5a1f58f9bb14f8b584db7"
+        }
+      ]
     }
   ]
 }

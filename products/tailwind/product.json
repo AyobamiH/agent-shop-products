@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "tailwind",
+  "slug": "tailwind",
+  "name": "Tailwind CSS for HyperFrames",
+  "category": "video-tooling",
+  "summary": "Use Tailwind CSS v4 browser-runtime patterns in HyperFrames composition HTML and decide when to compile CSS.",
+  "problem": "Tailwind v3 and v4 use different configuration models, while browser-runtime styling also has render-readiness constraints.",
+  "coreOutcomes": [
+    "Apply Tailwind v4 utilities and CSS-first theme tokens",
+    "Avoid v3-only configuration patterns in browser-runtime projects",
+    "Choose the browser runtime or compiled stylesheet path for the render environment"
+  ],
+  "requirements": [
+    "A HyperFrames composition created with Tailwind support or a compiled Tailwind stylesheet",
+    "Tailwind CSS v4.2.4 browser runtime when using the pinned browser path"
+  ],
+  "boundaries": [
+    "Applies to HyperFrames composition HTML, not the Studio package that uses Tailwind v3",
+    "Keep animation timing in a seekable runtime rather than Tailwind classes"
+  ],
+  "tags": [
+    "tailwind",
+    "css",
+    "hyperframes",
+    "browser-runtime"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

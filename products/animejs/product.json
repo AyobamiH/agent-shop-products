@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "animejs",
+  "slug": "animejs",
+  "name": "Anime.js Runtime Adapter",
+  "category": "video-tooling",
+  "summary": "Use Anime.js timelines and registered runtime instances that can be sought deterministically by HyperFrames.",
+  "problem": "Anime.js animations can drift during preview or rendering when their runtime state is not integrated with HyperFrames seeking.",
+  "coreOutcomes": [
+    "Register Anime.js instances for deterministic seeking",
+    "Translate Anime.js patterns into render-safe composition HTML",
+    "Keep animation state aligned with the composition timeline"
+  ],
+  "requirements": [
+    "A HyperFrames composition",
+    "Anime.js available to the composition runtime"
+  ],
+  "boundaries": [
+    "Covers Anime.js runtime integration, not overall motion direction",
+    "Keep animation time derived from HyperFrames progress rather than a wall clock"
+  ],
+  "tags": [
+    "hyperframes",
+    "animejs",
+    "animation",
+    "deterministic-rendering"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

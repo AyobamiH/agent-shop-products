@@ -20,6 +20,11 @@ products/<product-id>/
 
 `product.json` is the canonical editable discovery metadata for that product.
 
+A skill may include supporting resources beneath its product directory when
+`SKILL.md` references them. Keep relative paths intact and record every
+supporting file in `catalog/sources.json` so the packaged source remains
+verifiable.
+
 Central catalogue files are indexes or projections. They are not an independent place to author product truth.
 
 ## Files
@@ -70,6 +75,13 @@ Source/provenance manifest containing:
 - canonical payload blob SHA;
 - original repository/branch/path;
 - original payload blob SHA.
+- supporting-file paths and blob SHAs when a skill has a resource bundle.
+
+For a skill migrated from the owner's unversioned profile, record
+`sourceKind: "owner-profile"` and a profile-relative `.agents/skills/<name>/...`
+path instead of inventing a repository or branch. Never publish absolute
+machine paths. Preserve the original payload and supporting files byte-for-byte
+unless a separately reviewed content change is required.
 
 It is an integrity record, not storefront copy.
 
@@ -80,6 +92,11 @@ A separate procedure-coverage record for the reviewed work. It is not a product 
 The record contains the review scope, sanitised evidence sources, procedures and their evidence limits, mappings to every catalogue product, explicitly observed supporting platform skills, and inherited or unfinished work. Each procedure references existing product IDs and evidence-source IDs. Each product mapping must agree with the procedures that reference it.
 
 A procedure-to-product match does not prove that the product payload was invoked. Explicitly observed named platform skills are dependencies and do not become products unless separately authorised, authored and indexed through the normal product contract. Historical or partial evidence must not be upgraded into installation or live acceptance claims.
+
+Products added after a dated procedure review must be marked as post-review
+catalogue additions with `not-established-in-reviewed-work` coverage unless new
+evidence is separately reviewed. This records catalogue membership only; it
+does not imply historical use or procedure validation.
 
 `docs/SKILL_COVERAGE.md` is the readable index of this record. Keep the two files consistent. Omit private implementation references and raw evidence from the public coverage record.
 

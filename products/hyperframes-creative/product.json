@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "hyperframes-creative",
+  "slug": "hyperframes-creative",
+  "name": "HyperFrames Creative Direction",
+  "category": "video-production",
+  "summary": "Shape the visual identity, storyboard, narration and composition plan for a HyperFrames video.",
+  "problem": "Video builds become inconsistent when palette, typography, narration and beat planning are decided independently during implementation.",
+  "coreOutcomes": [
+    "Translate the brief into a coherent visual system",
+    "Plan narrative beats and scene composition",
+    "Record design decisions in reusable project specifications"
+  ],
+  "requirements": [
+    "A HyperFrames video brief or an existing composition needing design direction"
+  ],
+  "boundaries": [
+    "Focuses on creative direction rather than runtime-specific animation code",
+    "Do not invent facts or claims for brand and product material"
+  ],
+  "tags": [
+    "hyperframes",
+    "creative-direction",
+    "storyboard",
+    "visual-design"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

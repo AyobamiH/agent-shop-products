@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "hyperframes-cli",
+  "slug": "hyperframes-cli",
+  "name": "HyperFrames CLI Workflow",
+  "category": "video-tooling",
+  "summary": "Use the HyperFrames CLI to scaffold, inspect, validate, preview and render compositions, including configured cloud rendering.",
+  "problem": "A video composition can appear complete while structural, timing or render issues remain undiscovered without the repository-native CLI checks.",
+  "coreOutcomes": [
+    "Choose the relevant CLI operation for the current project stage",
+    "Run structural and visual validation before rendering",
+    "Report local and cloud-render results without conflating their evidence"
+  ],
+  "requirements": [
+    "A HyperFrames project",
+    "The HyperFrames CLI installed or available through npx"
+  ],
+  "boundaries": [
+    "Cloud rendering requires its own configuration and authorization",
+    "A successful command does not by itself establish visual quality or deployment acceptance"
+  ],
+  "tags": [
+    "hyperframes",
+    "cli",
+    "rendering",
+    "validation"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

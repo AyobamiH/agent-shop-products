@@ -1,6 +1,6 @@
 # Skills catalogue and work coverage
 
-Reviewed **9 October 2026**. The catalogue contains **33 products: 11 prompts and 22 skills**, mapped against **38 reviewed procedures**. [The JSON coverage record](../catalog/skill-coverage.json) is authoritative for these mappings.
+Procedure evidence reviewed **9 October 2026**. The current catalogue contains **55 products: 11 prompts and 44 skills**. The historical review mapped **38 procedures** across the original **33 products: 11 prompts and 22 skills**. Twenty-two owner-profile skill products were added on 14 October after that review; no historical procedure coverage or invocation is claimed for them. [The JSON coverage record](../catalog/skill-coverage.json) is authoritative for these mappings.
 
 ## Review scope
 
@@ -51,6 +51,37 @@ A procedure match does not establish historical invocation of that product paylo
 | [Temporary Authority Bridge Lifecycle](../products/temporary-authority-bridge-lifecycle/SKILL.md) | skill | added | `use-and-retire-temporary-authority-bridge` |
 
 The retained baseline is 13 products. Twenty additions across the successive reviews now have original payloads and canonical metadata. Existing 25 payloads were preserved during this multi-week expansion.
+
+## Catalogue additions after the procedure review
+
+These owner-profile skills were added on 14 October 2026. They are distinct
+catalogue products, but the 9 October work review did not establish their
+historical use or map them to reviewed procedures.
+
+| Product | Type | Catalogue state | Reviewed procedures |
+| --- | --- | --- | --- |
+| [Anime.js Runtime Adapter](../products/animejs/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [CSS Animation Runtime Adapter](../products/css-animations/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [Faceless Explainer Video](../products/faceless-explainer/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [General HyperFrames Video Workflow](../products/general-video/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [GSAP Runtime Adapter](../products/gsap/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [HyperFrames CLI Workflow](../products/hyperframes-cli/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [HyperFrames Composition Contract](../products/hyperframes-core/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [HyperFrames Creative Direction](../products/hyperframes-creative/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [HyperFrames Media Production](../products/hyperframes-media/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [HyperFrames Registry Integration](../products/hyperframes-registry/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [Lottie Runtime Adapter](../products/lottie/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [Media Asset Resolution](../products/media-use/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [Motion Graphics](../products/motion-graphics/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [Pull Request Video Explainer](../products/pr-to-video/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [Product Launch Video](../products/product-launch-video/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [Remotion-to-HyperFrames Migration](../products/remotion-to-hyperframes/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [HyperFrames Slideshow](../products/slideshow/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [Tailwind CSS for HyperFrames](../products/tailwind/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [Three.js Runtime Adapter](../products/three/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [TypeGPU Runtime Adapter](../products/typegpu/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [Web Animations API Runtime Adapter](../products/waapi/SKILL.md) | skill | added after review | Not established in reviewed work |
+| [Website Tour Video](../products/website-to-video/SKILL.md) | skill | added after review | Not established in reviewed work |
 
 ## Reviewed procedures
 

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "hyperframes-media",
+  "slug": "hyperframes-media",
+  "name": "HyperFrames Media Production",
+  "category": "media-tooling",
+  "summary": "Create and prepare voiceover, music, sound effects, transcription, background-removal and caption assets for HyperFrames.",
+  "problem": "Audio and media preparation can become inconsistent when providers, timing metadata and asset placement are handled through separate ad hoc workflows.",
+  "coreOutcomes": [
+    "Prepare audio requests and reconcile generated media metadata",
+    "Select supported provider or local fallback paths",
+    "Prepare transcription, background-removal and caption inputs for compositions"
+  ],
+  "requirements": [
+    "A HyperFrames project and a defined media need",
+    "Provider credentials or the local dependencies required by the selected workflow"
+  ],
+  "boundaries": [
+    "Provider availability, permissions and output quality are not guaranteed by the skill",
+    "Keep credentials outside the public repository and report when an operation is unavailable"
+  ],
+  "tags": [
+    "hyperframes",
+    "audio",
+    "media-assets",
+    "captions"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

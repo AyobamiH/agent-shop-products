@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "typegpu",
+  "slug": "typegpu",
+  "name": "TypeGPU Runtime Adapter",
+  "category": "video-tooling",
+  "summary": "Integrate TypeGPU and WebGPU visuals into HyperFrames with deterministic timeline seeking.",
+  "problem": "GPU-driven visuals may depend on an uncontrolled render loop and become inconsistent when frames are sampled out of order.",
+  "coreOutcomes": [
+    "Build a TypeGPU visual runtime for a composition",
+    "Derive visual state from the requested timeline position",
+    "Handle WebGPU capability and render validation explicitly"
+  ],
+  "requirements": [
+    "A HyperFrames composition",
+    "A browser and device with the required WebGPU support"
+  ],
+  "boundaries": [
+    "WebGPU availability is environment-dependent",
+    "Covers runtime animation integration, not general GPU programming or asset licensing"
+  ],
+  "tags": [
+    "hyperframes",
+    "typegpu",
+    "webgpu",
+    "deterministic-rendering"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

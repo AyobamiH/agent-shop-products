@@ -12,7 +12,7 @@ The [private reference kit](https://agents.proofandstate.com/private-kits?utm_so
 
 ## Catalogue
 
-The catalogue contains **33 products: 11 prompts and 22 skills**. The [skills and work-coverage index](docs/SKILL_COVERAGE.md) maps **38 reviewed procedures**, their evidence limits and eight explicitly observed dependency names.
+The catalogue contains **55 products: 11 prompts and 44 skills**. The [skills and work-coverage index](docs/SKILL_COVERAGE.md) maps **38 historically reviewed procedures** across the original 33 products. The 22 owner-profile skills added after that review have no historical procedure or invocation claim.
 
 The [multi-week review](docs/MULTIWEEK_REVIEW.md) reconciles the saved history checkpoint, selected supporting records and newer continuation evidence through 9 October. The [latest work review](docs/LATEST_WORK_REVIEW.md) identifies the highest evidenced states and remaining acceptance gates.
 
