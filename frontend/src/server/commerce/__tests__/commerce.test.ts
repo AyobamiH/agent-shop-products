@@ -206,6 +206,7 @@ describe("Private kit gated commerce", () => {
       offer_version: offer.version, terms_version: offer.termsVersion,
     };
     for (const invalidSession of [
+      { id: "cs_test_123456789012345" }, // A test session is never a live buyer redirect.
       { client_reference_id: undefined },
       { client_reference_id: null },
       { client_reference_id: "unrelated-order" },
@@ -243,6 +244,11 @@ describe("Private kit gated commerce", () => {
       line_items: { data: [{ price: { id: offer.priceId }, quantity: 1 }] },
     };
     expect(verifyPaidSession(paid, offer, order)).toBe("pi_live123456789012");
+    expect(() => verifyPaidSession(
+      { ...paid, id: "cs_test_123456789012345" },
+      offer,
+      { ...order, checkout_session_id: "cs_test_123456789012345" },
+    )).toThrow();
     for (const bad of [
       { managed_payments: { enabled: false } },
       { automatic_tax: { enabled: false, status: "complete", provider: "stripe", liability: { type: "stripe" } } },

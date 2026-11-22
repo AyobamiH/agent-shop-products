@@ -120,6 +120,7 @@ export async function createStripeSession(
   try { destination = new URL(session.url || ""); }
   catch { throw new CommerceFailure("PAYMENT_PROVIDER_BAD_RESPONSE", 502); }
   if (!/^cs_(?:test_|live_)[A-Za-z0-9]{10,}$/.test(session.id) ||
+      !session.id.startsWith(offer.mode === "live" ? "cs_live_" : "cs_test_") ||
       destination.protocol !== "https:" || destination.hostname !== "checkout.stripe.com" ||
       destination.port !== "" || destination.username !== "" || destination.password !== "" ||
       session.mode !== "payment" || session.client_reference_id !== orderId ||
@@ -167,6 +168,7 @@ export function verifyPaidSession(
       session.amount_total !== offer.unitAmountPence + tax;
   if (
     session.id !== order.checkout_session_id ||
+    !session.id.startsWith(liveManaged ? "cs_live_" : "cs_test_") ||
     session.client_reference_id !== order.id ||
     session.mode !== "payment" ||
     session.livemode !== liveManaged ||
