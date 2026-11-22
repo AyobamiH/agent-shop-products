@@ -14,6 +14,7 @@ import sys
 from urllib.parse import parse_qs, urlparse
 
 from playwright.async_api import async_playwright
+from browser_actions import pointer_click, wait_for_condition
 
 BASE = sys.argv[1] if len(sys.argv) > 1 else "http://localhost:8080"
 failures: list[str] = []
@@ -49,8 +50,8 @@ async def main() -> None:
 
         # 1. Facet toggle -> URL + narrowed results
         chip = page.get_by_role("group", name="Product type").get_by_role("button").first
-        await chip.click()
-        await page.wait_for_function(
+        await pointer_click(page, chip)
+        await wait_for_condition(page,
             "() => new URLSearchParams(location.search).has('type')"
         )
         filtered = await count_results(page)
@@ -59,7 +60,7 @@ async def main() -> None:
 
         # 2. Text search -> URL + narrowed results
         await page.get_by_role("searchbox").fill("verification")
-        await page.wait_for_function("() => new URLSearchParams(location.search).has('q')")
+        await wait_for_condition(page, "() => new URLSearchParams(location.search).has('q')")
         searched = await count_results(page)
         check("search writes ?q=", query(page.url).get("q") == ["verification"], page.url)
 
@@ -74,13 +75,13 @@ async def main() -> None:
         check("refresh restores results", await count_results(page) == searched)
 
         # 4. Copy link copies the filtered URL
-        await page.get_by_test_id("copy-link").click()
+        await pointer_click(page, page.get_by_test_id("copy-link"))
         clipboard = await page.evaluate("navigator.clipboard.readText()")
         check("copy link copies filtered URL", clipboard == page.url, clipboard)
 
         # 5. Back restores the state before the facet toggle
         await page.go_back()
-        await page.wait_for_function(
+        await wait_for_condition(page,
             "() => !new URLSearchParams(location.search).has('type')"
         )
         check("back clears ?type=", "type" not in query(page.url), page.url)
@@ -88,7 +89,7 @@ async def main() -> None:
 
         # 6. Forward re-applies the facet
         await page.go_forward()
-        await page.wait_for_function(
+        await wait_for_condition(page,
             "() => new URLSearchParams(location.search).has('type')"
         )
         check("forward re-applies ?type=", "type" in query(page.url), page.url)

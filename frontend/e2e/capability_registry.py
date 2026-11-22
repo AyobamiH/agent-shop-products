@@ -3,6 +3,7 @@ import asyncio
 import json
 from pathlib import Path
 from playwright.async_api import async_playwright, expect
+from browser_actions import pointer_click, wait_for_condition
 
 ORIGIN = "http://localhost:8080"
 ROOT = Path(__file__).resolve().parent.parent
@@ -92,14 +93,20 @@ async def main():
         await page.goto(ORIGIN + "/capabilities")
         await expect(page.get_by_test_id("capability-count")).to_contain_text("990 matching capabilities")
         assert await page.get_by_test_id("capability-row").count() == 40
-        await page.get_by_role("link", name="Next page", exact=True).click()
+        await pointer_click(page, page.get_by_role("link", name="Next page", exact=True))
         await expect(page).to_have_url(ORIGIN + "/capabilities?page=2")
         await page.go_back()
         await expect(page.get_by_test_id("capability-count")).to_contain_text("page 1 of 25")
         await page.get_by_label("Capability kind", exact=True).select_option("tool")
         await page.get_by_label("Provider or namespace", exact=True).select_option("GitHub")
         await page.get_by_label("Search capability names", exact=True).fill("fetch")
-        await page.get_by_role("button", name="Search", exact=True).click()
+        await pointer_click(page, page.get_by_role("button", name="Search", exact=True))
+        await wait_for_condition(page,
+            """() => {
+              const p = new URLSearchParams(location.search);
+              return p.get('q') === 'fetch' && p.get('kind') === 'tool' && p.get('provider') === 'GitHub';
+            }"""
+        )
         api = await (await page.request.get(ORIGIN + "/capabilities.json?q=fetch&kind=tool&provider=GitHub")).json()
         assert api["matchedCount"] > 0
         await expect(page.get_by_test_id("capability-count")).to_contain_text(str(api["matchedCount"]) + " matching capabilities")
@@ -108,9 +115,12 @@ async def main():
         await page.goto(ORIGIN + "/coding-bugs")
         assert await page.get_by_test_id("coding-bug").count() == len(BUGS)
         await page.get_by_label("Search bugs and repair patterns", exact=True).fill("hydration")
-        await page.get_by_role("button", name="Search", exact=True).click()
+        await pointer_click(page, page.get_by_role("button", name="Search", exact=True))
+        await wait_for_condition(page,
+            "() => new URLSearchParams(location.search).get('q') === 'hydration'"
+        )
         assert await page.get_by_test_id("coding-bug").count() == 1
-        await page.locator("summary").click()
+        await pointer_click(page, page.locator("summary"))
         await expect(page.get_by_role("link", name="Inspect supporting source")).to_be_visible()
         bugs = await (await page.request.get(ORIGIN + "/coding-bugs.json")).json()
         assert bugs["bugCount"] == len(BUGS)

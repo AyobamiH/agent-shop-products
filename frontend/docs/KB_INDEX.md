@@ -26,3 +26,5 @@ See `../../docs/CAPABILITY_SHOP_AND_BUG_INDEX.md` for the owner-authorised 990 e
 - [Current launch closeout](../../docs/LAUNCH_CLOSEOUT_20261012.md) — latest scope, merchant gates, discovery evidence and OneClick release boundaries.
 
 - [Discovery measurement and acquisition](../../docs/DISCOVERY_MEASUREMENT_20261014.md) — consent, verified GA4 activation, privacy exclusions, evidence funnel and exact-source release.
+
+- [GA4 activation](../../docs/GA4_ACTIVATION_20261014.md) — actual Google resources, renewed consent and diagnostic/business separation.

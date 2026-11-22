@@ -5,6 +5,7 @@ import asyncio
 import json
 import os
 from playwright.async_api import async_playwright, expect
+from browser_actions import pointer_click
 
 BASE = os.environ.get("AGENT_SHOP_E2E_ORIGIN", "http://localhost:8080").rstrip("/")
 ORDER = "11111111-1111-4111-8111-111111111111"
@@ -29,14 +30,14 @@ async def main():
             await page.route("**/api/v1/commerce/orders/*", order_status)
             await page.route("**/api/v1/commerce/purchase-record/*", purchase_record)
             await page.goto(BASE + "/private-kits/complete", wait_until="domcontentloaded")
-            await page.get_by_text("Have an access code from support?").click()
+            await pointer_click(page, page.get_by_text("Have an access code from support?"))
             await page.get_by_label("Order reference", exact=True).fill(ORDER)
             await page.get_by_label("Private access code", exact=True).fill(CLAIM)
-            await page.get_by_role("button", name="Restore order access").click()
+            await pointer_click(page, page.get_by_role("button", name="Restore order access"))
             kit = page.get_by_role("button", name="Download your kit", exact=True)
             await expect(kit).to_be_disabled()
             async with page.expect_download() as info:
-                await page.get_by_role("button", name="Save purchase record").click()
+                await pointer_click(page, page.get_by_role("button", name="Save purchase record"))
             download = await info.value
             assert download.suggested_filename == "agent-shop-purchase-record.txt"
             await expect(kit).to_be_enabled()

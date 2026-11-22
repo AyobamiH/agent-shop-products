@@ -1,10 +1,15 @@
 # Discovery measurement and acquisition — 14 October 2026
 
+## Later verified stream and activation implementation
+
+The disabled configuration and missing-stream descriptions below are the original checkpoint. Direct owner Google consent, API enablement and dedicated stream provisioning are now verified. See `GA4_ACTIVATION_20261014.md` for the actual stream binding, renewed consent, diagnostics/report separation and current release acceptance boundary; #53 records actual production state. GSC Wizard is not required.
+
+
 ## Authority and current boundary
 
 The owner authorised P1 implementation in issue #53. Root DEC-018 and frontend DEC-020 govern this slice. It does not alter signed Checkout, webhook settlement, D1 entitlement, private R2 delivery, purchase policy versions or merchant settings. Browser acceptance exposed an early-click recovery disclosure race; the native details element now uses explicit React state so a hydration-replayed click does not close the form again. Order access and recovery-authorisation semantics are unchanged. The existing sandbox acceptance is reused, not repeated as a real transaction. A request remains distinct from a quote, payment and verified delivery.
 
-The public configuration `frontend/src/lib/analytics/configuration.json` ships disabled, with no invented property, stream or measurement ID. The connected GSC Wizard reporting account lists seven readable properties; none establishes a verified Agent Shop stream or Proof & State association. Reporting access does not prove Analytics Admin editor access. No unrelated brand property is reused. Site sessions and referral conversions are **unknown**, not zero. This configuration is not permission to enable live checkout.
+The public configuration `frontend/src/lib/analytics/configuration.json` ships disabled, with no invented property, stream or measurement ID. At the original 14 October checkpoint, the GSC Wizard reporting account listed seven readable properties; none establishes a verified Agent Shop stream or Proof & State association. Reporting access does not prove Analytics Admin editor access. No unrelated brand property is reused. Site sessions and referral conversions are **unknown**, not zero. This configuration is not permission to enable live checkout.
 
 ## Implemented measurement contract
 
@@ -32,7 +37,7 @@ Use an owner-authorised Google Analytics Administrator/Editor session or the off
 
 Record the actual property resource, stream ID, G- measurement ID and timestamp from independent readback. Disable every enhanced-measurement automatic event, including page-history, site search, forms, outbound clicks and downloads. Disable advertising/Signals and unwanted Google-tag destinations or cross-domain linking. Set two-month event retention, verify data-sharing/processor terms and the applicable international-transfer arrangement, and register event-scoped custom dimensions for the bounded discovery labels needed by reporting. No PII dimension is permitted.
 
-Link the verified property in the owner's GSC Wizard/GA4 integration for `sc-domain:proofandstate.com`, and verify host filtering to Agent Shop rather than reporting the whole estate as Shop traffic. Do not treat the mere presence of a new G- ID as end-to-end acceptance.
+Use the owner-local direct Google operator in `docs/DIRECT_GOOGLE_OPERATOR.md` to bind the verified property/stream to `sc-domain:proofandstate.com`, and verify host filtering to Agent Shop rather than reporting the whole estate as Shop traffic. Following the owner's 14 October instruction, GSC Wizard is optional and is not a connection or reporting prerequisite. Do not treat the mere presence of a new G- ID as end-to-end acceptance.
 
 Update the single configuration file with reviewed evidence through a PR; do not add an environment-variable bypass. Run the unit and browser acceptance suites. The current fail-closed assertions deliberately require revision during an approved activation, not removal of safety tests. Inspect a consented operator visit separately from genuine visitors, read the matching event from the correct property, and record the stream/host/event evidence. Do not import synthetic diagnostics as business results. A live event is still not an enquiry, accepted quote or order.
 
@@ -69,3 +74,29 @@ The exact reviewed main must pass push CI before `node scripts/owner-local-relea
 - Google Analytics Admin API: https://developers.google.com/analytics/devguides/config/admin/v1/rest
 
 These sources inform the implementation. They do not settle the seller's outstanding factual tax or disclosure decisions, and no shared tax setting is changed by this release.
+
+## Release independence — 15 October 2026
+
+The owner explicitly rejects using this experiment, its 28 October end date or its first enquiry as a gate to code completion or production release. This document governs post-launch observation only. #25 and `docs/RELEASE_COMPLETION_20261015.md` govern the independent release; no click, visitor or first-buyer prerequisite exists.
+
+
+## AI-assistant referral extension — 14 November 2026
+
+DEC-023 introduces an opt-in, privacy-scoped extension to existing public-page events.
+After explicit renewed consent (2026-11-14.1), the browser locally classifies the
+document referrer against a fixed HTTPS assistant-domain allowlist that matches the
+Search Console Operator GA4 assistant source selection. The only transmitted value is
+a constant source domain (for example `chatgpt.com` or `claude.ai`) and
+`discovery_medium=referral`; referrer URLs, queries, conversations and identity
+are never sent. The raw string is not persisted, existing accepted campaigns win,
+and private/unsafe URLs remain excluded. Google's automatic referrer processing
+stays disabled. The output is consent-limited referral attribution, not proof that
+a model cited a page or that a person became a qualified customer.
+
+The discovery objective remains independently observable through: (1) Google
+URL Inspection and sitemap coverage; (2) actual assistant citation evidence
+requiring genuine externally observed answers and source links; (3) GA4
+consented assistant-referred sessions using the *existing* Search Console Operator
+`get_ga4_llm_traffic` operation; and (4) proven enquiries/conversions. None of
+these measures may be inferred solely from the others. No new monitoring
+schedule, credential, search-index submission or commerce authority is added.

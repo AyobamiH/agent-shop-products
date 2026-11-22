@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "auditable-indexing-state-reconciliation",
+  "slug": "auditable-indexing-state-reconciliation",
+  "name": "Auditable Indexing-State Reconciliation",
+  "productType": "skill",
+  "category": "verification",
+  "summary": "Reconcile sitemap coverage, Google URL Inspection classifications, public crawlability and daily deltas without treating submission or HTTP success as indexing.",
+  "problem": "A site may serve healthy URLs while Google reports them unknown or discovered but not indexed, and a fragile coverage-label parser can silently misstate progress.",
+  "coreOutcomes": [
+    "Indexed/discovered/unknown/error counts reconciled against exact URLs",
+    "Unicode-safe classification of provider coverage labels",
+    "Immutable date-scoped observations and meaningful-change decisions",
+    "Sitemap, public crawl and provider indexing independently evidenced"
+  ],
+  "requirements": [
+    "Authorised official Google Search Console property access for indexed-version reads",
+    "An exact same-origin sitemap and known public URL list",
+    "A privacy-safe location for provider observations",
+    "Bounded API quota and a previous completed observation when comparing changes"
+  ],
+  "boundaries": [
+    "Inspection is not a request to index and sitemap success does not ensure indexing",
+    "User-agent spoofing does not establish real Googlebot admission",
+    "Never treat API errors as unknown or not indexed",
+    "Do not publish private search queries, credentials or unreviewed raw inspection data",
+    "Do not repeatedly resubmit unchanged URLs to force an outcome"
+  ],
+  "tags": [
+    "search-console",
+    "url-inspection",
+    "sitemap",
+    "unicode",
+    "reconciliation",
+    "crawlability",
+    "provider-evidence"
+  ],
+  "source": "SKILL.md"
+}

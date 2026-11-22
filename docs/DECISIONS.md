@@ -105,3 +105,34 @@ Owner approval extends implementation to original private execution packages and
 ## DEC-018 — Consent-bound discovery measurement (14 October 2026)
 
 The owner authorises page, canonical capability-selection and bounded quote-click measurement and original problem-specific acquisition content. Measurement requires a correctly owned, independently read-back Agent Shop GA4 stream and prior optional consent; absent administration evidence it remains disabled. Do not collect private URLs, free-text queries, enquiry data, order references or access tokens. Clicks, enquiries, accepted quotes, paid orders and verified fulfilment remain separate evidence states. Existing private commerce and public-source boundaries remain unchanged. See `docs/DISCOVERY_MEASUREMENT_20261014.md`.
+
+
+## DEC-019 — Owner-local direct Google analytics authority (14 October 2026)
+
+The owner explicitly requests direct GA4 and Search Console access without GSC Wizard. Reuse a legitimate owner desktop OAuth registration only through a new consent flow with an independent private token store. Never copy a third-party connector token or modify the existing Post-Once document/publishing credential. The operator requests identity, Analytics read/edit and Search Console read-only scope, then independently inspects exact owner/stream/host facts. Authorisation does not enable tracking or commerce. Current CLI operations are read-only aside from local OAuth credential/report storage; targeted stream provisioning follows actual inventory and separate exact-source review. GSC Wizard linkage is optional, not a release prerequisite. See `docs/DIRECT_GOOGLE_OPERATOR.md`.
+
+## DEC-020 — Dedicated Shop analytics provisioning (14 October 2026)
+
+Following successful owner consent and direct account inventory, the approved GA4 setup may create or reuse one dedicated Agent Shop property/stream under the observed business Analytics account. Use the reviewed-hash, private-journal provisioning path described in `docs/GA4_DEDICATED_STREAM.md`. Scope excludes unrelated properties, billing, advertising enablement, real customer charges and automatic visitor consent. Website activation and actual ingestion remain separately verified.
+
+## DEC-021 — Actual stream activation and separately labelled diagnostics
+
+The owner-approved dedicated Shop stream is verified through Google directly. The reviewed website configuration may offer optional measurement under renewed consent version 2026-10-14.2. No SDK or event before consent; private URLs and unknown query values remain excluded. Operator tests use a distinct diagnostic event name excluded from native business reports, with transport acceptance and provider reporting recorded separately. See `docs/GA4_ACTIVATION_20261014.md`. This does not authorise live commerce or infer external demand.
+
+
+## DEC-022 — Release does not depend on market response (15 October 2026)
+
+The owner explicitly rejects waiting for clicks, a first enquiry, a first customer or the acquisition experiment before completing production. Those are post-launch observations, not admission or deployment prerequisites. The accepted sandbox purchase/refund/recovery sequence remains technical evidence; do not create another transaction merely to claim progress. A production checkout can be ready before its first sale, but an actual sale must never be claimed without buyer-specific payment and fulfilment evidence.
+
+The source-governed `commerce/release-policy.json` now selects closed or live commerce for both rollout paths. Live selection requires existing verified seller/tax/support/contract facts, the exact approved £9 offer and policy URLs, matching private runtime bindings, exact-head CI and independent public/provider checks. The checked-in policy remains closed because the actual merchant facts and permanent live payment configuration are not complete. No caller boolean, environment flag, traffic metric or test purchase can override those facts. See `docs/RELEASE_COMPLETION_20261015.md`.
+
+
+## DEC-023 — Managed Payments is the live merchant-of-record path for the private digital kit (16 October 2026)
+
+The Private Production Agent Operating Kit is a fully automated business-use digital download, not the separately sold Tail Wagging professional repository-fix service. Live kit Checkout therefore uses Stripe Managed Payments with product tax code `txcd_10202003` rather than depending on the shared Stripe Tax GB registration.
+
+The release pins one live Product and one tax-exclusive £9 GBP Price in source approval. Live Checkout must request `managed_payments[enabled]=true`; it must not send merchant-owned `automatic_tax` settings. Stripe can apply Adaptive Pricing and calculate indirect tax as merchant of record. Reconciliation remains in the integration currency: the order ledger records the £9 GBP base amount, the signed provider session proves Stripe-owned tax liability and the exact calculated tax, and the confirmed contract records the exact total paid.
+
+Historical sandbox payment/refund/recovery evidence remains on its original ordinary Stripe Tax path. It is not rewritten as Managed Payments evidence.
+
+Provider object existence does not activate sales. The source release policy and Cloudflare bindings remain fail-closed until the exact live restricted key, signing secret, Product, Price, legal versions and approval all align. A real customer purchase, traffic or the acquisition experiment is not a prerequisite to release.

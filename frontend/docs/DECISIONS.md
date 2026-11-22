@@ -101,3 +101,43 @@ Root DEC-017 authorises metadata-only discovery of three privately authored and 
 ## DEC-020 — Optional discovery analytics and useful acquisition content
 
 Root DEC-018 authorises consent-gated GA4 instrumentation and original evidence/scoping content on existing public routes. Canonical configuration stays off until verified stream ownership, origin, enhanced-measurement, advertising and retention gates pass. No arbitrary event payload, customer data, cross-domain identifier or implied conversion is allowed. `/privacy` has its own version; purchase policy versions and settlement semantics are unaffected.
+
+## DEC-021 — Verified GA4 stream and renewed optional consent
+
+Root DEC-021 permits the specifically verified Agent Shop stream under consent version 2026-10-14.2. Google collection requires the real canonical origin, safe public URL and explicit visitor consent. Candidate/operator diagnostics are separately named and excluded from native business reports; pointer/keyboard consent and withdrawal acceptance remain required. No commerce state or third-party resale claim changes.
+
+## DEC-022 — Explicit live/test public offer mode
+
+Root DEC-022 removes market-response dependencies from release work. Active public offers expose their real configured `mode` so test checkout cannot be accepted as live. Source-governed release expectation checks the exact price/policy rather than permanently requiring closed commerce. No automatic approval, first-customer requirement or change to payment, recovery or private data authority is introduced.
+
+## DEC-023 — Consented AI assistant referral classification (14 November 2026)
+
+At the owner's request, Agent Shop's existing optional discovery analytics may classify
+known AI assistant referring origins into a fixed source domain label *only after*
+valid consent and only on already-eligible public routes. The full referrer, prompts,
+conversation paths, query strings and fragments must not be recorded or passed to GA4.
+An approved existing UTM campaign takes precedence; arbitrary source names, unsafe
+queries, private routes and all non-consented collection remain excluded.
+The consent version is renewed to 2026-11-14.1 and the website privacy notice updated.
+The existing Search Console Operator GA4 assistant-domain selection is reused for
+reporting, with no second vendor, new tracker, cross-site identity join or automatic
+citation claim. Actual assistant citations require separate independently sourced
+evidence; traffic/referrers alone do not prove citations, sales or qualified enquiries.
+
+
+## DEC-024 — Official ChatGPT Search UTM admission (15 November 2026)
+
+OpenAI documents its ChatGPT search citations appending the single
+`utm_source=chatgpt.com` query parameter. The existing privacy-safe URL
+allowlist dropped these visits entirely even with analytics consent.
+Only that single exact key/value may now be classified as the fixed
+`chatgpt.com` referral source on existing public pages, including product
+pages. Extra or duplicate query keys, lookalike domains, arbitrary campaigns,
+private paths, unsafe fragments and no-consent activity remain excluded.
+
+This is a narrow implementation of DEC-023's already-approved fixed assistant
+source label, not an additional data category: the existing consent version is
+retained. Transmit only canonical page location, the fixed source and medium;
+never raw URLs, full referrers or conversation identifiers. The UTM marker
+is a source claim, **not independently verified proof** of a human referral,
+assistant citation, qualified enquiry or payment.

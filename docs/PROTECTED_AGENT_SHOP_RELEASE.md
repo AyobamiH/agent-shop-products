@@ -14,8 +14,8 @@ Until GitHub Environment secret custody is configured, this workflow fails close
 2. Require current main and passing exact-head push CI; unit-test CI and rollback contracts.
 3. Install frozen Bun lockfile, build with exact `VITE_SITE_ORIGIN=https://agents.proofandstate.com`, run typecheck, lint and Wrangler dry-run.
 4. Upload one immutable, SHA-tagged Worker Version. Do **not** promote. Parse exactly one version ID and exactly one matching Cloudflare version URL. Reject alias-domain substitution or ambiguous version IDs.
-5. Independently read back the version URL using source canonical origin, real 33 owned products, 990 advertised external capabilities, 20 coding bugs, ten crawlers, sitemap, raw metadata and disabled private-kit commerce. Any HTTP 503 aborts **before promotion**.
-6. Verify the candidate Cloudflare version's SHA tag and exact D1, private EU R2 and rate-limiter binding identities; refuse any `COMMERCE_ENABLED=true` setting.
+5. Independently read back the version URL using source canonical origin, real 33 owned products, 990 advertised external capabilities, 24 coding bugs, ten crawlers, sitemap, raw metadata and the exact reviewed commerce mode. Any HTTP 503 aborts **before promotion**.
+6. Verify the candidate Cloudflare version's SHA tag and exact D1, private EU R2 and rate-limiter binding identities; require commerce bindings to match the checked-in release policy. A live policy must have complete verified merchant facts and an exact approved offer; absent/closed policy never permits a live flag.
 7. Reconfirm current exact-main CI immediately before mutation; compare previous active 100%-traffic version with control plane; refuse traffic splits or unexplained drift.
 8. Promote once via Cloudflare Worker Deployments REST API. If POST times out, re-read control-plane active version before considering another mutation. Do **not** blindly retry POST.
 9. After bounded edge-convergence retries, independently check production again. If the candidate is still active but readback fails, roll back **only that candidate** to the captured prior Worker version and confirm rollback from the control plane. If a different operator has since promoted a different version, never roll that newer version back.
@@ -23,7 +23,7 @@ Until GitHub Environment secret custody is configured, this workflow fails close
 
 ## Commercial controls and exceptions
 
-The current protected release enforces **commerce disabled**: the one private execution kit is `planned`, without a public price, active Buy button or entitlement. Paid activation requires independently approved owner commercial terms, seller identity, GBP tax-exclusive Price, licence/refund/support conditions, exact verified EU private deliverable, Stripe test-mode end-to-end/replay/refund acceptance and a separately reviewed workflow policy change. A successful version upload or D1 migration does not satisfy those merchant gates.
+The checked-in `commerce/release-policy.json` currently selects **commerce disabled** because merchant facts and live bindings are not yet complete. This is not a permanent hard-coded ban on releasing a live shop. The same controller now accepts an explicitly reviewed live policy with verified seller/tax/support/contract evidence, the exact approved £9 GBP Price and legal versions, matching live runtime settings, private EU assets and provider readback. Existing Stripe test-mode end-to-end/replay/refund acceptance is retained. A first customer or marketing result is not required before live release. A successful version upload or D1 migration does not satisfy those merchant gates.
 
 Cloudflare Worker Versions do not roll back D1 or R2 state; preserve order/event/refund tombstones during any Worker rollback. The safe rollback pointer is an exact previously deployed Worker version, never an unspecified `latest`. GitHub workflow status, version upload, active deployment, independent public readback, Google indexing and paid real customer effects must be reported separately.
 
@@ -45,6 +45,101 @@ The existing protected GitHub Actions release workflow still fails closed if its
 
 Entry: `node scripts/owner-local-release.mjs` in a clean, freshly synchronised `main` checkout on the already authorised local machine. `--verify-only` proves that exact current main, completed green GitHub **push** CI and independently accepted public Worker version already match, without uploading or deploying anything. The command performs all required build/lint/tests, Wrangler candidate upload and external readbacks itself only when a new release is required. It reads the existing 0600 owner-managed `agent-shop.env` file locally, verifies account identity and emits **only a redacted receipt** under the owner-controlled `~/.config/woe-ops/agent-shop-release-receipts/` directory. It never prints credential values.
 
-The controller uses `gh api` and the canonical `requireExactMainCI` contract to verify the remote main ref, one successful exact-head push run, clean checkout and local revision. It checks those conditions **again immediately before production mutation**. The preview candidate must report 33 original products, 990 third-party capability names, 20 coding bugs, crawler and sitemap compliance and commerce `planned`/disabled. Version annotations and exact D1/R2/rate-limiter identities are checked. The candidate promotion also fences against a different active Worker Version observed at preflight. On transient edge convergence, retries are bounded; ambiguous API writes are reconciled against Cloudflare's control plane, and rollback may restore **only the version this operation changed**, never a third party's newer promotion. The local route is not a way to bypass CI or approved commercial terms.
+The controller uses `gh api` and the canonical `requireExactMainCI` contract to verify the remote main ref, one successful exact-head push run, clean checkout and local revision. It checks those conditions **again immediately before production mutation**. The preview candidate must report 33 original products, 990 third-party capability names, 24 coding bugs, crawler and sitemap compliance and the exact source-selected commerce contract. Version annotations and exact D1/R2/rate-limiter identities are checked. The candidate promotion also fences against a different active Worker Version observed at preflight. On transient edge convergence, retries are bounded; ambiguous API writes are reconciled against Cloudflare's control plane, and rollback may restore **only the version this operation changed**, never a third party's newer promotion. The local route is not a way to bypass CI or approved commercial terms.
 
 This route does **not** provide GitHub Actions secret rotation, automatic scheduled releases, a Stripe test merchant or real-money acceptance. A local owner release cannot be described as a successful GitHub Actions production workflow; the receipt includes `channel: owner-local-scoped-cloudflare` and `githubEnvironmentSecretUsed: false`. Web receipts and search indexing are separate from real paid outcomes. Future operators should prefer least-privilege GitHub Environment secrets only when a supported, explicitly authorised credential-custody path exists.
+
+
+## Control-plane convergence repair — 14 October 2026
+
+The former guard read the deployment pointer immediately after POST. A briefly
+stale prior pointer could trigger failure and rollback despite successful upload
+and candidate acceptance. Four new tests reproduced delayed promotion, ambiguous
+writes with delayed visibility, delayed rollback, and another operator redeploying
+the same code version. They failed before the repair and pass after it.
+
+The guard now polls at most eight times with 1.5-second gaps. It tolerates only
+explicitly witnessed older deployment identities. Both version and deployment ID
+are checked. A different operator's new deployment, including the same code version,
+is not treated as stale. An ambiguous POST is reconciled through reads and never
+automatically replayed. Public acceptance and before/after deployment checks remain.
+Rollback requires the exact candidate deployment still to be current and confirms
+a new restoration record, rather than accepting a stale pre-release record.
+Unresolved control-plane state is failure/unknown, not proof that no effect occurred.
+
+This is optimistic concurrency protection, not an atomic compare-and-swap: a
+provider change can still occur between the final read and write. The implementation
+does not claim to eliminate that provider API race. Exact source, main CI, account,
+bindings, source-governed commerce policy and outside-in gates remain mandatory. All credential-
+free release regressions now run in ordinary PR/main CI and the deploy workflow.
+
+No payment, tax setting or private asset is changed by this repair. The P1 source
+from #54 still requires a separately accepted production release. See #53 for the
+actual merged SHA, Worker version and independent production-readback receipt.
+
+
+## Source-governed commerce mode — 15 October 2026
+
+`node scripts/commerce-release-status.mjs` reports source readiness separately from
+actual deployment. It never reads Analytics, Search Console, an enquiry inbox or
+experiment outcome. `scripts/commerce-release-policy.mjs` is shared by the local
+release controller, GitHub preview acceptance, candidate binding check and public
+readback. No separate `--allow-live` or environment-variable bypass exists.
+
+In closed mode an absent/false enable binding is accepted; a true, duplicate,
+ambiguous or secret/opaque enable binding is rejected. In live mode the source
+approval must match all six verified merchant facts and the known offer. Candidate
+metadata must contain exact plain-text mode/decision/offer settings plus secret
+binding names (never values). The public offer must report live mode, exactly £9
+GBP and the same policy versions/URLs. Test mode, a different amount/currency,
+missing settings and mismatched source all fail before successful promotion.
+
+This policy does not prove a secret's actual value or a working payment provider.
+The normal runtime still validates live key mode and retrieves the exact Stripe
+Price before Checkout; webhook signing, private delivery, recovery and historical
+settlement remain separate unchanged protections. Final live enablement still
+requires legitimate seller disclosure, reconciled tax facts and permanent live
+Stripe configuration. Do not set checks to verified solely to pass this policy.
+
+No real-money test charge or existing customer is a deployment prerequisite.
+Market validation proceeds separately after release; failed outside-in acceptance
+still triggers only the existing identity-fenced rollback, never data rollback.
+## Signed-source owner-local CI equivalence — 2 November 2026
+
+The original GitHub Actions production lane remains **strict exact-main successful push CI**. If GitHub refuses to start the job because the account is billing-locked, the owner-approved independent local route may admit a single exact SHA only through the formal read-only CI-equivalent verifier documented in [CI_EQUIVALENCE_20261102.md](CI_EQUIVALENCE_20261102.md). It requires a first-party exact-main billing-lock job annotation (no executed steps), verified signed commit, clean source/tree identity, an explicit one-SHA approval, 16 zero-exit owner-host acceptance stages and owner-private hashed logs. The alternative result is `OWNER_LOCAL_EQUIVALENT_PASS`, not green GitHub CI. Existing Cloudflare candidate, commercial approval, immutable version, identity-fenced deployment and external readback gates remain mandatory. Do not run this alternative for real test failures, no missing evidence, or when normal GitHub CI is available.
+
+
+## One-shot Worker version upload reconciliation (15 November 2026)
+
+The owner-local production path previously lost the upload outcome near the
+wrapper's 180-second command timeout. The actual 14 November sanitised
+Wrangler log confirmed that 22 static assets were accepted, but the
+process stopped after beginning a Cloudflare GET, without an acknowledged
+Worker Version ID. The exact initiating failure is not demonstrated by that
+log alone. Cloudflare's full 47-version authoritative listing and
+deployment readback showed no exact-source candidate; static-assets acceptance
+was **not** a Worker version or production activation.
+
+The upload controller now admits at most **one** new candidate version upload
+per exact source SHA, reserving a private 0600 source/prior-version/UTC intent
+before the side effect. It first reads all Cloudflare version pages up to a
+bounded 2,000 records. If one existing Worker version is tagged with the exact
+approved SHA and carries the expected preview alias, it reuses that version
+without uploading again. Two exact-tag versions, a mismatched alias, missing
+pagination, provider read errors and a previous unresolved upload intent all
+block new upload. The pinned Wrangler process has a ten-minute upload-only
+timeout; it does not change test/build/dry-run deadlines.
+
+After any CLI outcome (including timeout or missing human-readable output),
+Cloudflare's version listing is queried again with bounded consistency waits.
+A provider-confirmed immutable version ID is required, followed by the
+existing full candidate metadata/bindings/commerce verification and independent
+public preview acceptance. A CLI zero exit, assets uploaded, an alias string
+or a guessed Version ID is never sufficient for promotion.
+
+On interruption, first reconcile exact-tag versions and the active
+deployment; never delete an unresolved attempt file or retry automatically.
+A fresh owner review of a new source/authority is required before clearing
+an unresolved one-shot intent. Preserve the earlier active version for
+fenced rollback. These controls do **not** change commerce, credential
+scopes, CI equivalence, production routes, or sitemap submissions.

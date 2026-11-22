@@ -57,6 +57,9 @@ jobs:
           python3 scripts/validate_catalog.py
           python3 scripts/validate_capability_inventory.py
           node --test scripts/integration/request.node-check.mjs
+      - name: Credential-free release safety regressions
+        working-directory: .
+        run: node --test scripts/*.node-check.mjs
       - name: Sync canonical catalogue
         run: |
           bun run sync:catalog

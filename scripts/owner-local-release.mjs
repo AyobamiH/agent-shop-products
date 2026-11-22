@@ -1,10 +1,13 @@
+import { loadReleaseExpectation, matchesPublicAcceptance } from "./commerce-release-policy.mjs";
 import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { requireExactMainCI } from "./check-release-ci.mjs";
-import { parseCandidateUpload } from "./parse-candidate-upload.mjs";
+import { verifyOwnerEquivalentCI } from "./owner-ci-equivalence.mjs";
+import { reconcileOrUpload, reserveOneShotVersionAttempt } from "./worker-upload-control.mjs";
+import { makeVersionPageReader } from "./worker-version-reconciliation.mjs";
 import { activeVersion, guardedPromote, verifyCandidateMetadata } from "./guarded-promote.mjs";
 
 const repo = fileURLToPath(new URL("../", import.meta.url));
@@ -16,6 +19,8 @@ const workerName = "agent-shop";
 const versionPath = "https://api.cloudflare.com/client/v4/accounts/" + accountId +
   "/workers/scripts/" + workerName;
 const localTokenFile = path.join(os.homedir(), ".config/woe-ops/secrets/cloudflare/agent-shop.env");
+const r2TokenFile = path.join(os.homedir(), ".config/woe-ops/secrets/cloudflare/agent-shop-commerce-infra.env");
+const r2BucketName = "agent-shop-private-kits";
 const privateReceiptDir = path.join(os.homedir(), ".config/woe-ops/agent-shop-release-receipts");
 
 export function confirmLocalRelease({ branch, clean, localSha, remoteSha, ciRuns }) {
@@ -61,7 +66,8 @@ function execute(command, args, { cwd = repo, env = process.env, timeout = 18000
   const result = spawnSync(command, args, {
     cwd, env, encoding: "utf8", timeout, maxBuffer: 8_000_000,
   });
-  if (result.status !== 0) {
+  if (result.status !== 0 || result.error || result.signal) {
+    // A killed subprocess may have an empty or misleading stdout. Fail closed.
     // Child stderr may accidentally include API tokens. Never return it.
     throw Error("LOCAL_RELEASE_COMMAND_FAILED_" +
       path.basename(command).replace(/[^a-z0-9.-]/gi, "").slice(0, 25));
@@ -81,10 +87,22 @@ export function localMainAdmission({ git = execute, gh = execute } = {}) {
   let result;
   try { result = JSON.parse(response); }
   catch { throw Error("GITHUB_CI_MALFORMED"); }
-  return confirmLocalRelease({
-    branch, clean: dirty === "", localSha, remoteSha,
-    ciRuns: result.workflow_runs,
-  });
+  try {
+    return confirmLocalRelease({
+      branch, clean: dirty === "", localSha, remoteSha,
+      ciRuns: result.workflow_runs,
+    });
+  } catch (error) {
+    // A billing-locked GitHub job never ran. Owner-approved proof is not a green GitHub check.
+    if (error?.message !== "EXACT_MAIN_CI_NOT_SUCCESSFUL" ||
+        process.env.AGENT_SHOP_APPROVED_FALLBACK_SHA !== localSha ||
+        branch !== "main" || dirty !== "" || remoteSha !== localSha) throw error;
+    return verifyOwnerEquivalentCI({
+      sha: localSha, treeSha: git("git", ["rev-parse", "HEAD^{tree}"]).trim(),
+      approvalSha: process.env.AGENT_SHOP_APPROVED_FALLBACK_SHA,
+      gh,
+    });
+  }
 }
 
 async function cloudflare(method, location, token) {
@@ -107,6 +125,38 @@ async function currentVersion(token) {
   return activeVersion(await cloudflare("GET", "/deployments", token));
 }
 
+export async function verifyR2ControlPlane({ token, accountId: credentialAccountId, fetchImpl = fetch }) {
+  if (credentialAccountId !== accountId) throw Error("R2_CREDENTIAL_ACCOUNT_MISMATCH");
+  let response;
+  try {
+    response = await fetchImpl(
+      `https://api.cloudflare.com/client/v4/accounts/${accountId}/r2/buckets?name_contains=${encodeURIComponent(r2BucketName)}&per_page=1000`,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+          "cf-r2-jurisdiction": "eu",
+        },
+        signal: AbortSignal.timeout(20000),
+      },
+    );
+  } catch {
+    throw Error("R2_CONTROL_PLANE_UNAVAILABLE");
+  }
+  let data;
+  try { data = await response.json(); } catch { throw Error("R2_CONTROL_PLANE_BAD_JSON"); }
+  if (!response.ok || data?.success !== true) {
+    const codes = Array.isArray(data?.errors) ? data.errors.map((error) => Number(error?.code)) : [];
+    if (codes.includes(10042)) throw Error("R2_NOT_ENTITLED");
+    if (codes.includes(10000) || codes.includes(10002)) throw Error("R2_CREDENTIAL_REJECTED");
+    throw Error("R2_CONTROL_PLANE_HTTP_" + response.status);
+  }
+  const buckets = Array.isArray(data?.result?.buckets) ? data.result.buckets : [];
+  const bucket = buckets.find((item) => item?.name === r2BucketName);
+  if (!bucket) throw Error("R2_BUCKET_NOT_FOUND");
+  if (bucket.jurisdiction && bucket.jurisdiction !== "eu") throw Error("R2_BUCKET_JURISDICTION_MISMATCH");
+  return { bucket: r2BucketName, jurisdiction: bucket.jurisdiction || "eu" };
+}
+
 function availableBun() {
   const options = [
     process.env.AGENT_SHOP_BUN_BIN,
@@ -120,7 +170,7 @@ function availableBun() {
   throw Error("BUN_RUNTIME_UNAVAILABLE");
 }
 
-function checkPublic(targetOrigin) {
+function checkPublic(targetOrigin, commerceExpectation = loadReleaseExpectation()) {
   const environment = { ...process.env, ACCEPTANCE_ORIGIN: targetOrigin, CANONICAL_ORIGIN: origin };
   delete environment.CLOUDFLARE_API_TOKEN;
   delete environment.GITHUB_TOKEN;
@@ -130,9 +180,7 @@ function checkPublic(targetOrigin) {
   let result;
   try { result = JSON.parse(data.trim()); }
   catch { throw Error("PUBLIC_ACCEPTANCE_NOT_JSON"); }
-  if (result.status !== "PASS" || result.products !== 33 ||
-      result.externalCapabilities !== 990 || result.codingBugs !== 24 ||
-      result.commerceActive !== false || result.privateKitOffer !== "planned") {
+  if (!matchesPublicAcceptance(result, commerceExpectation)) {
     throw Error("PUBLIC_ACCEPTANCE_REJECTED");
   }
   return result;
@@ -148,24 +196,31 @@ function saveReceipt(receipt) {
 export async function runLocalRelease({ verifyOnly = false } = {}) {
   const admission = localMainAdmission();
   const sha = admission.sha;
+  const commerceExpectation = loadReleaseExpectation();
   const scoped = managedCredentialFromFile(localTokenFile);
   const priorId = await currentVersion(scoped.token);
   const prior = await cloudflare("GET", "/versions/" + priorId, scoped.token);
   try {
-    verifyCandidateMetadata(prior, sha);
-    const publicAcceptance = checkPublic(origin);
+    verifyCandidateMetadata(prior, sha, commerceExpectation);
+    const publicAcceptance = checkPublic(origin, commerceExpectation);
     const receipt = {
       status: "ALREADY_ACTIVE", sha, versionId: priorId,
-      ciVerdict: "PASS", publicAcceptance, checkedAt: new Date().toISOString(),
+      ciVerdict: admission.ciVerdict, githubHostedCiStatus: admission.githubHostedCiStatus ?? "SUCCESS", publicAcceptance, checkedAt: new Date().toISOString(),
       channel: "owner-local-scoped-cloudflare",
       githubEnvironmentSecretUsed: false,
-      commerceActive: false,
+      commerceActive: publicAcceptance.commerceActive,
     };
     if (!verifyOnly) receipt.receiptPath = saveReceipt(receipt);
     return receipt;
   } catch {
     if (verifyOnly) throw Error("CURRENT_PRODUCTION_NOT_AT_EXACT_GREEN_HEAD");
   }
+
+  // R2 REST access is intentionally a separate, least-privilege credential from
+  // Worker deployment. Fail before build/upload when the R2 authority is wrong
+  // or the account is not entitled; never use the deployment token as fallback.
+  const r2Scoped = managedCredentialFromFile(r2TokenFile);
+  await verifyR2ControlPlane({ token: r2Scoped.token, accountId: r2Scoped.accountId });
 
   const bun = availableBun();
   const buildEnv = sanitizedBuildEnvironment(process.env, bun);
@@ -187,14 +242,28 @@ export async function runLocalRelease({ verifyOnly = false } = {}) {
   const runtimeEnv = {
     ...buildEnv, CLOUDFLARE_API_TOKEN: scoped.token, CLOUDFLARE_ACCOUNT_ID: scoped.accountId,
   };
-  const uploaded = execute(bun, ["x", "wrangler@4.135.0", "versions", "upload",
-    "--config", "wrangler.jsonc", "--preview-alias", "release-" + sha.slice(0, 8),
-    "--tag", sha, "--message", "owner scoped release " + sha],
-  { cwd: storefront, env: runtimeEnv });
-  const { versionId, previewURL } = parseCandidateUpload(uploaded, sha);
-  const preview = checkPublic(previewURL);
+  const readVersionPage = makeVersionPageReader({ baseUrl: versionPath, token: scoped.token });
+  // One intent per source prevents duplicate version uploads after crashes and
+  // ambiguous responses. An existing exact-tagged provider version can be
+  // recovered without consuming a new intent.
+  const candidateResult = await reconcileOrUpload({
+    sha, readPage: readVersionPage,
+    reserveAttempt: () => {
+      reserveOneShotVersionAttempt({
+        folder: privateReceiptDir, sha, priorVersionId: priorId,
+        sourceTree: execute("git", ["rev-parse", "HEAD^{tree}"]).trim(),
+      });
+    },
+    upload: () => execute(bun, ["x", "wrangler@4.135.0", "versions", "upload",
+      "--config", "wrangler.jsonc", "--preview-alias", "release-" + sha.slice(0, 8),
+      "--tag", sha, "--message", "owner scoped release " + sha],
+    { cwd: storefront, env: runtimeEnv, timeout: 600000 }),
+    delay: (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
+  });
+  const { versionId, previewURL } = candidateResult;
+  const preview = checkPublic(previewURL, commerceExpectation);
   const candidate = await cloudflare("GET", "/versions/" + versionId, scoped.token);
-  verifyCandidateMetadata(candidate, sha);
+  verifyCandidateMetadata(candidate, sha, commerceExpectation);
 
   localMainAdmission();
   if (await currentVersion(scoped.token) !== priorId) {
@@ -202,13 +271,14 @@ export async function runLocalRelease({ verifyOnly = false } = {}) {
   }
   const promoted = await guardedPromote({
     sha, versionId, accountId: scoped.accountId, token: scoped.token,
-    expectedPreviousVersion: priorId,
-    publicVerifier: async (target) => checkPublic(target),
+    expectedPreviousVersion: priorId, commerceExpectation,
+    publicVerifier: async (target) => checkPublic(target, commerceExpectation),
   });
   const receipt = {
-    ...promoted, sha, ciVerdict: "PASS", preview,
+    ...promoted, sha, ciVerdict: admission.ciVerdict, githubHostedCiStatus: admission.githubHostedCiStatus ?? "SUCCESS", preview,
+    candidateSource: candidateResult.source,
     channel: "owner-local-scoped-cloudflare",
-    githubEnvironmentSecretUsed: false, commerceActive: false,
+    githubEnvironmentSecretUsed: false, commerceActive: promoted.publicAcceptance.commerceActive,
     verifiedAt: new Date().toISOString(),
   };
   receipt.receiptPath = saveReceipt(receipt);

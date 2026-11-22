@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "protocol-faithful-analytics-command-queues",
+  "slug": "protocol-faithful-analytics-command-queues",
+  "name": "Protocol-Faithful Analytics Command Queues",
+  "productType": "skill",
+  "category": "developer-tooling",
+  "summary": "Verify third-party analytics command payload shapes against the actual SDK protocol before mistaking a loaded library or consented page for delivered events.",
+  "problem": "A custom gtag bootstrap can load the Google SDK successfully yet silently suppress collection when it enqueues rest-parameter arrays instead of the required Arguments command shape.",
+  "coreOutcomes": [
+    "Command queue shape captured at its actual browser boundary",
+    "Correct Google gtag Arguments-object protocol in supported integrations",
+    "Consent/canonical-route admission kept separate from queue mechanics",
+    "SDK load, emitted network hit and destination ingestion tested independently"
+  ],
+  "requirements": [
+    "Access to the source of the public analytics bootstrap",
+    "Provider documentation for the exact current command protocol",
+    "A controlled browser/SDK test after valid visitor consent",
+    "An explicit privacy boundary and allowed public routes"
+  ],
+  "boundaries": [
+    "Do not change opt-in or opt-out privacy policies merely to increase hits",
+    "SDK HTTP 200 is not a collection receipt or conversion",
+    "Queue unit tests do not prove GA4 provider ingestion or reporting",
+    "Do not log personal data, private URLs or advertising identifiers",
+    "Do not copy an Arguments shim to unrelated SDKs without validating their contract"
+  ],
+  "tags": [
+    "ga4",
+    "gtag",
+    "javascript",
+    "arguments",
+    "data-layer",
+    "protocol",
+    "consent",
+    "instrumentation"
+  ],
+  "source": "SKILL.md"
+}

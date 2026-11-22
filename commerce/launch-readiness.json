@@ -1,23 +1,23 @@
 {
   "schemaVersion": 1,
-  "checkedOn": "2026-10-12",
+  "checkedOn": "2026-10-16",
   "offerId": "private-production-agent-operating-kit",
   "checks": {
     "publicBusinessAddress": {
-      "status": "missing",
-      "evidence": null
+      "status": "verified",
+      "evidence": "https://github.com/AyobamiH/agent-shop-products/issues/25"
     },
     "monitoredSupportEmail": {
       "status": "verified",
       "evidence": "https://github.com/AyobamiH/agent-shop-products/blob/3a14ead00c69bc95d8b2286a2679147d881d7d4b/docs/CUSTOMER_CONTACT_VERIFICATION_20261012.md"
     },
     "taxTreatment": {
-      "status": "conflict",
-      "evidence": null
+      "status": "verified",
+      "evidence": "https://github.com/AyobamiH/agent-shop-products/issues/25"
     },
     "liveMerchantProfile": {
-      "status": "incomplete",
-      "evidence": null
+      "status": "verified",
+      "evidence": "https://github.com/AyobamiH/agent-shop-products/issues/25"
     },
     "buyerContractAndRecovery": {
       "status": "verified",
@@ -28,5 +28,5 @@
       "evidence": "https://github.com/AyobamiH/agent-shop-products/blob/64c7ee757dee247b82b28fcdc1bf0c5952f2d374/docs/BUYER_OPERATIONS_ACCEPTANCE_20261012.md"
     }
   },
-  "note": "Technical test acceptance and owner authorisation do not supply missing business facts. Evidence URLs must describe completed checks; no private identifiers belong here."
+  "note": "Seller/address/support facts and Managed Payments provider acceptance were reconciled on 16 October. Runtime secrets and source-selected live activation remain separate release gates; no real customer payment is required to prove readiness."
 }

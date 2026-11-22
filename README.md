@@ -12,13 +12,17 @@ The [private reference kit](https://agents.proofandstate.com/private-kits?utm_so
 
 ## Catalogue
 
-The catalogue contains **55 products: 11 prompts and 44 skills**. The [skills and work-coverage index](docs/SKILL_COVERAGE.md) maps **38 historically reviewed procedures** across the original 33 products. The 22 owner-profile skills added after that review have no historical procedure or invocation claim.
+The catalogue contains **59 products: 11 prompts and 48 skills**. The [skills and work-coverage index](docs/SKILL_COVERAGE.md) maps **42 reviewed procedures**, their evidence limits and eight explicitly observed dependency names. The 22 owner-profile public skill imports have no claimed historical invocation or reviewed procedure coverage.
+
+The [2 November intelligence growth review](docs/INTELLIGENCE_GROWTH_20261102.md) separates private source intake from public evidence-backed catalogue expansion.
+
+The [scoped CI-equivalence policy](docs/CI_EQUIVALENCE_20261102.md) records the explicitly approved exact-main local fallback used only when GitHub refuses to start the normal runner; it is not an automatic green hosted check.
 
 The [multi-week review](docs/MULTIWEEK_REVIEW.md) reconciles the saved history checkpoint, selected supporting records and newer continuation evidence through 9 October. The [latest work review](docs/LATEST_WORK_REVIEW.md) identifies the highest evidenced states and remaining acceptance gates.
 
 The [capability inventory](docs/CAPABILITY_INVENTORY.md) records **111 distinct external skill names, 868 advertised tools across 38 providers and 11 separate orchestration controls**. These are dated metadata, not installation or execution claims.
 
-Shop discovery now includes all **990 external acquisition listings** at `/capabilities`, with individual names-only detail pages and quote-first original integration briefs. The original product and problem pages are the indexable search inventory; metadata-only third-party detail pages are public GET references, not independently indexable Google landing pages. The `/integration-services` page explains the separate scoped implementation offer, with no invented digital checkout or licence. The [acquisition and bug-index contract](docs/CAPABILITY_SHOP_AND_BUG_INDEX.md) explains provider access, accepted scope and evidence boundaries. The [agentic coding bug index](catalog/agentic-coding-bugs.json) records documented bugs and preventive failure modes, linked to scoped evidence, repair skills and regression checks. The original 33 product payloads are preserved.
+Shop discovery now includes all **990 external acquisition listings** at `/capabilities`, with individual names-only detail pages and quote-first original integration briefs. The original product and problem pages are the indexable search inventory; metadata-only third-party detail pages are public GET references, not independently indexable Google landing pages. The `/integration-services` page explains the separate scoped implementation offer, with no invented digital checkout or licence. The [acquisition and bug-index contract](docs/CAPABILITY_SHOP_AND_BUG_INDEX.md) explains provider access, accepted scope and evidence boundaries. The [agentic coding bug index](catalog/agentic-coding-bugs.json) records documented bugs and preventive failure modes, linked to scoped evidence, repair skills and regression checks. The previous 33 product payloads are preserved; four original generalised skills were added from fresh evidence in the 2 November 2026 candidate refresh.
 
 - [Product manifest](catalog/manifest.json)
 - [Public discovery projection](catalog/products.public.json)
@@ -56,3 +60,5 @@ The distinct £9 private kit has passed real Stripe test-mode payment, signed we
 Existing public prompts preserve their migration provenance. New public skills contain original generalised procedures and sanitised evidence. Future premium-only payloads require an explicit publication decision.
 
 Discovery measurement is separately governed: see [consent, activation and funnel evidence](docs/DISCOVERY_MEASUREMENT_20261014.md). An installed measurement boundary is not proof of a connected GA4 stream or a measured visitor.
+
+The [direct Google operator](docs/DIRECT_GOOGLE_OPERATOR.md) provides owner-authorised GA4 inventory/privacy inspection, historical and realtime reporting, Search Console reports, URL Inspection and sitemap readback without GSC Wizard. A new Google consent is required; installation alone neither authorises access nor enables tracking.

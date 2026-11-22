@@ -1,8 +1,10 @@
+import { loadReleaseExpectation, verifyPublicCommerce } from "../../scripts/commerce-release-policy.mjs";
 import { readFileSync } from "node:fs";
 import { isDeepStrictEqual } from "node:util";
 import { resolve } from "node:path";
 import { verifyDiscoveryMeasurement } from "./verify-discovery-measurement.mjs";
 import { verifyRegistrySurface } from "./verify-registry-surface.mjs";
+import { SUPPORT_EMAIL } from "../src/lib/contact.ts";
 
 const origin = (process.env.ACCEPTANCE_ORIGIN ?? "").replace(/\/+$/, "");
 if (!origin) throw new Error("ACCEPTANCE_ORIGIN is required");
@@ -77,8 +79,11 @@ for (const path of ["/private-kits", ...legalPaths]) {
   requireValue(page.text.includes(canonicalOrigin + path), path + ": missing canonical URL");
   requireValue(rootPage.text.includes('href="' + path + '"'), path + ": missing footer link");
   if (path.startsWith("/legal/")) {
-    requireValue(page.text.includes("2026-10-12.2") && page.text.includes('href="mailto:heryourbarme@live.com"'),
-      path + ": missing policy version or customer contact");
+    const selected = loadReleaseExpectation();
+    const expectedPolicyVersion = selected.mode === "live" ? selected.approval.termsVersion : null;
+    requireValue(expectedPolicyVersion && page.text.includes(expectedPolicyVersion) &&
+      page.text.includes(`href="mailto:${SUPPORT_EMAIL}"`),
+      path + ": missing selected policy version or canonical customer contact");
   }
 }
 for (const [path, page] of [["/", rootPage], ["/private-kits", privateKitPage], ["/private-kits/complete", privateKitComplete],
@@ -102,19 +107,7 @@ requireValue(privateKitComplete.text.includes("Your kit order"),
   "order completion route must render order help instead of its parent catalogue");
 requireValue(privateKitComplete.text.includes("noindex"),
   "order completion route must not be indexed");
-if (commerce.commerceActive === false) {
-  requireValue(commerce.offers[0].availability === "planned" &&
-    commerce.offers[0].unitAmountPence === undefined &&
-    commerce.offers[0].priceId === undefined,
-  "disabled private kit must not expose a price or checkout");
-} else {
-  requireValue(commerce.commerceActive === true &&
-    commerce.offers[0].availability === "purchase_available" &&
-    Number.isSafeInteger(commerce.offers[0].unitAmountPence) &&
-    ["termsUrl", "licenceUrl", "refundUrl"].every((key) =>
-      typeof commerce.offers[0][key] === "string"),
-  "enabled kit must have approved amount and published terms");
-}
+const commerceAcceptance = verifyPublicCommerce(commerce, loadReleaseExpectation());
 
 const remoteCatalogue = JSON.parse(catalogueResult.text);
 requireValue(remoteCatalogue.productCount === products.length, "catalogue product count drift");
@@ -187,8 +180,7 @@ console.log(
     origin,
     canonicalOrigin,
     products: products.length,
-    privateKitOffer: commerce.offers[0].availability,
-    commerceActive: commerce.commerceActive,
+    ...commerceAcceptance,
     ...registryAcceptance,
     ...discoveryAcceptance,
     crawlerAgentsChecked: crawlerAgents.length,

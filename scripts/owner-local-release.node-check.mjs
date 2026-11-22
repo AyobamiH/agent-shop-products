@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import os from "node:os";
 import path from "node:path";
 import { mkdtempSync, writeFileSync, chmodSync, rmSync } from "node:fs";
-import { confirmLocalRelease, localMainAdmission, managedCredentialFromFile, sanitizedBuildEnvironment } from "./owner-local-release.mjs";
+import { confirmLocalRelease, localMainAdmission, managedCredentialFromFile, sanitizedBuildEnvironment, verifyR2ControlPlane } from "./owner-local-release.mjs";
 
 const sha = "d".repeat(40);
 const run = {
@@ -85,4 +85,58 @@ test("Bun build subprocess resolves nested bun scripts and receives no Cloudflar
     assert.equal(child[forbidden], undefined);
   }
   assert.equal(source.CLOUDFLARE_API_TOKEN, "test-deployment-secret");
+});
+
+
+test("R2 preflight uses the dedicated account credential and EU jurisdiction", async () => {
+  let observed;
+  const result = await verifyR2ControlPlane({
+    token: "synthetic-r2-token",
+    accountId: "6ddcbcb8474f1a7e460b2f0aabec0e2f",
+    fetchImpl: async (url, options) => {
+      observed = { url, options };
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({ success: true, result: { buckets: [
+          { name: "agent-shop-private-kits", jurisdiction: "eu" },
+        ] } }),
+      };
+    },
+  });
+  assert.deepEqual(result, { bucket: "agent-shop-private-kits", jurisdiction: "eu" });
+  assert.match(observed.url, /\/accounts\/6ddcbcb8474f1a7e460b2f0aabec0e2f\/r2\/buckets/);
+  assert.equal(observed.options.headers["cf-r2-jurisdiction"], "eu");
+  assert.equal(observed.options.headers.Authorization, "Bearer synthetic-r2-token");
+});
+
+test("R2 preflight distinguishes entitlement from credential rejection", async () => {
+  const run = (code) => verifyR2ControlPlane({
+    token: "synthetic-r2-token",
+    accountId: "6ddcbcb8474f1a7e460b2f0aabec0e2f",
+    fetchImpl: async () => ({
+      ok: false,
+      status: 403,
+      json: async () => ({ success: false, errors: [{ code, message: "synthetic" }] }),
+    }),
+  });
+  await assert.rejects(run(10042), /R2_NOT_ENTITLED/);
+  await assert.rejects(run(10000), /R2_CREDENTIAL_REJECTED/);
+  await assert.rejects(run(10002), /R2_CREDENTIAL_REJECTED/);
+});
+
+test("R2 preflight fails closed on missing or wrong-jurisdiction bucket", async () => {
+  const fetchWith = (buckets) => async () => ({
+    ok: true, status: 200, json: async () => ({ success: true, result: { buckets } }),
+  });
+  await assert.rejects(verifyR2ControlPlane({
+    token: "synthetic-r2-token",
+    accountId: "6ddcbcb8474f1a7e460b2f0aabec0e2f",
+    fetchImpl: fetchWith([]),
+  }), /R2_BUCKET_NOT_FOUND/);
+  await assert.rejects(verifyR2ControlPlane({
+    token: "synthetic-r2-token",
+    accountId: "6ddcbcb8474f1a7e460b2f0aabec0e2f",
+    fetchImpl: fetchWith([{ name: "agent-shop-private-kits", jurisdiction: "us" }]),
+  }), /R2_BUCKET_JURISDICTION_MISMATCH/);
 });

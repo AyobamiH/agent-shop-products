@@ -6,9 +6,13 @@ closed until its owner-approved merchant, legal text and delivery acceptance.
 import asyncio
 import json
 import os
+import re
+from pathlib import Path
 from playwright.async_api import async_playwright, expect
 
 BASE = os.environ.get('AGENT_SHOP_E2E_ORIGIN', 'http://localhost:8080').rstrip('/')
+CONTACT_SOURCE = (Path(__file__).parents[1] / 'src/lib/contact.ts').read_text(encoding='utf-8')
+SUPPORT_EMAIL = re.search(r'SUPPORT_EMAIL\s*=\s*"([^"]+)"', CONTACT_SOURCE).group(1)
 
 async def main():
     async with async_playwright() as playwright:
@@ -60,7 +64,7 @@ async def main():
         assert 'noindex' in await complete.text()
         await page.goto(BASE + '/private-kits/complete', wait_until='domcontentloaded')
         await expect(page.get_by_role('heading', name='Your kit order', exact=True)).to_be_visible()
-        await expect(page.locator('main').get_by_role('link', name='heryourbarme@live.com')).to_be_visible()
+        await expect(page.locator('main').get_by_role('link', name=SUPPORT_EMAIL)).to_be_visible()
         print('PASS: mobile private-kit planned availability, no Buy button, no price, denied checkout, denied order read, noindex completion')
         await browser.close()
 

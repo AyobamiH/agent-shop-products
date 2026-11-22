@@ -78,6 +78,9 @@ async function processWebhookEvent(event: StripeEvent, env: CommerceEnv, fetcher
           provider.client_reference_id !== creating.id ||
           provider.mode !== "payment" ||
           provider.livemode !== (approved.mode === "live") ||
+          (approved.mode === "live"
+            ? provider.managed_payments?.enabled !== true
+            : provider.managed_payments?.enabled === true) ||
           provider.currency !== approved.currency ||
           provider.amount_subtotal !== approved.unitAmountPence ||
           provider.metadata?.["agent_shop_order_id"] !== creating.id ||
