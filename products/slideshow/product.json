@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "slideshow",
+  "slug": "slideshow",
+  "name": "HyperFrames Slideshow",
+  "category": "video-production",
+  "summary": "Build a navigable HyperFrames presentation with discrete slides, fragments, branches, notes and hotspots.",
+  "problem": "A continuous video composition does not automatically provide discrete slide navigation, presenter notes or branching presentation paths.",
+  "coreOutcomes": [
+    "Declare slides and sequences in the slideshow JSON island",
+    "Add fragment reveals, notes and hotspot branches",
+    "Validate the navigable deck against its scene structure"
+  ],
+  "requirements": [
+    "An explicit request for a HyperFrames slideshow or confirmation when intent is ambiguous",
+    "A HyperFrames project"
+  ],
+  "boundaries": [
+    "Output is a navigable deck, not merely a rendered video",
+    "Use the composition contract for general HyperFrames timing and structure"
+  ],
+  "tags": [
+    "hyperframes",
+    "slideshow",
+    "interactive-presentation",
+    "navigation"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

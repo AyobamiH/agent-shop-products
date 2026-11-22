@@ -12,7 +12,7 @@ The [private reference kit](https://agents.proofandstate.com/private-kits?utm_so
 
 ## Catalogue
 
-The catalogue contains **37 products: 11 prompts and 26 skills**. The [skills and work-coverage index](docs/SKILL_COVERAGE.md) maps **42 reviewed procedures**, their evidence limits and eight explicitly observed dependency names.
+The catalogue contains **59 products: 11 prompts and 48 skills**. The [skills and work-coverage index](docs/SKILL_COVERAGE.md) maps **42 reviewed procedures**, their evidence limits and eight explicitly observed dependency names. The 22 owner-profile public skill imports have no claimed historical invocation or reviewed procedure coverage.
 
 The [2 November intelligence growth review](docs/INTELLIGENCE_GROWTH_20261102.md) separates private source intake from public evidence-backed catalogue expansion.
 

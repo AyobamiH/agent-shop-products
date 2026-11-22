@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "hyperframes-registry",
+  "slug": "hyperframes-registry",
+  "name": "HyperFrames Registry Integration",
+  "category": "video-tooling",
+  "summary": "Install and wire existing HyperFrames registry blocks and components into a composition.",
+  "problem": "Registry items are easy to install incorrectly when their package files, installation location and composition wiring are handled separately.",
+  "coreOutcomes": [
+    "Discover and install an existing registry item",
+    "Wire block or component files into the composition",
+    "Check the resulting project with the HyperFrames validation workflow"
+  ],
+  "requirements": [
+    "A HyperFrames project",
+    "An existing registry block or component to install"
+  ],
+  "boundaries": [
+    "This product covers installation and wiring, not authoring or upstream publication of a new registry item",
+    "Verify package compatibility rather than assuming it"
+  ],
+  "tags": [
+    "hyperframes",
+    "registry",
+    "components",
+    "installation"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

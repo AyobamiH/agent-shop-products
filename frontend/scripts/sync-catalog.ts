@@ -25,7 +25,7 @@ source.productCountsByType = Object.fromEntries(Object.entries(counts).sort());
 source.productIds = catalog.products.map((product) => product.id).sort();
 
 writeFileSync(localPath, upstreamText);
-writeFileSync(sourcePath, JSON.stringify(source, null, 2));
+writeFileSync(sourcePath, `${JSON.stringify(source, null, 2)}\n`);
 for (const file of [
   "capability-inventory.json",
   "capability-acquisition.json",

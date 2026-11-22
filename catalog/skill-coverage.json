@@ -1392,6 +1392,13 @@
       "note": "Added from demonstrated Tail Wagging agent-subcontracting work; consult the procedure evidence and limits."
     },
     {
+      "productId": "animejs",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
       "productId": "architecture-matched-release-rehearsal",
       "catalogueState": "added",
       "mapping": "procedure-coverage",
@@ -1498,6 +1505,13 @@
       "note": "Retained from the canonical catalogue. Its payload was not established as invoked in the reviewed work."
     },
     {
+      "productId": "css-animations",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
       "productId": "deterministic-social-publication",
       "catalogueState": "retained",
       "mapping": "procedure-coverage",
@@ -1569,12 +1583,68 @@
       "note": "Original generalised workflow authored from reviewed evidence; historical invocation of this product payload is not established."
     },
     {
+      "productId": "faceless-explainer",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
+      "productId": "general-video",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
       "productId": "graph-native-agent-system-migration",
       "catalogueState": "retained",
       "mapping": "not-established-in-reviewed-work",
       "procedureIds": [],
       "invocation": "not-established",
       "note": "Retained from the canonical catalogue. Its payload was not established as invoked in the reviewed work."
+    },
+    {
+      "productId": "gsap",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
+      "productId": "hyperframes-cli",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
+      "productId": "hyperframes-core",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
+      "productId": "hyperframes-creative",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
+      "productId": "hyperframes-media",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
+      "productId": "hyperframes-registry",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
     },
     {
       "productId": "live-dashboard-update-verification",
@@ -1603,6 +1673,13 @@
       "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
     },
     {
+      "productId": "lottie",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
       "productId": "machine-discovery-surface-engineering",
       "catalogueState": "added",
       "mapping": "procedure-coverage",
@@ -1625,6 +1702,20 @@
       "note": "Original generalised workflow authored from reviewed evidence; historical invocation of this product payload is not established."
     },
     {
+      "productId": "media-use",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
+      "productId": "motion-graphics",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
       "productId": "outside-in-agent-crawl-verification",
       "catalogueState": "added",
       "mapping": "procedure-coverage",
@@ -1636,6 +1727,13 @@
       "note": "Added from demonstrated subsequent state/discovery work; consult procedure evidence and limits."
     },
     {
+      "productId": "pr-to-video",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
       "productId": "problem-centred-institutional-memory",
       "catalogueState": "added",
       "mapping": "procedure-coverage",
@@ -1644,6 +1742,13 @@
       ],
       "invocation": "not-established",
       "note": "Original generalised workflow authored from reviewed evidence; historical invocation of this product payload is not established."
+    },
+    {
+      "productId": "product-launch-video",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
     },
     {
       "productId": "production-agent-operating-files",
@@ -1697,6 +1802,13 @@
       "note": "Mapped by demonstrated or partially demonstrated procedure; consult each procedure's evidence and limits."
     },
     {
+      "productId": "remotion-to-hyperframes",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
       "productId": "safe-scheduled-runtime-upgrade",
       "catalogueState": "added",
       "mapping": "procedure-coverage",
@@ -1726,6 +1838,13 @@
       "procedureIds": [],
       "invocation": "not-established",
       "note": "Retained from the canonical catalogue. Its payload was not established as invoked in the reviewed work."
+    },
+    {
+      "productId": "slideshow",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
     },
     {
       "productId": "staged-mcp-plugin-activation",
@@ -1774,6 +1893,13 @@
       "note": "Added from demonstrated subsequent state/discovery work; consult procedure evidence and limits."
     },
     {
+      "productId": "tailwind",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
       "productId": "temporary-authority-bridge-lifecycle",
       "catalogueState": "added",
       "mapping": "procedure-coverage",
@@ -1782,6 +1908,34 @@
       ],
       "invocation": "not-established",
       "note": "Added from demonstrated subsequent state/discovery work; consult procedure evidence and limits."
+    },
+    {
+      "productId": "three",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
+      "productId": "typegpu",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
+      "productId": "waapi",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
+    },
+    {
+      "productId": "website-to-video",
+      "procedureIds": [],
+      "invocation": "not-established",
+      "mapping": "not-established-in-reviewed-work",
+      "catalogueState": "added-after-review"
     }
   ],
   "supportingSkills": [
@@ -2016,5 +2170,34 @@
       ],
       "summary": "Personal Context search failed. The complete saved checkpoint and selected records support bounded continuation, but full account chat/Project/archive enumeration and original source retrieval remain unavailable."
     }
-  ]
+  ],
+  "catalogueAdditionsAfterReview": {
+    "recordedOn": "2026-10-14",
+    "productIds": [
+      "animejs",
+      "css-animations",
+      "faceless-explainer",
+      "general-video",
+      "gsap",
+      "hyperframes-cli",
+      "hyperframes-core",
+      "hyperframes-creative",
+      "hyperframes-media",
+      "hyperframes-registry",
+      "lottie",
+      "media-use",
+      "motion-graphics",
+      "pr-to-video",
+      "product-launch-video",
+      "remotion-to-hyperframes",
+      "slideshow",
+      "tailwind",
+      "three",
+      "typegpu",
+      "waapi",
+      "website-to-video"
+    ],
+    "basis": "Owner-authorized migration from the local agent-skill profile.",
+    "limits": "Catalogue addition does not establish historical invocation or procedure coverage in the 9 October review."
+  }
 }

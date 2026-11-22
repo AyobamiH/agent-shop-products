@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "website-to-video",
+  "slug": "website-to-video",
+  "name": "Website Tour Video",
+  "category": "video-production",
+  "summary": "Turn a real website into a visual tour video using captured page states and a time-coded story sequence.",
+  "problem": "A website tour needs to show real page design and interactions while turning browsing into a paced, coherent video narrative.",
+  "coreOutcomes": [
+    "Capture the relevant website states and interactions",
+    "Plan a visual sequence and narration from the site",
+    "Build and validate the HyperFrames tour composition"
+  ],
+  "requirements": [
+    "A reachable website URL",
+    "Browser access for capture and a HyperFrames project"
+  ],
+  "boundaries": [
+    "Use for general website tours and showcases, not product-launch marketing or topic explainers",
+    "Respect site access controls and media licensing; do not claim inaccessible pages were captured"
+  ],
+  "tags": [
+    "website-tour",
+    "browser-capture",
+    "video-production",
+    "hyperframes"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

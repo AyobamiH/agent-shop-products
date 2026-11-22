@@ -45,6 +45,10 @@ def blob_sha(path):
     return hashlib.sha1(f"blob {len(data)}\0".encode() + data).hexdigest()
 
 
+def valid_blob_sha(value):
+    return isinstance(value, str) and re.fullmatch(r"[0-9a-f]{40}", value)
+
+
 def metadata(root, manifest):
     records, paths, slugs = [], [], []
     for entry in manifest["products"]:
@@ -95,9 +99,46 @@ def provenance(root, records):
         require(entry["canonical"]["blobSha"] == blob_sha(inside(root, expected)),
                 f"Canonical blob drift: {record['id']}")
         origin = entry["origin"]
-        require(all(isinstance(origin[k], str) and origin[k]
-                    for k in ("repository", "branch", "path", "blobSha")), "Origin fields")
-        require(re.fullmatch(r"[0-9a-f]{40}", origin["blobSha"]), "Origin blob SHA")
+        if origin.get("sourceKind") == "owner-profile":
+            require(set(origin) == {"sourceKind", "path", "blobSha"}, "Owner-profile origin fields")
+            require(origin["path"] == f".agents/skills/{record['id']}/SKILL.md",
+                    f"Owner-profile origin path: {record['id']}")
+            require(valid_blob_sha(origin["blobSha"]), "Owner-profile origin blob SHA")
+        else:
+            require(all(isinstance(origin[k], str) and origin[k]
+                        for k in ("repository", "branch", "path", "blobSha")), "Origin fields")
+            require(valid_blob_sha(origin["blobSha"]), "Origin blob SHA")
+
+        supporting_files = entry.get("supportingFiles")
+        if supporting_files is None:
+            continue
+        canonical_paths = [item.get("canonicalPath") for item in supporting_files]
+        unique(canonical_paths, f"support file path: {record['id']}")
+        expected_support = set()
+        product_dir = root / "products" / record["id"]
+        for item in supporting_files:
+            require(set(item) == {
+                "canonicalPath", "canonicalBlobSha", "originPath", "originBlobSha"
+            }, f"Support file fields: {record['id']}")
+            canonical_path = item["canonicalPath"]
+            require(canonical_path.startswith(f"products/{record['id']}/"),
+                    f"Support file path: {record['id']}")
+            path = inside(root, canonical_path)
+            require(item["canonicalBlobSha"] == blob_sha(path),
+                    f"Support file blob drift: {canonical_path}")
+            require(valid_blob_sha(item["originBlobSha"]), "Support file origin blob SHA")
+            origin_path = Path(item["originPath"])
+            require(not origin_path.is_absolute() and ".." not in origin_path.parts,
+                    f"Unsafe support origin path: {record['id']}")
+            require(origin_path.as_posix().startswith(f".agents/skills/{record['id']}/"),
+                    f"Support origin path: {record['id']}")
+            expected_support.add(canonical_path)
+        actual_support = {
+            str(path.relative_to(root))
+            for path in product_dir.rglob("*")
+            if path.is_file() and path.name != "product.json" and path != product_dir / record["source"]
+        }
+        require(expected_support == actual_support, f"Support file coverage: {record['id']}")
 
 
 def coverage(root, product_ids):
@@ -121,16 +162,34 @@ def coverage(root, product_ids):
     mappings = document["productCoverage"]
     unique([m["productId"] for m in mappings], "product coverage")
     require({m["productId"] for m in mappings} == product_ids, "Product coverage mismatch")
+    post_review_list = document.get("catalogueAdditionsAfterReview", {}).get("productIds", [])
+    unique(post_review_list, "post-review catalogue product")
+    post_review_ids = set(post_review_list)
+    require(post_review_ids <= product_ids, "Unknown post-review catalogue product")
     for mapping in mappings:
         expected = [p["id"] for p in procedures if mapping["productId"] in p["productIds"]]
         require(mapping["procedureIds"] == expected, f"Mapping drift: {mapping['productId']}")
         require(mapping["invocation"] == "not-established", "Unsupported product invocation")
         state = "procedure-coverage" if expected else "not-established-in-reviewed-work"
         require(mapping["mapping"] == state, "Mapping classification drift")
-        require(mapping["catalogueState"] in {"added", "retained"}, "Catalogue state")
+        catalogue_state = mapping["catalogueState"]
+        require(catalogue_state in {"added", "retained", "added-after-review"}, "Catalogue state")
+        if catalogue_state == "added-after-review":
+            require(mapping["productId"] in post_review_ids and not expected,
+                    f"Post-review product evidence: {mapping['productId']}")
+        else:
+            require(mapping["productId"] not in post_review_ids,
+                    f"Post-review catalogue state: {mapping['productId']}")
     added = {m["productId"] for m in mappings if m["catalogueState"] == "added"}
     require(added == set(document["scope"]["newProductIds"]), "New product coverage drift")
-    require(len(product_ids - added) == document["scope"]["baselineProductCount"], "Baseline count")
+    added_after_review = {
+        m["productId"] for m in mappings if m["catalogueState"] == "added-after-review"
+    }
+    require(added_after_review == post_review_ids, "Post-review catalogue coverage drift")
+    require(
+        len(product_ids - added - added_after_review) == document["scope"]["baselineProductCount"],
+        "Baseline count",
+    )
     dependencies = document["supportingSkills"]
     unique([d["name"] for d in dependencies], "supporting skill")
     for dependency in dependencies:

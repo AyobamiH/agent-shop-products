@@ -1,6 +1,6 @@
 # Skills catalogue and work coverage
 
-Reviewed **2 November 2026** (original baseline: 9 October). The catalogue contains **37 products: 11 prompts and 26 skills**, mapped against **42 reviewed procedures**. [The JSON coverage record](../catalog/skill-coverage.json) is authoritative for these mappings.
+Reviewed **2 November 2026** (original baseline: 9 October). The catalogue now contains **59 products: 11 prompts and 48 skills**, mapped against **42 reviewed procedures**. The 22 owner-profile skills imported after that review have no historical procedure or invocation claim. [The JSON coverage record](../catalog/skill-coverage.json) is authoritative for these mappings.
 
 ## Review scope
 

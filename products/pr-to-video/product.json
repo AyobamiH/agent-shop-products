@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "pr-to-video",
+  "slug": "pr-to-video",
+  "name": "Pull Request Video Explainer",
+  "category": "video-production",
+  "summary": "Turn a GitHub pull request into a code-change explainer using its diff, commits and source files.",
+  "problem": "A pull request is difficult to communicate to a broad audience when its code changes are presented without a concise visual narrative.",
+  "coreOutcomes": [
+    "Inspect the pull request as the source of the change story",
+    "Plan a changelog, feature reveal, fix or refactor explainer",
+    "Build and validate a rendered HyperFrames composition"
+  ],
+  "requirements": [
+    "A GitHub pull request or repository reference",
+    "GitHub CLI access to the requested change",
+    "A HyperFrames project"
+  ],
+  "boundaries": [
+    "The source is a code change, not a website capture or general topic",
+    "Do not claim tests, review, merge or deployment states not supported by the pull request evidence"
+  ],
+  "tags": [
+    "github",
+    "pull-request",
+    "code-explainer",
+    "video-production"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

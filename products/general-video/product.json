@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "general-video",
+  "slug": "general-video",
+  "name": "General HyperFrames Video Workflow",
+  "category": "video-production",
+  "summary": "Author longer, multi-scene or freeform HyperFrames videos when no specialized workflow fits the brief.",
+  "problem": "Open-ended video briefs often do not fit a narrow template and need a deliberate design, scene plan and build workflow.",
+  "coreOutcomes": [
+    "Clarify an open-ended video brief",
+    "Plan a visual system and multi-scene structure",
+    "Build, validate and prepare the composition for rendering"
+  ],
+  "requirements": [
+    "A video brief or concept",
+    "A HyperFrames project and its CLI"
+  ],
+  "boundaries": [
+    "Use a specialized workflow when the request is clearly a product launch, website tour, topic explainer, PR video, captioned clip or short motion graphic",
+    "The workflow does not itself provide the HyperFrames runtime or media-provider credentials"
+  ],
+  "tags": [
+    "video-production",
+    "hyperframes",
+    "storyboarding",
+    "multi-scene"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

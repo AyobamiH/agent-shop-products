@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "gsap",
+  "slug": "gsap",
+  "name": "GSAP Runtime Adapter",
+  "category": "video-tooling",
+  "summary": "Build seek-safe GSAP timelines, tweens, easing and stagger patterns for HyperFrames compositions.",
+  "problem": "GSAP animations must be expressed as deterministic timelines so preview and frame rendering agree at arbitrary timestamps.",
+  "coreOutcomes": [
+    "Author paused timelines and time-positioned tweens",
+    "Apply easing, stagger and timeline composition patterns",
+    "Keep animation effects compatible with HyperFrames seeking"
+  ],
+  "requirements": [
+    "A HyperFrames composition",
+    "GSAP available to the composition runtime"
+  ],
+  "boundaries": [
+    "Covers GSAP implementation patterns, not full scene design",
+    "Do not use wall-clock animation loops for rendered motion"
+  ],
+  "tags": [
+    "hyperframes",
+    "gsap",
+    "animation",
+    "timelines"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

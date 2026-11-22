@@ -89,6 +89,35 @@
       "sourcePath": "products/agent-subcontracting-commercial-handoff/SKILL.md"
     },
     {
+      "id": "animejs",
+      "slug": "animejs",
+      "name": "Anime.js Runtime Adapter",
+      "category": "video-tooling",
+      "summary": "Use Anime.js timelines and registered runtime instances that can be sought deterministically by HyperFrames.",
+      "problem": "Anime.js animations can drift during preview or rendering when their runtime state is not integrated with HyperFrames seeking.",
+      "coreOutcomes": [
+        "Register Anime.js instances for deterministic seeking",
+        "Translate Anime.js patterns into render-safe composition HTML",
+        "Keep animation state aligned with the composition timeline"
+      ],
+      "requirements": [
+        "A HyperFrames composition",
+        "Anime.js available to the composition runtime"
+      ],
+      "boundaries": [
+        "Covers Anime.js runtime integration, not overall motion direction",
+        "Keep animation time derived from HyperFrames progress rather than a wall clock"
+      ],
+      "tags": [
+        "hyperframes",
+        "animejs",
+        "animation",
+        "deterministic-rendering"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/animejs/SKILL.md"
+    },
+    {
       "id": "architecture-matched-release-rehearsal",
       "slug": "architecture-matched-release-rehearsal",
       "name": "Architecture-Matched Release Rehearsal",
@@ -490,6 +519,35 @@
       "sourcePath": "products/continuous-business-operations-graph/PROMPT.md"
     },
     {
+      "id": "css-animations",
+      "slug": "css-animations",
+      "name": "CSS Animation Runtime Adapter",
+      "category": "video-tooling",
+      "summary": "Author CSS keyframe motion with delay and fill behavior that remains deterministic under HyperFrames seeking.",
+      "problem": "Wall-clock CSS animations are difficult to reproduce at arbitrary video timestamps unless their timing is controlled by the renderer.",
+      "coreOutcomes": [
+        "Configure CSS keyframes for deterministic frame seeking",
+        "Apply delay, fill mode and playback state correctly",
+        "Translate CSS motion patterns into render-safe HyperFrames HTML"
+      ],
+      "requirements": [
+        "A HyperFrames composition",
+        "CSS keyframe animation support in the browser"
+      ],
+      "boundaries": [
+        "Covers CSS animation integration, not general visual direction",
+        "Avoid animation behavior that depends on an uncontrolled wall clock"
+      ],
+      "tags": [
+        "hyperframes",
+        "css",
+        "animation",
+        "deterministic-rendering"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/css-animations/SKILL.md"
+    },
+    {
       "id": "deterministic-social-publication",
       "slug": "deterministic-social-publication",
       "name": "Deterministic Social Publication Pipeline",
@@ -718,6 +776,64 @@
       "sourcePath": "products/executable-operating-documentation/SKILL.md"
     },
     {
+      "id": "faceless-explainer",
+      "slug": "faceless-explainer",
+      "name": "Faceless Explainer Video",
+      "category": "video-production",
+      "summary": "Turn a topic, article, notes or brief into an explainer made from original typography, abstract visuals, diagrams and data-viz.",
+      "problem": "Explaining a topic in video requires a coherent visual narrative even when there is no website, footage or supplied imagery to capture.",
+      "coreOutcomes": [
+        "Turn source text into a concise brief and script",
+        "Plan original visual beats using typography and abstract graphics",
+        "Build and validate the resulting HyperFrames composition"
+      ],
+      "requirements": [
+        "A topic, article, notes or creative brief",
+        "A HyperFrames project"
+      ],
+      "boundaries": [
+        "Does not capture websites or use real-world source imagery",
+        "Use product-launch, website-tour, PR or caption workflows when those intents apply"
+      ],
+      "tags": [
+        "explainer",
+        "faceless-video",
+        "storytelling",
+        "hyperframes"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/faceless-explainer/SKILL.md"
+    },
+    {
+      "id": "general-video",
+      "slug": "general-video",
+      "name": "General HyperFrames Video Workflow",
+      "category": "video-production",
+      "summary": "Author longer, multi-scene or freeform HyperFrames videos when no specialized workflow fits the brief.",
+      "problem": "Open-ended video briefs often do not fit a narrow template and need a deliberate design, scene plan and build workflow.",
+      "coreOutcomes": [
+        "Clarify an open-ended video brief",
+        "Plan a visual system and multi-scene structure",
+        "Build, validate and prepare the composition for rendering"
+      ],
+      "requirements": [
+        "A video brief or concept",
+        "A HyperFrames project and its CLI"
+      ],
+      "boundaries": [
+        "Use a specialized workflow when the request is clearly a product launch, website tour, topic explainer, PR video, captioned clip or short motion graphic",
+        "The workflow does not itself provide the HyperFrames runtime or media-provider credentials"
+      ],
+      "tags": [
+        "video-production",
+        "hyperframes",
+        "storyboarding",
+        "multi-scene"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/general-video/SKILL.md"
+    },
+    {
       "id": "graph-native-agent-system-migration",
       "slug": "graph-native-agent-system-migration",
       "name": "Graph-Native Agent System Migration",
@@ -755,6 +871,179 @@
         "cutover"
       ],
       "sourcePath": "products/graph-native-agent-system-migration/PROMPT.md"
+    },
+    {
+      "id": "gsap",
+      "slug": "gsap",
+      "name": "GSAP Runtime Adapter",
+      "category": "video-tooling",
+      "summary": "Build seek-safe GSAP timelines, tweens, easing and stagger patterns for HyperFrames compositions.",
+      "problem": "GSAP animations must be expressed as deterministic timelines so preview and frame rendering agree at arbitrary timestamps.",
+      "coreOutcomes": [
+        "Author paused timelines and time-positioned tweens",
+        "Apply easing, stagger and timeline composition patterns",
+        "Keep animation effects compatible with HyperFrames seeking"
+      ],
+      "requirements": [
+        "A HyperFrames composition",
+        "GSAP available to the composition runtime"
+      ],
+      "boundaries": [
+        "Covers GSAP implementation patterns, not full scene design",
+        "Do not use wall-clock animation loops for rendered motion"
+      ],
+      "tags": [
+        "hyperframes",
+        "gsap",
+        "animation",
+        "timelines"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/gsap/SKILL.md"
+    },
+    {
+      "id": "hyperframes-cli",
+      "slug": "hyperframes-cli",
+      "name": "HyperFrames CLI Workflow",
+      "category": "video-tooling",
+      "summary": "Use the HyperFrames CLI to scaffold, inspect, validate, preview and render compositions, including configured cloud rendering.",
+      "problem": "A video composition can appear complete while structural, timing or render issues remain undiscovered without the repository-native CLI checks.",
+      "coreOutcomes": [
+        "Choose the relevant CLI operation for the current project stage",
+        "Run structural and visual validation before rendering",
+        "Report local and cloud-render results without conflating their evidence"
+      ],
+      "requirements": [
+        "A HyperFrames project",
+        "The HyperFrames CLI installed or available through npx"
+      ],
+      "boundaries": [
+        "Cloud rendering requires its own configuration and authorization",
+        "A successful command does not by itself establish visual quality or deployment acceptance"
+      ],
+      "tags": [
+        "hyperframes",
+        "cli",
+        "rendering",
+        "validation"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/hyperframes-cli/SKILL.md"
+    },
+    {
+      "id": "hyperframes-core",
+      "slug": "hyperframes-core",
+      "name": "HyperFrames Composition Contract",
+      "category": "video-tooling",
+      "summary": "Build renderable HyperFrames compositions using the timing, track, clip, variable and deterministic-render contract.",
+      "problem": "Composition HTML can silently render incorrectly when timing attributes, tracks, scene dimensions or media ownership violate the runtime contract.",
+      "coreOutcomes": [
+        "Structure root compositions, clips, tracks and sub-compositions",
+        "Apply timing attributes and variable conventions",
+        "Validate deterministic behavior and composition structure"
+      ],
+      "requirements": [
+        "A HyperFrames project",
+        "A composition brief or existing HTML composition"
+      ],
+      "boundaries": [
+        "The skill defines the composition contract, not creative direction or animation-runtime APIs",
+        "Keep frame output a pure function of the requested composition time"
+      ],
+      "tags": [
+        "hyperframes",
+        "composition",
+        "html-video",
+        "deterministic-rendering"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/hyperframes-core/SKILL.md"
+    },
+    {
+      "id": "hyperframes-creative",
+      "slug": "hyperframes-creative",
+      "name": "HyperFrames Creative Direction",
+      "category": "video-production",
+      "summary": "Shape the visual identity, storyboard, narration and composition plan for a HyperFrames video.",
+      "problem": "Video builds become inconsistent when palette, typography, narration and beat planning are decided independently during implementation.",
+      "coreOutcomes": [
+        "Translate the brief into a coherent visual system",
+        "Plan narrative beats and scene composition",
+        "Record design decisions in reusable project specifications"
+      ],
+      "requirements": [
+        "A HyperFrames video brief or an existing composition needing design direction"
+      ],
+      "boundaries": [
+        "Focuses on creative direction rather than runtime-specific animation code",
+        "Do not invent facts or claims for brand and product material"
+      ],
+      "tags": [
+        "hyperframes",
+        "creative-direction",
+        "storyboard",
+        "visual-design"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/hyperframes-creative/SKILL.md"
+    },
+    {
+      "id": "hyperframes-media",
+      "slug": "hyperframes-media",
+      "name": "HyperFrames Media Production",
+      "category": "media-tooling",
+      "summary": "Create and prepare voiceover, music, sound effects, transcription, background-removal and caption assets for HyperFrames.",
+      "problem": "Audio and media preparation can become inconsistent when providers, timing metadata and asset placement are handled through separate ad hoc workflows.",
+      "coreOutcomes": [
+        "Prepare audio requests and reconcile generated media metadata",
+        "Select supported provider or local fallback paths",
+        "Prepare transcription, background-removal and caption inputs for compositions"
+      ],
+      "requirements": [
+        "A HyperFrames project and a defined media need",
+        "Provider credentials or the local dependencies required by the selected workflow"
+      ],
+      "boundaries": [
+        "Provider availability, permissions and output quality are not guaranteed by the skill",
+        "Keep credentials outside the public repository and report when an operation is unavailable"
+      ],
+      "tags": [
+        "hyperframes",
+        "audio",
+        "media-assets",
+        "captions"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/hyperframes-media/SKILL.md"
+    },
+    {
+      "id": "hyperframes-registry",
+      "slug": "hyperframes-registry",
+      "name": "HyperFrames Registry Integration",
+      "category": "video-tooling",
+      "summary": "Install and wire existing HyperFrames registry blocks and components into a composition.",
+      "problem": "Registry items are easy to install incorrectly when their package files, installation location and composition wiring are handled separately.",
+      "coreOutcomes": [
+        "Discover and install an existing registry item",
+        "Wire block or component files into the composition",
+        "Check the resulting project with the HyperFrames validation workflow"
+      ],
+      "requirements": [
+        "A HyperFrames project",
+        "An existing registry block or component to install"
+      ],
+      "boundaries": [
+        "This product covers installation and wiring, not authoring or upstream publication of a new registry item",
+        "Verify package compatibility rather than assuming it"
+      ],
+      "tags": [
+        "hyperframes",
+        "registry",
+        "components",
+        "installation"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/hyperframes-registry/SKILL.md"
     },
     {
       "id": "live-dashboard-update-verification",
@@ -839,6 +1128,35 @@
       "sourcePath": "products/local-first-verification-cli/PROMPT.md"
     },
     {
+      "id": "lottie",
+      "slug": "lottie",
+      "name": "Lottie Runtime Adapter",
+      "category": "video-tooling",
+      "summary": "Embed Lottie and dotLottie animations with playback that can be sought deterministically by HyperFrames.",
+      "problem": "Pre-rendered Lottie timelines may show the wrong frame unless player state is coordinated with the composition renderer.",
+      "coreOutcomes": [
+        "Embed Lottie or dotLottie player assets",
+        "Register player instances for deterministic seeking",
+        "Validate animation behavior at requested composition times"
+      ],
+      "requirements": [
+        "A HyperFrames composition",
+        "A Lottie JSON or dotLottie asset and compatible player runtime"
+      ],
+      "boundaries": [
+        "Covers player integration, not exporting or editing the source animation",
+        "The source animation remains subject to its own license and asset requirements"
+      ],
+      "tags": [
+        "hyperframes",
+        "lottie",
+        "animation",
+        "deterministic-rendering"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/lottie/SKILL.md"
+    },
+    {
       "id": "machine-discovery-surface-engineering",
       "slug": "machine-discovery-surface-engineering",
       "name": "Machine-Discovery Surface Engineering",
@@ -918,6 +1236,64 @@
       "sourcePath": "products/measurement-gated-learning-admission/SKILL.md"
     },
     {
+      "id": "media-use",
+      "slug": "media-use",
+      "name": "Media Asset Resolution",
+      "category": "media-tooling",
+      "summary": "Resolve a media request into a frozen local asset with cache reuse and a provenance-ledger record.",
+      "problem": "Media searches can leave projects with unstable remote links, duplicate downloads and unclear asset provenance.",
+      "coreOutcomes": [
+        "Check project and shared caches before acquiring media",
+        "Freeze the selected asset into a local project path",
+        "Record media metadata in the project ledger"
+      ],
+      "requirements": [
+        "A project directory and a specific image, icon, music or sound-effect need",
+        "The media-use scripts and any credentials required by an enabled provider"
+      ],
+      "boundaries": [
+        "Provider search and generation may be unavailable and must not be presented as successful when they fail",
+        "Verify usage rights before using acquired media in a public or commercial deliverable"
+      ],
+      "tags": [
+        "media-assets",
+        "provenance",
+        "cache",
+        "asset-management"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/media-use/SKILL.md"
+    },
+    {
+      "id": "motion-graphics",
+      "slug": "motion-graphics",
+      "name": "Motion Graphics",
+      "category": "video-production",
+      "summary": "Create concise, design-led motion graphics where movement carries the message.",
+      "problem": "Short kinetic pieces lose impact when animation, typography and information hierarchy are designed as separate concerns.",
+      "coreOutcomes": [
+        "Translate one visual idea into a compact motion concept",
+        "Compose kinetic typography, data or brand elements",
+        "Build and validate a short HyperFrames composition"
+      ],
+      "requirements": [
+        "A concise motion-first brief, such as a headline, statistic, chart, logo or callout",
+        "A HyperFrames project"
+      ],
+      "boundaries": [
+        "Intended for short unnarrated motion-first pieces, not long narrated videos or live-action edits",
+        "Use a specialized workflow for product launches, explainers, PR videos or captioned footage"
+      ],
+      "tags": [
+        "motion-graphics",
+        "kinetic-typography",
+        "short-form-video",
+        "hyperframes"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/motion-graphics/SKILL.md"
+    },
+    {
       "id": "outside-in-agent-crawl-verification",
       "slug": "outside-in-agent-crawl-verification",
       "name": "Outside-In Agent Crawl Verification",
@@ -960,6 +1336,36 @@
       "sourcePath": "products/outside-in-agent-crawl-verification/SKILL.md"
     },
     {
+      "id": "pr-to-video",
+      "slug": "pr-to-video",
+      "name": "Pull Request Video Explainer",
+      "category": "video-production",
+      "summary": "Turn a GitHub pull request into a code-change explainer using its diff, commits and source files.",
+      "problem": "A pull request is difficult to communicate to a broad audience when its code changes are presented without a concise visual narrative.",
+      "coreOutcomes": [
+        "Inspect the pull request as the source of the change story",
+        "Plan a changelog, feature reveal, fix or refactor explainer",
+        "Build and validate a rendered HyperFrames composition"
+      ],
+      "requirements": [
+        "A GitHub pull request or repository reference",
+        "GitHub CLI access to the requested change",
+        "A HyperFrames project"
+      ],
+      "boundaries": [
+        "The source is a code change, not a website capture or general topic",
+        "Do not claim tests, review, merge or deployment states not supported by the pull request evidence"
+      ],
+      "tags": [
+        "github",
+        "pull-request",
+        "code-explainer",
+        "video-production"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/pr-to-video/SKILL.md"
+    },
+    {
       "id": "problem-centred-institutional-memory",
       "slug": "problem-centred-institutional-memory",
       "name": "Problem-Centred Institutional Memory",
@@ -994,6 +1400,35 @@
         "continuation"
       ],
       "sourcePath": "products/problem-centred-institutional-memory/SKILL.md"
+    },
+    {
+      "id": "product-launch-video",
+      "slug": "product-launch-video",
+      "name": "Product Launch Video",
+      "category": "video-production",
+      "summary": "Turn a product URL, script or brief into a product marketing video built from time-coded shot sequences.",
+      "problem": "Product launch videos need a clear feature story and visuals that develop across each shot rather than stopping after an opening animation.",
+      "coreOutcomes": [
+        "Shape a product brief into a launch narrative",
+        "Plan and build time-coded visual shot sequences",
+        "Validate the assembled video composition"
+      ],
+      "requirements": [
+        "A product or feature URL, script or marketing brief",
+        "A HyperFrames project and the required media resources"
+      ],
+      "boundaries": [
+        "Use for product marketing, launches and feature reveals",
+        "Do not use for generic topic explainers, non-product website tours, pull requests or short unnarrated motion graphics"
+      ],
+      "tags": [
+        "product-launch",
+        "marketing-video",
+        "storytelling",
+        "hyperframes"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/product-launch-video/SKILL.md"
     },
     {
       "id": "production-agent-operating-files",
@@ -1191,6 +1626,36 @@
       "sourcePath": "products/read-only-production-reconnaissance/PROMPT.md"
     },
     {
+      "id": "remotion-to-hyperframes",
+      "slug": "remotion-to-hyperframes",
+      "name": "Remotion-to-HyperFrames Migration",
+      "category": "video-tooling",
+      "summary": "Port an explicitly requested Remotion React composition to HyperFrames and flag patterns that do not translate cleanly.",
+      "problem": "Framework migration can silently lose interactive or time-dependent behavior when source constructs are translated without checking their rendering semantics.",
+      "coreOutcomes": [
+        "Lint the Remotion source for unsupported patterns",
+        "Translate supported composition, timing and media APIs",
+        "Evaluate the rendered result against the supplied source composition"
+      ],
+      "requirements": [
+        "An existing Remotion source composition",
+        "A HyperFrames project and the migration scripts and fixtures"
+      ],
+      "boundaries": [
+        "One-way migration from Remotion to HyperFrames only",
+        "Do not use for fresh composition authoring or reverse export",
+        "Stop and report patterns the migration cannot safely preserve"
+      ],
+      "tags": [
+        "remotion",
+        "hyperframes",
+        "migration",
+        "react-video"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/remotion-to-hyperframes/SKILL.md"
+    },
+    {
       "id": "safe-scheduled-runtime-upgrade",
       "slug": "safe-scheduled-runtime-upgrade",
       "name": "Safe Scheduled Runtime Upgrade",
@@ -1319,6 +1784,35 @@
       "sourcePath": "products/signed-agent-action-receipts/PROMPT.md"
     },
     {
+      "id": "slideshow",
+      "slug": "slideshow",
+      "name": "HyperFrames Slideshow",
+      "category": "video-production",
+      "summary": "Build a navigable HyperFrames presentation with discrete slides, fragments, branches, notes and hotspots.",
+      "problem": "A continuous video composition does not automatically provide discrete slide navigation, presenter notes or branching presentation paths.",
+      "coreOutcomes": [
+        "Declare slides and sequences in the slideshow JSON island",
+        "Add fragment reveals, notes and hotspot branches",
+        "Validate the navigable deck against its scene structure"
+      ],
+      "requirements": [
+        "An explicit request for a HyperFrames slideshow or confirmation when intent is ambiguous",
+        "A HyperFrames project"
+      ],
+      "boundaries": [
+        "Output is a navigable deck, not merely a rendered video",
+        "Use the composition contract for general HyperFrames timing and structure"
+      ],
+      "tags": [
+        "hyperframes",
+        "slideshow",
+        "interactive-presentation",
+        "navigation"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/slideshow/SKILL.md"
+    },
+    {
       "id": "staged-mcp-plugin-activation",
       "slug": "staged-mcp-plugin-activation",
       "name": "Staged MCP Plugin Activation",
@@ -1436,6 +1930,35 @@
       "sourcePath": "products/state-transition-evidence-contract/SKILL.md"
     },
     {
+      "id": "tailwind",
+      "slug": "tailwind",
+      "name": "Tailwind CSS for HyperFrames",
+      "category": "video-tooling",
+      "summary": "Use Tailwind CSS v4 browser-runtime patterns in HyperFrames composition HTML and decide when to compile CSS.",
+      "problem": "Tailwind v3 and v4 use different configuration models, while browser-runtime styling also has render-readiness constraints.",
+      "coreOutcomes": [
+        "Apply Tailwind v4 utilities and CSS-first theme tokens",
+        "Avoid v3-only configuration patterns in browser-runtime projects",
+        "Choose the browser runtime or compiled stylesheet path for the render environment"
+      ],
+      "requirements": [
+        "A HyperFrames composition created with Tailwind support or a compiled Tailwind stylesheet",
+        "Tailwind CSS v4.2.4 browser runtime when using the pinned browser path"
+      ],
+      "boundaries": [
+        "Applies to HyperFrames composition HTML, not the Studio package that uses Tailwind v3",
+        "Keep animation timing in a seekable runtime rather than Tailwind classes"
+      ],
+      "tags": [
+        "tailwind",
+        "css",
+        "hyperframes",
+        "browser-runtime"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/tailwind/SKILL.md"
+    },
+    {
       "id": "temporary-authority-bridge-lifecycle",
       "slug": "temporary-authority-bridge-lifecycle",
       "name": "Temporary Authority Bridge Lifecycle",
@@ -1475,6 +1998,122 @@
         "removal-proof"
       ],
       "sourcePath": "products/temporary-authority-bridge-lifecycle/SKILL.md"
+    },
+    {
+      "id": "three",
+      "slug": "three",
+      "name": "Three.js Runtime Adapter",
+      "category": "video-tooling",
+      "summary": "Embed Three.js and WebGL animation in HyperFrames while keeping scene playback seekable.",
+      "problem": "Three.js scenes can render differently at arbitrary timestamps when the animation mixer and browser frame loop are not controlled by the composition timeline.",
+      "coreOutcomes": [
+        "Set up a Three.js scene for a HyperFrames composition",
+        "Advance animation state from the requested composition time",
+        "Validate scene output at arbitrary seek positions"
+      ],
+      "requirements": [
+        "A HyperFrames composition",
+        "Three.js and any required WebGL browser support"
+      ],
+      "boundaries": [
+        "Covers runtime integration rather than general 3D asset creation",
+        "WebGL availability and third-party model or texture licensing remain separate requirements"
+      ],
+      "tags": [
+        "hyperframes",
+        "threejs",
+        "webgl",
+        "deterministic-rendering"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/three/SKILL.md"
+    },
+    {
+      "id": "typegpu",
+      "slug": "typegpu",
+      "name": "TypeGPU Runtime Adapter",
+      "category": "video-tooling",
+      "summary": "Integrate TypeGPU and WebGPU visuals into HyperFrames with deterministic timeline seeking.",
+      "problem": "GPU-driven visuals may depend on an uncontrolled render loop and become inconsistent when frames are sampled out of order.",
+      "coreOutcomes": [
+        "Build a TypeGPU visual runtime for a composition",
+        "Derive visual state from the requested timeline position",
+        "Handle WebGPU capability and render validation explicitly"
+      ],
+      "requirements": [
+        "A HyperFrames composition",
+        "A browser and device with the required WebGPU support"
+      ],
+      "boundaries": [
+        "WebGPU availability is environment-dependent",
+        "Covers runtime animation integration, not general GPU programming or asset licensing"
+      ],
+      "tags": [
+        "hyperframes",
+        "typegpu",
+        "webgpu",
+        "deterministic-rendering"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/typegpu/SKILL.md"
+    },
+    {
+      "id": "waapi",
+      "slug": "waapi",
+      "name": "Web Animations API Runtime Adapter",
+      "category": "video-tooling",
+      "summary": "Use Web Animations API playback state as a seek-driven adapter for HyperFrames compositions.",
+      "problem": "Native browser animations can keep advancing independently of the frame timestamp requested by a video renderer.",
+      "coreOutcomes": [
+        "Create Web Animations API effects for composition elements",
+        "Set animation current time from the requested composition time",
+        "Check repeatable output when seeking between frames"
+      ],
+      "requirements": [
+        "A HyperFrames composition",
+        "Browser support for the Web Animations API"
+      ],
+      "boundaries": [
+        "Covers deterministic playback integration, not broad motion design",
+        "Avoid uncontrolled requestAnimationFrame or wall-clock animation loops"
+      ],
+      "tags": [
+        "hyperframes",
+        "waapi",
+        "web-animations-api",
+        "deterministic-rendering"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/waapi/SKILL.md"
+    },
+    {
+      "id": "website-to-video",
+      "slug": "website-to-video",
+      "name": "Website Tour Video",
+      "category": "video-production",
+      "summary": "Turn a real website into a visual tour video using captured page states and a time-coded story sequence.",
+      "problem": "A website tour needs to show real page design and interactions while turning browsing into a paced, coherent video narrative.",
+      "coreOutcomes": [
+        "Capture the relevant website states and interactions",
+        "Plan a visual sequence and narration from the site",
+        "Build and validate the HyperFrames tour composition"
+      ],
+      "requirements": [
+        "A reachable website URL",
+        "Browser access for capture and a HyperFrames project"
+      ],
+      "boundaries": [
+        "Use for general website tours and showcases, not product-launch marketing or topic explainers",
+        "Respect site access controls and media licensing; do not claim inaccessible pages were captured"
+      ],
+      "tags": [
+        "website-tour",
+        "browser-capture",
+        "video-production",
+        "hyperframes"
+      ],
+      "productType": "skill",
+      "sourcePath": "products/website-to-video/SKILL.md"
     }
   ]
 }

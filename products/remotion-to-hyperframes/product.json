@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "remotion-to-hyperframes",
+  "slug": "remotion-to-hyperframes",
+  "name": "Remotion-to-HyperFrames Migration",
+  "category": "video-tooling",
+  "summary": "Port an explicitly requested Remotion React composition to HyperFrames and flag patterns that do not translate cleanly.",
+  "problem": "Framework migration can silently lose interactive or time-dependent behavior when source constructs are translated without checking their rendering semantics.",
+  "coreOutcomes": [
+    "Lint the Remotion source for unsupported patterns",
+    "Translate supported composition, timing and media APIs",
+    "Evaluate the rendered result against the supplied source composition"
+  ],
+  "requirements": [
+    "An existing Remotion source composition",
+    "A HyperFrames project and the migration scripts and fixtures"
+  ],
+  "boundaries": [
+    "One-way migration from Remotion to HyperFrames only",
+    "Do not use for fresh composition authoring or reverse export",
+    "Stop and report patterns the migration cannot safely preserve"
+  ],
+  "tags": [
+    "remotion",
+    "hyperframes",
+    "migration",
+    "react-video"
+  ],
+  "productType": "skill",
+  "source": "SKILL.md"
+}

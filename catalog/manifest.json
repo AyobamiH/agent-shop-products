@@ -10,6 +10,10 @@
       "metadata": "products/agent-subcontracting-commercial-handoff/product.json"
     },
     {
+      "id": "animejs",
+      "metadata": "products/animejs/product.json"
+    },
+    {
       "id": "architecture-matched-release-rehearsal",
       "metadata": "products/architecture-matched-release-rehearsal/product.json"
     },
@@ -50,6 +54,10 @@
       "metadata": "products/continuous-business-operations-graph/product.json"
     },
     {
+      "id": "css-animations",
+      "metadata": "products/css-animations/product.json"
+    },
+    {
       "id": "deterministic-social-publication",
       "metadata": "products/deterministic-social-publication/product.json"
     },
@@ -74,8 +82,40 @@
       "metadata": "products/executable-operating-documentation/product.json"
     },
     {
+      "id": "faceless-explainer",
+      "metadata": "products/faceless-explainer/product.json"
+    },
+    {
+      "id": "general-video",
+      "metadata": "products/general-video/product.json"
+    },
+    {
       "id": "graph-native-agent-system-migration",
       "metadata": "products/graph-native-agent-system-migration/product.json"
+    },
+    {
+      "id": "gsap",
+      "metadata": "products/gsap/product.json"
+    },
+    {
+      "id": "hyperframes-cli",
+      "metadata": "products/hyperframes-cli/product.json"
+    },
+    {
+      "id": "hyperframes-core",
+      "metadata": "products/hyperframes-core/product.json"
+    },
+    {
+      "id": "hyperframes-creative",
+      "metadata": "products/hyperframes-creative/product.json"
+    },
+    {
+      "id": "hyperframes-media",
+      "metadata": "products/hyperframes-media/product.json"
+    },
+    {
+      "id": "hyperframes-registry",
+      "metadata": "products/hyperframes-registry/product.json"
     },
     {
       "id": "live-dashboard-update-verification",
@@ -86,6 +126,10 @@
       "metadata": "products/local-first-verification-cli/product.json"
     },
     {
+      "id": "lottie",
+      "metadata": "products/lottie/product.json"
+    },
+    {
       "id": "machine-discovery-surface-engineering",
       "metadata": "products/machine-discovery-surface-engineering/product.json"
     },
@@ -94,12 +138,28 @@
       "metadata": "products/measurement-gated-learning-admission/product.json"
     },
     {
+      "id": "media-use",
+      "metadata": "products/media-use/product.json"
+    },
+    {
+      "id": "motion-graphics",
+      "metadata": "products/motion-graphics/product.json"
+    },
+    {
       "id": "outside-in-agent-crawl-verification",
       "metadata": "products/outside-in-agent-crawl-verification/product.json"
     },
     {
+      "id": "pr-to-video",
+      "metadata": "products/pr-to-video/product.json"
+    },
+    {
       "id": "problem-centred-institutional-memory",
       "metadata": "products/problem-centred-institutional-memory/product.json"
+    },
+    {
+      "id": "product-launch-video",
+      "metadata": "products/product-launch-video/product.json"
     },
     {
       "id": "production-agent-operating-files",
@@ -122,6 +182,10 @@
       "metadata": "products/read-only-production-reconnaissance/product.json"
     },
     {
+      "id": "remotion-to-hyperframes",
+      "metadata": "products/remotion-to-hyperframes/product.json"
+    },
+    {
       "id": "safe-scheduled-runtime-upgrade",
       "metadata": "products/safe-scheduled-runtime-upgrade/product.json"
     },
@@ -132,6 +196,10 @@
     {
       "id": "signed-agent-action-receipts",
       "metadata": "products/signed-agent-action-receipts/product.json"
+    },
+    {
+      "id": "slideshow",
+      "metadata": "products/slideshow/product.json"
     },
     {
       "id": "staged-mcp-plugin-activation",
@@ -146,8 +214,28 @@
       "metadata": "products/state-transition-evidence-contract/product.json"
     },
     {
+      "id": "tailwind",
+      "metadata": "products/tailwind/product.json"
+    },
+    {
       "id": "temporary-authority-bridge-lifecycle",
       "metadata": "products/temporary-authority-bridge-lifecycle/product.json"
+    },
+    {
+      "id": "three",
+      "metadata": "products/three/product.json"
+    },
+    {
+      "id": "typegpu",
+      "metadata": "products/typegpu/product.json"
+    },
+    {
+      "id": "waapi",
+      "metadata": "products/waapi/product.json"
+    },
+    {
+      "id": "website-to-video",
+      "metadata": "products/website-to-video/product.json"
     }
   ]
 }
