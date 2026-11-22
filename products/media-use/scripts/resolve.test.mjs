@@ -34,7 +34,7 @@ function makeRecord(overrides = {}) {
 }
 
 function resolveCmd(args) {
-  return `node skills/media-use/scripts/resolve.mjs ${args}`;
+  return `node "${join(import.meta.dirname, "resolve.mjs")}" ${args}`;
 }
 
 const tests = [];
