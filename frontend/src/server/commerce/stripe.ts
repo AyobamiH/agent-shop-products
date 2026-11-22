@@ -38,7 +38,11 @@ async function stripeRequest(
   try {
     const raw = await response.text();
     if (raw.length > 131_072) throw new Error("oversized Stripe payload");
-    value = JSON.parse(raw) as Record<string, unknown>;
+    const parsed: unknown = JSON.parse(raw);
+    if (parsed === null || typeof parsed !== "object" || Array.isArray(parsed)) {
+      throw new Error("invalid Stripe response shape");
+    }
+    value = parsed as Record<string, unknown>;
   } catch {
     throw new CommerceFailure("PAYMENT_PROVIDER_BAD_RESPONSE", 502, true);
   }
@@ -116,10 +120,16 @@ export async function createStripeSession(
   try { destination = new URL(session.url || ""); }
   catch { throw new CommerceFailure("PAYMENT_PROVIDER_BAD_RESPONSE", 502); }
   if (!/^cs_(?:test_|live_)[A-Za-z0-9]{10,}$/.test(session.id) ||
+      !session.id.startsWith(offer.mode === "live" ? "cs_live_" : "cs_test_") ||
       destination.protocol !== "https:" || destination.hostname !== "checkout.stripe.com" ||
+      destination.port !== "" || destination.username !== "" || destination.password !== "" ||
+      session.mode !== "payment" || session.client_reference_id !== orderId ||
+      session.metadata?.["agent_shop_order_id"] !== orderId ||
+      session.metadata?.["offer_id"] !== offer.id ||
+      session.metadata?.["offer_version"] !== offer.version ||
+      session.metadata?.["terms_version"] !== offer.termsVersion ||
       session.livemode !== (offer.mode === "live") ||
-      (offer.mode === "live" ? session.managed_payments?.enabled !== true : session.managed_payments?.enabled === true) ||
-      (session.client_reference_id && session.client_reference_id !== orderId)) {
+      (offer.mode === "live" ? session.managed_payments?.enabled !== true : session.managed_payments?.enabled === true)) {
     throw new CommerceFailure("PAYMENT_PROVIDER_BAD_RESPONSE", 502);
   }
   return { id: session.id, url: destination.toString() };
@@ -137,7 +147,7 @@ export async function getStripeSession(
 
 export function verifyPaidSession(
   session: StripeSession, offer: ApprovedOffer,
-  order: { id: string; checkout_session_id: string; amount_pence: number; currency: string; offer_id: string; offer_version: string },
+  order: { id: string; checkout_session_id: string; amount_pence: number; currency: string; offer_id: string; offer_version: string; terms_version?: string },
 ): string {
   const liveManaged = offer.mode === "live";
   const tax = Number(session.total_details?.amount_tax);
@@ -158,6 +168,7 @@ export function verifyPaidSession(
       session.amount_total !== offer.unitAmountPence + tax;
   if (
     session.id !== order.checkout_session_id ||
+    !session.id.startsWith(liveManaged ? "cs_live_" : "cs_test_") ||
     session.client_reference_id !== order.id ||
     session.mode !== "payment" ||
     session.livemode !== liveManaged ||
@@ -174,6 +185,10 @@ export function verifyPaidSession(
     session.metadata?.["agent_shop_order_id"] !== order.id ||
     session.metadata?.["offer_id"] !== offer.id ||
     session.metadata?.["offer_version"] !== offer.version ||
+    // Bind real-money fulfilment to the legal version on the original D1 order,
+    // not whichever terms happen to be current when a delayed webhook arrives.
+    (liveManaged && (typeof order.terms_version !== "string" ||
+      session.metadata?.["terms_version"] !== order.terms_version)) ||
     session.line_items?.data?.length !== 1 ||
     session.line_items.data[0]?.price?.id !== offer.priceId ||
     session.line_items.data[0]?.quantity !== 1

@@ -3,18 +3,10 @@ import { createFileRoute, Link, Outlet, useMatchRoute } from "@tanstack/react-ro
 import { PageShell } from "@/components/layout/PageShell";
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import { buildPageHead } from "@/lib/seo/meta";
+import { KIT_ID, parseKitCatalogue, verifiedCheckoutRedirect, type KitOffer } from "@/features/commercial/kit-offer";
 
-type KitOffer = {
-  id: string; title: string; summary: string; version: string;
-  availability: string; unitAmountPence?: number; paymentModel?: string;
-  termsVersion?: string; licenceVersion?: string; refundPolicyVersion?: string;
-  termsUrl?: string; licenceUrl?: string; refundUrl?: string;
-  buyerRequirements?: string[];
-};
-type Catalogue = { offers: KitOffer[]; commerceActive: boolean };
 type CheckoutReceipt = { orderId: string; claimToken: string; checkoutUrl: string };
 const OFFER_URL = "/api/v1/commerce/offers";
-const KIT_ID = "private-production-agent-operating-kit";
 const PLANNED_PRICE_LABEL = "Planned introductory price: £9 one-off.";
 
 export const Route = createFileRoute("/private-kits")({
@@ -36,20 +28,25 @@ function PrivateKitsPage() {
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [commerceActive, setCommerceActive] = useState(false);
+  const [offerLookupFailed, setOfferLookupFailed] = useState(false);
 
   useEffect(() => {
     const abort = new AbortController();
     fetch(OFFER_URL, { signal: abort.signal, cache: "no-store" })
       .then(async (response) => {
         if (!response.ok) throw new Error("Commerce availability could not be checked");
-        return response.json() as Promise<Catalogue>;
+        return response.json() as Promise<unknown>;
       })
       .then((data) => {
-        setOffer(data.offers.find((item) => item.id === KIT_ID) ?? null);
+        const catalogue = parseKitCatalogue(data);
+        setCommerceActive(catalogue.commerceActive);
+        setOffer(catalogue.offer);
         setLoading(false);
       })
       .catch(() => {
         if (!abort.signal.aborted) {
+          setOfferLookupFailed(true);
           setError("Availability is temporarily unavailable. Please try again. No payment has been started.");
           setLoading(false);
         }
@@ -57,7 +54,7 @@ function PrivateKitsPage() {
     return () => abort.abort();
   }, []);
 
-  const available = offer?.availability === "purchase_available" && typeof offer.unitAmountPence === "number";
+  const available = !offerLookupFailed && commerceActive && offer?.availability === "purchase_available" && typeof offer.unitAmountPence === "number" && Number.isSafeInteger(offer.unitAmountPence) && offer.unitAmountPence > 0;
   const price = available
     ? new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(offer!.unitAmountPence! / 100)
     : null;
@@ -77,10 +74,7 @@ function PrivateKitsPage() {
       if (!response.ok || !data.orderId || !data.claimToken || !data.checkoutUrl) {
         throw new Error(data.error || "CHECKOUT_UNAVAILABLE");
       }
-      const redirect = new URL(data.checkoutUrl);
-      if (redirect.protocol !== "https:" || redirect.hostname !== "checkout.stripe.com") {
-        throw new Error("UNTRUSTED_CHECKOUT");
-      }
+      const redirect = verifiedCheckoutRedirect(data.checkoutUrl);
       sessionStorage.setItem("agent-shop:commerce-order", data.orderId);
       sessionStorage.setItem("agent-shop:commerce-claim", data.claimToken);
       window.location.assign(redirect.toString());
@@ -110,7 +104,7 @@ function PrivateKitsPage() {
           <p className="text-xs uppercase tracking-wide text-muted-foreground">Private Production Agent Operating Kit · v2026.10.1</p>
           <h2 className="mt-3 text-xl font-semibold">{offer?.title || "Private Production Agent Operating Kit"}</h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            {offer?.summary || "A proposed private execution pack with checked templates, runtime verification cases and failure-handling examples."}
+            {offer?.summary || "A private execution pack with checked templates, runtime verification cases and failure-handling examples."}
           </p>
           <p className="mt-4 text-sm">
             Open source stays free:{" "}
@@ -121,9 +115,20 @@ function PrivateKitsPage() {
           <div className="mt-5 border-t border-border pt-5">
             {loading ? (
               <div>
-                <p className="font-medium">{PLANNED_PRICE_LABEL}</p>
+                <p className="font-medium">Checking current kit availability and price.</p>
                 <p role="status" className="mt-2 text-sm text-muted-foreground">
                   Checking whether online orders are open. No payment has been started.
+                </p>
+                <a href="/integration-services" className="mt-4 inline-block text-sm text-primary underline underline-offset-4">
+                  Enquire about professional integration
+                </a>
+              </div>
+            ) : offerLookupFailed ? (
+              <div>
+                <p className="font-medium">Current kit availability cannot be confirmed</p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  The live offer could not be checked. Availability and price are unknown,
+                  and no payment has been started. Please try again.
                 </p>
                 <a href="/integration-services" className="mt-4 inline-block text-sm text-primary underline underline-offset-4">
                   Enquire about professional integration
@@ -173,7 +178,7 @@ function PrivateKitsPage() {
             <li>Rollback and recovery worksheets for reviewing changes before applying them.</li>
           </ul>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            Once purchases open, delivery is for the purchased version with 30 days of bounded
+            Where purchase is offered, delivery is for the purchased version with 30 days of bounded
             archive-access and documented-test assistance. No automatic upgrade or deployment
             authority is included. The stated refund policy allows 14-day full refunds, including
             after download.

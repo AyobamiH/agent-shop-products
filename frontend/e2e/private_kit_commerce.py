@@ -1,7 +1,7 @@
 """Browser acceptance: no charge, falsely ACTIVE price or private file is created.
 
-The private-kit route is deliberately visible but the purchase flow stays
-closed until its owner-approved merchant, legal text and delivery acceptance.
+This scenario exercises a deliberately closed local offer fixture. Live purchase
+availability must be verified independently against the running environment.
 """
 import asyncio
 import json
@@ -21,7 +21,9 @@ async def main():
         initial = await page.request.get(BASE + '/private-kits')
         assert initial.status == 200
         initial_html = await initial.text()
-        assert 'Planned introductory price: £9 one-off.' in initial_html
+        assert 'Checking current kit availability and price.' in initial_html
+        assert 'A proposed private execution pack' not in initial_html
+        assert 'Once purchases open' not in initial_html
         assert 'What is different from the free public reference?' in initial_html
         assert 'Continue to secure checkout' not in initial_html
 
@@ -42,6 +44,119 @@ async def main():
         assert catalogue['offers'][0]['availability'] == 'planned'
         assert 'unitAmountPence' not in catalogue['offers'][0]
         assert 'priceId' not in catalogue['offers'][0]
+
+        # HTTP failures mean unknown availability, never a confirmed closure.
+        async def fail_offers(route):
+            await route.fulfill(status=500, content_type='application/json', body='{}')
+
+        await page.route('**/api/v1/commerce/offers', fail_offers)
+        await page.reload(wait_until='domcontentloaded')
+        await expect(page.get_by_text('Current kit availability cannot be confirmed')).to_be_visible()
+        assert await page.get_by_text('Private-kit checkout is not yet open').count() == 0
+        assert await page.get_by_text('Planned introductory price:', exact=False).count() == 0
+        assert await page.get_by_role('button', name='Continue to secure checkout').count() == 0
+        await page.unroute('**/api/v1/commerce/offers', fail_offers)
+
+        # A 200 without the canonical kit is not proof that checkout is closed.
+        for malformed_offers in [
+            [],
+            [{'id': 'unrelated-kit', 'availability': 'purchase_available'}],
+            [{'id': 'private-production-agent-operating-kit', 'availability': 'unexpected'}],
+        ]:
+            async def missing_kit(route):
+                await route.fulfill(
+                    status=200, content_type='application/json',
+                    body=json.dumps({'schemaVersion': 1, 'commerceActive': True, 'offers': malformed_offers}),
+                )
+
+            await page.route('**/api/v1/commerce/offers', missing_kit)
+            await page.reload(wait_until='domcontentloaded')
+            await expect(page.get_by_text('Current kit availability cannot be confirmed')).to_be_visible()
+            assert await page.get_by_text('Private-kit checkout is not yet open').count() == 0
+            assert await page.get_by_text('Planned introductory price:', exact=False).count() == 0
+            assert await page.get_by_role('button', name='Continue to secure checkout').count() == 0
+            await page.unroute('**/api/v1/commerce/offers', missing_kit)
+
+        # Global off must supersede a contradictory purchase_available offer.
+        live_offer = {
+            'id': 'private-production-agent-operating-kit',
+            'title': 'Private Production Agent Operating Kit',
+            'summary': 'Runtime guard and recovery cases',
+            'version': '2026.10.1',
+            'availability': 'purchase_available',
+            'mode': 'live',
+            'termsVersion': '2026-10-16.1',
+            'licenceVersion': '2026-10-16.1',
+            'refundPolicyVersion': '2026-10-16.1',
+            'unitAmountPence': 900,
+            'currency': 'gbp',
+            'paymentModel': 'managed_payments',
+            'termsUrl': 'https://agents.proofandstate.com/legal/kit-terms',
+            'licenceUrl': 'https://agents.proofandstate.com/legal/kit-licence',
+            'refundUrl': 'https://agents.proofandstate.com/legal/kit-refunds',
+        }
+        # Contradictory disabled flag + live offer is unknown, not confirmed closure.
+        async def contradictory_closed(route):
+            await route.fulfill(status=200, content_type='application/json',
+                                body=json.dumps({'schemaVersion': 1, 'commerceActive': False, 'offers': [live_offer]}))
+
+        await page.route('**/api/v1/commerce/offers', contradictory_closed)
+        await page.reload(wait_until='domcontentloaded')
+        await expect(page.get_by_text('Current kit availability cannot be confirmed')).to_be_visible()
+        assert await page.get_by_text('Planned introductory price:', exact=False).count() == 0
+        assert await page.get_by_role('button', name='Continue to secure checkout').count() == 0
+        await page.unroute('**/api/v1/commerce/offers', contradictory_closed)
+
+        # Canonical disabled response is planned, without payment price or mode.
+        planned_offer = {key: value for key, value in live_offer.items()
+                         if key not in ('unitAmountPence', 'mode')}
+        planned_offer['availability'] = 'planned'
+
+        async def closed_global(route):
+            await route.fulfill(status=200, content_type='application/json',
+                                body=json.dumps({'schemaVersion': 1, 'commerceActive': False, 'offers': [planned_offer]}))
+
+        await page.route('**/api/v1/commerce/offers', closed_global)
+        await page.reload(wait_until='domcontentloaded')
+        await expect(page.get_by_text('Private-kit checkout is not yet open')).to_be_visible()
+        assert await page.get_by_role('button', name='Continue to secure checkout').count() == 0
+        await page.unroute('**/api/v1/commerce/offers', closed_global)
+
+        # Mocked live UI: verify price and button, never click or charge.
+        async def live_global(route):
+            await route.fulfill(status=200, content_type='application/json',
+                                body=json.dumps({'schemaVersion': 1, 'commerceActive': True, 'offers': [live_offer]}))
+
+        await page.route('**/api/v1/commerce/offers', live_global)
+        await page.reload(wait_until='domcontentloaded')
+        await expect(page.get_by_role('button', name='Continue to secure checkout')).to_be_visible()
+        await expect(page.get_by_text('£9.00', exact=True)).to_be_visible()
+        await page.unroute('**/api/v1/commerce/offers', live_global)
+
+        # The client must not display a misleading checkout/closed state for
+        # an HTTP 200 with a mismatched price, currency or legal destination.
+        for changed in [
+            {'unitAmountPence': 800},
+            {'priceId': 'price_should_not_be_public'},
+            {'currency': 'usd'},
+            {'mode': 'disabled'},
+            {'termsVersion': '2025-old'},
+            {'licenceVersion': None},
+            {'refundPolicyVersion': '2025-old'},
+            {'termsUrl': 'https://example.invalid/legal/kit-terms'},
+        ]:
+            async def inconsistent_live(route):
+                await route.fulfill(status=200, content_type='application/json',
+                    body=json.dumps({'schemaVersion': 1, 'commerceActive': True,
+                                     'offers': [{**live_offer, **changed}]}))
+
+            await page.route('**/api/v1/commerce/offers', inconsistent_live)
+            await page.reload(wait_until='domcontentloaded')
+            await expect(page.get_by_text('Current kit availability cannot be confirmed')).to_be_visible()
+            assert await page.get_by_text('Private-kit checkout is not yet open').count() == 0
+            assert await page.get_by_text('Planned introductory price:', exact=False).count() == 0
+            assert await page.get_by_role('button', name='Continue to secure checkout').count() == 0
+            await page.unroute('**/api/v1/commerce/offers', inconsistent_live)
 
         unsafe = await page.request.post(
             BASE + '/api/v1/commerce/checkout',

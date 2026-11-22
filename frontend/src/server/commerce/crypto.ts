@@ -49,6 +49,33 @@ export function checkBodySize(request: Request, maxBytes: number): void {
   if (length > maxBytes) throw new CommerceFailure("PAYLOAD_TOO_LARGE", 413);
 }
 
+/** Bound the actual streamed bytes, even when Content-Length is absent or false. */
+export async function readBoundedBody(request: Request, maxBytes: number): Promise<string> {
+  checkBodySize(request, maxBytes);
+  if (!request.body) return "";
+  const reader = request.body.getReader();
+  const decoder = new TextDecoder();
+  const parts: string[] = [];
+  let bytes = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      bytes += value.byteLength;
+      if (bytes > maxBytes) {
+        // Stop accepting bytes; never wait on an untrusted source's cancel handler.
+        void reader.cancel().catch(() => {});
+        throw new CommerceFailure("PAYLOAD_TOO_LARGE", 413);
+      }
+      parts.push(decoder.decode(value, { stream: true }));
+    }
+    parts.push(decoder.decode());
+    return parts.join("");
+  } finally {
+    reader.releaseLock();
+  }
+}
+
 export function assertBrowserOrigin(request: Request): void {
   const origin = request.headers.get("origin");
   const site = request.headers.get("sec-fetch-site");

@@ -137,7 +137,15 @@ function fixture({ preventEntitlementInsert = false,
       }
       if (stripeCommittedButTimedOut) throw new Error("synthetic Stripe transport loss after session commit");
       return new Response(JSON.stringify({id:SESSION,url:"https://checkout.stripe.com/pay/"+SESSION,
-        livemode:false,mode:"payment",client_reference_id:body.get("client_reference_id")}),{status:200});
+        livemode:false,mode:"payment",client_reference_id:body.get("client_reference_id"),
+        // Stripe returns Checkout metadata on creation. Mirror the values from
+        // the posted form so this lifecycle test exercises the real binding.
+        metadata:{
+          agent_shop_order_id:body.get("metadata[agent_shop_order_id]"),
+          offer_id:body.get("metadata[offer_id]"),
+          offer_version:body.get("metadata[offer_version]"),
+          terms_version:body.get("metadata[terms_version]"),
+        }}),{status:200});
     }
     if(url.pathname.endsWith("/checkout/sessions/"+SESSION))return new Response(JSON.stringify({
       id:SESSION,livemode:false,mode:"payment",payment_status:"paid",

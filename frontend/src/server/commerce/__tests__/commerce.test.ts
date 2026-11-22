@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from "vitest";
 import { approvedOffer, publicOffers, settlementOffer } from "../config";
 import type { ApprovedOffer, CommerceEnv } from "../config";
-import { claimTokenHash, newClaimToken, verifyStripeSignature } from "../crypto";
-import { createStripeSession, verifyPaidSession, verifyStripePrice } from "../stripe";
+import { claimTokenHash, newClaimToken, readBoundedBody, verifyStripeSignature } from "../crypto";
+import { createStripeSession, getStripeSession, verifyPaidSession, verifyStripePrice } from "../stripe";
 import { handleCommerceRequest } from "../handler";
 import realIntroductorySession from "./fixtures/stripe-nine-pound-sandbox-20261010.json";
 
@@ -29,6 +29,71 @@ function ready(overrides: Overrides = {}): CommerceEnv {
 }
 const KIT = "private-production-agent-operating-kit";
 describe("Private kit gated commerce", () => {
+  it("enforces streamed byte limits without trusting Content-Length or UTF-16 length", async () => {
+    const raw = new TextEncoder().encode(JSON.stringify({ offerId: KIT }) + "€".repeat(1500));
+    expect(raw.byteLength).toBeGreaterThan(4096);
+    const checkoutRequest = new Request("https://agents.proofandstate.com/api/v1/commerce/checkout", {
+      method: "POST",
+      headers: { origin: "https://agents.proofandstate.com",
+        "sec-fetch-site": "same-origin", "content-type": "application/json" },
+      body: new ReadableStream<Uint8Array>({
+        start(controller) {
+          controller.enqueue(raw.slice(0, 1024));
+          controller.enqueue(raw.slice(1024));
+          controller.close();
+        },
+      }),
+      duplex: "half",
+    } as RequestInit & { duplex: "half" });
+    expect(checkoutRequest.headers.get("content-length")).toBeNull();
+    const response = await handleCommerceRequest(checkoutRequest, ready());
+    expect(response?.status).toBe(413);
+    expect(await response?.json()).toMatchObject({ error: "PAYLOAD_TOO_LARGE" });
+
+    // The signed webhook must not continue draining a hostile chunked upload.
+    let pulls = 0;
+    const webhookRequest = new Request("https://agents.proofandstate.com/api/v1/commerce/stripe-webhook", {
+      method: "POST",
+      body: new ReadableStream<Uint8Array>({
+        pull(controller) {
+          pulls++;
+          if (pulls > 3) throw Error("STREAM_DRAINED_AFTER_BYTE_LIMIT");
+          controller.enqueue(new Uint8Array(23_000));
+        },
+      }, { highWaterMark: 0 }),
+      duplex: "half",
+    } as RequestInit & { duplex: "half" });
+    const webhookResponse = await handleCommerceRequest(webhookRequest, ready());
+    expect(webhookResponse?.status).toBe(413);
+    expect(pulls).toBe(3);
+
+    // A multibyte character split across chunks must survive at the exact limit.
+    const glyph = new TextEncoder().encode("£🚀");
+    const accepted = new Request("https://agents.proofandstate.com/", {
+      method: "POST",
+      body: new ReadableStream<Uint8Array>({
+        start(controller) {
+          controller.enqueue(glyph.slice(0, 1));
+          controller.enqueue(glyph.slice(1, 3));
+          controller.enqueue(glyph.slice(3));
+          controller.close();
+        },
+      }),
+      duplex: "half",
+    } as RequestInit & { duplex: "half" });
+    expect(await readBoundedBody(accepted, glyph.byteLength)).toBe("£🚀");
+  });
+  it("rejects non-object 200 responses from Stripe before reconciliation", async () => {
+    const env = ready();
+    const ref = "cs_test_123456789012";
+    const valid = { id: ref, livemode: false };
+    const accepted = await getStripeSession(env, ref, async () => Response.json(valid));
+    expect(accepted).toEqual(valid);
+    for (const value of [null, [], "unexpected", 24, true]) {
+      await expect(getStripeSession(env, ref, async () => Response.json(value)))
+        .rejects.toMatchObject({ code: "PAYMENT_PROVIDER_BAD_RESPONSE", status: 502 });
+    }
+  });
   it("labels an enabled sandbox offer as test rather than silently presenting it as live", () => {
     expect(publicOffers(ready())[0]).toMatchObject({ mode: "test", availability: "purchase_available", unitAmountPence: 900 });
     expect(publicOffers({})[0]).not.toHaveProperty("mode");
@@ -147,6 +212,8 @@ describe("Private kit gated commerce", () => {
     const env = { STRIPE_SECRET_KEY: "rk_live_synthetic" } as CommerceEnv;
     let posted = new URLSearchParams();
     let stripeVersion: string | null = null;
+    let checkoutUrl = "https://checkout.stripe.com/pay/cs_live_123456789012345";
+    let checkoutResponseOverride: Record<string, unknown> = {};
     const provider = async (input: RequestInfo | URL, init?: RequestInit) => {
       stripeVersion = new Headers(init?.headers).get("Stripe-Version");
       const url = new URL(String(input));
@@ -162,21 +229,63 @@ describe("Private kit gated commerce", () => {
       if (url.pathname.endsWith("/checkout/sessions") && init?.method === "POST") {
         posted = new URLSearchParams(String(init.body));
         return Response.json({
-          id: "cs_live_123456789012345", url: "https://checkout.stripe.com/pay/cs_live_123456789012345",
+          id: "cs_live_123456789012345", url: checkoutUrl,
           livemode: true, mode: "payment", client_reference_id: posted.get("client_reference_id"),
           managed_payments: { enabled: true },
+          metadata: {
+            agent_shop_order_id: posted.get("metadata[agent_shop_order_id]"),
+            offer_id: posted.get("metadata[offer_id]"),
+            offer_version: posted.get("metadata[offer_version]"),
+            terms_version: posted.get("metadata[terms_version]"),
+          },
+          ...checkoutResponseOverride,
         });
       }
       return Response.json({ error: "unexpected" }, { status: 500 });
     };
     const opened = await createStripeSession(env, offer, "order-live-123", provider as typeof fetch);
     expect(opened.id).toBe("cs_live_123456789012345");
+    for (const invalidUrl of [
+      "https://operator:password@checkout.stripe.com/pay/cs_live_123456789012345",
+      "https://checkout.stripe.com:8443/pay/cs_live_123456789012345",
+    ]) {
+      checkoutUrl = invalidUrl;
+      await expect(createStripeSession(env, offer, "order-live-123", provider as typeof fetch))
+        .rejects.toMatchObject({ code: "PAYMENT_PROVIDER_BAD_RESPONSE", status: 502 });
+    }
+    checkoutUrl = "https://checkout.stripe.com/pay/cs_live_123456789012345";
+    // Reject provider sessions missing the order, policy or metadata needed for settlement.
+    const canonicalMetadata = {
+      agent_shop_order_id: "order-live-123", offer_id: offer.id,
+      offer_version: offer.version, terms_version: offer.termsVersion,
+    };
+    for (const invalidSession of [
+      { id: "cs_test_123456789012345" }, // A test session is never a live buyer redirect.
+      { client_reference_id: undefined },
+      { client_reference_id: null },
+      { client_reference_id: "unrelated-order" },
+      { mode: undefined },
+      { mode: "subscription" },
+      { metadata: undefined },
+      { metadata: null },
+      { metadata: {} },
+      { metadata: { ...canonicalMetadata, agent_shop_order_id: "other-order" } },
+      { metadata: { ...canonicalMetadata, offer_id: "other-offer" } },
+      { metadata: { ...canonicalMetadata, offer_version: "other-version" } },
+      { metadata: { ...canonicalMetadata, terms_version: "other-terms" } },
+    ]) {
+      checkoutResponseOverride = invalidSession;
+      await expect(createStripeSession(env, offer, "order-live-123", provider as typeof fetch))
+        .rejects.toMatchObject({ code: "PAYMENT_PROVIDER_BAD_RESPONSE", status: 502 });
+    }
+    checkoutResponseOverride = {};
     expect(stripeVersion).toBe("2025-03-31.basil");
     expect(posted?.get("managed_payments[enabled]")).toBe("true");
     expect(posted?.has("automatic_tax[enabled]")).toBe(false);
     expect(posted?.has("billing_address_collection")).toBe(false);
     const order = { id: "order-live-123", checkout_session_id: opened.id,
-      offer_id: offer.id, offer_version: offer.version, amount_pence: 900, currency: "gbp" };
+      offer_id: offer.id, offer_version: offer.version, amount_pence: 900, currency: "gbp",
+      terms_version: offer.termsVersion };
     const paid = {
       id: opened.id, client_reference_id: order.id, mode: "payment", livemode: true,
       payment_status: "paid", managed_payments: { enabled: true },
@@ -184,10 +293,16 @@ describe("Private kit gated commerce", () => {
       currency: "gbp", amount_subtotal: 900, amount_total: 1080,
       total_details: { amount_tax: 180, amount_discount: 0, amount_shipping: 0 },
       payment_intent: "pi_live123456789012",
-      metadata: { agent_shop_order_id: order.id, offer_id: offer.id, offer_version: offer.version },
+      metadata: { agent_shop_order_id: order.id, offer_id: offer.id,
+        offer_version: offer.version, terms_version: order.terms_version },
       line_items: { data: [{ price: { id: offer.priceId }, quantity: 1 }] },
     };
     expect(verifyPaidSession(paid, offer, order)).toBe("pi_live123456789012");
+    expect(() => verifyPaidSession(
+      { ...paid, id: "cs_test_123456789012345" },
+      offer,
+      { ...order, checkout_session_id: "cs_test_123456789012345" },
+    )).toThrow();
     for (const bad of [
       { managed_payments: { enabled: false } },
       { automatic_tax: { enabled: false, status: "complete", provider: "stripe", liability: { type: "stripe" } } },
@@ -195,6 +310,8 @@ describe("Private kit gated commerce", () => {
       { automatic_tax: { enabled: true, status: "complete", provider: "other", liability: { type: "stripe" } } },
       { amount_total: 901 },
       { total_details: { amount_tax: 1, amount_discount: 0, amount_shipping: 0 } },
+      { metadata: { agent_shop_order_id: order.id, offer_id: offer.id, offer_version: offer.version } },
+      { metadata: { ...paid.metadata, terms_version: "not-the-buyers-contract" } },
     ]) expect(() => verifyPaidSession({ ...paid, ...bad }, offer, order)).toThrow();
   });
 
